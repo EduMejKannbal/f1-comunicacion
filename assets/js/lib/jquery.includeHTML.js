@@ -1,0 +1,1 @@
+(function(b){jQuery.fn.loadHTML=function(c){var d=this;b.ajax({type:"GET",url:c,dataType:"text",success:function(a){b(d).html(a)},error:function(a){console.log(a.message)}})}})(jQuery);
