@@ -2,7 +2,7 @@ var startTimeStamp = null, processedUnload = false, reachedEnd = false;
 var  strAvance = null, my_user_id = null,user_name = null;
 
 function doStart() {
-  //console.log("entra doStart");
+  console.log("entra doStart");
   startTimeStamp = new Date();
   ScormProcessInitialize();
   strAvance = ScormProcessGetValue("cmi.suspend_data");
