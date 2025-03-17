@@ -175,19 +175,68 @@ function calculateResults() {
         };
         console.log("Resultados del Test:", testResults);
         testCompleted = true;
-        showTestResults(testResults);
+        // Mostrar los resultados inmediatamente después de completar el test
+        nSlides.numSlides = 5; // Avanzar directamente a slide_module1_5
+        ctrl_slides(); // Actualizar la vista
     } else {
         console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
     }
 }
 function showTestResults(results) {
-    $("#slide_module1_5 .contenido-resultadoTest p").each(function(index) {
-        switch(index) {
-            case 0: $(this).text(`Pantera: ${results.pantera}%`); break;
-            case 1: $(this).text(`Pavo real: ${results.pavorreal}%`); break;
-            case 2: $(this).text(`Delfín: ${results.delfin}%`); break;
-            case 3: $(this).text(`Búho: ${results.buho}%`); break;
-        }
+    const $cardItems = $("#slide_module1_5 .cardTest-item");
+
+    // Encontrar el mayor porcentaje
+    const percentages = [
+        { index: 0, value: results.pantera },
+        { index: 1, value: results.pavorreal },
+        { index: 2, value: results.delfin },
+        { index: 3, value: results.buho }
+    ];
+    const maxPercentage = percentages.reduce((max, current) => 
+        current.value > max.value ? current : max, percentages[0]);
+
+    $cardItems.each(function(index) {
+        const $percentageText = $(this).find(".testResult-relative p");
+        const $progressFill = $(this).find(".progress-bar-fill");
+        const $card = $(this); // Referencia a la tarjeta actual
+
+        // Establecer valor inicial en 0 para la animación
+        $progressFill.css("width", "0%");
+        $card.css("transform", "scale(0.9)"); // Escala inicial para todas
+
+        // Actualizar con el valor final después de un pequeño retraso
+        setTimeout(() => {
+            switch(index) {
+                case 0: // Pantera
+                    $percentageText.text(`${results.pantera}%`);
+                    $progressFill.css("width", `${results.pantera}%`);
+                    if (maxPercentage.index === 0) {
+                        $card.css("transform", "scale(1.05)");
+                    }
+                    break;
+                case 1: // Pavo real
+                    $percentageText.text(`${results.pavorreal}%`);
+                    $progressFill.css("width", `${results.pavorreal}%`);
+                    if (maxPercentage.index === 1) {
+                        $card.css("transform", "scale(1.05)");
+                    }
+                    break;
+                case 2: // Delfín
+                    $percentageText.text(`${results.delfin}%`);
+                    $progressFill.css("width", `${results.delfin}%`);
+                    if (maxPercentage.index === 2) {
+                        $card.css("transform", "scale(1.05)");
+                    }
+                    break;
+                case 3: // Búho
+                    $percentageText.text(`${results.buho}%`);
+                    $progressFill.css("width", `${results.buho}%`);
+                    if (maxPercentage.index === 3) {
+                        $card.css("transform", "scale(1.05)");
+                    }
+                    break;
+            }
+        }, 100); // Retraso de 100ms para asegurar que la transición se vea
     });
 }
 function restoreSelections() {
