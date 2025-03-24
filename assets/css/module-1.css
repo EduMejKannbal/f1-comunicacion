@@ -387,24 +387,24 @@
 .buho img:hover {
   transform: scale(1);
 }
-.resultadoTest_header{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    align-items: center;
+.resultadoTest_header {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
 }
-.resultadoTest_footer{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    justify-items: center;
+.resultadoTest_footer {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-items: center;
 }
-.header-textResult{
-    width: 55%;
+.header-textResult {
+  width: 55%;
 }
-.footer-continuar{
-    width: 15%;
-    height: auto;
+.footer-continuar {
+  width: 15%;
+  height: auto;
 }
 .contenido-resultadoTest {
   display: grid;
@@ -421,89 +421,99 @@
   background: #8a2be20d;
   padding: 2%;
 }
-
-/* .card_test {
-  width: 200px;
-  height: 330px;
-  position: relative;
+.resultadoTest_body {
   display: flex;
-  perspective: 2500px;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-around;
-  border-radius: 10%;
+  gap: 1rem;
+}
+.cardTest {
+  perspective: 1000px;
+  /* transform-style: preserve-3d; */
+}
+.cardTest-item {
   background-image: url("../img/modules/module-1/slide-5/fondo.png");
-  background-size: 100% 100%;
+  width: 200px;
+  height: 300px;
+overflow: hidden;
+  background-position: center;
+  border-radius: 10%;
+  position: relative;
+  display: grid;
+  align-items: end;
+  justify-items: center;
+}
+.cardTest-item .item-testimage {
+  top: 10%;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+.cardTest-item .item-testhumanImage {
+  z-index: 1;
+  display: grid;
+  position: relative;
+  width: 100%;
+  height: auto;
+  align-items: end;
+}
+.cardTest-item .item-testResult {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.397);
+  border-left: none;
+  border-right: none;
+  width: 100%;
+  height: 25%;
+  z-index: 1;
+  bottom: 20%;
+  margin: auto;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+.testResult-relative {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+.testResult-name {
+  width: 40%;
+  height: auto;
+}
+
+.progress-bar {
+  width: 70%;
+  height: 8px; 
+  background: #e0e0e08c; 
+  border-radius: 10px; 
   overflow: hidden;
 }
 
-.cover-image {
-  width: 100%;
+.progress-bar-fill {
   height: 100%;
-  object-fit: cover;
+  width: 0%;
+  background: #0497ec; 
+  transition: width 1s ease-in-out; 
 }
-
-.wrapper {
-  transition: all 0.5s;
-  position: absolute;
-  width: 100%;
-  z-index: -1;
-}
-.wrapper-head {
-  background: teal;
-  width: 100%;
-  height: 10%;
-}
-.card_test:hover .wrapper {
-  transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
-}
-
-.wrapper::before,
-.wrapper::after {
-  content: "";
-  opacity: 0;
-  width: 100%;
-  height: 80px;
-  transition: all 0.5s;
-  position: absolute;
+.module1_7-cars {
+  bottom: 0;
   left: 0;
+  width: 86%;
+  height: auto;
+  z-index: 2;
 }
-.wrapper::before {
-  top: 0;
-  height: 100%;
+.module1_7-rec {
+  z-index: 1;
+  width: 61%;
+  right: 0;
+  top: 10%;
+  height: auto;
 }
-.wrapper::after {
-  bottom: 0;
-  opacity: 1;
+.module1_7-txt {
+  z-index: 1;
+  right: 9%;
+  top: 19%;
+  width: 40%;
 }
-
-.card_test:hover .wrapper::before,
-.wrapper::after {
-  opacity: 1;
-}
-
-.card_test:hover .wrapper::after {
-  height: 120px;
-}
-.title {
-  position: absolute;
-  bottom: 20%;
-  transition: transform 0.5s;
-}
-.card_test:hover .title {
-  transform: translate3d(0%, -50px, 100px);
-}
-
-.character {
-  width: 100%;
-  opacity: 1;
-  transition: all 0.5s;
-  position: absolute;
-  z-index: -1;
-  bottom: 0;
-}
-
-.card_test:hover .character {
-  opacity: 1;
-  transform: translate3d(0%, 0%, 180px);
-} */

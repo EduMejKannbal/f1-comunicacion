@@ -1,22 +1,21 @@
 ctrl_slides();
 
-
 function ctrl_slides() {
     const $slides = $(".slide_module1");
     const totalSlides = $slides.length;
     const currentSlide = nSlides.numSlides;
     const $prevBtn = $("#module1_Prev");
     const $nextBtn = $("#module1_Next");
-    // resetLocution();
+
     $slides.hide();
     $("#slide_module1_" + currentSlide).show();
-    console.log("#slide_module1_" + currentSlide)
-    // playAudio('transporte_', currentSlide)
+    console.log("#slide_module1_" + currentSlide);
+
     $prevBtn.show();
     $nextBtn.show();
+
     if (currentSlide === 1) {
         $prevBtn.hide();
-        // $nextBtn.hide();
     } else if (currentSlide === 4) {
         ctrl_carru_simple("test_1", nSlides.test_1);
         if (testCompleted) {
@@ -27,7 +26,6 @@ function ctrl_slides() {
     } else if (currentSlide === totalSlides) {
         $nextBtn.hide();
     }
-    // unlock_menu();
 }
 $("#module1_Prev").click(() => {
     // resetLocution();
@@ -61,4 +59,22 @@ if (!testCompleted) {
             calculateResults();
         }
     });
+}
+
+const cards = document.querySelectorAll('.cardTest');
+for(let i = 0; i < cards.length; i++){
+  const card = cards[i];
+  card.addEventListener('mousemove', rotate);
+    card.addEventListener('mouseout', stopRotate)
+}
+
+function rotate(e){
+  const cardItem = this.querySelector('.cardTest-item');
+  const halfHeight = cardItem.offsetHeight / 2;
+
+  cardItem.style.transform = 'rotateX('+-(e.offsetY - halfHeight) / 7+'deg) rotateY('+(e.offsetX - halfHeight) / 7+'deg)';
+}
+function stopRotate(){
+  const cardItem = this.querySelector('.cardTest-item');
+  cardItem.style.transform = 'rotate(0)';
 }
