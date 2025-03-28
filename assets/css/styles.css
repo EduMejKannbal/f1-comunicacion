@@ -1,4 +1,8 @@
 /* Versión mejorada combinando lo mejor de ambos enfoques */
+
+@font-face{font-family:Formula_bold;src:url(../fonts/Formula1-Bold.woff)}
+@font-face{font-family:Formula_regular;src:url(../fonts/Formula1-Regular.woff)}
+
 :root {
   --bg-body: #18181b;
   --bg-main: #ffffff;
