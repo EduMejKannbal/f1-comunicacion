@@ -3,12 +3,20 @@ let gAvMax = 2
 let myAvance = {
     avModulos: 0,
     g_avance: 0,
+    ch2: {
+        comic: 1,
+        preg_1: null,
+        preg_2: null,
+        preg_3: null,
+        preg_4: null,
+    }
 };
+
+
 let nSlides = {
     numSlides: 1,
+    numSlides_2:1,
     general: 1,
-    test_1: 1
-
 };
 let flagMus = 1;
 let flagVoice = 1;
@@ -164,52 +172,26 @@ function setupCarouselControls(carruClass) {
         }
     });
 }
-function calculateResults() {
-    var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
-    if (totalSelections === totalQuestions) {
-        testResults = {
-            pantera: Math.round((selections.pantera / totalQuestions) * 100),
-            pavorreal: Math.round((selections.pavorreal / totalQuestions) * 100),
-            delfin: Math.round((selections.delfin / totalQuestions) * 100),
-            buho: Math.round((selections.buho / totalQuestions) * 100)
-        };
-        console.log("Resultados del Test:", testResults);
-        testCompleted = true;
-        showTestResults(testResults);
-    } else {
-        console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
-    }
-}
-function showTestResults(results) {
-    $("#slide_module1_5 .contenido-resultadoTest p").each(function(index) {
-        switch(index) {
-            case 0: $(this).text(`Pantera: ${results.pantera}%`); break;
-            case 1: $(this).text(`Pavo real: ${results.pavorreal}%`); break;
-            case 2: $(this).text(`Delfín: ${results.delfin}%`); break;
-            case 3: $(this).text(`Búho: ${results.buho}%`); break;
-        }
-    });
-}
-function restoreSelections() {
-    $(".body-answers img").each(function() {
-        var questionNum = $(this).data('question');
-        var type = $(this).parent().data('type');
-        if (userSelections[questionNum] === type) {
-            $(this).attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
-        }
-        $(this).addClass('disabled').off('click'); // Deshabilitar interacción
-    });
-}
-function resetSlide(variableName) {
-    if (typeof nSlides !== "undefined" && typeof variableName === "string") {
-        nSlides[variableName] = 1; // Siempre reinicia a 1
-    } else {
-        console.error("nSlides no está definido o el nombre de la variable no es una cadena.");
-    }
-}
+
+
 // use a script tag or an external JS file
 document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(Flip, ScrollTrigger, Observer, ScrollToPlugin, Draggable, MotionPathPlugin, EaselPlugin, PixiPlugin, TextPlugin, RoughEase, ExpoScaleEase, SlowMo, CustomEase)
     // gsap code here!
 });
 
+
+
+//Control de avance de elementos clickeables
+function  ctrl_avElem(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isInit) {
+    $('.btn_' + ptrClass).removeClass(ptrAnimClass).css({'pointer-events': 'none'}).addClass('w3-opacity');
+    if ((myAvance["ch" + ptrChptr][ptrClass] < ptrAvMax) && (myAvance["ch" + ptrChptr][ptrClass] <= parseInt(ptrID))) {
+      !1 === isInit && (myAvance["ch" + ptrChptr][ptrClass] = parseInt(ptrID) + 1);
+      for (i = 0; i < myAvance["ch" + ptrChptr][ptrClass]; i++) {
+        $('#btn_' + ptrClass + '_' + i).css('pointer-events', 'auto').removeClass('w3-opacity ' + ptrAnimClass);
+      }
+      $('#btn_' + ptrClass + '_' + myAvance["ch" + ptrChptr][ptrClass]).addClass(ptrAnimClass).css('pointer-events', 'auto').removeClass('w3-opacity');
+    } else if ((myAvance["ch" + ptrChptr][ptrClass]) >= ptrAvMax) {
+      $('.btn_' + ptrClass).css('pointer-events', 'auto').removeClass('w3-opacity');
+    }
+  }
