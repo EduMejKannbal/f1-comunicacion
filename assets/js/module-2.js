@@ -121,14 +121,19 @@ $('.btn_resp').click(function () {
 
     if (strPreg === '1' && strOp === '1'){
         myAvance.ch2["preg_"+strPreg] = '1';
+        $('#aud_win').get(0).play();
     }else if (strPreg === '2' && strOp === '2'){
         myAvance.ch2["preg_"+strPreg] = '1';
+        $('#aud_win').get(0).play();
     }else if (strPreg === '3' && strOp === '3'){
         myAvance.ch2["preg_"+strPreg] = '1';
+        $('#aud_win').get(0).play();
     }else if (strPreg === '4' && strOp === '4'){
         myAvance.ch2["preg_"+strPreg] = '1';
+        $('#aud_win').get(0).play();
     }else{
         myAvance.ch2["preg_"+strPreg] = '0';
+        $('#aud_error').get(0).play();
     }   
 
     ctrl_slidesMod2();
