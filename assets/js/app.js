@@ -3,12 +3,20 @@ let gAvMax = 2
 let myAvance = {
     avModulos: 0,
     g_avance: 0,
+    ch2: {
+        comic: 1,
+        preg_1: null,
+        preg_2: null,
+        preg_3: null,
+        preg_4: null,
+    }
 };
+
+
 let nSlides = {
     numSlides: 1,
+    numSlides_2:1,
     general: 1,
-    test_1: 1
-
 };
 let flagMus = 1;
 let flagVoice = 1;
@@ -262,3 +270,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // gsap code here!
 });
 
+
+
+//Control de avance de elementos clickeables
+function  ctrl_avElem(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isInit) {
+    $('.btn_' + ptrClass).removeClass(ptrAnimClass).css({'pointer-events': 'none'}).addClass('w3-opacity');
+    if ((myAvance["ch" + ptrChptr][ptrClass] < ptrAvMax) && (myAvance["ch" + ptrChptr][ptrClass] <= parseInt(ptrID))) {
+      !1 === isInit && (myAvance["ch" + ptrChptr][ptrClass] = parseInt(ptrID) + 1);
+      for (i = 0; i < myAvance["ch" + ptrChptr][ptrClass]; i++) {
+        $('#btn_' + ptrClass + '_' + i).css('pointer-events', 'auto').removeClass('w3-opacity ' + ptrAnimClass);
+      }
+      $('#btn_' + ptrClass + '_' + myAvance["ch" + ptrChptr][ptrClass]).addClass(ptrAnimClass).css('pointer-events', 'auto').removeClass('w3-opacity');
+    } else if ((myAvance["ch" + ptrChptr][ptrClass]) >= ptrAvMax) {
+      $('.btn_' + ptrClass).css('pointer-events', 'auto').removeClass('w3-opacity');
+    }
+  }

@@ -220,3 +220,26 @@ progress::-webkit-progress-bar {
   position: relative;
 }
 .disabled { opacity: 0.5; cursor: not-allowed!important; }
+
+
+.myglow_img{ animation: myglow 2s infinite}
+@-webkit-keyframes myglow {
+  0% {filter: drop-shadow(0px 0px 0px #E6E66D) drop-shadow(0px 0px 0px #E6E66D); }
+  50% {filter: drop-shadow(2px -2px 10px #E6E66D) drop-shadow(4px 1px 1px #E6E66D);}
+  100% {filter: drop-shadow(0px 0px 0px #E6E66D) drop-shadow(0px 0px 0px #E6E66D);}
+}
+
+.myglow_img_blue{ animation: myglow_blue 2s infinite}
+.myglow_img_white{ animation: myglow_blue 2s infinite}
+@-webkit-keyframes myglow_blue {
+  0% {filter: drop-shadow(0px 0px 0px #00008F) drop-shadow(0px 0px 0px #00008F); }
+  50% {filter: drop-shadow(2px -2px 10px #00008F) drop-shadow(4px 1px 1px #00008F);}
+  100% {filter: drop-shadow(0px 0px 0px #00008F) drop-shadow(0px 0px 0px #00008F);}
+}
+@-webkit-keyframes myglow_white {
+  0% {filter: drop-shadow(0px 0px 0px #00008F) drop-shadow(0px 0px 0px #00008F); }
+  50% {filter: drop-shadow(2px -2px 10px #00008F) drop-shadow(4px 1px 1px #00008F);}
+  100% {filter: drop-shadow(0px 0px 0px #00008F) drop-shadow(0px 0px 0px #00008F);}
+}
+
+.elem_click{cursor:pointer;position:absolute;}
