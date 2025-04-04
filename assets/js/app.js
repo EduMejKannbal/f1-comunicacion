@@ -172,8 +172,98 @@ function setupCarouselControls(carruClass) {
         }
     });
 }
+function calculateResults() {
+    var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
+    if (totalSelections === totalQuestions) {
+        testResults = {
+            pantera: Math.round((selections.pantera / totalQuestions) * 100),
+            pavorreal: Math.round((selections.pavorreal / totalQuestions) * 100),
+            delfin: Math.round((selections.delfin / totalQuestions) * 100),
+            buho: Math.round((selections.buho / totalQuestions) * 100)
+        };
+        console.log("Resultados del Test:", testResults);
+        testCompleted = true;
+        // Mostrar los resultados inmediatamente después de completar el test
+        nSlides.numSlides = 5; // Avanzar directamente a slide_module1_5
+        ctrl_slides(); // Actualizar la vista
+    } else {
+        console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
+    }
+}
+function showTestResults(results) {
+    const $cardItems = $("#slide_module1_5 .cardTest-item");
 
+    // Encontrar el mayor porcentaje
+    const percentages = [
+        { index: 0, value: results.pantera },
+        { index: 1, value: results.pavorreal },
+        { index: 2, value: results.delfin },
+        { index: 3, value: results.buho }
+    ];
+    const maxPercentage = percentages.reduce((max, current) => 
+        current.value > max.value ? current : max, percentages[0]);
 
+    $cardItems.each(function(index) {
+        const $percentageText = $(this).find(".testResult-relative p");
+        const $progressFill = $(this).find(".progress-bar-fill");
+        const $card = $(this); // Referencia a la tarjeta actual
+
+        // Establecer valor inicial en 0 para la animación
+        $progressFill.css("width", "0%");
+        $card.css("transform", "scale(0.9)"); // Escala inicial para todas
+
+        // Actualizar con el valor final después de un pequeño retraso
+        setTimeout(() => {
+            switch(index) {
+                case 0: // Pantera
+                    $percentageText.text(`${results.pantera}%`);
+                    $progressFill.css("width", `${results.pantera}%`);
+                    if (maxPercentage.index === 0) {
+                        $card.css("transform", "scale(1.05)");
+                    }
+                    break;
+                case 1: // Pavo real
+                    $percentageText.text(`${results.pavorreal}%`);
+                    $progressFill.css("width", `${results.pavorreal}%`);
+                    if (maxPercentage.index === 1) {
+                        $card.css("transform", "scale(1.05)");
+                    }
+                    break;
+                case 2: // Delfín
+                    $percentageText.text(`${results.delfin}%`);
+                    $progressFill.css("width", `${results.delfin}%`);
+                    if (maxPercentage.index === 2) {
+                        $card.css("transform", "scale(1.05)");
+                    }
+                    break;
+                case 3: // Búho
+                    $percentageText.text(`${results.buho}%`);
+                    $progressFill.css("width", `${results.buho}%`);
+                    if (maxPercentage.index === 3) {
+                        $card.css("transform", "scale(1.05)");
+                    }
+                    break;
+            }
+        }, 100); // Retraso de 100ms para asegurar que la transición se vea
+    });
+}
+function restoreSelections() {
+    $(".body-answers img").each(function() {
+        var questionNum = $(this).data('question');
+        var type = $(this).parent().data('type');
+        if (userSelections[questionNum] === type) {
+            $(this).attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
+        }
+        $(this).addClass('disabled').off('click'); // Deshabilitar interacción
+    });
+}
+function resetSlide(variableName) {
+    if (typeof nSlides !== "undefined" && typeof variableName === "string") {
+        nSlides[variableName] = 1; // Siempre reinicia a 1
+    } else {
+        console.error("nSlides no está definido o el nombre de la variable no es una cadena.");
+    }
+}
 // use a script tag or an external JS file
 document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(Flip, ScrollTrigger, Observer, ScrollToPlugin, Draggable, MotionPathPlugin, EaselPlugin, PixiPlugin, TextPlugin, RoughEase, ExpoScaleEase, SlowMo, CustomEase)

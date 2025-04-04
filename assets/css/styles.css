@@ -17,7 +17,30 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* Estilo base para el progress */
+progress {
+  width: 100%; /* Ajusta según tu diseño */
+  height: 10px; /* Altura de la barra */
+  border: none; /* Quitar borde por defecto */
+  background: #e0e0e08c; /* Fondo de la barra */
+}
 
+/* Transición para navegadores Webkit (Chrome, Safari) */
+progress::-webkit-progress-value {
+  background: #4caf50; /* Color de la barra de progreso */
+  transition: width 1s ease-in-out; /* Transición suave de 1 segundo */
+}
+
+/* Transición para Firefox */
+progress::-moz-progress-bar {
+  background: #4caf50; /* Color de la barra de progreso */
+  transition: width 1s ease-in-out; /* Transición suave de 1 segundo */
+}
+
+/* Asegurar que la barra sea visible */
+progress::-webkit-progress-bar {
+  background: #e0e0e08c; /* Fondo de la barra completa */
+}
 /* Contenedor principal mejorado */
 .container {
   display: grid;
