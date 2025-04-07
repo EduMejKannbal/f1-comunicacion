@@ -15,8 +15,9 @@ let myAvance = {
 
 let nSlides = {
     numSlides: 1,
-    numSlides_2:1,
+    numSlides_2: 1,
     general: 1,
+    test_1: 1
 };
 let flagMus = 1;
 let flagVoice = 1;
@@ -36,13 +37,50 @@ let testCompleted = false;
 let testResults = null;
 let userSelections = {};
 
+// Obtener el elemento del video
+let video = document.getElementById('splash_1');
+
+// Función para reproducir el video
+function playSplashVideo() {
+    if (video) {
+        video.play().then(() => {
+            console.log("Video splash iniciado");
+        }).catch((error) => {
+            console.log("Error al reproducir el video: ", error);
+        });
+    }
+}
+
+// Función para detener el video y reiniciar su duración
+function stopSplashVideo() {
+    if (video) {
+        video.pause();              // Detiene el video
+        video.currentTime = 0;      // Reinicia el video al inicio
+        console.log("Video splash detenido y reiniciado");
+    }
+}
+
+// Evento para detener el video cuando termine
+video.addEventListener('ended', function () {
+    stopSplashVideo();
+});
+
+// Tu código existente con las funciones integradas
 $("#precache_index").waitForImages({
     finished: function () {
-        $("#loading_screen").fadeOut("slow");
-        $("#precache_index").hide();
-        doStart();
-        $('html,body').css({ 'overflow-y': 'hidden' });
-        $('#modal_juego_1').loadHTML('void.html');
+        // Iniciar el video manualmente
+        playSplashVideo();
+
+        setTimeout(function () {
+            $("#loading_screen").fadeOut("slow", function () {
+                // Detener el video cuando el loading screen se oculte
+                stopSplashVideo();
+            });
+            $("#precache_index").hide();
+            doStart();
+            $('html,body').css({ 'overflow-y': 'hidden' });
+            $('#modal_juego_1').loadHTML('void.html');
+        }, 6000);
     },
     waitForAll: true
 });
@@ -130,9 +168,11 @@ $('.btn_module').click(function () {
     $('.content-home').hide();
     $('#carga_materia, #loading_screen').show();
     $('#carga_materia').load('module_' + strID + '.html'); // Concatenamos strID dinámicamente
+    playSplashVideo();
     setTimeout(function () {
         $("#loading_screen").fadeOut("slow");
-    }, 800);
+        stopSplashVideo();
+    }, 6000);
 });
 //Control general para curruseles sencillos
 function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
@@ -183,15 +223,14 @@ function calculateResults() {
         };
         console.log("Resultados del Test:", testResults);
         testCompleted = true;
-        // Mostrar los resultados inmediatamente después de completar el test
-        nSlides.numSlides = 5; // Avanzar directamente a slide_module1_5
-        ctrl_slides(); // Actualizar la vista
+        nSlides.numSlides = 6;
+        ctrl_slides();
     } else {
         console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
     }
 }
 function showTestResults(results) {
-    const $cardItems = $("#slide_module1_5 .cardTest-item");
+    const $cardItems = $("#slide_module1_6 .cardTest-item"); // Cambiar a slide_module1_6
 
     // Encontrar el mayor porcentaje
     const percentages = [
@@ -200,21 +239,20 @@ function showTestResults(results) {
         { index: 2, value: results.delfin },
         { index: 3, value: results.buho }
     ];
-    const maxPercentage = percentages.reduce((max, current) => 
+    const maxPercentage = percentages.reduce((max, current) =>
         current.value > max.value ? current : max, percentages[0]);
 
-    $cardItems.each(function(index) {
+    $cardItems.each(function (index) {
         const $percentageText = $(this).find(".testResult-relative p");
         const $progressFill = $(this).find(".progress-bar-fill");
-        const $card = $(this); // Referencia a la tarjeta actual
+        const $card = $(this);
 
-        // Establecer valor inicial en 0 para la animación
         $progressFill.css("width", "0%");
-        $card.css("transform", "scale(0.9)"); // Escala inicial para todas
+        $card.css("transform", "scale(0.9)");
 
-        // Actualizar con el valor final después de un pequeño retraso
+
         setTimeout(() => {
-            switch(index) {
+            switch (index) {
                 case 0: // Pantera
                     $percentageText.text(`${results.pantera}%`);
                     $progressFill.css("width", `${results.pantera}%`);
@@ -244,22 +282,27 @@ function showTestResults(results) {
                     }
                     break;
             }
-        }, 100); // Retraso de 100ms para asegurar que la transición se vea
+        }, 100);
     });
 }
 function restoreSelections() {
-    $(".body-answers img").each(function() {
+    $(".body-answers > div > div").each(function () {
         var questionNum = $(this).data('question');
         var type = $(this).parent().data('type');
         if (userSelections[questionNum] === type) {
-            $(this).attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
+            // Opción seleccionada: imagen "select.png" y color #f8fafc
+            $(this).find('img').attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
+            $(this).find('.answer-text').css('color', '#f8fafc');
+        } else {
+            // Otras opciones (deshabilitadas): color #475569
+            $(this).find('.answer-text').css('color', '#475569');
         }
         $(this).addClass('disabled').off('click'); // Deshabilitar interacción
     });
 }
 function resetSlide(variableName) {
     if (typeof nSlides !== "undefined" && typeof variableName === "string") {
-        nSlides[variableName] = 1; // Siempre reinicia a 1
+        nSlides[variableName] = 1;
     } else {
         console.error("nSlides no está definido o el nombre de la variable no es una cadena.");
     }
@@ -269,19 +312,30 @@ document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(Flip, ScrollTrigger, Observer, ScrollToPlugin, Draggable, MotionPathPlugin, EaselPlugin, PixiPlugin, TextPlugin, RoughEase, ExpoScaleEase, SlowMo, CustomEase)
     // gsap code here!
 });
-
-
-
 //Control de avance de elementos clickeables
-function  ctrl_avElem(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isInit) {
-    $('.btn_' + ptrClass).removeClass(ptrAnimClass).css({'pointer-events': 'none'}).addClass('w3-opacity');
+function ctrl_avElem(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isInit) {
+    $('.btn_' + ptrClass).removeClass(ptrAnimClass).css({ 'pointer-events': 'none' }).addClass('w3-opacity');
     if ((myAvance["ch" + ptrChptr][ptrClass] < ptrAvMax) && (myAvance["ch" + ptrChptr][ptrClass] <= parseInt(ptrID))) {
-      !1 === isInit && (myAvance["ch" + ptrChptr][ptrClass] = parseInt(ptrID) + 1);
-      for (i = 0; i < myAvance["ch" + ptrChptr][ptrClass]; i++) {
-        $('#btn_' + ptrClass + '_' + i).css('pointer-events', 'auto').removeClass('w3-opacity ' + ptrAnimClass);
-      }
-      $('#btn_' + ptrClass + '_' + myAvance["ch" + ptrChptr][ptrClass]).addClass(ptrAnimClass).css('pointer-events', 'auto').removeClass('w3-opacity');
+        !1 === isInit && (myAvance["ch" + ptrChptr][ptrClass] = parseInt(ptrID) + 1);
+        for (i = 0; i < myAvance["ch" + ptrChptr][ptrClass]; i++) {
+            $('#btn_' + ptrClass + '_' + i).css('pointer-events', 'auto').removeClass('w3-opacity ' + ptrAnimClass);
+        }
+        $('#btn_' + ptrClass + '_' + myAvance["ch" + ptrChptr][ptrClass]).addClass(ptrAnimClass).css('pointer-events', 'auto').removeClass('w3-opacity');
     } else if ((myAvance["ch" + ptrChptr][ptrClass]) >= ptrAvMax) {
-      $('.btn_' + ptrClass).css('pointer-events', 'auto').removeClass('w3-opacity');
+        $('.btn_' + ptrClass).css('pointer-events', 'auto').removeClass('w3-opacity');
     }
-  }
+}
+
+//conoceCoach
+$('.btn_conoceCoach').click(function () {
+    strID = $(this).attr('id').split("_")[2];
+    resetLocution();
+    $('#mod_conoceCoach_' + strID).show();
+
+
+});
+$('.close_conoceCoach').click(function () {
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_conoceCoach_' + strID).hide();
+
+});

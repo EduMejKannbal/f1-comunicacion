@@ -1,7 +1,13 @@
 /* Versión mejorada combinando lo mejor de ambos enfoques */
 
-@font-face{font-family:Formula_bold;src:url(../fonts/Formula1-Bold.woff)}
-@font-face{font-family:Formula_regular;src:url(../fonts/Formula1-Regular.woff)}
+@font-face {
+  font-family: Formula_bold;
+  src: url(../fonts/Formula1-Bold.woff);
+}
+@font-face {
+  font-family: Formula_regular;
+  src: url(../fonts/Formula1-Regular.woff);
+}
 
 :root {
   --bg-body: #18181b;
@@ -45,7 +51,7 @@ progress::-webkit-progress-bar {
 .container {
   display: grid;
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   min-height: 100dvh; /* Nueva unidad dinámica */
   background-color: var(--bg-body);
   overflow: hidden;
@@ -60,7 +66,7 @@ progress::-webkit-progress-bar {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 100;
+  max-width: 100%;
   aspect-ratio: 16/9;
   background-color: var(--bg-main);
   border: 2px solid var(--border-color);
@@ -104,42 +110,52 @@ progress::-webkit-progress-bar {
 }
 
 #loading_screen {
-  height: 100%;
   width: 100%;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  height: 100%;
+  background: rgba(255, 255, 255, 0.555);
+  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   z-index: 50;
-  position: fixed;
-  place-content: center;
-  place-items: center;
+  position: absolute;
   display: grid;
   gap: 1%;
   pointer-events: none;
 }
-
-#load_text {
+.container-splash {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.splash {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+}
+/* #load_text {
   font-size: clamp(1rem, 3vw, 4rem);
   color: #fff;
   line-height: 1.3;
   text-align: center;
-}
-#load_img {
+} */
+/* #load_img {
   width: 80%;
   height: auto;
-}
+} */
 /** Estilos Home */
 .content-home {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5%;
+}
+.content-home .home_imageBack {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: fill;
 }
 .btn_module {
-  width: 25%;
   height: auto;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -147,6 +163,54 @@ progress::-webkit-progress-bar {
 .btn_module:hover {
   transform: scale(1.05);
 }
+#btn_module_1 {
+  width: 8%;
+  left: 22.5%;
+  bottom: 23.5%;
+}
+#btn_module_2 {
+  right: 33%;
+  bottom: 16%;
+  width: 5%;
+  height: auto;
+  opacity: 0.7;
+}
+#btn_module_3 {
+  width: 4%;
+  height: auto;
+  top: 41%;
+  left: 45.5%;
+  opacity: 0.5;
+}
+.home_titleBienvenido {
+  top: 6%;
+  left: 4%;
+  width: 39%;
+  height: auto;
+}
+.home_titleHome {
+  width: 42%;
+  height: auto;
+  left: 3%;
+  top: 16%;
+}
+.home_trofeo {
+  width: 13%;
+  height: auto;
+  right: 4%;
+  top: 4%;
+  cursor: pointer;
+}
+.home_boton {
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 9%;
+  width: 15%;
+  height: auto;
+  cursor: pointer;
+}
+
 .absolute {
   position: absolute;
 }
@@ -177,16 +241,12 @@ progress::-webkit-progress-bar {
 .modules_Next {
   right: 0.7%;
 }
-.blur{
+.blur {
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(
-    45deg,
-    rgba(0, 0, 0, 0.25) 50%,
-    transparent 50%
-  );
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 50%, transparent 50%);
   z-index: 3;
 }
 .blur::before {
@@ -200,16 +260,16 @@ progress::-webkit-progress-bar {
   -webkit-backdrop-filter: blur(8px);
   z-index: 4;
 }
-.contenido-absoluto{
+.contenido-absoluto {
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   position: absolute;
 }
-.contenido-relativo{
+.contenido-relativo {
   width: 100%;
-  height: 100%;;
+  height: 100%;
   z-index: 1;
   position: relative;
 }
@@ -219,27 +279,119 @@ progress::-webkit-progress-bar {
   overflow: hidden;
   position: relative;
 }
-.disabled { opacity: 0.5; cursor: not-allowed!important; }
-
-
-.myglow_img{ animation: myglow 2s infinite}
-@-webkit-keyframes myglow {
-  0% {filter: drop-shadow(0px 0px 0px #E6E66D) drop-shadow(0px 0px 0px #E6E66D); }
-  50% {filter: drop-shadow(2px -2px 10px #E6E66D) drop-shadow(4px 1px 1px #E6E66D);}
-  100% {filter: drop-shadow(0px 0px 0px #E6E66D) drop-shadow(0px 0px 0px #E6E66D);}
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
 }
 
-.myglow_img_blue{ animation: myglow_blue 2s infinite}
-.myglow_img_white{ animation: myglow_blue 2s infinite}
+.myglow_img {
+  animation: myglow 2s infinite;
+}
+@-webkit-keyframes myglow {
+  0% {
+    filter: drop-shadow(0px 0px 0px #e6e66d) drop-shadow(0px 0px 0px #e6e66d);
+  }
+  50% {
+    filter: drop-shadow(2px -2px 10px #e6e66d) drop-shadow(4px 1px 1px #e6e66d);
+  }
+  100% {
+    filter: drop-shadow(0px 0px 0px #e6e66d) drop-shadow(0px 0px 0px #e6e66d);
+  }
+}
+
+.myglow_img_blue {
+  animation: myglow_blue 2s infinite;
+}
+.myglow_img_white {
+  animation: myglow_blue 2s infinite;
+}
 @-webkit-keyframes myglow_blue {
-  0% {filter: drop-shadow(0px 0px 0px #00008F) drop-shadow(0px 0px 0px #00008F); }
-  50% {filter: drop-shadow(2px -2px 10px #00008F) drop-shadow(4px 1px 1px #00008F);}
-  100% {filter: drop-shadow(0px 0px 0px #00008F) drop-shadow(0px 0px 0px #00008F);}
+  0% {
+    filter: drop-shadow(0px 0px 0px #00008f) drop-shadow(0px 0px 0px #00008f);
+  }
+  50% {
+    filter: drop-shadow(2px -2px 10px #00008f) drop-shadow(4px 1px 1px #00008f);
+  }
+  100% {
+    filter: drop-shadow(0px 0px 0px #00008f) drop-shadow(0px 0px 0px #00008f);
+  }
 }
 @-webkit-keyframes myglow_white {
-  0% {filter: drop-shadow(0px 0px 0px #00008F) drop-shadow(0px 0px 0px #00008F); }
-  50% {filter: drop-shadow(2px -2px 10px #00008F) drop-shadow(4px 1px 1px #00008F);}
-  100% {filter: drop-shadow(0px 0px 0px #00008F) drop-shadow(0px 0px 0px #00008F);}
+  0% {
+    filter: drop-shadow(0px 0px 0px #00008f) drop-shadow(0px 0px 0px #00008f);
+  }
+  50% {
+    filter: drop-shadow(2px -2px 10px #00008f) drop-shadow(4px 1px 1px #00008f);
+  }
+  100% {
+    filter: drop-shadow(0px 0px 0px #00008f) drop-shadow(0px 0px 0px #00008f);
+  }
 }
 
-.elem_click{cursor:pointer;position:absolute;}
+.elem_click {
+  cursor: pointer;
+  position: absolute;
+}
+
+.hide {
+  display: none;
+}
+
+.modals-complete {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: 38rem;
+}
+.mod_conoceCoach {
+  padding-top: 30px;
+}
+.conoceCoach-modal {
+  width: 80%;
+}
+.btn_sobreMi {
+  height: auto;
+  bottom: 24%;
+}
+#btn_sobreMi_1 {
+  width: 4%;
+  right: 34%;
+}
+#btn_sobreMi_2 {
+  width: 7%;
+  right: 23%;
+}
+#btn_sobreMi_3 {
+  width: 4%;
+  right: 14%;
+}
+.btn_comenzarModules {
+  bottom: 9%;
+  right: 12%;
+  width: 29%;
+  height: auto;
+}
+.conoceCoach-imagen-cv {
+  bottom: 0;
+  left: 0;
+  width: 68%;
+}
+.conoceCoach-titleMario {
+  width: 40%;
+  height: auto;
+  right: 6%;
+  top: 21%;
+}
+.conoceCoach-sobreMi {
+  width: 40%;
+  height: auto;
+  right: 6%;
+  top: 38%;
+}
+.close_conoceCoach {
+  top: 3%;
+  right: 1%;
+  width: 5%;
+  height: auto;
+  cursor: pointer;
+}
