@@ -9,6 +9,18 @@ let myAvance = {
         preg_2: null,
         preg_3: null,
         preg_4: null,
+    },
+    ch3:{
+        emocion_1:0,
+        emocion_2:0,
+        emocion_3:0,
+        emocion_4:0,
+        emocion_5:0,
+        preg_1:null,
+        preg_2:null,
+        preg_3:null,
+        preg_4:null
+
     }
 };
 
@@ -16,6 +28,7 @@ let myAvance = {
 let nSlides = {
     numSlides: 1,
     numSlides_2:1,
+    numSlides_3:1,
     general: 1,
 };
 let flagMus = 1;
