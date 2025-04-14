@@ -1,7 +1,7 @@
 
 $("#precache_mod_2").waitForImages({
     finished: function () {
-      $("#loading_screen").fadeOut("slow");
+  
       $("#precache_bas").hide();
       ctrl_slidesMod2();
       ctrl_avElem(2, 'comic', myAvance.ch2.comic, $(".btn_comic").length + 1, 'myglow_img_blue', true);

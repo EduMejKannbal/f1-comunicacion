@@ -2,61 +2,94 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/lib/w3.min.css">
-    <link rel="stylesheet" href="assets/css/lib/jquery-ui.css">
-    <link rel="stylesheet" href="assets/css/lib/animate.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/lib/w3.min.css">
+  <link rel="stylesheet" href="assets/css/lib/jquery-ui.css">
+  <link rel="stylesheet" href="assets/css/lib/animate.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Comunicación</title>
+  <title>Comunicación</title>
 </head>
 
 <body class="container">
-    <main class="content" role="main">
-        <div id="loading_screen">
-            <img id="load_img" src="assets/img/icons/puff.svg" alt />
-            <div id="load_text">
+  <main class="content" role="main">
+    <div id="loading_screen">
+      <!-- <img id="load_img" src="assets/img/icons/puff.svg" alt /> -->
+      <div class="container-splash">
+        <video preload="none" class="myVideo locution splash" id="splash_1">
+          <source src="assets/vid/splash.mp4" type="video/mp4" />
+          <p>Su navegador no soporta vídeos HTML5.</p>
+        </video>
+      </div>
+      <!-- <div id="load_text">
                 <p>Cargando ...</p>
-            </div>
+            </div> -->
+    </div>
+    <div class="content-home">
+      <img src="assets/img/home/home.png" class="absolute home_imageBack" alt="">
+      <img src="assets/img/icons/check_1.png" class="btn_module absolute" id="btn_module_1">
+      <img src="assets/img/icons/check.png" class="btn_module absolute" id="btn_module_2">
+      <img src="assets/img/icons/check.png" class="btn_module absolute" id="btn_module_3">
+      <img src="assets/img/home/title_bienvenido.png" class="absolute home_titleBienvenido">
+      <img src="assets/img/home/title_project.png" class="absolute home_titleHome">
+      <img src="assets/img/home/trofeo.png" class="absolute home_trofeo btn_conoceCoach" id="btn_conoceCoach_1">
+      <img src="assets/img/home/btn_comenzar.png" class="absolute home_boton btn_homeComenzar" id="btn_homeComenzar_1">
+    </div>
+    <div class="mod_conoceCoach w3-modal" id="mod_conoceCoach_1" style="overflow: hidden; margin-top: 0;">
+      <div class="w3-animate-zoom w3-modal-content mt-4 conoceCoach-modal" style="background-color:transparent;;">
+        <div class="w3-display-container">
+          <img src="assets/img/home/portfolio/modal.png" class="modals-complete" />
+          <img src="assets/img/home/portfolio/btn_sobreMi_1.png" class="absolute btn_sobreMi" id="btn_sobreMi_1">
+          <img src="assets/img/home/portfolio/btn_sobreMi_2.png" class="absolute btn_sobreMi" id="btn_sobreMi_2">
+          <img src="assets/img/home/portfolio/btn_sobreMi_3.png" class="absolute btn_sobreMi" id="btn_sobreMi_3">
+          <img src="assets/img/home/portfolio/comenzar-recorrido-2.png" class="absolute btn_comenzarModules"
+            id="btn_comenzarModules">
+          <img src="assets/img/home/portfolio/mario.png" class="absolute conoceCoach-imagen-cv">
+          <img src="assets/img/home/portfolio/title_mario.png" class="absolute conoceCoach-titleMario">
+          <img src="assets/img/home/portfolio/txt_sobreMi.png" class="absolute conoceCoach-sobreMi">
+          <img src="assets/img/home/portfolio/X.png" class="absolute close close_conoceCoach" id="close_conoceCoach_1">
         </div>
-        <div class="content-home">
-            <img src="assets/img/icons/ubi.png" class="btn_module" id="btn_module_1">
-            <img src="assets/img/icons/ubi.png" class="btn_module" id="btn_module_2">
-            <img src="assets/img/icons/ubi.png" class="btn_module" id="btn_module_3">
-        </div>
-        <div id="carga_materia" class="materia_content"></div>
-    </main>
-    
-    <audio id="aud_win">
-        <source src="assets/aud/acierto.mp3" type="audio/mpeg" />
-      </audio>
-      <audio id="aud_error">
-        <source src="assets/aud/error.mp3" type="audio/mpeg" />
-      </audio>
-  
-    <script src="assets/js/lib/jquery2.2.4.js"></script>
-    <script src="assets/js/lib/jquery.animate.js"></script>
-    <script src="assets/js/lib/jquery-ui.js"></script>
-    <script src="assets/js/lib/jquery.includeHTML.js"></script>
-    <script src="assets/js/lib/pageSwitch.min.js"></script>
-    <script src="assets/js/lib/jquery.waitforimages.js"></script>
-    <script src="assets/js/lib/scormfunctions.js"></script>
-    <script src="assets/js/gsap/Draggable.min.js"></script>
-    <script src="assets/js/gsap/ScrollToPlugin.min.js"></script>
-    <script src="assets/js/gsap/Observer.min.js"></script>
-    <script src="assets/js/gsap/ScrollTrigger.min.js"></script>
-    <script src="assets/js/gsap/Flip.min.js"></script>
-    <script src="assets/js/gsap/gsap.min.js"></script>
-    <script src="assets/js/gsap/MotionPathPlugin.min.js"></script>
-    <script src="assets/js/gsap/EaselPlugin.min.js"></script>
-    <script src="assets/js/gsap/PixiPlugin.min.js"></script>
-    <script src="assets/js/gsap/TextPlugin.min.js"></script>
-    <script src="assets/js/gsap/EasePack.min.js"></script>
-    <script src="assets/js/gsap/CustomEase.min.js"></script>
-    <script src="assets/js/funciones_base_scorm.js"></script>
-    <script src="assets/js/app.js"></script>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div id="carga_materia" class="materia_content"></div>
+  </main>
+
+  <audio id="aud_win">
+    <source src="assets/aud/acierto.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="aud_error">
+    <source src="assets/aud/error.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="assets/js/lib/jquery2.2.4.js"></script>
+  <script src="assets/js/lib/jquery.animate.js"></script>
+  <script src="assets/js/lib/jquery-ui.js"></script>
+  <script src="assets/js/lib/jquery.includeHTML.js"></script>
+  <script src="assets/js/lib/pageSwitch.min.js"></script>
+  <script src="assets/js/lib/jquery.waitforimages.js"></script>
+  <script src="assets/js/lib/scormfunctions.js"></script>
+  <script src="assets/js/gsap/Draggable.min.js"></script>
+  <script src="assets/js/gsap/ScrollToPlugin.min.js"></script>
+  <script src="assets/js/gsap/Observer.min.js"></script>
+  <script src="assets/js/gsap/ScrollTrigger.min.js"></script>
+  <script src="assets/js/gsap/Flip.min.js"></script>
+  <script src="assets/js/gsap/gsap.min.js"></script>
+  <script src="assets/js/gsap/MotionPathPlugin.min.js"></script>
+  <script src="assets/js/gsap/EaselPlugin.min.js"></script>
+  <script src="assets/js/gsap/PixiPlugin.min.js"></script>
+  <script src="assets/js/gsap/TextPlugin.min.js"></script>
+  <script src="assets/js/gsap/EasePack.min.js"></script>
+  <script src="assets/js/gsap/CustomEase.min.js"></script>
+  <script src="assets/js/funciones_base_scorm.js"></script>
+  <script src="assets/js/app.js"></script>
 
 </body>
 
