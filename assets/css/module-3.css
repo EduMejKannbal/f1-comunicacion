@@ -1,0 +1,11 @@
+.slide_module3 ,.slide_modal.slide_juego,.slide_emocion {  
+    display: none;
+    left: 0;
+    top: 0;
+    /* overflow: hidden; */
+  }
+
+ 
+.slide_fondo{
+    top: 0 ;left: 0;width: 100%;
+}
