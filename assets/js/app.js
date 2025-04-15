@@ -10,16 +10,16 @@ let myAvance = {
         preg_3: null,
         preg_4: null,
     },
-    ch3:{
-        emocion_1:0,
-        emocion_2:0,
-        emocion_3:0,
-        emocion_4:0,
-        emocion_5:0,
-        preg_1:null,
-        preg_2:null,
-        preg_3:null,
-        preg_4:null
+    ch3: {
+        emocion_1: 0,
+        emocion_2: 0,
+        emocion_3: 0,
+        emocion_4: 0,
+        emocion_5: 0,
+        preg_1: null,
+        preg_2: null,
+        preg_3: null,
+        preg_4: null
 
     }
 };
@@ -27,8 +27,8 @@ let myAvance = {
 
 let nSlides = {
     numSlides: 1,
-    numSlides_2:1,
-    numSlides_3:1,
+    numSlides_2: 1,
+    numSlides_3: 1,
     general: 1,
     test_1: 1
 };
@@ -64,36 +64,32 @@ function playSplashVideo() {
     }
 }
 
-// Función para detener el video y reiniciar su duración
 function stopSplashVideo() {
     if (video) {
-        video.pause();              // Detiene el video
-        video.currentTime = 0;      // Reinicia el video al inicio
+        video.pause();
+        video.currentTime = 0;
         console.log("Video splash detenido y reiniciado");
     }
 }
 
-// Evento para detener el video cuando termine
 video.addEventListener('ended', function () {
     stopSplashVideo();
 });
 
-// Tu código existente con las funciones integradas
+
 $("#precache_index").waitForImages({
     finished: function () {
-        // Iniciar el video manualmente
         playSplashVideo();
 
         setTimeout(function () {
             $("#loading_screen").fadeOut("slow", function () {
-                // Detener el video cuando el loading screen se oculte
                 stopSplashVideo();
             });
             $("#precache_index").hide();
             doStart();
             $('html,body').css({ 'overflow-y': 'hidden' });
             $('#modal_juego_1').loadHTML('void.html');
-        }, 6000);
+        }, 60);
     },
     waitForAll: true
 });
@@ -122,23 +118,23 @@ $(".music").click(function () {
 });
 
 function playMusic() {
-    if (flagMus === 0) { // Solo reproducimos si la música está pausada
+    if (flagMus === 0) {
         var elements = document.querySelectorAll(".back");
         $(".music").attr("src", "assets/img/icons/on.png");
         [].forEach.call(elements, function (element) {
             unMuteMe(element);
         });
-        flagMus = 1; // Cambiamos el estado de la música a sonando
+        flagMus = 1; 
     }
 }
 function pauseMusic() {
-    if (flagMus === 1) { // Solo pausamos si la música está sonando
+    if (flagMus === 1) {
         var elements = document.querySelectorAll(".back");
         $(".music").attr("src", "assets/img/icons/off.png");
         [].forEach.call(elements, function (element) {
             muteMe(element);
         });
-        flagMus = 0; // Cambiamos el estado de la música a pausado
+        flagMus = 0; 
     }
 }
 //Inicio botón locución
@@ -180,12 +176,12 @@ $('.btn_module').click(function () {
     strID = $(this).attr("id").split("_")[2];
     $('.content-home').hide();
     $('#carga_materia, #loading_screen').show();
-    $('#carga_materia').load('module_' + strID + '.html'); // Concatenamos strID dinámicamente
+    $('#carga_materia').load('module_' + strID + '.html');
     playSplashVideo();
     setTimeout(function () {
         $("#loading_screen").fadeOut("slow");
         stopSplashVideo();
-    }, 6000);
+    }, 60);
 });
 //Control general para curruseles sencillos
 function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
@@ -243,7 +239,7 @@ function calculateResults() {
     }
 }
 function showTestResults(results) {
-    const $cardItems = $("#slide_module1_6 .cardTest-item"); // Cambiar a slide_module1_6
+    const $cardItems = $("#slide_module1_6 .cardTest-item");
 
     // Encontrar el mayor porcentaje
     const percentages = [
@@ -350,5 +346,4 @@ $('.btn_conoceCoach').click(function () {
 $('.close_conoceCoach').click(function () {
     strID = $(this).attr('id').split("_")[2];
     $('#mod_conoceCoach_' + strID).hide();
-
 });

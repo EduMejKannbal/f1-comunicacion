@@ -68,10 +68,9 @@ progress::-webkit-progress-bar {
   width: 100%;
   max-width: 100%;
   aspect-ratio: 16/9;
-  background-color: var(--bg-main);
-  border: 2px solid var(--border-color);
   position: relative;
   overflow: hidden; /* Importante para consistencia */
+  border-radius: 1rem;
 }
 .modals {
   width: 100%;
@@ -195,7 +194,7 @@ progress::-webkit-progress-bar {
   top: 16%;
 }
 .home_trofeo {
-  width: 13%;
+  width: 15%;
   height: auto;
   right: 4%;
   top: 4%;
