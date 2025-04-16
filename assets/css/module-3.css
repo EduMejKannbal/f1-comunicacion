@@ -1,6 +1,5 @@
 .slide_module3,
-.slide_modal.slide_juego,
-.slide_emocion {
+.slide_modal.slide_juego {
   display: none;
   left: 0;
   top: 0;
@@ -16,40 +15,19 @@
 #slideM3_title {
   width: 40%;
   left: 17%;
-  bottom: 21%;
+  bottom: 29%;
   height: auto;
 }
 #btn_comenzarModule_3 {
-  width: 18%;
-  left: 30.7%;
-  bottom: 18.4%;
+  width: 48%;
+  left: 34.7%;
+  top: 77%;
   height: auto;
 }
-#slideM3-ubi {
-  width: 15%;
-  height: auto;
-  top: 32%;
-  right: 29%;
-}
-#slideM3_txt_1 {
-  width: 33%;
-  height: auto;
-  left: 5%;
-  top: 25%;
-}
-#slideM3_txt_2 {
-  width: 38%;
-  height: auto;
-  left: 5%;
-  top: 32%;
-}
-#slideM3_txt_3 {
-  width: 43%;
-  height: auto;
-  left: 4%;
-  top: 61%;
-}
-
+#slideM3-ubi{width:15%;height:auto;top:27%;right:29%}
+#slideM3_txt_1{width:33%;height:auto;left:5%;top:23%}
+#slideM3_txt_2{width:38%;height:auto;left:5%;top:29%}
+#slideM3_txt_3{width:43%;height:auto;left:4%;top:56%}
 .slideM3-plaqueta {
   width: 62%;
   height: 25%;
@@ -105,49 +83,97 @@
   align-items: center;
   position: relative;
 }
-.btn_emocionesBasicas {
+.btn_emocion {
   height: auto;
   cursor: pointer;
 }
-#btn_emocionesBasicas_1 {
-  width: 75%;
+.cls_emocion {
+  top: 3%;
+  right: 3%;
+  width: 18%;
+} 
+.txt_btn_regresar{font-size:1.2vw;font-family:Formula_bold;    top: 17%;
+  left: 23%;
+  color: white;}
+#btn_emocion_1{width:10%;left:14%;top:45%}
+#btn_emocion_2{width:11%;left:27%;top:42%}
+#btn_emocion_3{width:17%;left:41%;top:31%}
+#btn_emocion_4 {
+  width: 11.6%;
+  left: 62%;
+  top: 41%;
 }
-#btn_emocionesBasicas_2 {
-  width: 80%;
+#btn_emocion_5 {
+  width: 10%;
+  left: 76%;
+  top: 45%;
+} 
+.mod_emocion{top:0;left:0;width:100%;display:none}
+#slideM3_3-inst{width:30%;height:auto;left:0;right:0;margin:auto;bottom:5%}
+.chk_emocion{width:40%;height:auto;bottom:-15%;left:0;right:0;margin:auto;display:none}
+
+#title_emocion_1{left: 53%;
+width: 5%;
+top: 20%;
 }
-#btn_emocionesBasicas_3 {
-  width: 100%;
+#txt_emocion_1 {
+  left: 53%;
+  width: 41%;
+  top: 27%;
 }
-#btn_emocionesBasicas_4 {
-  width: 80%;
-}
-#btn_emocionesBasicas_5 {
-  width: 75%;
-}
-#slideM3_3-inst {
-  width: 30%;
-  height: auto;
-  left: 0;
-  right: 0;
-  margin: auto;
-  bottom: 5%;
-}
-.check_emocionesBasicas {
-  width: 40%;
-  height: auto;
-  bottom: -15%;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-#slideM3-4-pleca {
-  left: 0;
-  top: 0;
-  width: 65%;
-  height: 100%;
-  opacity: 0.7;
-  backdrop-filter: blur(4px);
-}
+
+#title_emocion_1{left: 53%;
+  width: 15%;
+  top: 20%;
+  }
+
+  #txt_emocion_2 {
+    left: 53%;
+    width: 41%;
+    top: 27%;
+  }
+
+  #title_emocion_2{left: 53%;
+    width: 5%;
+    top: 20%;
+    }
+    #txt_emocion_2 {
+      left: 53%;
+      width: 41%;
+      top: 27%;
+    }
+
+    #title_emocion_3{left: 53%;
+      width: 17%;
+      top: 20%;
+      }
+      #txt_emocion_3 {
+        left: 53%;
+        width: 41%;
+        top: 27%;
+      }
+
+      #title_emocion_4{left: 53%;
+        width: 13%;
+        top: 20%;
+        }
+        #txt_emocion_4 {
+          left: 53%;
+          width: 41%;
+          top: 27%;
+        }
+
+        #title_emocion_5{left: 53%;
+          width: 36%;
+          top: 20%;
+          }
+          #txt_emocion_5 {
+            left: 53%;
+            width: 41%;
+            top: 27%;
+          }
+
+#slideM3-4-pleca{left:0;top:0;width:65%;height:100%;opacity:.7;backdrop-filter:blur(4px)}
 #slideM3-4-txt {
   width: 40%;
   height: auto;
@@ -289,6 +315,9 @@
   margin: auto;
 }
 
+#juego3{
+  top: 0%;left: 0%;width: 100%;display: none;
+}
 .container-dragDrop {
   top: 22%;
   position: absolute;
@@ -435,4 +464,33 @@
   height: 100%;
   object-fit: fill;
   z-index: 0;
+}
+
+
+#trofeo3{
+   top: 6%;
+    width: 32%;
+    left: 5%;
+}
+   
+#btn_fin_mod310 {
+    top: 68%;
+    left: 61%;
+    width: 25%;
+}
+
+#modal_trofeo3 {
+    top: 39%;
+    width: 74%;
+    left: 22%;
+}
+
+#slide15_modal{top:32%;left:0;width:57%}
+#slide15_modal_txt_1{top:17%;left:9%;width:85%}
+#btn_finmod3{bottom:14%;left:34%;width:32%}
+
+#txt_trofeo3 {
+  top: 48%;
+  left: 44%;
+  width: 38%;
 }
