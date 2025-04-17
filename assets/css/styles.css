@@ -122,6 +122,7 @@ progress::-webkit-progress-bar {
   display: grid;
   gap: 1%;
   pointer-events: none;
+  z-index: 99;
 }
 .container-splash {
   width: 100%;
