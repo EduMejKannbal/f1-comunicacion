@@ -89,6 +89,7 @@
                 <p class="txt_btn_regresar elem_click"> Regresar </p>
             </div>
         </div>
+
         <div id="mod_emocion_4" class="mod_emocion absolute">
             <img alt src="assets/img/modules/module-3/back_miedi.jpg" 
             style="top: 0;left: 0;position: relative; width: 100%;">
@@ -122,7 +123,7 @@
         <img id="slide4_img_1" class="absolute slide_fondo" src="assets/img/modules/module-3/slide4a.jpg" />
         <img id="slideM3-4-pleca" class="absolute" src="assets/img/modules/module-3/slide-4/pleca.png" />
         <img id="slideM3-4-txt" class="absolute" src="assets/img/modules/module-3/slide-4/txt.png" />
-        <img id="slideM3-4-vid" class="absolute" src="assets/img/icons/btn_video.png" />
+        <img id="btn_vidManEm_1" class="absolute" src="assets/img/icons/btn_video.png" />
 
     </div>
     <div id="slide_module3_5" class="slide_module3">
@@ -140,9 +141,9 @@
             </div>
         </div>
         <div class="absolute container-emociones">
-            <img id="btn_impactoEmociones_1" class="btn_impactoEmociones"
+            <img id="btn_VidImpactEmoc_1" class="btn_VidImpactEmoc"
                 src="assets/img/modules/module-3/slide-6/btn_1.png" />
-            <img id="btn_impactoEmociones_2" class="btn_impactoEmociones"
+            <img id="btn_VidImpactEmoc_2" class="btn_VidImpactEmoc"
                 src="assets/img/modules/module-3/slide-6/btn_2.png" />
         </div>
     </div>
@@ -153,7 +154,7 @@
             <div class="contenido-relativo temp-7-round">
                 <img id="slideM3-7-title" class="" src="assets/img/modules/module-3/slide-7/title.png" />
                 <img id="slideM3-7-paragraph" class="" src="assets/img/modules/module-3/slide-7/paragraph.png" />
-                <img id="slideM3-7-vid" class="" src="assets/img/icons/btn_video.png" />
+                <img id="btn_caracter_1" class="elem_click" src="assets/img/icons/btn_video.png" />
             </div>
         </div>
         <img id="slideM3-7-pista" class="absolute" src="assets/img/modules/module-3/slide-7/pista.png" />
@@ -167,20 +168,14 @@
         <img id="slideM3-8-pleca" class="absolute" src="assets/img/grls/pleca.png" />
         <img id="slideM3-8-txt" class="absolute" src="assets/img/modules/module-3/slide-8/txt.png" />
         <img id="slideM3-8-ints" class="absolute" src="assets/img/modules/module-3/slide-8/int.png" />
-        <img id="slideM3-8-vid" class="absolute" src="assets/img/icons/btn_video.png" />
+        <img id="btn_vidTemp_1" class="elem_click" src="assets/img/icons/btn_video.png" />
     </div>
     <div id="slide_module3_9" class="slide_module3">
         <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
         <img id="slide12_img_1" class="absolute slide_fondo" src="assets/img/modules/module-2/slide7.jpg" />
         <img id="slideM3-9-title" class="absolute" src="assets/img/modules/module-3/slide-9/title.png">
-        <img id="slideM3-9-btn" class="absolute" src="assets/img/grls/btn_comenzar.png">
-
-
-        <div id = "juego3" class="absolute">
-
-        </div>
-
-
+        <img id="slideM3-9-btn" class="elem_click" src="assets/img/grls/btn_comenzar.png">
+        <div id = "juego3" class="absolute"></div>
     </div>
 
 
@@ -214,7 +209,7 @@
                         <img src="assets/img/grls/modal.png" class="modal-animate" />
                         <img src="assets/img/modules/module-3/slide-9/juego/txt-correct.png"
                             class="modal-txt animated zoomIn absolute" />
-                        <img src="assets/img/grls/btn_continuar.png" class="absolute close_retroCorrect  close"
+                        <img src="assets/img/grls/btn_continuar.png" class="elem_click close_retroCorrect  close"
                             id="close_retroCorrect_1" />
                     </div>
                 </div>
@@ -240,7 +235,77 @@
     </div>
 
 
+    <div id="mod_vidManEm_1" class="w3-modal modal_base modal" style="z-index: 10;">
+        <div class="w3-modal-content w3-animate-top" style="background-color:transparent;width: 70%;">
+          <div class="w3-display-container">
+            <img src="assets/img/base_slide.png" alt style="width: 100%;">
+            <div id = "vidManEm_1" class="vid_in_modal">
+                <video src="tu-video.mp4" autoplay muted loop ></video>
+              </div>
+                 <img id= "cls_vidManEm_1" class="  w3-display-topright elem_click cls_comic" 
+                 src="assets/img/icons/cls.png"
+                 style="top: -2%;right: -2%;"/>
 
+          </div>
+        </div> 
+      </div> 
+
+      <div id="mod_impactBio_1" class="w3-modal modal_base modal" style="z-index: 10;">
+        <div class="w3-modal-content w3-animate-top" style="background-color:transparent;width: 70%;">
+          <div class="w3-display-container">
+            <img src="assets/img/base_slide.png" alt style="width: 100%;">
+            <div id = "impactBio_1" class="vid_in_modal">
+                <video src="tu-video.mp4" autoplay muted loop ></video>
+              </div>
+                 <img id= "cls_impactBio_1" class="  w3-display-topright elem_click cls_comic" 
+                 src="assets/img/icons/cls.png"
+                 style="top: -2%;right: -2%;"/>
+          </div>
+        </div> 
+      </div> 
+
+      <div id="mod_impactBio_2" class="w3-modal modal_base modal" style="z-index: 10;">
+        <div class="w3-modal-content w3-animate-top" style="background-color:transparent;width: 70%;">
+          <div class="w3-display-container">
+            <img src="assets/img/base_slide.png" alt style="width: 100%;">
+            <div id = "impactBio_2" class="vid_in_modal">
+                <video src="tu-video.mp4" autoplay muted loop ></video>
+              </div>
+                 <img id= "cls_impactBio_2" class="  w3-display-topright elem_click cls_comic" 
+                 src="assets/img/icons/cls.png"
+                 style="top: -2%;right: -2%;"/>
+          </div>
+        </div> 
+      </div> 
+
+      <div id="mod_caracter_1" class="w3-modal modal_base modal" style="z-index: 10;">
+        <div class="w3-modal-content w3-animate-top" style="background-color:transparent;width: 70%;">
+          <div class="w3-display-container">
+            <img src="assets/img/base_slide.png" alt style="width: 100%;">
+            <div id = "caracter_1" class="vid_in_modal">
+                <video src="tu-video.mp4" autoplay muted loop ></video>
+              </div>
+                 <img id= "mod_caracter_1" class="  w3-display-topright elem_click cls_comic" 
+                 src="assets/img/icons/cls.png"  style="top: -2%;right: -2%;"/>
+
+          </div>
+        </div> 
+      </div> 
+
+      <div id="mod_vidTemp_1" class="w3-modal modal_base modal" style="z-index: 10;">
+        <div class="w3-modal-content w3-animate-top" style="background-color:transparent;width: 70%;">
+          <div class="w3-display-container">
+            <img src="assets/img/base_slide.png" alt style="width: 100%;">
+            <div id = "vidTemp_1" class="vid_in_modal">
+                <video src="tu-video.mp4" autoplay muted loop ></video>
+              </div>
+                 <img id= "cls_vidTemp_1" class="  w3-display-topright elem_click cls_comic" 
+                 src="assets/img/icons/cls.png"
+                 style="top: -2%;right: -2%;"/>
+
+          </div>
+        </div> 
+      </div> 
 
     <img id="module3_Prev" src="assets/img/icons/prev.png" class="module3_Prev modules_Prev" />
     <img id="module3_Next" src="assets/img/icons/next.png"

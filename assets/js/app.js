@@ -11,9 +11,12 @@ let myAvance = {
         preg_4: null
     },
     ch3: {
+        vidManEm:1,
+        impactBio:1,
+        caracter:1,
+        vidTemp:1,
         emocion: 1,
         finish_juego: 0
-
     }
 };
 
