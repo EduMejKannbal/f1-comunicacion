@@ -186,7 +186,7 @@ top: 20%;
   bottom: 18%;
   left: 22%;
   width: 9%;
-  height: auto;
+  height: auto;cursor: pointer;
 }
 #slideM3-5-pleca {
   top: 0;
@@ -217,7 +217,7 @@ top: 20%;
   justify-content: center;
   gap: 5%;
 }
-.btn_VidImpactEmoc {
+.btn_impactBio {
   width: 35%;
   height: auto;
   cursor: pointer;
@@ -496,11 +496,12 @@ top: 20%;
   width: 38%;
 }
 
-
 .vid_in_modal {
+  position: absolute;
   width: 100%;
   overflow: hidden;
-  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .vid_in_modal video {

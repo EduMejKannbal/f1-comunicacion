@@ -4,6 +4,11 @@ $("#precache_mod_3").waitForImages({
       $("#precache_bas").hide();
       ctrl_slidesMod3();
       ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, $(".btn_emocion").length + 1, 'myglow_img_blue', true);
+
+ctrl_avElem_chk(3, 'vidManEm', myAvance.ch3.vidManEm, $(".btn_vidManEm").length + 1, 'myglow_img_blue', true);
+ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_blue', true);
+ctrl_avElem_chk(3, 'caracter', myAvance.ch3.caracter, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
+ctrl_avElem_chk(3, 'vidTemp', myAvance.ch3.vidTemp, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
     },
     waitForAll: true
 });
@@ -28,7 +33,19 @@ function ctrl_slidesMod3() {
     } else if (currentSlide === 3 && myAvance.ch3.emocion < 6 ) {
         $prevBtn.show();
         $nextBtn.hide();
-    }  else if (currentSlide === 9 && myAvance.ch3.finish_juego === 0) {
+    }  else if (currentSlide === 4 && myAvance.ch3.vidManEm < 2 ) {
+        $prevBtn.show();
+        $nextBtn.hide();
+    }   else if (currentSlide === 6 && myAvance.ch3.impactBio < 3 ) {
+        $prevBtn.show();
+        $nextBtn.hide();
+    }  else if (currentSlide === 7 && myAvance.ch3.caracter < 2 ) {
+        $prevBtn.show();
+        $nextBtn.hide();
+    }   else if (currentSlide === 8 && myAvance.ch3.vidTemp  < 2 ) {
+        $prevBtn.show();
+        $nextBtn.hide();
+    }     else if (currentSlide === 9 && myAvance.ch3.finish_juego === 0) {
         $prevBtn.show();
         $nextBtn.hide();
     } else if (currentSlide === 10) {
@@ -95,16 +112,13 @@ $('.btn_emocion').click(function(){
 });
 
 
-$('.cls_emocion').click(function(){
-     strID = $(this).attr('id').split("_")[2];
-    $('#mod_emocion_' + strID).hide(); 
-   
-    
-    if (strID >=  myAvance.ch3.emocion ) {
+$('.cls_emocion').click(function () {
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_emocion_' + strID).hide();
+    if (strID >= myAvance.ch3.emocion) {
         ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, $(".btn_emocion").length + 1, 'myglow_img_blue', false);
-      }
-      ctrl_slidesMod3();
-
+    }
+    ctrl_slidesMod3();
 });
 
 
@@ -115,6 +129,91 @@ $('#slideM3-9-btn').click(function(){
     $('#juego3').loadHTML('juego3.html');
     //initializeDragDropGame();   
 });
+
+
+
+
+$('.btn_vidManEm').click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_vidManEm_' + strID).show(); 
+    $('#vidManEm_'+ strID).get(0).play();
+});
+
+
+$('.cls_vidManEm').click(function(){
+     strID = $(this).attr('id').split("_")[2];
+    $('#mod_vidManEm_' + strID).hide(); 
+    if (strID >=  myAvance.ch3.vidManEm ) {
+        ctrl_avElem_chk(3, 'vidManEm', myAvance.ch3.vidManEm, $(".btn_vidManEm").length + 1, 'myglow_img_blue', false);
+      }
+      ctrl_slidesMod3();
+    var video = $('#vidManEm_' + strID).get(0);
+    video.pause();
+    video.currentTime = 0;
+});
+
+
+
+$('.btn_impactBio').click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_impactBio_' + strID).show(); 
+    $('#impactBio_'+ strID).get(0).play();
+});
+
+
+$('.cls_impactBio').click(function(){
+     strID = $(this).attr('id').split("_")[2];
+    $('#mod_impactBio_' + strID).hide(); 
+    if (strID >=  myAvance.ch3.impactBio ) {
+        ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_blue', false);
+      }
+      ctrl_slidesMod3();
+      var video = $('#impactBio_' + strID).get(0);
+      video.pause();
+      video.currentTime = 0;
+});
+
+
+
+$('.btn_caracter').click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_caracter_' + strID).show(); 
+    $('#caracter_'+ strID).get(0).play();
+});
+
+
+$('.cls_caracter').click(function(){
+     strID = $(this).attr('id').split("_")[2];
+    $('#mod_caracter_' + strID).hide(); 
+    if (strID >=  myAvance.ch3.caracter ) {
+        ctrl_avElem_chk(3, 'caracter', myAvance.ch3.caracter, $(".btn_caracter").length + 1, 'myglow_img_blue', false);
+      }
+      ctrl_slidesMod3();
+      var video = $('#caracter_1' + strID).get(0);
+      video.pause();
+      video.currentTime = 0;
+});
+
+
+$('.btn_vidTemp').click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_vidTemp_' + strID).show(); 
+    $('#vidTemp_'+ strID).get(0).play();
+});
+
+
+$('.cls_vidTemp').click(function(){
+     strID = $(this).attr('id').split("_")[2];
+    $('#mod_vidTemp_' + strID).hide(); 
+    if (strID >=  myAvance.ch3.vidTemp ) {
+        ctrl_avElem_chk(3, 'vidTemp', myAvance.ch3.vidTemp, $(".btn_caracter").length + 1, 'myglow_img_blue', false);
+      }
+      ctrl_slidesMod3();
+      var video = $('#vidTemp_' + strID).get(0);
+      video.pause();
+      video.currentTime = 0;
+});
+
 
 
 
