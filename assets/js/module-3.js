@@ -4,6 +4,11 @@ $("#precache_mod_3").waitForImages({
       $("#precache_bas").hide();
       ctrl_slidesMod3();
       ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, $(".btn_emocion").length + 1, 'myglow_img_blue', true);
+
+ctrl_avElem_chk(3, 'vidManEm', myAvance.ch3.vidManEm, $(".btn_vidManEm").length + 1, 'myglow_img_blue', true);
+ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_blue', true);
+ctrl_avElem_chk(3, 'caracter', myAvance.ch3.caracter, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
+ctrl_avElem_chk(3, 'vidTemp', myAvance.ch3.vidTemp, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
     },
     waitForAll: true
 });
@@ -28,7 +33,19 @@ function ctrl_slidesMod3() {
     } else if (currentSlide === 3 && myAvance.ch3.emocion < 6 ) {
         $prevBtn.show();
         $nextBtn.hide();
-    }  else if (currentSlide === 9 && myAvance.ch3.finish_juego === 0) {
+    }  else if (currentSlide === 4 && myAvance.ch3.vidManEm < 2 ) {
+        $prevBtn.show();
+        $nextBtn.hide();
+    }   else if (currentSlide === 6 && myAvance.ch3.impactBio < 3 ) {
+        $prevBtn.show();
+        $nextBtn.hide();
+    }  else if (currentSlide === 7 && myAvance.ch3.caracter < 2 ) {
+        $prevBtn.show();
+        $nextBtn.hide();
+    }   else if (currentSlide === 8 && myAvance.ch3.vidTemp  < 2 ) {
+        $prevBtn.show();
+        $nextBtn.hide();
+    }     else if (currentSlide === 9 && myAvance.ch3.finish_juego === 0) {
         $prevBtn.show();
         $nextBtn.hide();
     } else if (currentSlide === 10) {
@@ -37,7 +54,7 @@ function ctrl_slidesMod3() {
     } else if (currentSlide === totalSlides) {
         $nextBtn.hide();
     }else{
-            $prevBtn.show();
+    $prevBtn.show();
     $nextBtn.show();
     }
 }
@@ -95,16 +112,13 @@ $('.btn_emocion').click(function(){
 });
 
 
-$('.cls_emocion').click(function(){
-     strID = $(this).attr('id').split("_")[2];
-    $('#mod_emocion_' + strID).hide(); 
-   
-    
-    if (strID >=  myAvance.ch3.emocion ) {
+$('.cls_emocion').click(function () {
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_emocion_' + strID).hide();
+    if (strID >= myAvance.ch3.emocion) {
         ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, $(".btn_emocion").length + 1, 'myglow_img_blue', false);
-      }
-      ctrl_slidesMod3();
-
+    }
+    ctrl_slidesMod3();
 });
 
 
@@ -112,162 +126,95 @@ $('#slideM3-9-btn').click(function(){
     //nSlides.numSlides_3 = 10;  
     //ctrl_slidesMod3();
     $('#juego3').show();
-    initializeDragDropGame();   
+    $('#juego3').loadHTML('juego3.html');
+    //initializeDragDropGame();   
 });
 
-const gameConfig = {
-    questions: [
-        {
-            image: "assets/img/modules/module-3/slide-9/juego/quest/q1.png",
-            correctAnswer: "emociones",
-            dropzoneImage: "assets/img/modules/module-3/slide-9/juego/answers/emociones.png",
-            dropzoneClass: "dropzone-1"
-        },
-        {
-            image: "assets/img/modules/module-3/slide-9/juego/quest/q2.png",
-            correctAnswer: "reacciones",
-            dropzoneImage: "assets/img/modules/module-3/slide-9/juego/answers/reacciones.png",
-            dropzoneClass: "dropzone-2"
-        },
-        {
-            image: "assets/img/modules/module-3/slide-9/juego/quest/q3.png",
-            correctAnswer: "temperamento",
-            dropzoneImage: "assets/img/modules/module-3/slide-9/juego/answers/temperamento.png",
-            dropzoneClass: "dropzone-3"
-        },
-        {
-            image: "assets/img/modules/module-3/slide-9/juego/quest/q4.png",
-            correctAnswer: "caracter",
-            dropzoneImage: "assets/img/modules/module-3/slide-9/juego/answers/caracter.png",
-            dropzoneClass: "dropzone-4"
-        }
-    ],
-    passingScore: 0.8,
-    maxAttempts:1
-};
 
 
 
-function initializeDragDropGame() {
-    const $questionContainer = $("#question-container");
-    let currentQuestionIndex = 0;
-    let correctAnswersCount = 0;
-    let attempts = 0;
+$('.btn_vidManEm').click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_vidManEm_' + strID).show(); 
+    $('#vidManEm_'+ strID).get(0).play();
+});
 
-    // Mostrar pregunta
-    function showQuestion() {
-        const question = gameConfig.questions[currentQuestionIndex];
-        console.log(`[Game] Pregunta ${currentQuestionIndex + 1}: ${question.image}, Dropzone: ${question.dropzoneClass}`);
 
-        $questionContainer.html(`
-            <img src="assets/img/modules/module-3/found-round.png" class="absolute retross_round">
-            <img src="${question.image}" alt="Pregunta ${currentQuestionIndex + 1}" class="question animate zoomIn" />
-            <div class="dropzone ${question.dropzoneClass}"></div>
-        `);
+$('.cls_vidManEm').click(function(){
+     strID = $(this).attr('id').split("_")[2];
+    $('#mod_vidManEm_' + strID).hide(); 
+    if (strID >=  myAvance.ch3.vidManEm ) {
+        ctrl_avElem_chk(3, 'vidManEm', myAvance.ch3.vidManEm, $(".btn_vidManEm").length + 1, 'myglow_img_blue', false);
+      }
+      ctrl_slidesMod3();
+    var video = $('#vidManEm_' + strID).get(0);
+    video.pause();
+    video.currentTime = 0;
+});
 
-        // Configurar dropzone
-        $(".dropzone").droppable({
-            accept: ".draggable",
-            drop: function (event, ui) {
-                const droppedAnswer = ui.draggable.data("answer");
-                const isCorrect = droppedAnswer === question.correctAnswer;
-                console.log(`[Game] Soltado: ${droppedAnswer}, Correcto: ${question.correctAnswer}, Es correcto: ${isCorrect}`);
 
-                if (isCorrect) {
-                    correctAnswersCount++;
-                    $(this).html(`<img src="${question.dropzoneImage}" alt="Respuesta correcta" />`);
-                    // $("#successSound")[0].play();
-                    console.log(`[Game] Aciertos: ${correctAnswersCount}`);
-                } else {
-                    $(this).html(`<img src="${ui.draggable.attr("src")}" alt="Incorrecto" />`);
-                    // $("#errorSound")[0].play();
-                }
 
-                // Avanzar a la siguiente pregunta o mostrar modal
-                setTimeout(() => {
-                    currentQuestionIndex++;
-                    if (currentQuestionIndex < gameConfig.questions.length) {
-                        showQuestion();
-                    } else {
-                        showResultModal();
-                    }
-                }, 1000);
-            }
-        });
-    }
+$('.btn_impactBio').click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_impactBio_' + strID).show(); 
+    $('#impactBio_'+ strID).get(0).play();
+});
 
-    // Mostrar modal de resultado
-    function showResultModal() {
-        const score = correctAnswersCount / gameConfig.questions.length;
-        const isApproved = score >= gameConfig.passingScore;
-        const $modalCorrect = $("#mod_retroCorrect_1");
-        const $modalIncorrect = $("#mod_retroIncorrect_1");
 
-        if (isApproved) {
-            $modalCorrect.fadeIn(300);
-            console.log(`[Game] Mostrando modal correcto, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`);
-        } else {
-            attempts++;
-            $modalIncorrect.fadeIn(300);
-            console.log(`[Game] Mostrando modal incorrecto, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`);
-        }
-    }
+$('.cls_impactBio').click(function(){
+     strID = $(this).attr('id').split("_")[2];
+    $('#mod_impactBio_' + strID).hide(); 
+    if (strID >=  myAvance.ch3.impactBio ) {
+        ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_blue', false);
+      }
+      ctrl_slidesMod3();
+      var video = $('#impactBio_' + strID).get(0);
+      video.pause();
+      video.currentTime = 0;
+});
 
-    // Configurar arrastrables
-    function setupDraggables() {
-        $(".draggable").draggable({
-            revert: "invalid",
-            helper: "clone",
-            start: function () {
-                $(this).css("opacity", "0.5");
-            },
-            stop: function () {
-                $(this).css("opacity", "1");
-            }
-        });
-    }
 
-    // Configurar botones de cierre de modales
-    function setupModalButtons() {
-        $("#close_retroCorrect_1").on("click", () => {
-            $("#mod_retroCorrect_1").fadeOut(300);
-            console.log("[Game] Aprobado, avanzando a diapositiva 11");
-            nSlides.numSlides_3 = 10;
-            ctrl_slidesMod3();
-            $('#juego3').hide();
-            if (myAvance.ch3.finish_juego === 0){
-                myAvance.ch3.finish_juego =  1;
-            }
-        });
 
-        $("#close_retroIncorrect_1").on("click", () => {
-            $("#mod_retroIncorrect_1").fadeOut(300);
-            if (attempts < gameConfig.maxAttempts) {
-                console.log(`[Game] Reintentando, intento ${attempts + 1}`);
-                resetGame();
-            } else {
-                console.log("[Game] Intentos agotados, avanzando a diapositiva 10");
-                nSlides.numSlides_3 = 10;
-                ctrl_slidesMod3();
-                $('#juego3').hide();
-                if (myAvance.ch3.finish_juego === 0){
-                    myAvance.ch3.finish_juego =  1;
-                }
-            }
-        });
-    }
+$('.btn_caracter').click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_caracter_' + strID).show(); 
+    $('#caracter_'+ strID).get(0).play();
+});
 
-    // Inicializar juego
-    function init() {
-        $questionContainer.empty();
-        $("#mod_retroCorrect_1, #mod_retroIncorrect_1").hide();
-        setupDraggables();
-        setupModalButtons();
-        showQuestion();
-    }
 
-    init();
-}
+$('.cls_caracter').click(function(){
+     strID = $(this).attr('id').split("_")[2];
+    $('#mod_caracter_' + strID).hide(); 
+    if (strID >=  myAvance.ch3.caracter ) {
+        ctrl_avElem_chk(3, 'caracter', myAvance.ch3.caracter, $(".btn_caracter").length + 1, 'myglow_img_blue', false);
+      }
+      ctrl_slidesMod3();
+      var video = $('#caracter_1' + strID).get(0);
+      video.pause();
+      video.currentTime = 0;
+});
+
+
+$('.btn_vidTemp').click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_vidTemp_' + strID).show(); 
+    $('#vidTemp_'+ strID).get(0).play();
+});
+
+
+$('.cls_vidTemp').click(function(){
+     strID = $(this).attr('id').split("_")[2];
+    $('#mod_vidTemp_' + strID).hide(); 
+    if (strID >=  myAvance.ch3.vidTemp ) {
+        ctrl_avElem_chk(3, 'vidTemp', myAvance.ch3.vidTemp, $(".btn_caracter").length + 1, 'myglow_img_blue', false);
+      }
+      ctrl_slidesMod3();
+      var video = $('#vidTemp_' + strID).get(0);
+      video.pause();
+      video.currentTime = 0;
+});
+
+
 
 
 $("#btn_fin_mod310").click(function () {
@@ -277,6 +224,10 @@ $("#btn_fin_mod310").click(function () {
 
 $("#btn_finmod3").click(function () {
     myAvance.avModulos = 3;
+    nSlides.numSlides_3 = 1;  
     $("#carga_materia").hide().empty();
      $('.content-home').show();
   });
+
+
+

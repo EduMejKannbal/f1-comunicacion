@@ -136,7 +136,7 @@ top: 20%;
   #title_emocion_2{left: 53%;
     width: 5%;
     top: 20%;
-    }
+    } 
     #txt_emocion_2 {
       left: 53%;
       width: 41%;
@@ -182,11 +182,11 @@ top: 20%;
   top: 0;
   margin: auto;
 }
-#slideM3-4-vid {
+#btn_vidManEm_1{
   bottom: 18%;
   left: 22%;
   width: 9%;
-  height: auto;
+  height: auto;cursor: pointer;
 }
 #slideM3-5-pleca {
   top: 0;
@@ -217,7 +217,7 @@ top: 20%;
   justify-content: center;
   gap: 5%;
 }
-.btn_impactoEmociones {
+.btn_impactBio {
   width: 35%;
   height: auto;
   cursor: pointer;
@@ -270,9 +270,10 @@ top: 20%;
   bottom: 0;
   left: 0;
 }
-#slideM3-7-vid {
+#btn_caracter_1 {
   width: 18%;
   height: auto;
+  cursor: pointer;
 }
 #slideM3-8-pleca {
   width: 72%;
@@ -292,7 +293,7 @@ top: 20%;
   left: 32%;
   bottom: 6%;
 }
-#slideM3-8-vid {
+#btn_vidTemp_1 {
   width: 10%;
   height: auto;
   left: 47%;
@@ -493,4 +494,18 @@ top: 20%;
   top: 48%;
   left: 44%;
   width: 38%;
+}
+
+.vid_in_modal {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+.vid_in_modal video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
