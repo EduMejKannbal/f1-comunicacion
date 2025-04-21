@@ -21,6 +21,7 @@ function ctrl_slidesMod3() {
     const currentSlide = nSlides.numSlides_3;
     const $prevBtn = $("#module3_Prev");
     const $nextBtn = $("#module3_Next");
+    reiniciarVideos(".mod3_videoSlide")
     // resetLocution();
     $slides.hide();
     $("#slide_module3_" + currentSlide).show();
@@ -30,21 +31,41 @@ function ctrl_slidesMod3() {
     if (currentSlide === 1) {
         $prevBtn.hide();
         $nextBtn.hide();
-    } else if (currentSlide === 3 && myAvance.ch3.emocion < 6 ) {
+    } else if (currentSlide === 2 ) {
+        $prevBtn.show();
+        $nextBtn.show();
+        reproducirHasta("vid_module3_2", 4.99);
+    }  else if (currentSlide === 3 && myAvance.ch3.emocion < 6 ) {
         $prevBtn.show();
         $nextBtn.hide();
     }  else if (currentSlide === 4 && myAvance.ch3.vidManEm < 2 ) {
         $prevBtn.show();
         $nextBtn.hide();
-    }   else if (currentSlide === 6 && myAvance.ch3.impactBio < 3 ) {
+    }   else if (currentSlide === 5 ) {
         $prevBtn.show();
-        $nextBtn.hide();
+        $nextBtn.show();
+        reproducirHasta("vid_module3_5", 4.99);
+    }  else if (currentSlide === 6 && myAvance.ch3.impactBio < 3 ) {
+        reproducirHasta("vid_module3_6", 4.99);
+        if ( myAvance.ch3.impactBio < 3){
+            $prevBtn.show();
+            $nextBtn.hide();
+        }else{
+            $prevBtn.show();
+            $nextBtn.show();
+        }
     }  else if (currentSlide === 7 && myAvance.ch3.caracter < 2 ) {
         $prevBtn.show();
         $nextBtn.hide();
-    }   else if (currentSlide === 8 && myAvance.ch3.vidTemp  < 2 ) {
-        $prevBtn.show();
-        $nextBtn.hide();
+    }   else if (currentSlide === 8) {
+        reproducirHasta("vid_module3_8", 4.99);
+        if ( myAvance.ch3.vidTemp  < 2){
+            $prevBtn.show();
+            $nextBtn.hide();
+        }else{
+            $prevBtn.show();
+            $nextBtn.show();
+        }
     }     else if (currentSlide === 9 && myAvance.ch3.finish_juego === 0) {
         $prevBtn.show();
         $nextBtn.hide();
@@ -57,6 +78,7 @@ function ctrl_slidesMod3() {
     $prevBtn.show();
     $nextBtn.show();
     }
+    
 }
 
 $("#module3_Prev").click(() => {

@@ -344,3 +344,41 @@ $('.close_conoceCoach').click(function () {
     strID = $(this).attr('id').split("_")[2];
     $('#mod_conoceCoach_' + strID).hide();
 });
+
+
+
+function reproducirHasta(idVideo, tiempoFinal) {
+    const $video = $("#" + idVideo);
+    
+    if ($video.length === 0) {
+        console.error("No se encontró el video con ID:", idVideo);
+        return;
+    }
+
+    const video = $video[0];
+    
+    // Asegurar que los controles estén siempre ocultos
+    video.removeAttribute('controls'); // Método nativo
+    $video.removeAttr('controls');    // Método jQuery (redundante por seguridad)
+    
+    // Configuración inicial del video
+    video.currentTime = 0;
+    video.play();
+
+    // Control del tiempo
+    $video.on("timeupdate", function() {
+        if (this.currentTime >= tiempoFinal) {
+            this.pause();
+            $video.off("timeupdate");
+            // Asegurar nuevamente que los controles no aparezcan al pausarse
+            this.removeAttribute('controls');
+        }
+    });
+}
+function reiniciarVideos(ptrvidSLides) {
+    $(ptrvidSLides).each(function() {
+        const video = $(this)[0]; 
+        video.pause();            
+        video.currentTime = 0;  
+    });
+}
