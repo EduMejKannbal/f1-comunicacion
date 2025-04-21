@@ -395,3 +395,18 @@ progress::-webkit-progress-bar {
   height: auto;
   cursor: pointer;
 }
+
+
+.vid_in_slide {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+.vid_in_slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
