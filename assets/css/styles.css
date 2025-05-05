@@ -16,9 +16,7 @@
 }
 
 /* Reset más completo */
-*,
-*::before,
-*::after {
+wi {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -396,7 +394,6 @@ progress::-webkit-progress-bar {
   cursor: pointer;
 }
 
-
 .vid_in_slide {
   position: absolute;
   width: 100%;
@@ -409,4 +406,45 @@ progress::-webkit-progress-bar {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.container-trofeo {
+  position: absolute;
+  width: 75%;
+  height: 80%;
+  top: 0;
+  left: 0;
+  margin: auto;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+.trofeo-grid {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.modal-trofeo {
+  width: 65%;
+  height: auto;
+  object-fit: contain;
+}
+.modal-casco {
+  width: 20%;
+  height: auto;
+  position: absolute;
+  top: -8%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.modal-llanta{
+  width: 20%;
+  height: auto;
+  position: absolute;
+  top: -8%;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
