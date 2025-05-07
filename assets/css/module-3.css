@@ -1,47 +1,25 @@
-.slide_module3,
-.slide_modal.slide_juego {
-  display: none;
-  left: 0;
-  top: 0;
-  /* overflow: hidden; */
-}
-
-.slide_fondo {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-#slideM3_title {
-  width: 68%;
-  left: 0%;
-  bottom: 44%;
-  height: auto;
-}
-#btn_comenzarModule_3 {
-  width: 21%;
-  left: 39.7%;
-  top: 81%;
-  height: auto;
-}
+.slide_modal.slide_juego,.slide_module3{display:none;left:0;top:0}.slide_fondo{top:0;left:0;width:100%;height:100%}
+#slideM3_title{width:68%;left:0;bottom:44%;height:auto}
+#btn_comenzarModule_3{width:21%;left:39.7%;top:81%;height:auto}
 #slideM3-ubi{width:15%;height:auto;top:27%;right:29%}
 #slideM3_txt_1{width:33%;height:auto;left:5%;top:23%}
 #slideM3_txt_2{width:38%;height:auto;left:5%;top:29%}
 #slideM3_txt_3{width:43%;height:auto;left:4%;top:56%}
+
 .slideM3-plaqueta {
-  width: 62%;
-  height: 25%;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  left: 0;
-  top: 4%;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+    width: 62%;
+    height: 27%;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    left: 0;
+    top: 2%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 #plaqueta-relative {
   border-top-right-radius: 15px;
@@ -92,87 +70,94 @@
   right: 3%;
   width: 18%;
 } 
-.txt_btn_regresar{font-size:1.2vw;font-family:Formula_bold;    top: 17%;
-  left: 23%;
-  color: white;}
+.txt_btn_regresar {
+  font-size: 1.8vw;
+  font-family: Formula_bold;
+  top: -40%;
+  left: 19%;
+  color: white;
+}
+#slide3_emoContainer{width:100%;left:0;bottom:70.5%}
 #btn_emocion_1{width:10%;left:14%;top:45%}
 #btn_emocion_2{width:11%;left:27%;top:42%}
 #btn_emocion_3{width:17%;left:41%;top:31%}
-#btn_emocion_4 {
-  width: 11.6%;
-  left: 62%;
-  top: 41%;
-}
-#btn_emocion_5 {
-  width: 10%;
-  left: 76%;
-  top: 45%;
-} 
+#btn_emocion_4{width:11.6%;left:62%;top:41%}
+#btn_emocion_5{width:10%;left:76%;top:45%}
 .mod_emocion{top:0;left:0;width:100%;display:none}
 #slideM3_3-inst{width:30%;height:auto;left:0;right:0;margin:auto;bottom:5%}
 .chk_emocion{width:40%;height:auto;bottom:-15%;left:0;right:0;margin:auto;display:none}
 
-#title_emocion_1{left: 53%;
-width: 5%;
-top: 20%;
+#title_emocion_1 {
+  left: 53%;
+  width: 5%;
+  top: 20%;
 }
+
 #txt_emocion_1 {
   left: 53%;
   width: 41%;
   top: 27%;
 }
 
-#title_emocion_1{left: 53%;
+#title_emocion_1 {
+  left: 53%;
   width: 15%;
   top: 20%;
-  }
+}
 
-  #txt_emocion_2 {
-    left: 53%;
-    width: 41%;
-    top: 27%;
-  }
+#txt_emocion_2 {
+  left: 53%;
+  width: 41%;
+  top: 27%;
+}
 
-  #title_emocion_2{left: 53%;
-    width: 5%;
-    top: 20%;
-    } 
-    #txt_emocion_2 {
-      left: 53%;
-      width: 41%;
-      top: 27%;
-    }
+#title_emocion_2 {
+  left: 53%;
+  width: 5%;
+  top: 20%;
+}
 
-    #title_emocion_3{left: 53%;
-      width: 17%;
-      top: 20%;
-      }
-      #txt_emocion_3 {
-        left: 53%;
-        width: 41%;
-        top: 27%;
-      }
+#txt_emocion_2 {
+  left: 53%;
+  width: 41%;
+  top: 27%;
+}
 
-      #title_emocion_4{left: 53%;
-        width: 13%;
-        top: 20%;
-        }
-        #txt_emocion_4 {
-          left: 53%;
-          width: 41%;
-          top: 27%;
-        }
+#title_emocion_3 {
+  left: 53%;
+  width: 17%;
+  top: 20%;
+}
 
-        #title_emocion_5{left: 53%;
-          width: 36%;
-          top: 20%;
-          }
-          #txt_emocion_5 {
-            left: 53%;
-            width: 41%;
-            top: 27%;
-          }
+#txt_emocion_3 {
+  left: 53%;
+  width: 41%;
+  top: 27%;
+}
 
+#title_emocion_4 {
+  left: 53%;
+  width: 13%;
+  top: 20%;
+}
+
+#txt_emocion_4 {
+  left: 53%;
+  width: 41%;
+  top: 27%;
+}
+
+#title_emocion_5 {
+  left: 53%;
+  width: 36%;
+  top: 20%;
+}
+
+#txt_emocion_5 {
+  left: 53%;
+  width: 41%;
+  top: 27%;
+}
 #slideM3-4-pleca{left:0;top:0;width:65%;height:100%;opacity:.7;backdrop-filter:blur(4px)}
 #slideM3-4-txt {
   width: 40%;
@@ -271,10 +256,11 @@ top: 20%;
   left: 0;
 }
 #btn_caracter_1 {
-  width: 18%;
+  bottom: 7%;
+  width: 16%;
+  left: 62%;
   height: auto;
-  cursor: pointer;
-}
+  cursor:pointer;}
 #slideM3-8-pleca {
   width: 72%;
   height: 100%;
