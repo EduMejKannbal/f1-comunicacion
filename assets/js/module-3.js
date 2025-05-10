@@ -1,19 +1,17 @@
 $("#precache_mod_3").waitForImages({
     finished: function () {
-      $("#loading_screen").fadeOut("slow");
-      $("#precache_bas").hide();
-      ctrl_slidesMod3();
-      ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, $(".btn_emocion").length + 1, 'myglow_img_blue', true);
-
-ctrl_avElem_chk(3, 'vidManEm', myAvance.ch3.vidManEm, $(".btn_vidManEm").length + 1, 'myglow_img_blue', true);
-ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_blue', true);
-ctrl_avElem_chk(3, 'caracter', myAvance.ch3.caracter, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
-ctrl_avElem_chk(3, 'vidTemp', myAvance.ch3.vidTemp, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
+        $("#loading_screen").fadeOut("slow");
+        $("#precache_bas").hide();
+        ctrl_slidesMod3();
+        ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, $(".btn_emocion").length + 1, 'myglow_img_white', true);
+        ctrl_avElem_chk(3, 'vidManEm', myAvance.ch3.vidManEm, $(".btn_vidManEm").length + 1, 'myglow_img_blue', true);
+        ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_white', true);
+        ctrl_avElem_chk(3, 'caracter', myAvance.ch3.caracter, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
+        ctrl_avElem_chk(3, 'vidTemp', myAvance.ch3.vidTemp, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
     },
     waitForAll: true
 });
 
-//
 
 function ctrl_slidesMod3() {
     const $slides = $(".slide_module3");
@@ -31,54 +29,64 @@ function ctrl_slidesMod3() {
     if (currentSlide === 1) {
         $prevBtn.hide();
         $nextBtn.hide();
-    } else if (currentSlide === 2 ) {
+    } else if (currentSlide === 2) {
         $prevBtn.show();
         $nextBtn.show();
         reproducirHasta("vid_module3_2", 4.99);
-    }  else if (currentSlide === 3 && myAvance.ch3.emocion < 6 ) {
+    } else if (currentSlide === 3 && myAvance.ch3.emocion < 6) {
         $prevBtn.show();
         $nextBtn.hide();
-    }  else if (currentSlide === 4 && myAvance.ch3.vidManEm < 2 ) {
+    } else if (currentSlide === 4 && myAvance.ch3.vidManEm < 2) {
         $prevBtn.show();
         $nextBtn.hide();
-    }   else if (currentSlide === 5 ) {
+    } else if (currentSlide === 5) {
         $prevBtn.show();
         $nextBtn.show();
         reproducirHasta("vid_module3_5", 4.99);
-    }  else if (currentSlide === 6 && myAvance.ch3.impactBio < 3 ) {
+    } else if (currentSlide === 6 && myAvance.ch3.impactBio < 3) {
         reproducirHasta("vid_module3_6", 4.99);
-        if ( myAvance.ch3.impactBio < 3){
+        if (myAvance.ch3.impactBio < 3) {
             $prevBtn.show();
             $nextBtn.hide();
-        }else{
+        } else {
             $prevBtn.show();
             $nextBtn.show();
         }
-    }  else if (currentSlide === 7 && myAvance.ch3.caracter < 2 ) {
+    } else if (currentSlide === 7 && myAvance.ch3.caracter < 2) {
         $prevBtn.show();
         $nextBtn.hide();
-    }   else if (currentSlide === 8) {
+    } else if (currentSlide === 8) {
         reproducirHasta("vid_module3_8", 4.99);
-        if ( myAvance.ch3.vidTemp  < 2){
+        if (myAvance.ch3.vidTemp < 2) {
             $prevBtn.show();
             $nextBtn.hide();
-        }else{
+        } else {
             $prevBtn.show();
             $nextBtn.show();
         }
-    }     else if (currentSlide === 9 && myAvance.ch3.finish_juego === 0) {
-        $prevBtn.show();
-        $nextBtn.hide();
+    } else if (currentSlide === 9) {
+        reproducirHasta("vid_module3_9", 4.99);
+        if (myAvance.ch3.finish_juego === 0) {
+            $prevBtn.show();
+            $nextBtn.hide();
+        } else {
+            $prevBtn.show();
+            $nextBtn.show();
+        }
+
     } else if (currentSlide === 10) {
+        reproducirHasta("vid_module3_10", 4.99);
+        $('#aud_logro').get(0).play()
         $prevBtn.show();
         $nextBtn.hide();
     } else if (currentSlide === totalSlides) {
         $nextBtn.hide();
-    }else{
-    $prevBtn.show();
-    $nextBtn.show();
+        $prevBtn.show();
+    } else {
+        $prevBtn.show();
+        $nextBtn.show();
     }
-    
+
 }
 
 $("#module3_Prev").click(() => {
@@ -130,16 +138,28 @@ $('.btn_comenzarModule').click(function () {
 
 $('.btn_emocion').click(function(){
     strID = $(this).attr('id').split("_")[2];
-    $('#mod_emocion_' + strID).show(); 
+    $('#mod_emocion_' + strID).fadeIn(); 
+    if (strID === '6'){
+        var video = $('#emoc_6').get(0);
+        video.currentTime = 0;
+        video.play();
+    }
 });
 
 
 $('.cls_emocion').click(function () {
     strID = $(this).attr('id').split("_")[2];
-    $('#mod_emocion_' + strID).hide();
+    $('#mod_emocion_' + strID).fadeOut();
     if (strID >= myAvance.ch3.emocion) {
-        ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, $(".btn_emocion").length + 1, 'myglow_img_blue', false);
+        ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, $(".btn_emocion").length + 1, 'myglow_img_white', false);
     }
+
+    if (strID === '6'){
+        var video = $('#emoc_6').get(0);
+        video.currentTime = 0;
+        video.pause();
+    }
+
     ctrl_slidesMod3();
 });
 
@@ -187,7 +207,7 @@ $('.cls_impactBio').click(function(){
      strID = $(this).attr('id').split("_")[2];
     $('#mod_impactBio_' + strID).hide(); 
     if (strID >=  myAvance.ch3.impactBio ) {
-        ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_blue', false);
+        ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_white', false);
       }
       ctrl_slidesMod3();
       var video = $('#impactBio_' + strID).get(0);
@@ -253,3 +273,11 @@ $("#btn_finmod3").click(function () {
 
 
 
+  $(".elem_click").click(function () {
+    const audio = $("#efct_clic3")[0];
+    audio.currentTime = 0; // Reinicia desde el principio
+    audio.play().catch((err) => {
+      console.warn("No se pudo reproducir el audio:", err);
+    });
+  });
+  

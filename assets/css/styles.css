@@ -301,7 +301,7 @@ progress::-webkit-progress-bar {
   animation: myglow_blue 2s infinite;
 }
 .myglow_img_white {
-  animation: myglow_blue 2s infinite;
+  animation: myglow_white 2s infinite;
 }
 @-webkit-keyframes myglow_blue {
   0% {
@@ -316,13 +316,13 @@ progress::-webkit-progress-bar {
 }
 @-webkit-keyframes myglow_white {
   0% {
-    filter: drop-shadow(0px 0px 0px #00008f) drop-shadow(0px 0px 0px #00008f);
+    filter: drop-shadow(0px 0px 0px #fff) drop-shadow(0px 0px 0px #fff);
   }
   50% {
-    filter: drop-shadow(2px -2px 10px #00008f) drop-shadow(4px 1px 1px #00008f);
+    filter: drop-shadow(2px -2px 10px #fff) drop-shadow(4px 1px 1px #fff);
   }
   100% {
-    filter: drop-shadow(0px 0px 0px #00008f) drop-shadow(0px 0px 0px #00008f);
+    filter: drop-shadow(0px 0px 0px #fff) drop-shadow(0px 0px 0px #fff);
   }
 }
 

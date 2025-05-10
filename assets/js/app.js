@@ -82,7 +82,7 @@ $("#precache_index").waitForImages({
                 stopSplashVideo();
             });
             $("#precache_index").hide();
-            doStart();
+            //doStart();
             $('html,body').css({ 'overflow-y': 'hidden' });
             $('#modal_juego_1').loadHTML('void.html');
         }, 60);
@@ -382,3 +382,5 @@ function reiniciarVideos(ptrvidSLides) {
         video.currentTime = 0;  
     });
 }
+
+
