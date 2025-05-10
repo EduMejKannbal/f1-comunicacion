@@ -83,6 +83,11 @@
 #btn_emocion_3{width:17%;left:41%;top:31%}
 #btn_emocion_4{width:11.6%;left:62%;top:41%}
 #btn_emocion_5{width:10%;left:76%;top:45%}
+#btn_emocion_6 {
+  width: 5%;
+  right: 3%;
+  top: 1%;
+}
 .mod_emocion{top:0;left:0;width:100%;display:none}
 #slideM3_3-inst{width:30%;height:auto;left:0;right:0;margin:auto;bottom:5%}
 .chk_emocion{width:40%;height:auto;bottom:-15%;left:0;right:0;margin:auto;display:none}
@@ -157,6 +162,19 @@
   left: 53%;
   width: 41%;
   top: 27%;
+}
+
+#txt_emocion_6 {
+  left: 4%;
+  width: 77%;
+  top: 15%;
+  z-index: 2;
+}
+
+#cls_emocion_6{
+  top: -2%;
+  right: -2%;
+  width: 5%;
 }
 #slideM3-4-pleca{left:0;top:0;width:65%;height:100%;opacity:.7;backdrop-filter:blur(4px)}
 #slideM3-4-txt {
@@ -461,17 +479,15 @@
 }
    
 #btn_fin_mod310 {
-    top: 68%;
-    left: 61%;
-    width: 25%;
+  top: 85%;
+  left: 32%;
+  width: 25%;
 }
-
 #modal_trofeo3 {
-    top: 39%;
-    width: 74%;
-    left: 22%;
+  top: 2%;
+  width: 74%;
+  right: 0%;
 }
-
 #slide15_modal{top:32%;left:0;width:57%}
 #slide15_modal_txt_1{top:17%;left:9%;width:85%}
 #btn_finmod3{bottom:14%;left:34%;width:32%}

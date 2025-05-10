@@ -26,7 +26,7 @@
     </div>
     <div id="slide_module3_3" class="slide_module3 "    >
         <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
-        <img id="slide3_img_1" class="absolute slide_fondo" src="assets/img/modules/module-3/slide3a.jpg" />
+        <img id="slide3_img_1" class="absolute slide_fondo animated slideInLeft" src="assets/img/modules/module-3/slide3a.jpg" />
         <div class="slideM3-plaqueta absolute animated slideInLeft ">
             <div id="plaqueta-relative" class="contenido-relativo">
                 <img id="slideM3-title" src="assets/img/modules/module-3/slide-3/title.png" alt="">
@@ -58,7 +58,9 @@
 
         <div id="btn_emocion_6" class="btn_emocion elem_click  ">
             <img src="assets/img/icons/btn_small.svg" style="top: 0;left: 0;position: relative; width: 100%;">
-            <p class="txt_btn_regresar elem_click"> i </p>
+            <p class="txt_btn_regresar elem_click" style="    left: 45%;
+            top: 10%;
+            margin-block-start: 0;"> i </p>
         </div>
     
         <img id="slideM3_3-inst" class="absolute" src="assets/img/modules/module-3/slide-3/inst.png" alt="">
@@ -131,7 +133,7 @@
     </div>
     <div id="slide_module3_4" class="slide_module3">
         <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
-        <img id="slide4_img_1" class="absolute slide_fondo" src="assets/img/modules/module-3/slide4a.jpg" />
+        <img id="slide4_img_1" class="absolute slide_fondo animated slideInUp" src="assets/img/modules/module-3/slide4a.jpg" />
         <img id="slideM3-4-pleca" class="absolute  animated slideInLeft" src="assets/img/modules/module-3/slide-4/pleca.png" />
         <img id="slideM3-4-txt" class="absolute  animated slideInLeft" src="assets/img/modules/module-3/slide-4/txt.png" />
         <img id="btn_vidManEm_1" class="absolute btn_vidManEm animated zoomIn" src="assets/img/icons/btn_video.png" />
@@ -173,8 +175,8 @@
             </div>
         </div>
 
-        <img id="slideM3-7-pista" class="absolute" src="assets/img/modules/module-3/slide-7/pista.png" />
-        <img id="slideM3-7-person" class="absolute" src="assets/img/modules/module-3/slide-7/person.png" />
+        <img id="slideM3-7-pista" class="absolute animated slideInDown" src="assets/img/modules/module-3/slide-7/pista.png" />
+        <img id="slideM3-7-person" class="absolute animated slideInLeft" src="assets/img/modules/module-3/slide-7/person.png" />
         <img id="btn_caracter_1" class=" btn_caracter elem_click" src="assets/img/icons/btn_video.png" />
     </div>
     <div id="slide_module3_8" class="slide_module3">
@@ -189,7 +191,10 @@
     </div>
     <div id="slide_module3_9" class="slide_module3">
         <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
-        <img id="slide12_img_1" class="absolute slide_fondo" src="assets/img/modules/module-2/slide7.jpg" />
+        <div class="vid_in_slide">
+            <video id="vid_module3_9" src="assets/vid/back_reto.mp4" controls="false" muted
+                class="mod3_videoSlide"></video>
+        </div>
         <img id="slideM3-9-title" class="absolute" src="assets/img/modules/module-3/slide-9/title.png">
         <img id="slideM3-9-btn" class="elem_click" src="assets/img/grls/btn_comenzar.png">
         <div id = "juego3" class="absolute"></div>
@@ -199,16 +204,20 @@
     <div id="slide_module3_10" class="slide_module3">
         <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
         <img id="slide10_img_1" class="absolute slide_fondo" src="assets/img/modules/module-3/slide15a.jpg" alt/>
-        <img id = "modal_trofeo3" src="assets/img/grls/modal-trofeo.png" class="absolute animated zoomIn" alt>
-        <img id = "txt_trofeo3" src="assets/img/modules/module-3/slide15_txt.svg" class="absolute animated zoomIn" alt>
-        <img id = "trofeo3" src="assets/img/grls/trofeos/trofeo_3.gif" class=" absolute animated zoomIn" alt>
+    
+        <div class="vid_in_slide">
+            <video id="vid_module3_10" src="assets/vid/modulo3/back_trofeo3.mp4" controls="false" muted
+                class="mod3_videoSlide"></video>
+        </div>
+
+        <img id = "modal_trofeo3" src="assets/img/modules/module-3/trofeo3.png" class="absolute animated slideInRight" alt>
         <img id = "btn_fin_mod310" src="assets/img/grls/btn_finalizar.png" class="elem_click animated zoomIn" alt>
     </div>
 
 
     <div id="slide_module3_11" class="slide_module3">
         <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
-        <img id="slide11_img_1" class="absolute slide_fondo" src="assets/img/modules/module-3/slide16a.jpg" />
+        <img id="slide11_img_1" class="absolute slide_fondo animated slideInLeft" src="assets/img/modules/module-3/slide16a.jpg" />
 
         <div id="slide15_modal" class="absolute animated zoomIn">
             <img src="assets/img/base_slide.png" style="width: 100%;" />
@@ -223,7 +232,7 @@
             <img src="assets/img/base_slide.png" alt style="width: 100%;">
             <img id = "txt_emocion_6" src="assets/img/modules/module-3/txt_emoc6.svg" alt class="absolute">
             <div  class="vid_in_modal">
-                <video  id = "emoc_6" src="assets/vid/trofeo.mp4" controls></video>
+                <video  id = "emoc_6" src="assets/vid/trofeo.mp4"></video>
               </div>
                  <img id= "cls_emocion_6" class="  w3-display-topright elem_click cls_emocion" 
                  src="assets/img/icons/cls.png"  style="top: -2%;right: -2%;"/>
@@ -344,6 +353,10 @@
     <img id="module3_Prev" src="assets/img/icons/prev.png" class="module3_Prev modules_Prev" />
     <img id="module3_Next" src="assets/img/icons/next.png"
         class="module3_Next modules_Next animated infinite heartBeat " />
+
+        <audio  id="efct_clic3">
+            <source src="assets/aud/clic.mp3" type="audio/mpeg" />
+          </audio>
     <div id="precache_mod_3" >
         <img src="assets/img/modules/module-3/comic1.jpg" alt style="width:0;height: 0;" />
         <img src="assets/img/modules/module-3/comic2.jpg" alt style="width:0;height: 0;" />

@@ -382,3 +382,5 @@ function reiniciarVideos(ptrvidSLides) {
         video.currentTime = 0;  
     });
 }
+
+
