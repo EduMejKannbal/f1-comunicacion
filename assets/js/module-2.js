@@ -13,24 +13,39 @@ $("#precache_mod_2").waitForImages({
 function ctrl_slidesMod2() {
     const $slides = $(".slide_module2");
     const totalSlides = $slides.length;
-    const currentSlide = nSlides.numSlides_2;  // Cambiado a numSlides_2
+    const currentSlide = nSlides.numSlides_2;  //
     const $prevBtn = $("#module2_Prev");
     const $nextBtn = $("#module2_Next");
     // resetLocution();
+    reiniciarVideos(".mod2_videoSlide")
     $slides.hide();
     $("#slide_module2_" + currentSlide).show();
-    //console.log("#slide_module2_" + currentSlide);
+    console.log("#slide_module2_" + currentSlide);
     // playAudio('transporte_', currentSlide)
     $prevBtn.show();
     $nextBtn.show();
     if (currentSlide === 1) {
         $prevBtn.hide();
         $nextBtn.hide();
-    } else if (currentSlide === 4 || currentSlide === 6 || currentSlide === 7 || currentSlide === 8 || currentSlide === 13 )  {
+    } else if (currentSlide === 4 )  {
+        $prevBtn.hide();
+        $nextBtn.hide();
+        reproducirHasta("vid_module2_4", 9.99);
+        $('#aud_logro').get(0).play()
+    } else if ( currentSlide === 8 )  {
         $prevBtn.show();
         $nextBtn.hide();
     } else if (currentSlide === 5 && myAvance.ch2.comic < 3) {
         $prevBtn.show();
+        $nextBtn.hide();
+    }  else if (currentSlide === 6 ) {
+        reproducirHasta("vid_module2_6", 9);
+        $prevBtn.hide();
+        $nextBtn.hide();
+        $('#aud_logro').get(0).play()
+    }  else if (currentSlide === 7 ) {
+        reproducirHasta("vid_module2_7", 4.99);
+        $prevBtn.hide();
         $nextBtn.hide();
     }  else if (currentSlide === 9 && myAvance.ch2.preg_1 === null) {
         $prevBtn.show();
@@ -44,8 +59,19 @@ function ctrl_slidesMod2() {
     } else if (currentSlide === 12 && myAvance.ch2.preg_4 === null) {
         $prevBtn.show();
         $nextBtn.hide();
+    } else if (currentSlide === 13) {
+        $prevBtn.hide();
+        $nextBtn.hide();
+        reproducirHasta("vid_module2_13", 4.99);
+        $('#aud_logro').get(0).play()
+    } else if (currentSlide === 15) {
+        $prevBtn.hide();
+        $nextBtn.hide();
+        reproducirHasta("vid_module2_15", 4.99);
+        $('#aud_logro').get(0).play()
     }else if (currentSlide === totalSlides) {
         $nextBtn.hide();
+        $prevBtn.show();
     }
     // unlock_menu();
 }
@@ -176,5 +202,33 @@ $('.btn_resp').click(function () {
 $('#btn_cls_error_modal').click(function(){
     $('#slide_error_1').hide();
     nSlides.numSlides_2 += 1;  
+    ctrl_slidesMod2();
+});
+
+
+
+
+$('#btn_cls_slide4_modal').click(function(){
+    nSlides.numSlides_2 = 5;  
+    ctrl_slidesMod2();
+});
+
+
+$('#btn_cls_slide6_modal').click(function(){
+    nSlides.numSlides_2 = 7;  
+    ctrl_slidesMod2();
+});
+
+
+$('#btn_cls_slide13_modal').click(function(){
+    nSlides.numSlides_2 = 14;  
+    ctrl_slidesMod2();
+});
+
+
+
+
+$('#btn_cls_slide16_modal').click(function(){
+    nSlides.numSlides_2 = 17;  
     ctrl_slidesMod2();
 });
