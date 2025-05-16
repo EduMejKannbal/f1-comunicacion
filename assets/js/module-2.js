@@ -249,3 +249,12 @@ $("#btn_finmod2").click(function () {
     $("#carga_materia").hide().empty();
      $('.content-home').show();
   });
+
+    $(".elem_click").click(function () {
+    const audio = $("#efct_clic2")[0];
+    audio.currentTime = 0; // Reinicia desde el principio
+    audio.play().catch((err) => {
+      console.warn("No se pudo reproducir el audio:", err);
+    });
+  });
+  

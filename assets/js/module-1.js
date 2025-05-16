@@ -21,6 +21,8 @@ function ctrl_slides() {
         if (testCompleted) {
             restoreSelections();
         }
+    }  else if (currentSlide === 2) {
+       reproducirHasta("vid_module1_2", 4.99);
     } else if (currentSlide === 6 && testCompleted) {
         showTestResults(testResults);
     } else if (currentSlide === totalSlides) {
