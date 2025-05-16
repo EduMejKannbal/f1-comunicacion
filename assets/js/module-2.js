@@ -119,7 +119,7 @@ $('.btn_comic').click(function () {
   
 $('.cls_comic').click(function () {
     strID = $(this).attr("id").split("_")[2];
-    $('#mod_comic_' + strID).hide();
+    $('#mod_comic_' + strID).fadeOut();
     if (strID >= myAvance.ch2.comic ) {
       ctrl_avElem(2, 'comic', myAvance.ch2.comic, $(".btn_comic").length + 1, 'myglow_img_blue', false);
     }
@@ -134,10 +134,7 @@ $('#btn_start').click(function(){
 });
 
 $('.btn_avanceModal').click(function() {
-    // Extraemos el número del ID (ej: "btn_cls_slide4_modal" → 4)
     const currentSlideNum = parseInt(this.id.match(/slide(\d+)_/)[1]);
-    
-    // Calculamos el slide destino (currentSlideNum + 1)
     nSlides.numSlides_2 = currentSlideNum + 1;
     
     ctrl_slidesMod2();
@@ -163,7 +160,7 @@ $('.btn_resp').click(function () {
             });
         }
 
-    $('#btn_resp_'+ strPreg +'_op_'+ strOp).css({'opacity':'1'});
+    $('#btn_resp_'+ strPreg +'_op_'+ strOp).css({'opacity':'1'}).doAnim({"animation":"heartBeat"});
 
     if (strPreg === '1' && strOp === '1'){
         myAvance.ch2["preg_"+strPreg] = '1';
@@ -193,17 +190,13 @@ $('.btn_resp').click(function () {
     const ch2 = myAvance.ch2;
     let suma = 0;
     
-    // Sumar solo los valores numéricos (ignorando null/undefined/strings)
     Object.keys(ch2).forEach(key => {
         if (key.startsWith('preg_')) {
             const valor = ch2[key];
-            // Convierte strings a números (ej: "1" → 1)
-            const numero = Number(valor) || 0; // Si falla la conversión, usa 0
+            const numero = Number(valor) || 0; 
             suma += numero;
         }
     });
-    
-
     console.log(suma);
     
     if (suma === 4) {
