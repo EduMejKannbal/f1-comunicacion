@@ -266,9 +266,6 @@ $('.cls_vidTemp').click(function(){
       video.currentTime = 0;
 });
 
-
-
-
 $("#btn_fin_mod310").click(function () {
     nSlides.numSlides_3 = 12;  
     ctrl_slidesMod3();
