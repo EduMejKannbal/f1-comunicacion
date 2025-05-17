@@ -17,6 +17,7 @@ function ctrl_slides() {
     if (currentSlide === 1) {
         $prevBtn.hide();
     } else if (currentSlide === 4) {
+        reproducirHasta("vid_module1_4", 4.99);
         ctrl_carru_simple("test_1", nSlides.test_1);
         if (testCompleted) {
             restoreSelections();
@@ -26,6 +27,7 @@ function ctrl_slides() {
     } else if (currentSlide === 6 && testCompleted) {
         showTestResults(testResults);
     } else if (currentSlide === totalSlides) {
+        reproducirHasta("vid_module1_12", 9.99);
         $nextBtn.hide();
     }
 }

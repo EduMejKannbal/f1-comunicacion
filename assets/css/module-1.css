@@ -289,14 +289,14 @@
   width: 45%;
   left: 5%;
   top: 26%;
-  height: auto;
+  height: auto;z-index: 2 ;
 }
 .module1_3-comenzar {
   width: 20%;
   height: auto;
   left: 17%;
   bottom: 38%;
-  z-index: 1;
+  z-index: 2;
 }
 .z-5 {
   z-index: 5;
