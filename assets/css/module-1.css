@@ -547,6 +547,11 @@
   height: auto;
 }
 
+.testResult-text {
+  color: #fff;
+}
+
+
 .progress-bar {
   width: 70%;
   height: 8px;
@@ -587,6 +592,10 @@
   height: auto;
   cursor: pointer;
   z-index: 1;
+  position: absolute;
+  transition: all 0.3s ease;
+  left: 9%;
+  top: 14%;  z-index: 1;
   position: absolute;
   transition: all 0.3s ease;
 }
@@ -759,3 +768,15 @@
 }
 @media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {
 }
+
+
+#modal_trofeo1,#modal_trofeo2,#modal_trofeo3{
+  top: 2%;
+  width: 74%;
+  right: 0%;
+  z-index: 2;
+  }  
+
+  #btn_cls_slide7_modal{
+    bottom: 10%;width: 15%;left: 85%;z-index: 2;
+  }

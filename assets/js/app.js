@@ -218,23 +218,7 @@ function setupCarouselControls(carruClass) {
         }
     });
 }
-function calculateResults() {
-    var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
-    if (totalSelections === totalQuestions) {
-        testResults = {
-            pantera: Math.round((selections.pantera / totalQuestions) * 100),
-            pavorreal: Math.round((selections.pavorreal / totalQuestions) * 100),
-            delfin: Math.round((selections.delfin / totalQuestions) * 100),
-            buho: Math.round((selections.buho / totalQuestions) * 100)
-        };
-        console.log("Resultados del Test:", testResults);
-        testCompleted = true;
-        nSlides.numSlides = 6;
-        ctrl_slides();
-    } else {
-        console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
-    }
-}
+
 function showTestResults(results) {
     const $cardItems = $("#slide_module1_6 .cardTest-item");
 

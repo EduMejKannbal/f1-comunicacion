@@ -26,7 +26,12 @@ function ctrl_slides() {
        reproducirHasta("vid_module1_2", 4.99);
     } else if (currentSlide === 6 && testCompleted) {
         showTestResults(testResults);
-    } else if (currentSlide === totalSlides) {
+    } else if (currentSlide === 7 )  {
+        $prevBtn.hide();
+        $nextBtn.hide();
+        reproducirHasta("vid_module1_7", 9.99);
+        $('#aud_logro').get(0).play()
+    }  else if (currentSlide === totalSlides) {
         reproducirHasta("vid_module1_12", 9.99);
         $nextBtn.hide();
     }
@@ -43,6 +48,31 @@ $("#module1_Next").click(() => {
     ctrl_slides();
     // $("#efct_next")[0].play();
 });
+
+function calculateResults() {
+    var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
+    if (totalSelections === totalQuestions) {
+        testResults = {
+            pantera: Math.round((selections.pantera / totalQuestions) * 100),
+            pavorreal: Math.round((selections.pavorreal / totalQuestions) * 100),
+            delfin: Math.round((selections.delfin / totalQuestions) * 100),
+            buho: Math.round((selections.buho / totalQuestions) * 100)
+        };
+        console.log("Resultados del Test:", testResults);
+        testCompleted = true;
+        nSlides.numSlides = 6;
+        ctrl_slides();
+
+        animateCalif(".cardTest:nth-of-type(1) .testResult-text", testResults.pantera, 1500);
+        animateCalif(".cardTest:nth-of-type(2) .testResult-text", testResults.pavorreal, 1500);
+        animateCalif(".cardTest:nth-of-type(3) .testResult-text", testResults.delfin, 1500);
+        animateCalif(".cardTest:nth-of-type(4) .testResult-text", testResults.buho, 1500);
+
+    } else {
+        console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
+    }
+}
+
 setupCarouselControls('test_1');
 if (!testCompleted) {
     $(".body-answers > div > div").click(function () {
@@ -76,6 +106,19 @@ if (!testCompleted) {
         }
     });
 }
+
+
+function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
+    $({ Counter: current }).animate({ Counter: ptrTarget }, {
+      duration: ptrDuration,
+      easing: 'swing',
+      step: function (now) {
+        $(ptrClass).text(Math.ceil(now) + '%');
+      }
+    });
+  }
+  
+
 
 const cards = document.querySelectorAll('.cardTest');
 for (let i = 0; i < cards.length; i++) {
@@ -145,3 +188,11 @@ $buttons.hover(
         });
     }
 );
+
+
+
+
+$('#btn_cls_slide7_modal').click(function(){
+    nSlides.numSlides = 8;  
+    ctrl_slides();
+});
