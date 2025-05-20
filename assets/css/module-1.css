@@ -777,6 +777,25 @@
   z-index: 2;
   }  
 
+
+
   #btn_cls_slide7_modal{
-    bottom: 10%;width: 15%;left: 85%;z-index: 2;
+    bottom: 10%;width: 15%;left: 41.5%;z-index: 2;
   }
+
+  #btn_cls_slide10_modal{
+    bottom: 10%;width: 15%;left: 41.5%;z-index: 2;
+  }
+
+  #btn_cls_slide12_modal {
+    bottom: 25%;
+    width: 19%;
+    left: 23.5%;
+    z-index: 2;
+}
+  #btn_finmod1{
+    bottom: 10%;width: 15%;left: 41.5%;z-index: 2;
+  }
+
+
+  

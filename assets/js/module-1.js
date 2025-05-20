@@ -16,24 +16,52 @@ function ctrl_slides() {
 
     if (currentSlide === 1) {
         $prevBtn.hide();
+        $nextBtn.hide();
     } else if (currentSlide === 4) {
         reproducirHasta("vid_module1_4", 4.99);
         ctrl_carru_simple("test_1", nSlides.test_1);
         if (testCompleted) {
             restoreSelections();
         }
-    }  else if (currentSlide === 2) {
+        $prevBtn.hide();
+        $nextBtn.hide();
+    }  else if (currentSlide === 5) {
+        if (testCompleted) {
+            $prevBtn.show();
+        $nextBtn.show(); 
+        }else{
+            $prevBtn.hide();
+            $nextBtn.hide();
+        }
+     }   else if (currentSlide === 2) {
        reproducirHasta("vid_module1_2", 4.99);
-    } else if (currentSlide === 6 && testCompleted) {
-        showTestResults(testResults);
+    } else if (currentSlide === 6) {
+
+        $prevBtn.hide();
+        $nextBtn.hide();
+        if  (testCompleted){
+            showTestResults(testResults);
+        }
+        
     } else if (currentSlide === 7 )  {
         $prevBtn.hide();
         $nextBtn.hide();
         reproducirHasta("vid_module1_7", 9.99);
         $('#aud_logro').get(0).play()
-    }  else if (currentSlide === totalSlides) {
-        reproducirHasta("vid_module1_12", 9.99);
+    }  else if (currentSlide === 10 )  {
+        $prevBtn.hide();
         $nextBtn.hide();
+        reproducirHasta("vid_module1_10", 4.99);
+        $('#aud_logro').get(0).play()
+    }  else if (currentSlide === 12 )  {
+        $prevBtn.hide();
+        $nextBtn.hide();
+        reproducirHasta("vid_module1_12", 9.99);
+    } else if (currentSlide === totalSlides) {
+        $prevBtn.show();
+        $nextBtn.hide();
+        reproducirHasta("vid_module1_13", 8.99);
+        $('#aud_logro').get(0).play()
     }
 }
 $("#module1_Prev").click(() => {
@@ -191,8 +219,55 @@ $buttons.hover(
 
 
 
+$('.module1_3-comenzar').click(function(){
+    nSlides.numSlides = 5;  
+    ctrl_slides();
+});
+
 
 $('#btn_cls_slide7_modal').click(function(){
     nSlides.numSlides = 8;  
     ctrl_slides();
 });
+
+
+$('#btn_cls_slide10_modal').click(function(){
+    nSlides.numSlides = 11;  
+    ctrl_slides();
+});
+
+
+$('#btn_cls_slide12_modal').click(function(){
+    nSlides.numSlides = 13;  
+    ctrl_slides();
+});
+
+
+$('#btn_res_cont').click(function(){
+    nSlides.numSlides = 7;  
+    ctrl_slides();
+});
+
+
+$("#btn_finmod1").click(function () {
+    myAvance.avModulos = 2;
+    nSlides.numSlides = 1;  
+    $("#carga_materia").hide().empty();
+     $('.content-home').show();
+  });
+
+
+  $('#btn_comenzarModule_1').click(function () {
+    nSlides.numSlides = 2;  
+    ctrl_slides();
+  });
+
+
+  $(".elem_click").click(function () {
+    const audio = $("#efct_clic1")[0];
+    audio.currentTime = 0; // Reinicia desde el principio
+    audio.play().catch((err) => {
+      console.warn("No se pudo reproducir el audio:", err);
+    });
+  });
+  

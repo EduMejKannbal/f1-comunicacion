@@ -267,12 +267,12 @@ $('.cls_vidTemp').click(function(){
 });
 
 $("#btn_fin_mod310").click(function () {
-    nSlides.numSlides_3 = 12;  
+    nSlides.numSlides_3 = 13;  
     ctrl_slidesMod3();
   });
 
 $("#btn_finmod3").click(function () {
-    myAvance.avModulos = 3;
+    myAvance.avModulos = 4;
     nSlides.numSlides_3 = 1;  
     $("#carga_materia").hide().empty();
      $('.content-home').show();

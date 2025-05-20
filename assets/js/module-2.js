@@ -244,7 +244,7 @@ $('#btn_cls_slide16_modal').click(function(){
 });
 
 $("#btn_finmod2").click(function () {
-    myAvance.avModulos = 2;
+    myAvance.avModulos = 3;
     nSlides.numSlides_2 = 1;  
     $("#carga_materia").hide().empty();
      $('.content-home').show();
