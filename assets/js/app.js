@@ -368,3 +368,33 @@ function reiniciarVideos(ptrvidSLides) {
 }
 
 
+$('#btn_menu').click(function () {
+    $('#slide_menu_1').show();
+});
+
+
+$('#cls_menu').click(function () {
+    $('#slide_menu_1').fadeOut();
+});
+
+$('.txt_menu').on({
+    click: function() {
+        strMod = $(this).attr('id').split("_")[2];
+        strID = $(this).attr('id').split("_")[3];
+    },
+    mouseover: function() {
+        strMod = $(this).attr('id').split("_")[2];
+        strID = $(this).attr('id').split("_")[3];
+        $('#img_menu_rect').show().css('top', $(this).css('top'));
+    }, 
+    mouseleave: function() {
+        strMod = $(this).attr('id').split("_")[2];
+        strID = $(this).attr('id').split("_")[3];
+        $('#img_menu_rect').hide();
+    }
+});
+
+
+$('#btn_homeComenzar_1').click(function(){
+    $('#mod_start').hide();
+});

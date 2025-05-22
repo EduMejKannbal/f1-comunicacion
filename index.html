@@ -14,7 +14,11 @@
 </head>
 
 <body class="container">
-  <main class="content" role="main">
+  <main class="content" role="main">    
+    <div id="btn_menu">
+      <img src="assets/img/icons/squareclean.png" class="elem_click" style="width: 100%;" >
+      <p class="txt_btn_regresar elem_click" style="    top: 0;    margin: 0;"> ☰ </p>
+    </div>
     <div id="loading_screen">
       <!-- <img id="load_img" src="assets/img/icons/puff.svg" alt /> -->
       <div class="container-splash">
@@ -23,9 +27,12 @@
           <p>Su navegador no soporta vídeos HTML5.</p>
         </video>
       </div>
-    </div>
+    </div> 
+
+    
+    <div id="slide_index_1" class="slide_index" style="display: block;">
+      <img src="assets/img/home/home.jpg" class="home_imageBack" alt="">
     <div class="content-home">
-      <img src="assets/img/home/home.png" class="absolute home_imageBack" alt="">
       <div class="vid_in_slide">
             <video  src="assets/vid/home.mp4"  autoplay muted  loop
             class="mod2_videoSlide"></video>
@@ -37,8 +44,16 @@
       <img src="assets/img/home/title_project.png" class="absolute home_titleHome">
       <img src="assets/img/home/trofeo.png" 
            class="absolute animated zoomIn delay-3s home_trofeo btn_conoceCoach" id="btn_conoceCoach_1">
-      <img src="assets/img/home/btn_comenzar.png" class="absolute home_boton btn_homeComenzar" id="btn_homeComenzar_1">
+      
+          <div id="mod_start" class="absolute "
+            style="width: 100%;height: 100%; top: 0;left: 0;">
+            <img id = "img_start_1" src="assets/img/modules/module-2/ModalCarera.png" style="width: 100%;">
+            <img id="mod_start_txt1" class="absolute animated zoomIn" src="assets/img/menu/txt_mod_menu.svg">
+            <img id="btn_homeComenzar_1" src="assets/img/home/btn_comenzar.png" class="elem_click home_boton btn_homeComenzar" >
+          </div>
+      
     </div>
+  </div>
     <div class="mod_conoceCoach w3-modal" id="mod_conoceCoach_1" style="overflow: hidden; margin-top: 0;">
       <div class="w3-animate-zoom w3-modal-content mt-4 conoceCoach-modal" style="background-color:transparent;;">
         <div class="w3-display-container">
@@ -54,6 +69,49 @@
           <img src="assets/img/home/portfolio/X.png" class="absolute close close_conoceCoach" id="close_conoceCoach_1">
         </div>
       </div>
+    </div>
+
+    <div id="slide_menu_1" class="slide_menu" >
+      <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
+      <img id = "back_menu" src="assets/img/menu/back_menu.jpeg" class="absolute  animated slideInLeft" alt="">
+      <img src="assets/img/home/portfolio/X.png" class="elem_click animated slideInLeft " id="cls_menu">
+      <img id = "rect_menu"  src="assets/img/menu/rect_menu.png " class="absolute animated slideInLeft" alt="">
+
+      <img id = "img_sec_1"  src="assets/img/menu/mod1_sec.svg " class="absolute animated slideInLeft" alt="">
+      <img id = "img_sec_2"  src="assets/img/menu/mod2_sec.svg " class="absolute animated slideInLeft" alt="">
+      <img id = "img_sec_3"  src="assets/img/menu/mod3_sec.svg " class="absolute animated slideInLeft" alt="">
+
+      <img id = "img_casc_1"  src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
+      <img id = "img_casc_2"  src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
+      <img id = "img_casc_3"  src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
+
+      <img id = "txt_menu_tit"  src="assets/img/menu/txt_menu.svg " class="absolute animated slideInLeft" alt="">
+
+      <img id = "img_menu_rect"  src="assets/img/menu/Rect_select.svg " class="absolute" alt="">
+
+
+      <p id="txt_menu_1_1" class="elem_click txt_menu"> Pretest de autoevaluación </p>
+      <p id="txt_menu_1_2" class="elem_click txt_menu"> Pantera </p>
+      <p id="txt_menu_1_3" class="elem_click txt_menu"> Pavorreal </p>
+      <p id="txt_menu_1_4" class="elem_click txt_menu"> Delfín </p>
+      <p id="txt_menu_1_5" class="elem_click txt_menu"> Búho </p>
+      <p id="txt_menu_1_6" class="elem_click txt_menu"> Cierre </p>
+
+      <p id = "txt_menu_2_1" class="elem_click txt_menu"> Menú General</p>
+      <p  id = "txt_menu_2_2" class="elem_click txt_menu"> Sarp </p>
+      <p   id = "txt_menu_2_3" class="elem_click txt_menu"> Ejemplos </p>
+      <p   id = "txt_menu_2_4" class="elem_click txt_menu"> Reconocimiento </p>
+      <p   id = "txt_menu_2_5" class="elem_click txt_menu"> Retroalimentación </p>
+      <p   id = "txt_menu_2_6" class="elem_click txt_menu"> Estrategias SARP </p>
+      <p   id = "txt_menu_2_7" class="elem_click txt_menu"> Evaluación Final </p> 
+
+      <p id = "txt_menu_3_1" class="elem_click txt_menu"> Las emociones</p>
+      <p  id = "txt_menu_3_2" class="elem_click txt_menu"> Reto de las emociones </p>
+      <p   id = "txt_menu_3_3" class="elem_click txt_menu"> Temperamento, Carácter </p>
+      <p   id = "txt_menu_3_4" class="elem_click txt_menu"> Menú Impactos </p>
+      <p   id = "txt_menu_3_5" class="elem_click txt_menu"> Bionegativo </p>
+      <p   id = "txt_menu_3_6" class="elem_click txt_menu"> Biopositvo </p>
+      <p   id = "txt_menu_3_7" class="elem_click txt_menu"> Evaluación  </p> 
     </div>
 
     <div id="carga_materia" class="materia_content"></div>

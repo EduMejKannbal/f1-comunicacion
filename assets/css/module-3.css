@@ -2,9 +2,18 @@
 #slideM3_title{width:68%;left:0;bottom:44%;height:auto}
 #btn_comenzarModule_3{width:21%;left:39.7%;top:81%;height:auto}
 #slideM3-ubi{width:15%;height:auto;top:27%;right:29%}
-#slideM3_txt_1{width:33%;height:auto;left:5%;top:23%}
-#slideM3_txt_2{width:38%;height:auto;left:5%;top:29%}
-#slideM3_txt_3{width:43%;height:auto;left:4%;top:56%}
+
+#slide3_img2_1 {
+  width: 64%;
+  height: 100%;
+  left: 0%;
+  top: 0;
+  z-index: 2;
+  opacity: 0.8;
+}
+#slideM3_txt_1{width:33%;height:auto;left:5%;top:23%;z-index: 2;}
+#slideM3_txt_2{width:38%;height:auto;left:5%;top:29%;z-index: 2;}
+#slideM3_txt_3{width:43%;height:auto;left:4%;top:56%;z-index: 2;}
 
 .slideM3-plaqueta {
     width: 62%;

@@ -237,7 +237,7 @@ $('.cls_vidTemp').click(function(){
 
 // Botones de finalización
 $("#btn_fin_mod310").click(function () {
-    nSlides.numSlides_3 = 13;  
+    nSlides.numSlides_3 = 11;  
     ctrl_slidesMod3();
 });
 

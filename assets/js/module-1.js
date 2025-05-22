@@ -171,12 +171,12 @@ const $container = $('#slide_module1_9');
 
 // Crear dinámicamente las imágenes hover si no existen
 $buttons.each(function () {
-    const num = $(this).attr('id').split('_')[2];
-    if ($(`#hov_estilosComunicacion_${num}`).length === 0) {
+    var num = $(this).attr('id').split('_')[2];
+    if ($('#hov_estilosComunicacion_' + num).length === 0) {
         $('<img>')
             .attr({
-                id: `hov_estilosComunicacion_${num}`,
-                src: `assets/img/modules/module-1/slide-9/no_${num}.png`
+                id: 'hov_estilosComunicacion_' + num,
+                src: 'assets/img/modules/module-1/slide-9/no_' + num + '.png'
             })
             .addClass('absolute hov_estilosComunicacion')
             .appendTo($container);
@@ -186,7 +186,7 @@ $buttons.each(function () {
 // Manejar el hover
 $buttons.hover(
     function () {
-        const num = $(this).attr('id').split('_')[2];
+        var num = $(this).attr('id').split('_')[2];
         const $hoverImg = $(`#hov_estilosComunicacion_${num}`);
 
         // Ocultar todas y remover animaciones
