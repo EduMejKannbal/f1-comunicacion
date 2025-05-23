@@ -112,7 +112,7 @@
   padding: 2%;
 }
 .contenido-textos {
-  width: 50%;
+  width: 59%;
   margin-left: 5%;
   margin-top: 34%;
   box-sizing: border-box;
@@ -759,7 +759,7 @@
 }
 @media (min-width: 1360px) {
   .answer-text {
-    font-size: 60%;
+    font-size: 63%;
   }
 }
 @media (min-width: 1400px) and (max-width: 1500px) {
@@ -798,4 +798,4 @@
   }
 
 
-  
+  .mod_estilosComunicacion{top:0;left:0;width:100%;height:100%;display:none;z-index: 6;}

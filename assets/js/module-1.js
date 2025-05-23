@@ -218,6 +218,21 @@ $buttons.hover(
 );
 
 
+$buttons.click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    console.log('#mod_estilosComunicacion_' + strID);
+    $('#mod_estilosComunicacion_' + strID).show(); 
+    $('#vid_estilosComunicacion_'+ strID).get(0).play();
+});
+
+$('.cls_estilosComunicacion').click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_estilosComunicacion_' + strID).fadeOut();
+    var video = $('#vid_estilosComunicacion_' + strID).get(0);
+    video.pause();
+    video.currentTime = 0;
+});
+
 
 $('.module1_3-comenzar').click(function(){
     nSlides.numSlides = 5;  
@@ -271,3 +286,5 @@ $("#btn_finmod1").click(function () {
     });
   });
   
+
+

@@ -128,6 +128,18 @@ $('.cls_comic').click(function () {
   });
 
 
+  $('#slide3_play').click(function(){
+    $('#mod_2sarp_1').show(); 
+    $('#vidSarp_1').get(0).play();
+});
+
+$('#cls_2sarp_1').click(function(){
+    $('#mod_2sarp_1').hide(); 
+    var video = $('#vidSarp_1').get(0);
+    video.pause();
+    video.currentTime = 0;
+});
+
 $('#btn_start').click(function(){
     nSlides.numSlides_2 = 2;  
     ctrl_slidesMod2();
