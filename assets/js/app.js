@@ -398,3 +398,29 @@ $('.txt_menu').on({
 $('#btn_homeComenzar_1').click(function(){
     $('#mod_start').hide();
 });
+
+
+
+$('#btn_sobreMi_1').click(function () {
+    $('#mod_BienvVid_1').show(); 
+    $('#BienvVid_1').get(0).play();
+  });
+
+
+  $('#cls_BienvVid_1').click(function () {
+    $('#mod_BienvVid_1').hide(); 
+    var video = $('#BienvVid_1').get(0);
+    video.pause();
+    video.currentTime = 0;
+  });
+
+
+
+$('#btn_sobreMi_2').click(function () {
+    $('#mod_conoceCoach_2').show();
+  });
+
+  $('#cls_conoceCoach_2').click(function () {
+    $('#mod_conoceCoach_2').fadeOut();
+  });
+

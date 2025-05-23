@@ -59,8 +59,8 @@
         <div class="w3-display-container">
           <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
           <img src="assets/img/home/portfolio/modal.jpg" class="absolute modals-complete" />
-          <img src="assets/img/home/portfolio/btn_sobreMi_1.png" class="absolute btn_sobreMi" id="btn_sobreMi_1">
-          <img src="assets/img/home/portfolio/btn_sobreMi_2.png" class="absolute btn_sobreMi" id="btn_sobreMi_2">
+          <img src="assets/img/home/portfolio/btn_sobreMi_1.png" class="elem_click btn_sobreMi" id="btn_sobreMi_1">
+          <img src="assets/img/home/portfolio/btn_sobreMi_2.png" class="elem_click btn_sobreMi" id="btn_sobreMi_2">
           <!-- <img src="assets/img/home/portfolio/btn_sobreMi_3.png" class="absolute btn_sobreMi" id="btn_sobreMi_3"> -->
           <img src="assets/img/home/portfolio/comenzar-recorrido-2.png" class="absolute btn_comenzarModules"
             id="btn_comenzarModules">
@@ -84,24 +84,37 @@
       </div>
     </div>
 
+    <div id="mod_BienvVid_1" class="w3-modal modal_base modal mod_BienvVid_1" style="z-index: 10;">
+      <div class="w3-modal-content w3-animate-top" style="background-color:transparent;width: 70%;">
+          <div class="w3-display-container">
+              <img src="assets/img/base_slide.png" alt style="width: 100%;">
+              <div class="vid_in_modal">
+                  <video id="BienvVid_1" src="assets/vid/vid_intro.mp4" controls></video>
+              </div>
+              <img id="cls_BienvVid_1" class="  w3-display-topright elem_click cls_impactBio"
+                  src="assets/img/icons/cls.png" style="top: -2%;right: -2%;" />
+          </div>
+      </div>
+  </div>
+
+
     <div id="slide_menu_1" class="slide_menu" >
       <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
-      <img id = "back_menu" src="assets/img/menu/back_menu.jpeg" class="absolute  animated slideInLeft" alt="">
+      <img id="back_menu" src="assets/img/menu/back_menu.jpeg" class="absolute  animated slideInLeft" alt="">
       <img src="assets/img/home/portfolio/X.png" class="elem_click animated slideInLeft " id="cls_menu">
-      <img id = "rect_menu"  src="assets/img/menu/rect_menu.png " class="absolute animated slideInLeft" alt="">
-
-      <img id = "img_sec_1"  src="assets/img/menu/mod1_sec.svg " class="absolute animated slideInLeft" alt="">
-      <img id = "img_sec_2"  src="assets/img/menu/mod2_sec.svg " class="absolute animated slideInLeft" alt="">
-      <img id = "img_sec_3"  src="assets/img/menu/mod3_sec.svg " class="absolute animated slideInLeft" alt="">
-
-      <img id = "img_casc_1"  src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
-      <img id = "img_casc_2"  src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
-      <img id = "img_casc_3"  src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
-
-      <img id = "txt_menu_tit"  src="assets/img/menu/txt_menu.svg " class="absolute animated slideInLeft" alt="">
-
-      <img id = "img_menu_rect"  src="assets/img/menu/Rect_select.svg " class="absolute" alt="">
-
+      <img id="rect_menu" src="assets/img/menu/rect_menu.png " class="absolute animated slideInLeft" alt="">
+      
+      <img id="img_sec_1" src="assets/img/menu/mod1_sec.svg " class="absolute animated slideInLeft" alt="">
+      <img id="img_sec_2" src="assets/img/menu/mod2_sec.svg " class="absolute animated slideInLeft" alt="">
+      <img id="img_sec_3" src="assets/img/menu/mod3_sec.svg " class="absolute animated slideInLeft" alt="">
+      
+      <img id="img_casc_1" src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
+      <img id="img_casc_2" src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
+      <img id="img_casc_3" src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
+      
+      <img id="txt_menu_tit" src="assets/img/menu/txt_menu.svg " class="absolute animated slideInLeft" alt="">
+      
+      <img id="img_menu_rect" src="assets/img/menu/Rect_select.svg " class="absolute" alt="">
 
       <p id="txt_menu_1_1" class="elem_click txt_menu"> Pretest de autoevaluación </p>
       <p id="txt_menu_1_2" class="elem_click txt_menu"> Pantera </p>
@@ -110,21 +123,21 @@
       <p id="txt_menu_1_5" class="elem_click txt_menu"> Búho </p>
       <p id="txt_menu_1_6" class="elem_click txt_menu"> Cierre </p>
 
-      <p id = "txt_menu_2_1" class="elem_click txt_menu"> Menú General</p>
-      <p  id = "txt_menu_2_2" class="elem_click txt_menu"> Sarp </p>
-      <p   id = "txt_menu_2_3" class="elem_click txt_menu"> Ejemplos </p>
-      <p   id = "txt_menu_2_4" class="elem_click txt_menu"> Reconocimiento </p>
-      <p   id = "txt_menu_2_5" class="elem_click txt_menu"> Retroalimentación </p>
-      <p   id = "txt_menu_2_6" class="elem_click txt_menu"> Estrategias SARP </p>
-      <p   id = "txt_menu_2_7" class="elem_click txt_menu"> Evaluación Final </p> 
+      <p id="txt_menu_2_1" class="elem_click txt_menu"> Menú General</p>
+      <p id="txt_menu_2_2" class="elem_click txt_menu"> Sarp </p>
+      <p id="txt_menu_2_3" class="elem_click txt_menu"> Ejemplos </p>
+      <p id="txt_menu_2_4" class="elem_click txt_menu"> Reconocimiento </p>
+      <p id="txt_menu_2_5" class="elem_click txt_menu"> Retroalimentación </p>
+      <p id="txt_menu_2_6" class="elem_click txt_menu"> Estrategias SARP </p>
+      <p id="txt_menu_2_7" class="elem_click txt_menu"> Evaluación Final </p>
 
-      <p id = "txt_menu_3_1" class="elem_click txt_menu"> Las emociones</p>
-      <p  id = "txt_menu_3_2" class="elem_click txt_menu"> Reto de las emociones </p>
-      <p   id = "txt_menu_3_3" class="elem_click txt_menu"> Temperamento, Carácter </p>
-      <p   id = "txt_menu_3_4" class="elem_click txt_menu"> Menú Impactos </p>
-      <p   id = "txt_menu_3_5" class="elem_click txt_menu"> Bionegativo </p>
-      <p   id = "txt_menu_3_6" class="elem_click txt_menu"> Biopositvo </p>
-      <p   id = "txt_menu_3_7" class="elem_click txt_menu"> Evaluación  </p> 
+      <p id="txt_menu_3_1" class="elem_click txt_menu"> Las emociones</p>
+      <p id="txt_menu_3_2" class="elem_click txt_menu"> Reto de las emociones </p>
+      <p id="txt_menu_3_3" class="elem_click txt_menu"> Temperamento, Carácter </p>
+      <p id="txt_menu_3_4" class="elem_click txt_menu"> Menú Impactos </p>
+      <p id="txt_menu_3_5" class="elem_click txt_menu"> Bionegativo </p>
+      <p id="txt_menu_3_6" class="elem_click txt_menu"> Biopositvo </p>
+      <p id="txt_menu_3_7" class="elem_click txt_menu"> Evaluación </p>
     </div>
 
     <div id="carga_materia" class="materia_content"></div>
