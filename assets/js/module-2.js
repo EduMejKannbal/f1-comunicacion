@@ -113,12 +113,14 @@ $("#module2_Next").click(() => {
 
 
 $('.btn_comic').click(function () {
+    console.log('click en comic');
     strID = $(this).attr("id").split("_")[2];
     $('#mod_comic_' + strID).show();
   });
 
   
 $('.cls_comic').click(function () {
+    console.log('saliendo comic');
     strID = $(this).attr("id").split("_")[2];
     $('#mod_comic_' + strID).fadeOut();
     if (strID >= myAvance.ch2.comic ) {

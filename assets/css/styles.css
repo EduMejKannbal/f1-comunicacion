@@ -398,3 +398,10 @@ progress::-webkit-progress-bar{background:#e0e0e08c}
   bottom: 3%;
   height: auto;
 }
+
+
+#back_fondo_2 {
+    top: 0;
+    left: 0;
+    width: 100%;
+}
