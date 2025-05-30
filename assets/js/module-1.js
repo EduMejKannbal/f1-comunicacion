@@ -16,7 +16,8 @@ function ctrl_slides() {
 
     if (currentSlide === 1) {
         $prevBtn.hide();
-        $nextBtn.hide();
+        $nextBtn.show();
+         reproducirHasta("vid_module1_1", 9.99);
     } else if (currentSlide === 4) {
         reproducirHasta("vid_module1_4", 4.99);
         ctrl_carru_simple("test_1", nSlides.test_1);
@@ -100,6 +101,38 @@ function calculateResults() {
         console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
     }
 }
+
+
+
+function anim_fondo() {
+    var duracionAnimacion = 2000; // 2 segundos (ajusta este valor)
+    
+    $('#back_fondo_1').css({
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%'
+    });
+
+    $('#back_fondo_1').animate({
+        top: '-89%',
+        width: '199%',
+        height: '192%'
+    }, duracionAnimacion, 'swing', function() {
+        console.log('¡Animación completada!');
+    });
+
+}
+
+
+function resetFondo() {
+    $('#back_fondo_1').animate({
+        top: '0',
+        width: '100%',
+        height: '100%'
+    }, 1000);
+}
+
 
 setupCarouselControls('test_1');
 if (!testCompleted) {
@@ -268,7 +301,7 @@ $("#btn_finmod1").click(function () {
     myAvance.avModulos = 2;
     nSlides.numSlides = 1;  
     $("#carga_materia").hide().empty();
-     $('.content-home').show();
+     $('#slide_index_1').show();
   });
 
 

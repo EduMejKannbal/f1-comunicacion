@@ -4,7 +4,7 @@ $("#precache_mod_3").waitForImages({
         $("#loading_screen").fadeOut("slow");
         $("#precache_bas").hide();
         ctrl_slidesMod3();
-        ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, $(".btn_emocion").length + 1, 'myglow_img_white', true);
+        //ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, 2, 'myglow_img_white', true);
         ctrl_avElem_chk(3, 'vidManEm', myAvance.ch3.vidManEm, $(".btn_vidManEm").length + 1, 'myglow_img_blue', true);
         ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_white', true);
         ctrl_avElem_chk(3, 'caracter', myAvance.ch3.caracter, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
@@ -19,8 +19,7 @@ function ctrl_slidesMod3() {
     const totalSlides = $slides.length;
     const currentSlide = nSlides.numSlides_3;
     const $prevBtn = $("#module3_Prev");
-    const $nextBtn = $("#module3_Next");
-    
+    const $nextBtn = $("#module3_Next");    
     reiniciarVideos(".mod3_videoSlide");
     $slides.hide();
     $("#slide_module3_" + currentSlide).show();
@@ -28,14 +27,22 @@ function ctrl_slidesMod3() {
 
     if (currentSlide === 1) {
         $prevBtn.hide();
-        $nextBtn.hide();
+        $nextBtn.show();
+        reproducirHasta("vid_module3_1", 9.99);
     } else if (currentSlide === 2) {
         $prevBtn.show();
         $nextBtn.show();
         reproducirHasta("vid_module3_2", 4.99);
-    } else if (currentSlide === 3 && myAvance.ch3.emocion < 6) {
+    } else if (currentSlide === 3 ) {
         $prevBtn.show();
-        $nextBtn.hide();
+       
+        if (myAvance.ch3.emocion < 2){
+            $('.btn_emocion').addClass('myglow_img_white');
+             $nextBtn.hide();
+        } else {
+            $('.btn_emocion').removeClass('myglow_img_white');
+             $nextBtn.show();
+        }
     } else if (currentSlide === 4 && myAvance.ch3.vidManEm < 2) {
         $prevBtn.show();
         $nextBtn.hide();
@@ -133,29 +140,22 @@ $('.btn_comenzarModule').click(function () {
 });
 
 // Eventos de emociones
-$('.btn_emocion').click(function(){
-    strID = $(this).attr('id').split("_")[2];
-    $('#mod_emocion_' + strID).fadeIn(); 
-    if (strID === '6'){
-        var video = $('#emoc_6').get(0);
-        video.currentTime = 0;
-        video.play();
-    }
+$('.btn_emocion').click(function () {
+    $('#mod_emocion_6').fadeIn();
+    var video = $('#emoc_6').get(0);
+    video.currentTime = 0;
+    video.play();
 });
 
 $('.cls_emocion').click(function () {
     strID = $(this).attr('id').split("_")[2];
-    $('#mod_emocion_' + strID).fadeOut();
-    if (strID >= myAvance.ch3.emocion) {
-        ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, $(".btn_emocion").length + 1, 'myglow_img_white', false);
+    $('#mod_emocion_6').fadeOut();
+    var video = $('#emoc_6').get(0);
+    video.currentTime = 0;
+    video.pause();
+    if (myAvance.ch3.emocion < 2){
+        myAvance.ch3.emocion = 2;
     }
-
-    if (strID === '6'){
-        var video = $('#emoc_6').get(0);
-        video.currentTime = 0;
-        video.pause();
-    }
-
     ctrl_slidesMod3();
 });
 

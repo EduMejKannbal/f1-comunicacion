@@ -27,7 +27,8 @@ function ctrl_slidesMod2() {
     $nextBtn.show();
     if (currentSlide === 1) {
         $prevBtn.hide();
-        $nextBtn.hide();
+        $nextBtn.show();
+         reproducirHasta("vid_module2_1", 9.99);
     } else if (currentSlide === 2 )  {
         $prevBtn.show();
         $nextBtn.show();
