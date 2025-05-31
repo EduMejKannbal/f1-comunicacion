@@ -1,4 +1,5 @@
-ctrl_slides();
+      ctrl_slides();
+      ctrl_avElem(1, 'estilosComunicacion', myAvance.ch1.estilosComunicacion, $(".btn_estilosComunicacion").length + 1, 'myglow_img_white', true);
 
 function ctrl_slides() {
     const $slides = $(".slide_module1");
@@ -49,7 +50,11 @@ function ctrl_slides() {
         $nextBtn.hide();
         reproducirHasta("vid_module1_7", 9.99);
         $('#aud_logro').get(0).play()
-    }  else if (currentSlide === 10 )  {
+    }   else if (currentSlide === 9 && myAvance.ch1.estilosComunicacion < $(".btn_estilosComunicacion").length + 1) {
+        $prevBtn.show();
+        $nextBtn.hide();
+        
+    } else if (currentSlide === 10 )  {
         $prevBtn.hide();
         $nextBtn.hide();
         reproducirHasta("vid_module1_10", 4.99);
@@ -258,12 +263,17 @@ $buttons.click(function(){
     $('#vid_estilosComunicacion_'+ strID).get(0).play();
 });
 
-$('.cls_estilosComunicacion').click(function(){
+$('.cls_estilosComunicacion').click(function () {
     strID = $(this).attr('id').split("_")[2];
     $('#mod_estilosComunicacion_' + strID).fadeOut();
     var video = $('#vid_estilosComunicacion_' + strID).get(0);
     video.pause();
     video.currentTime = 0;
+
+    if (strID >= myAvance.ch1.estilosComunicacion) {
+        ctrl_avElem(1, 'estilosComunicacion', myAvance.ch1.estilosComunicacion, $(".btn_estilosComunicacion").length + 1, 'myglow_img_white', false);
+    }
+    ctrl_slides();
 });
 
 

@@ -3,6 +3,9 @@ let gAvMax = 2
 let myAvance = {
     avModulos: 0,
     g_avance: 0,
+    ch1:{
+        estilosComunicacion:1
+    },
     ch2: {
         comic: 1,
         preg_1: null,
