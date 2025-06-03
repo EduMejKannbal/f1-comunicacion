@@ -3,12 +3,23 @@ let gAvMax = 2
 let myAvance = {
     avModulos: 0,
     g_avance: 0,
+    ch1:{
+        estilosComunicacion:1
+    },
     ch2: {
         comic: 1,
         preg_1: null,
         preg_2: null,
         preg_3: null,
-        preg_4: null,
+        preg_4: null
+    },
+    ch3: {
+        vidManEm:1,
+        impactBio:1,
+        caracter:1,
+        vidTemp:1,
+        emocion: 1,
+        finish_juego: 0
     }
 };
 
@@ -16,6 +27,7 @@ let myAvance = {
 let nSlides = {
     numSlides: 1,
     numSlides_2: 1,
+    numSlides_3: 1,
     general: 1,
     test_1: 1
 };
@@ -51,39 +63,35 @@ function playSplashVideo() {
     }
 }
 
-// Función para detener el video y reiniciar su duración
 function stopSplashVideo() {
     if (video) {
-        video.pause();              // Detiene el video
-        video.currentTime = 0;      // Reinicia el video al inicio
+        video.pause();
+        video.currentTime = 0;
         console.log("Video splash detenido y reiniciado");
     }
 }
 
-// Evento para detener el video cuando termine
 video.addEventListener('ended', function () {
     stopSplashVideo();
+    $('#slide_vidWelcome_1').hide();
 });
 
-// Tu código existente con las funciones integradas
+
 $("#precache_index").waitForImages({
     finished: function () {
-        // Iniciar el video manualmente
-        playSplashVideo();
-
-        setTimeout(function () {
-            $("#loading_screen").fadeOut("slow", function () {
-                // Detener el video cuando el loading screen se oculte
-                stopSplashVideo();
-            });
-            $("#precache_index").hide();
-            doStart();
-            $('html,body').css({ 'overflow-y': 'hidden' });
-            $('#modal_juego_1').loadHTML('void.html');
-        }, 6000);
+        //$("#precache_index").hide();
+        $('html,body').css({ 'overflow-y': 'hidden' });
     },
     waitForAll: true
 });
+
+$('#btn_close_loader').click(function () {
+    $('#slide_vidWelcome_1').show();
+    playSplashVideo();
+    $("#loading_screen").hide();
+
+});
+
 function muteMe(e) {
     e.muted = !0;
 }
@@ -109,23 +117,23 @@ $(".music").click(function () {
 });
 
 function playMusic() {
-    if (flagMus === 0) { // Solo reproducimos si la música está pausada
+    if (flagMus === 0) {
         var elements = document.querySelectorAll(".back");
         $(".music").attr("src", "assets/img/icons/on.png");
         [].forEach.call(elements, function (element) {
             unMuteMe(element);
         });
-        flagMus = 1; // Cambiamos el estado de la música a sonando
+        flagMus = 1; 
     }
 }
 function pauseMusic() {
-    if (flagMus === 1) { // Solo pausamos si la música está sonando
+    if (flagMus === 1) {
         var elements = document.querySelectorAll(".back");
         $(".music").attr("src", "assets/img/icons/off.png");
         [].forEach.call(elements, function (element) {
             muteMe(element);
         });
-        flagMus = 0; // Cambiamos el estado de la música a pausado
+        flagMus = 0; 
     }
 }
 //Inicio botón locución
@@ -165,14 +173,9 @@ function unMuteMe_Locut(e) {
 }
 $('.btn_module').click(function () {
     strID = $(this).attr("id").split("_")[2];
-    $('.content-home').hide();
-    $('#carga_materia, #loading_screen').show();
-    $('#carga_materia').load('module_' + strID + '.html'); // Concatenamos strID dinámicamente
-    playSplashVideo();
-    setTimeout(function () {
-        $("#loading_screen").fadeOut("slow");
-        stopSplashVideo();
-    }, 6000);
+    $('.slide_index,.slide_portada').hide();
+    $('#carga_materia').show();
+    $('#carga_materia').load('module_' + strID + '.html');
 });
 //Control general para curruseles sencillos
 function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
@@ -212,25 +215,9 @@ function setupCarouselControls(carruClass) {
         }
     });
 }
-function calculateResults() {
-    var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
-    if (totalSelections === totalQuestions) {
-        testResults = {
-            pantera: Math.round((selections.pantera / totalQuestions) * 100),
-            pavorreal: Math.round((selections.pavorreal / totalQuestions) * 100),
-            delfin: Math.round((selections.delfin / totalQuestions) * 100),
-            buho: Math.round((selections.buho / totalQuestions) * 100)
-        };
-        console.log("Resultados del Test:", testResults);
-        testCompleted = true;
-        nSlides.numSlides = 6;
-        ctrl_slides();
-    } else {
-        console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
-    }
-}
+
 function showTestResults(results) {
-    const $cardItems = $("#slide_module1_6 .cardTest-item"); // Cambiar a slide_module1_6
+    const $cardItems = $("#slide_module1_6 .cardTest-item");
 
     // Encontrar el mayor porcentaje
     const percentages = [
@@ -337,5 +324,150 @@ $('.btn_conoceCoach').click(function () {
 $('.close_conoceCoach').click(function () {
     strID = $(this).attr('id').split("_")[2];
     $('#mod_conoceCoach_' + strID).hide();
-
 });
+
+
+
+function reproducirHasta(idVideo, tiempoFinal) {
+    const $video = $("#" + idVideo);
+    
+    if ($video.length === 0) {
+        console.error("No se encontró el video con ID:", idVideo);
+        return;
+    }
+
+    const video = $video[0];
+    
+    // Asegurar que los controles estén siempre ocultos
+    video.removeAttribute('controls'); // Método nativo
+    $video.removeAttr('controls');    // Método jQuery (redundante por seguridad)
+    
+    // Configuración inicial del video
+    video.currentTime = 0;
+    video.play();
+
+    // Control del tiempo
+    $video.on("timeupdate", function() {
+        if (this.currentTime >= tiempoFinal) {
+            this.pause();
+            $video.off("timeupdate");
+            // Asegurar nuevamente que los controles no aparezcan al pausarse
+            this.removeAttribute('controls');
+        }
+    });
+}
+function reiniciarVideos(ptrvidSLides) {
+    $(ptrvidSLides).each(function() {
+        const video = $(this)[0]; 
+        video.pause();            
+        video.currentTime = 0;  
+    });
+}
+
+
+$('#btn_menu').click(function () {
+    $('#slide_menu_1').show();
+});
+
+
+$('#cls_menu').click(function () {
+    $('#slide_menu_1').fadeOut();
+});
+
+$('.txt_menu').on({
+    click: function() {
+        strMod = $(this).attr('id').split("_")[2];
+        strID = $(this).attr('id').split("_")[3];
+    },
+    mouseover: function() {
+        strMod = $(this).attr('id').split("_")[2];
+        strID = $(this).attr('id').split("_")[3];
+        $('#img_menu_rect').show().css('top', $(this).css('top'));
+    }, 
+    mouseleave: function() {
+        strMod = $(this).attr('id').split("_")[2];
+        strID = $(this).attr('id').split("_")[3];
+        $('#img_menu_rect').hide();
+    }
+});
+
+
+$('#btn_homeComenzar_1').click(function(){
+    $('#mod_start').hide();
+});
+
+
+
+$('#btn_sobreMi_1').click(function () {
+    $('#mod_BienvVid_1').show(); 
+    $('#BienvVid_1').get(0).play();
+  });
+
+
+  $('#cls_BienvVid_1').click(function () {
+    $('#mod_BienvVid_1').hide(); 
+    var video = $('#BienvVid_1').get(0);
+    video.pause();
+    video.currentTime = 0;
+  });
+
+
+
+$('#btn_sobreMi_2').click(function () {
+    $('#mod_conoceCoach_2').show();
+  });
+
+  $('#cls_conoceCoach_2').click(function () {
+    $('#mod_conoceCoach_2').fadeOut();
+  });
+
+
+
+
+  function anim_fondo(ptrDuracion, ptrNumFondo, ptrTop, ptrLeft, ptrWidth, ptrHeight) {
+    var duracionAnimacion = ptrDuracion* 1000;
+    
+    $('#back_fondo_'+ ptrNumFondo).css({
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%'
+    });
+
+    $('#back_fondo_' + ptrNumFondo).animate({
+        top: ptrTop ,
+        left:ptrLeft,
+        width: ptrWidth,
+        height: ptrHeight
+    }, duracionAnimacion, 'swing', function() {
+        console.log('¡Animación completada!');
+    });
+
+}
+
+
+function resetFondo(ptrDuracion, ptrNumFondo,) {
+    $('#back_fondo_'+ptrNumFondo).animate({
+        top: '0',
+        width: '100%',
+        height: '100%'
+    }, ptrDuracion* 1000);
+}
+
+
+
+$('.btn_marcador').click(function(){
+
+   strID = $(this).attr('id').split("_")[2];
+    $('#slide_portada_' + strID).show();
+    if (strID === '1'){
+        anim_fondo(2,strID,'-89%','0%','199%','192%')
+    }
+    if (strID === '2'){
+        anim_fondo(2,strID,'-128%','-66%','204%','229%')
+    }    
+        if (strID === '3'){
+        anim_fondo(2,strID,'-57%','-75%','235%','201%')
+    }    
+
+}) ;

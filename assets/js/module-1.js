@@ -1,4 +1,5 @@
-ctrl_slides();
+      ctrl_slides();
+      ctrl_avElem(1, 'estilosComunicacion', myAvance.ch1.estilosComunicacion, $(".btn_estilosComunicacion").length + 1, 'myglow_img_white', true);
 
 function ctrl_slides() {
     const $slides = $(".slide_module1");
@@ -16,15 +17,63 @@ function ctrl_slides() {
 
     if (currentSlide === 1) {
         $prevBtn.hide();
+        $nextBtn.show();
+         reproducirHasta("vid_module1_1", 9.99);
     } else if (currentSlide === 4) {
+        reproducirHasta("vid_module1_4", 4.99);
         ctrl_carru_simple("test_1", nSlides.test_1);
         if (testCompleted) {
             restoreSelections();
         }
-    } else if (currentSlide === 6 && testCompleted) {
-        showTestResults(testResults);
-    } else if (currentSlide === totalSlides) {
+        $prevBtn.hide();
         $nextBtn.hide();
+    }  else if (currentSlide === 5) {
+        if (testCompleted) {
+            $prevBtn.show();
+        $nextBtn.show(); 
+        }else{
+            $prevBtn.hide();
+            $nextBtn.hide();
+        }
+     }   else if (currentSlide === 2) {
+       reproducirHasta("vid_module1_2", 4.99);
+    } else if (currentSlide === 6) {
+
+        $prevBtn.hide();
+        $nextBtn.hide();
+        if  (testCompleted){
+            showTestResults(testResults);
+        }
+        
+    } else if (currentSlide === 7 )  {
+        $prevBtn.hide();
+        $nextBtn.hide();
+        reproducirHasta("vid_module1_7", 9.99);
+        $('#aud_logro').get(0).play()
+    } else if (currentSlide === 9) {
+
+        if (myAvance.ch1.estilosComunicacion < $(".btn_estilosComunicacion").length + 1) {
+            $prevBtn.show();
+            $nextBtn.hide();
+        } else {
+            $prevBtn.show();
+            $nextBtn.show();
+        }
+
+    } else if (currentSlide === 10 )  {
+        $prevBtn.hide();
+        $nextBtn.hide();
+        reproducirHasta("vid_module1_10", 4.99);
+        $('#aud_logro').get(0).play()
+    }  else if (currentSlide === 12 )  {
+        $prevBtn.hide();
+        $nextBtn.hide();
+        reproducirHasta("vid_module1_12", 9.99);
+    } else if (currentSlide === totalSlides) {
+        $prevBtn.show();
+        $nextBtn.hide();
+        reproducirHasta("vid_module1_13", 8.99);
+        $('#aud_logro').get(0).play()
     }
 }
 $("#module1_Prev").click(() => {
@@ -39,6 +88,83 @@ $("#module1_Next").click(() => {
     ctrl_slides();
     // $("#efct_next")[0].play();
 });
+
+
+function calculateResults() {
+    var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
+    if (totalSelections === totalQuestions) {
+        testResults = {
+            pantera: Math.round((selections.pantera / totalQuestions) * 100),
+            pavorreal: Math.round((selections.pavorreal / totalQuestions) * 100),
+            delfin: Math.round((selections.delfin / totalQuestions) * 100),
+            buho: Math.round((selections.buho / totalQuestions) * 100)
+        };
+
+        console.log("Resultados del Test:", testResults);
+        testCompleted = true;
+        nSlides.numSlides = 6;
+        ctrl_slides();
+
+        // 🔹 Detectar el tipo con mayor resultado
+        let maxType = null;
+        let maxValue = -1;
+
+        for (let type in testResults) {
+            if (testResults[type] > maxValue) {
+                maxValue = testResults[type];
+                maxType = type;
+            }
+        }
+
+        // 🔹 Aplicar clase especial
+        $('.cardTest').removeClass('mayor-resultado');
+        const indexMap = { pantera: 1, pavorreal: 2, delfin: 3, buho: 4 };
+        $(`.cardTest:nth-of-type(${indexMap[maxType]})`).addClass('mayor-resultado');
+
+        // 🔹 Animar resultados
+        animateCalif(".cardTest:nth-of-type(1) .testResult-text", testResults.pantera, 1500);
+        animateCalif(".cardTest:nth-of-type(2) .testResult-text", testResults.pavorreal, 1500);
+        animateCalif(".cardTest:nth-of-type(3) .testResult-text", testResults.delfin, 1500);
+        animateCalif(".cardTest:nth-of-type(4) .testResult-text", testResults.buho, 1500);
+    } else {
+        console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
+    }
+}
+
+
+
+
+
+function anim_fondo() {
+    var duracionAnimacion = 2000; // 2 segundos (ajusta este valor)
+    
+    $('#back_fondo_1').css({
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%'
+    });
+
+    $('#back_fondo_1').animate({
+        top: '-89%',
+        width: '199%',
+        height: '192%'
+    }, duracionAnimacion, 'swing', function() {
+        console.log('¡Animación completada!');
+    });
+
+}
+
+
+function resetFondo() {
+    $('#back_fondo_1').animate({
+        top: '0',
+        width: '100%',
+        height: '100%'
+    }, 1000);
+}
+
+
 setupCarouselControls('test_1');
 if (!testCompleted) {
     $(".body-answers > div > div").click(function () {
@@ -73,6 +199,19 @@ if (!testCompleted) {
     });
 }
 
+
+function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
+    $({ Counter: current }).animate({ Counter: ptrTarget }, {
+      duration: ptrDuration,
+      easing: 'swing',
+      step: function (now) {
+        $(ptrClass).text(Math.ceil(now) + '%');
+      }
+    });
+  }
+  
+
+
 const cards = document.querySelectorAll('.cardTest');
 for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
@@ -84,24 +223,28 @@ function rotate(e) {
     const cardItem = this.querySelector('.cardTest-item');
     const halfHeight = cardItem.offsetHeight / 2;
 
-    cardItem.style.transform = 'rotateX(' + -(e.offsetY - halfHeight) / 7 + 'deg) rotateY(' + (e.offsetX - halfHeight) / 7 + 'deg)';
+    cardItem.style.transform =
+        'rotateX(' + -(e.offsetY - halfHeight) / 7 + 'deg) rotateY(' + (e.offsetX - halfHeight) / 7 + 'deg)';
 }
+
 function stopRotate() {
     const cardItem = this.querySelector('.cardTest-item');
     cardItem.style.transform = 'rotate(0)';
 }
+
+
 
 const $buttons = $('.btn_estilosComunicacion');
 const $container = $('#slide_module1_9');
 
 // Crear dinámicamente las imágenes hover si no existen
 $buttons.each(function () {
-    const num = $(this).attr('id').split('_')[2];
-    if ($(`#hov_estilosComunicacion_${num}`).length === 0) {
+    var num = $(this).attr('id').split('_')[2];
+    if ($('#hov_estilosComunicacion_' + num).length === 0) {
         $('<img>')
             .attr({
-                id: `hov_estilosComunicacion_${num}`,
-                src: `assets/img/modules/module-1/slide-9/no_${num}.png`
+                id: 'hov_estilosComunicacion_' + num,
+                src: 'assets/img/modules/module-1/slide-9/no_' + num + '.png'
             })
             .addClass('absolute hov_estilosComunicacion')
             .appendTo($container);
@@ -111,7 +254,7 @@ $buttons.each(function () {
 // Manejar el hover
 $buttons.hover(
     function () {
-        const num = $(this).attr('id').split('_')[2];
+        var num = $(this).attr('id').split('_')[2];
         const $hoverImg = $(`#hov_estilosComunicacion_${num}`);
 
         // Ocultar todas y remover animaciones
@@ -141,3 +284,80 @@ $buttons.hover(
         });
     }
 );
+
+
+$buttons.click(function(){
+    strID = $(this).attr('id').split("_")[2];
+    console.log('#mod_estilosComunicacion_' + strID);
+    $('#mod_estilosComunicacion_' + strID).show(); 
+    $('#vid_estilosComunicacion_'+ strID).get(0).play();
+});
+
+$('.cls_estilosComunicacion').click(function () {
+    strID = $(this).attr('id').split("_")[2];
+    $('#mod_estilosComunicacion_' + strID).fadeOut();
+    var video = $('#vid_estilosComunicacion_' + strID).get(0);
+    video.pause();
+    video.currentTime = 0;
+
+    if (strID >= myAvance.ch1.estilosComunicacion) {
+        ctrl_avElem(1, 'estilosComunicacion', myAvance.ch1.estilosComunicacion, $(".btn_estilosComunicacion").length + 1, 'myglow_img_white', false);
+    }
+    ctrl_slides();
+});
+
+
+$('.module1_3-comenzar').click(function(){
+    nSlides.numSlides = 5;  
+    ctrl_slides();
+});
+
+
+$('#btn_cls_slide7_modal').click(function(){
+    nSlides.numSlides = 8;  
+    ctrl_slides();
+});
+
+
+$('#btn_cls_slide10_modal').click(function(){
+    nSlides.numSlides = 11;  
+    ctrl_slides();
+});
+
+
+$('#btn_cls_slide12_modal').click(function(){
+    nSlides.numSlides = 13;  
+    ctrl_slides();
+});
+
+
+$('#btn_res_cont').click(function(){
+    nSlides.numSlides = 7;  
+    ctrl_slides();
+});
+
+
+$("#btn_finmod1").click(function () {
+    myAvance.avModulos = 2;
+    nSlides.numSlides = 1;  
+    $("#carga_materia").hide().empty();
+     $('#slide_index_1').show();
+  });
+
+
+  $('#btn_comenzarModule_1').click(function () {
+    nSlides.numSlides = 2;  
+    ctrl_slides();
+  });
+
+
+  $(".elem_click").click(function () {
+    const audio = $("#efct_clic1")[0];
+    audio.currentTime = 0; // Reinicia desde el principio
+    audio.play().catch((err) => {
+      console.warn("No se pudo reproducir el audio:", err);
+    });
+  });
+  
+
+

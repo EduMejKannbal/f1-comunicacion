@@ -1,35 +1,3 @@
-.slide_module1_1-title {
-  width: 38%;
-  height: auto;
-  right: 6%;
-  bottom: 19%;
-  z-index: 1;
-}
-.slide_module1_1-ubi {
-  z-index: 1;
-  width: 15%;
-  height: auto;
-  top: 19%;
-  left: 40%;
-}
-.btn_comenzarModule {
-  width: 15%;
-  height: auto;
-  z-index: 1;
-}
-#btn_comenzarModule_1 {
-  right: 17%;
-  bottom: 18%;
-}
-.slide_module1_1-ints {
-  z-index: 1;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 18%;
-  bottom: 3%;
-  height: auto;
-}
 
 .contenido-modulo {
   display: grid;
@@ -39,23 +7,12 @@
   height: 100vh; /* Altura completa para pruebas */
   overflow: hidden;
 }
+#slideM1_title{width:68%;left:0;bottom:44%;height:auto}
+#slideM1_pista{width:68%;left:0;bottom:0;height:auto;opacity:.3}
+#back_fondo_1,.image-fondo{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
+.image-fondo{object-fit:cover}
 
-.image-fondo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-.modulo-grid {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-}
+.modulo-grid{display:flex;width:100%;height:100%;z-index:2}
 
 .grid-diagonal {
   position: absolute;
@@ -112,7 +69,7 @@
   padding: 2%;
 }
 .contenido-textos {
-  width: 50%;
+  width: 59%;
   margin-left: 5%;
   margin-top: 34%;
   box-sizing: border-box;
@@ -289,14 +246,14 @@
   width: 45%;
   left: 5%;
   top: 26%;
-  height: auto;
+  height: auto;z-index: 2 ;
 }
 .module1_3-comenzar {
   width: 20%;
   height: auto;
   left: 17%;
   bottom: 38%;
-  z-index: 1;
+  z-index: 2;
 }
 .z-5 {
   z-index: 5;
@@ -547,6 +504,11 @@
   height: auto;
 }
 
+.testResult-text {
+  color: #fff;
+}
+
+
 .progress-bar {
   width: 70%;
   height: 8px;
@@ -589,6 +551,10 @@
   z-index: 1;
   position: absolute;
   transition: all 0.3s ease;
+  left: 9%;
+  top: 14%;  z-index: 1;
+  position: absolute;
+  transition: all 0.3s ease;
 }
 
 .hov_estilosComunicacion {
@@ -598,10 +564,22 @@
 }
 
 /* Posiciones específicas */
-#btn_estilosComunicacion_1 { left: 8.8%; top: 13%; }
-#btn_estilosComunicacion_2 { left: 5.3%; top: 31%; }
-#btn_estilosComunicacion_3 { top: 46.7%; left: 1.4%; }
-#btn_estilosComunicacion_4 { left: 1%; top: 70.5%; }
+#btn_estilosComunicacion_1 {
+  left: 8.8%;
+  top: 13%;
+}
+#btn_estilosComunicacion_2 {
+  left: 5.3%;
+  top: 31%;
+}
+#btn_estilosComunicacion_3 {
+  top: 46.7%;
+  left: 1.4%;
+}
+#btn_estilosComunicacion_4 {
+  left: 1%;
+  top: 70.5%;
+}
 .hov_estilosComunicacion {
   z-index: 1;
   right: 0;
@@ -613,26 +591,205 @@
   width: 45%;
 }
 #hov_estilosComunicacion_2 {
-  width: 41%
+  width: 41%;
 }
 #hov_estilosComunicacion_3 {
-  width: 39%
+  width: 39%;
 }
 #hov_estilosComunicacion_4 {
-  width: 45%
+  width: 45%;
 }
+
+.slide1-7-txt {
+  width: 50%;
+  height: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+}
+.slide1-10-txt {
+  width: 50%;
+  height: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+}
+
+.pleca-slide-11 {
+  width: 50%;
+  height: 25%;
+  left: 0;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 0 20px 20px 0;
+  bottom: 23%;
+  z-index: 2;
+}
+.container-dinamico-conducta {
+  width: 50%;
+  height: 72%;
+  z-index: 1;
+  top: 10%;
+  right: 9%;
+  display: grid;
+}
+.dinamico-conducta {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+}
+.conducta-i {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  overflow: hidden;
+}
+.conducta-i:nth-child(1),
+.conducta-i:nth-child(3) {
+  display: flex;
+  justify-content: end;
+}
+
+/* Elementos en posiciones 2 y 4 */
+.conducta-i:nth-child(2),
+.conducta-i:nth-child(4) {
+  display: flex;
+  justify-content: start;
+}
+.conducta-i .i-img {
+  width: 75%;
+  height: auto;
+}
+
+.slide-11_txt{
+  width: 60%;
+  height: auto;
+  top: 0;
+  left: 6%;
+  bottom: 0;
+  margin: auto;
+}
+.slide1-12-piloto{
+  bottom: 0;
+  right: 0;
+  width: 60%;
+  height: auto;
+  z-index: 1;
+}
+.pleca-slide1-12{
+  width: 60%;
+  height: 50%;
+  left: 0;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 0 20px 20px 0;
+  bottom: 23%;
+  z-index: 2;
+}
+.slide1-12-txt{
+  width: 70%;
+  height: auto;
+  top: 10%;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
 @media (min-width: 1199px) and (max-width: 1290px) {
 }
 @media (min-width: 1360px) {
   .answer-text {
-    font-size: 60%;
+    font-size: 63%;
   }
 }
 @media (min-width: 1400px) and (max-width: 1500px) {
 }
 @media (min-width: 1600px) {
-
 }
 @media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {
 }
 
+
+#modal_trofeo1,#modal_trofeo2,#modal_trofeo3{
+  top: 2%;
+  width: 74%;
+  right: 0%;
+  z-index: 2;
+  }  
+
+
+
+  #btn_cls_slide7_modal{
+    bottom: 10%;width: 15%;left: 41.5%;z-index: 2;
+  }
+
+  #btn_cls_slide10_modal{
+    bottom: 10%;width: 15%;left: 41.5%;z-index: 2;
+  }
+
+  #btn_cls_slide12_modal {
+    bottom: 25%;
+    width: 19%;
+    left: 23.5%;
+    z-index: 2;
+}
+  #btn_finmod1{
+    bottom: 10%;width: 15%;left: 41.5%;z-index: 2;
+  }
+
+
+  .mod_estilosComunicacion{top:0;left:0;width:100%;height:100%;display:none;z-index: 6;}
+/* Tarjeta con mayor resultado */
+.cardTest.mayor-resultado {
+  transform: scale(1.25);
+  z-index: 3;
+}
+
+/* Texto en teal para la tarjeta ganadora */
+.cardTest.mayor-resultado .testResult-text {
+  color: teal !important;
+}
+
+/* Hover visual (resplandor) para todas las tarjetas */
+.cardTest-item:hover {
+  box-shadow: 0 0 20px rgba(0, 128, 128, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+
+.resultadoTest_body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  gap: 3.5rem; /* antes: 2rem */
+  padding: 2rem 0;
+}
+
+
+.cardTest {
+  transition: transform 0.3s ease;
+  margin: 0; /* quitar márgenes previos si tenías */
+  flex-shrink: 0; /* evita que se achiquen al crecer otra */
+}
+.cardTest.mayor-resultado {
+  transform: scale(1.25);
+  z-index: 2;
+}
