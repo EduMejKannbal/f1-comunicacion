@@ -523,3 +523,17 @@ $('.btn_marcador').click(function () {
 });
 
 
+
+
+
+
+let $menu = $('#div_menu');
+
+  $('#menu_trigger, #div_menu').hover(
+    function () {
+      $menu.stop().animate({ bottom: '0%' }, 300);
+    },
+    function () {
+      $menu.stop().animate({ bottom: '-10%' }, 300);
+    }
+  );
