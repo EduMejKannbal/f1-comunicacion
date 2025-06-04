@@ -262,7 +262,7 @@ $("#btn_finmod2").click(function () {
     myAvance.avModulos = 3;
     nSlides.numSlides_2 = 1;  
     $("#carga_materia").hide().empty();
-     $('.content-home').show();
+     $('#slide_index_1').show();
   });
 
     $(".elem_click").click(function () {
