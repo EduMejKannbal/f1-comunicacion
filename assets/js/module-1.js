@@ -1,7 +1,7 @@
-      ctrl_slides();
+      ctrl_slidesMod1();
       ctrl_avElem(1, 'estilosComunicacion', myAvance.ch1.estilosComunicacion, $(".btn_estilosComunicacion").length + 1, 'myglow_img_white', true);
 
-function ctrl_slides() {
+function ctrl_slidesMod1() {
     const $slides = $(".slide_module1");
     const totalSlides = $slides.length;
     const currentSlide = nSlides.numSlides;
@@ -79,13 +79,13 @@ function ctrl_slides() {
 $("#module1_Prev").click(() => {
     // resetLocution();
     1 < nSlides.numSlides && nSlides.numSlides--;
-    ctrl_slides();
+    ctrl_slidesMod1();
     // $("#efct_next")[0].play();
 });
 $("#module1_Next").click(() => {
     // resetLocution();
     $('.slide_module1').length > nSlides.numSlides && nSlides.numSlides++;
-    ctrl_slides();
+    ctrl_slidesMod1();
     // $("#efct_next")[0].play();
 });
 
@@ -103,7 +103,7 @@ function calculateResults() {
         console.log("Resultados del Test:", testResults);
         testCompleted = true;
         nSlides.numSlides = 6;
-        ctrl_slides();
+        ctrl_slidesMod1();
 
         // 🔹 Detectar el tipo con mayor resultado
         let maxType = null;
@@ -303,37 +303,37 @@ $('.cls_estilosComunicacion').click(function () {
     if (strID >= myAvance.ch1.estilosComunicacion) {
         ctrl_avElem(1, 'estilosComunicacion', myAvance.ch1.estilosComunicacion, $(".btn_estilosComunicacion").length + 1, 'myglow_img_white', false);
     }
-    ctrl_slides();
+    ctrl_slidesMod1();
 });
 
 
 $('.module1_3-comenzar').click(function(){
     nSlides.numSlides = 5;  
-    ctrl_slides();
+    ctrl_slidesMod1();
 });
 
 
 $('#btn_cls_slide7_modal').click(function(){
     nSlides.numSlides = 8;  
-    ctrl_slides();
+    ctrl_slidesMod1();
 });
 
 
 $('#btn_cls_slide10_modal').click(function(){
     nSlides.numSlides = 11;  
-    ctrl_slides();
+    ctrl_slidesMod1();
 });
 
 
 $('#btn_cls_slide12_modal').click(function(){
     nSlides.numSlides = 13;  
-    ctrl_slides();
+    ctrl_slidesMod1();
 });
 
 
 $('#btn_res_cont').click(function(){
     nSlides.numSlides = 7;  
-    ctrl_slides();
+    ctrl_slidesMod1();
 });
 
 
@@ -347,7 +347,7 @@ $("#btn_finmod1").click(function () {
 
   $('#btn_comenzarModule_1').click(function () {
     nSlides.numSlides = 2;  
-    ctrl_slides();
+    ctrl_slidesMod1();
   });
 
 
