@@ -118,7 +118,7 @@ progress::-webkit-progress-bar{background:#e0e0e08c}
 
 .txt_btn_regresar{font-size:1.8vw;font-family:Formula_bold;top:-40%;left:19%;color:#fff}
 .slide_index,.slide_menu,.slide_trofeo,.slide_vidWelcome,.slide_portada{display:none;left:0;top:0}
-
+.slide_menu{z-index: 15;}
 #cls_menu{top:2.5%;right:1%;width:4%}
 #btn_menu{z-index:3;position:fixed;top:7%;left:11%;width:3%}
 

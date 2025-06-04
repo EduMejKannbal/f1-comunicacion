@@ -4,14 +4,20 @@ let myAvance = {
     avModulos: 0,
     g_avance: 0,
     ch1:{
-        estilosComunicacion:1
+        estilosComunicacion:1,
+        logro_llanta:0,
+        logro_casco:0,
+        trofeo_1:0
     },
     ch2: {
         comic: 1,
         preg_1: null,
         preg_2: null,
         preg_3: null,
-        preg_4: null
+        preg_4: null,
+        logro_traje:0,
+        logro_zapatos:0,
+        trofeo_2:0
     },
     ch3: {
         vidManEm:1,
@@ -19,7 +25,10 @@ let myAvance = {
         caracter:1,
         vidTemp:1,
         emocion: 1,
-        finish_juego: 0
+        logo_llantas2:0,
+        logro_volante:0,
+        finish_juego: 0,
+        trofeo_3:0
     }
 };
 
@@ -375,14 +384,51 @@ $('#cls_menu').click(function () {
 });
 
 $('.txt_menu').on({
-    click: function() {
-        strMod = $(this).attr('id').split("_")[2];
-        strID = $(this).attr('id').split("_")[3];
+    click: function () {
+        let strMod = parseInt($(this).attr('id').split("_")[2]);
+        let strID = parseInt($(this).attr('id').split("_")[3]);
+        
+        $("#carga_materia").hide().empty();
+        $('#carga_materia').show();
+        $('#carga_materia').load('module_' + strMod + '.html', function () {
+
+            if (strMod === 1) {
+                if (strID === 1) {
+                    nSlides.numSlides = 4;
+                }
+                if (strID === 2) {
+                    nSlides.numSlides = 9;
+                }
+                if (strID === 3) {
+                    nSlides.numSlides = 13;
+                }
+                ctrl_slidesMod1();
+            }
+            if (strMod === 2){
+                if (strID === 1) {
+                    nSlides.numSlides_2 = 3;
+                }
+                if (strID === 2) {
+                    nSlides.numSlides_2 = 4;
+                }
+                if (strID === 3) {
+                    nSlides.numSlides_2 = 5;
+                }
+                if (strID === 4) {
+                    nSlides.numSlides_2 = 6;
+                }
+                if (strID === 5) {
+                    nSlides.numSlides_2= 7;
+                } 
+                ctrl_slidesMod2();
+            }
+             $('#slide_menu_1').fadeOut();
+        });
     },
     mouseover: function() {
         strMod = $(this).attr('id').split("_")[2];
         strID = $(this).attr('id').split("_")[3];
-        $('#img_menu_rect').show().css('top', $(this).css('top'));
+        $('#img_menu_rect').show().css('top', $(this).css('top')).doAnim('slideInLeft');
     }, 
     mouseleave: function() {
         strMod = $(this).attr('id').split("_")[2];
@@ -471,3 +517,5 @@ $('.btn_marcador').click(function(){
     }    
 
 }) ;
+
+

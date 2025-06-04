@@ -42,22 +42,8 @@
   transform: rotate(272deg);
 }
 
-.grid-button {
-  z-index: 3;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-}
-.diagonal-contenido {
-  z-index: 5;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  align-items: center;
-}
+.grid-button{z-index:3;position:absolute;top:0;right:0;width:50%;height:100%}
+.diagonal-contenido{z-index:5;position:relative;width:100%;height:100%;display:grid;align-items:center}
 .button-contenido {
   z-index: 5;
   position: relative;
@@ -764,7 +750,7 @@
 
 /* Texto en teal para la tarjeta ganadora */
 .cardTest.mayor-resultado .testResult-text {
-  color: teal !important;
+  color: #21dee4 !important;
 }
 
 /* Hover visual (resplandor) para todas las tarjetas */
