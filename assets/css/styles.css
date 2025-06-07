@@ -195,3 +195,42 @@ progress::-webkit-progress-bar{background:#e0e0e08c}
 #btn_trofeo{width:10%;left:60%;top:30%}
 #loading_screen,.slide_menu,.slide_trofeo,.slide_vidWelcome{z-index:50}
 #div_menu{z-index:30}
+
+
+#back_trofeo{top:0;left:0;width:100%;height:100%}
+#img_trofeo{top:10%;left:10%;width:15%;z-index:1}
+#img_menu_trofeo{top:20%;left:0;width:40%;z-index:1;display:none}
+#rect_trofeo{top:20%;left:0;width:40%;z-index:1}
+#rect_menuT{top:-1%;left:-3%;width:40%;height:105%}
+.txt_trofeo{position:absolute;font-size:1.5vw;font-family:Formula_regular;color:#fff; margin-block-start: 0em;
+  margin-block-end: 0em; }
+.txt_logro{position:absolute;font-size:1.5vw;font-family:Formula_regular;color:#fff;font-weight:700;    margin-block-start: 0em;
+  margin-block-end: 0em;}
+
+/* Posiciones específicas del texto (ajustar según diseño) */
+#txt_trofeo_1 { top: 66%; left: 4%; }
+#txt_trofeo_2 { top: 70%; left: 4%; }
+#txt_trofeo_3 { top: 74%; left: 4%; }
+
+#txt_logro_llanta { top: 22%; left: 4%; }
+#txt_logro_casco { top: 26%; left: 4%; }
+#txt_logro_traje { top: 30%; left: 4%; }
+#txt_logro_guantes { top: 34%; left: 4%; }
+#txt_logro_zapatos { top: 38%; left: 4%; }
+#txt_logro_llantas2 { top: 42%; left: 4%; }
+#txt_logro_volante { top: 46%; left: 4%; }
+
+#img_modTrof_1 {
+  top: 21%;
+  left: 48%;
+  width: 29%;
+  z-index: 2;
+}
+#cls_trofeo_1{top:8%;right:5%;width:5%;cursor:pointer;z-index:3}
+#box_trofeo{left:0;width:40%;top:13%}#box_trofeo2{left:0;width:40%;top:58%}
+
+.txt_trofeo1{font-size:2.9vw;font-family:Formula_bold;color:#fff;margin:0;top:-1%;left:10%;   }
+.txt_trofeo2{font-size:2.1vw;font-family:Formula_regular;color:#fff;margin:0;left:60%;top:21%; }
+
+#txt_trofeo2_nlogros{left: 55%;}
+#txt_trofeo2_ntrofeo{left: 55%;}

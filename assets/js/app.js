@@ -376,6 +376,7 @@ function reiniciarVideos(ptrvidSLides) {
 
 $('#btn_menu').click(function () {
     $('#slide_menu_1').show();
+    $('#slide_trofeo_1').hide();
 });
 
 
@@ -537,3 +538,42 @@ let $menu = $('#div_menu');
       $menu.stop().animate({ bottom: '-10%' }, 300);
     }
   );
+
+
+$('#btn_trofeo').click(function () {
+    $('#slide_trofeo_1').show();
+    $('#slide_menu_1').hide();
+});
+
+$('#cls_trofeo_1').click(function () {
+    $('#slide_trofeo_1').hide();
+});
+
+
+$('.txt_trofeo').on({
+    mouseover: function () {
+        const relativeTop = $(this).position().top + 'px'; // top relativo al contenedor
+        $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
+    },
+    mouseleave: function () {
+      $('#img_menu_trofeo').hide();
+    }
+  });
+  
+  $('.txt_logro').on({
+    
+    mouseover: function () {
+        const relativeTop = $(this).position().top + 'px'; // top relativo al contenedor
+        $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
+    },
+    mouseleave: function () {
+      $('#img_menu_trofeo').hide();
+    }
+  });
+
+  
+  function mostrar_trofeos(){
+    
+  }
+
+
