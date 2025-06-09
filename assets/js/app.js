@@ -1,5 +1,5 @@
 let strID;
-let gAvMax = 2
+let gAvMax = 4;
 let myAvance = {
     avModulos: 0,
     g_avance: 0,
@@ -32,7 +32,6 @@ let myAvance = {
     }
 };
 
-
 let nSlides = {
     numSlides: 1,
     numSlides_2: 1,
@@ -57,7 +56,7 @@ let totalQuestions = 14;
 let testCompleted = false;
 let testResults = null;
 let userSelections = {};
-
+let $menu = $('#div_menu');
 // Obtener el elemento del video
 let video = document.getElementById('splash_1');
 
@@ -191,7 +190,7 @@ function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
     resetLocution();
     $(".carru_" + ptrCarruClass).hide();
     $("#carru_" + ptrCarruClass + "_" + ptrSlideActual).show();
-    playAudio(ptrCarruClass + '_', ptrSlideActual)
+    playAudio(ptrCarruClass + '_', ptrSlideActual);
     console.log('ptrCarruClass, ptrSlideActual', ptrCarruClass, ptrSlideActual);
     if (ptrSlideActual <= 1) {
         $("#" + ptrCarruClass + "_Prev").hide();
@@ -350,8 +349,7 @@ function reproducirHasta(idVideo, tiempoFinal) {
     // Asegurar que los controles estén siempre ocultos
     video.removeAttribute('controls'); // Método nativo
     $video.removeAttr('controls');    // Método jQuery (redundante por seguridad)
-    
-    // Configuración inicial del video
+
     video.currentTime = 0;
     video.play();
 
@@ -386,12 +384,13 @@ $('#cls_menu').click(function () {
 
 $('.txt_menu').on({
   click: function () {
-    let strMod = parseInt($(this).attr('id').split("_")[2]);
-    let strID = parseInt($(this).attr('id').split("_")[3]);
+    const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
+    const $cargaMateria = $('#carga_materia');
+
     $('#slide_index_1').hide();
-    $("#carga_materia").hide().empty();
-    $('#carga_materia').show();
-    $('#carga_materia').load('module_' + strMod + '.html', function () {
+    $cargaMateria.hide().empty().show();
+
+    $cargaMateria.load('module_' + strMod + '.html', function () {
 
       if (strMod === 1) {
         1 === strID && (nSlides.numSlides = 4);
@@ -407,24 +406,12 @@ $('.txt_menu').on({
         ctrl_slidesMod2();
       }
       if (strMod === 3) {
-        if (strID === 1) {
-          nSlides.numSlides_3 = 3;
-        }
-        if (strID === 2) {
-          nSlides.numSlides_3 = 4;
-        }
-        if (strID === 3) {
-          nSlides.numSlides_3 = 6;
-        }
-        if (strID === 4) {
-          nSlides.numSlides_3 = 9;
-        }
-        if (strID === 5) {
-          nSlides.numSlides_3 = 11;
-        }
-        if (strID === 6) {
-          nSlides.numSlides_3 = 13;
-        }
+        1 === strID && (nSlides.numSlides_3 = 3);
+        2 === strID && (nSlides.numSlides_3 = 4);
+        3 === strID && (nSlides.numSlides_3 = 6);
+        4 === strID && (nSlides.numSlides_3 = 9);
+        5 === strID && (nSlides.numSlides_3 = 11);
+        6 === strID && (nSlides.numSlides_3 = 13);
         ctrl_slidesMod3();
       }
       $('#slide_menu_1').fadeOut();
@@ -443,11 +430,7 @@ $('.txt_menu').on({
 });
 
 
-$('#btn_homeComenzar_1').click(function(){
-    $('#mod_start').hide();
-});
-
-
+$('#btn_homeComenzar_1').click(() => $('#mod_start').hide());
 
 $('#btn_sobreMi_1').click(function () {
     $('#mod_BienvVid_1').show(); 
@@ -464,80 +447,34 @@ $('#btn_sobreMi_1').click(function () {
 
 
 
-$('#btn_sobreMi_2').click(function () {
-    $('#mod_conoceCoach_2').show();
-  });
-
-  $('#cls_conoceCoach_2').click(function () {
-    $('#mod_conoceCoach_2').fadeOut();
-  });
-
-
-
+$('#btn_sobreMi_2').click(() => $('#mod_conoceCoach_2').show());
+$('#cls_conoceCoach_2').click(() => $('#mod_conoceCoach_2').fadeOut());
 
 function anim_fondo(ptrDuracion, ptrNumFondo, ptrTop, ptrLeft, ptrWidth, ptrHeight) {
   var duracionAnimacion = ptrDuracion * 1000;
 
-  $('#back_fondo_' + ptrNumFondo).css({
-    top: '0',
-    left: '0',
-    width: '100%',
-    height: '100%'
-  });
-
-  $('#back_fondo_' + ptrNumFondo).animate({
-    top: ptrTop,
-    left: ptrLeft,
-    width: ptrWidth,
-    height: ptrHeight
-  }, duracionAnimacion, 'swing', function () {
-    console.log('¡Animación completada!');
-  });
+$("#back_fondo_"+ptrNumFondo).css({top:"0",left:"0",width:"100%",height:"100%"});
+  $('#back_fondo_' + ptrNumFondo).animate({top: ptrTop, left: ptrLeft, width: ptrWidth, height: ptrHeight}, duracionAnimacion, 'swing', () => console.log('¡Animación completada!'));
 
 }
 
 
 function resetFondo(ptrDuracion, ptrNumFondo, ) {
-  $('#back_fondo_' + ptrNumFondo).animate({
-    top: '0',
-    width: '100%',
-    height: '100%'
-  }, ptrDuracion * 1000);
+  $("#back_fondo_" + ptrNumFondo).animate({top: "0", width: "100%", height: "100%"}, 1E3 * ptrDuracion);
 }
 
-
-
 $('.btn_marcador').click(function () {
-
   strID = $(this).attr('id').split("_")[2];
   $('#slide_portada_' + strID).show();
-  if (strID === '1') {
-    anim_fondo(2, strID, '-89%', '0%', '199%', '192%')
-  }
-  if (strID === '2') {
-    anim_fondo(2, strID, '-128%', '-66%', '204%', '229%')
-  }
-  if (strID === '3') {
-    anim_fondo(2, strID, '-57%', '-75%', '235%', '201%')
-  }
-
+  "1" === strID && anim_fondo(2, strID, "-89%", "0%", "199%", "192%");
+  "2" === strID && anim_fondo(2, strID, "-128%", "-66%", "204%", "229%");
+  "3" === strID && anim_fondo(2, strID, "-57%", "-75%", "235%", "201%");
 });
 
 
 
-
-
-
-let $menu = $('#div_menu');
-
-  $('#menu_trigger, #div_menu').hover(
-    function () {
-      $menu.stop().animate({ bottom: '0%' }, 300);
-    },
-    function () {
-      $menu.stop().animate({ bottom: '-10%' }, 300);
-    }
-  );
+$('#menu_trigger, #div_menu').hover(() => $menu.stop().animate({bottom: '0%'}, 300),
+        () => $menu.stop().animate({bottom: '-10%'}, 300));
 
 
 $('#btn_trofeo').click(function () {

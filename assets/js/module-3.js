@@ -245,15 +245,14 @@ $("#btn_fin_mod310").click(function () {
 $("#btn_fin_mod312").click(function () {
     nSlides.numSlides_3 = 13;  
     ctrl_slidesMod3();
-    
-    
 });
 
 $("#btn_finmod3").click(function () {
-    myAvance.avModulos = 4;
-    nSlides.numSlides_3 = 1;  
-    $("#carga_materia").hide().empty();
-    $('#slide_index_1').show();
+  myAvance.avModulos = 4;
+  nSlides.numSlides_3 = 1;
+  4 <= myAvance.avModulos && (myAvance.ch1.trofeo_3 = 1);
+  $('#slide_index_1').show();
+  $("#carga_materia").hide().empty();
 });
 
 $("#btn_fin_mod37").click(function () {

@@ -233,9 +233,6 @@ $('#btn_cls_error_modal').click(function(){
     ctrl_slidesMod2();
 });
 
-
-
-
 $('#btn_cls_slide4_modal').click(function(){
     nSlides.numSlides_2 = 5;  
     ctrl_slidesMod2();
@@ -259,17 +256,18 @@ $('#btn_cls_slide16_modal').click(function(){
 });
 
 $("#btn_finmod2").click(function () {
-    myAvance.avModulos = 3;
-    nSlides.numSlides_2 = 1;  
-    $("#carga_materia").hide().empty();
-     $('#slide_index_1').show();
-  });
+  myAvance.avModulos = 3;
+  nSlides.numSlides_2 = 1;
+  3 <= myAvance.avModulos && (myAvance.ch1.trofeo_2 = 1);
+  $('#slide_index_1').show();
+  $("#carga_materia").hide().empty();
+});
 
-    $(".elem_click").click(function () {
-    const audio = $("#efct_clic2")[0];
-    audio.currentTime = 0; // Reinicia desde el principio
-    audio.play().catch((err) => {
-      console.warn("No se pudo reproducir el audio:", err);
-    });
+$(".elem_click").click(function () {
+  const audio = $("#efct_clic2")[0];
+  audio.currentTime = 0; 
+  audio.play().catch((err) => {
+    console.warn("No se pudo reproducir el audio:", err);
   });
+});
   

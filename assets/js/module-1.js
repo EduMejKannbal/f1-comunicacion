@@ -49,9 +49,9 @@ function ctrl_slidesMod1() {
         $prevBtn.hide();
         $nextBtn.hide();
         reproducirHasta("vid_module1_7", 9.99);
-        $('#aud_logro').get(0).play()
+        $('#aud_logro').get(0).play();
+        0===myAvance.ch1.logro_llanta&&(myAvance.ch1.logro_llanta=1);
     } else if (currentSlide === 9) {
-
         if (myAvance.ch1.estilosComunicacion < $(".btn_estilosComunicacion").length + 1) {
             $prevBtn.show();
             $nextBtn.hide();
@@ -64,7 +64,8 @@ function ctrl_slidesMod1() {
         $prevBtn.hide();
         $nextBtn.hide();
         reproducirHasta("vid_module1_10", 4.99);
-        $('#aud_logro').get(0).play()
+        $('#aud_logro').get(0).play();
+         0===myAvance.ch1.logro_casco&&(myAvance.ch1.logro_casco=1);
     }  else if (currentSlide === 12 )  {
         $prevBtn.hide();
         $nextBtn.hide();
@@ -73,7 +74,7 @@ function ctrl_slidesMod1() {
         $prevBtn.show();
         $nextBtn.hide();
         reproducirHasta("vid_module1_13", 8.99);
-        $('#aud_logro').get(0).play()
+        $('#aud_logro').get(0).play();
     }
 }
 $("#module1_Prev").click(() => {
@@ -131,72 +132,48 @@ function calculateResults() {
     }
 }
 
-
-
-
-
 function anim_fondo() {
-    var duracionAnimacion = 2000; // 2 segundos (ajusta este valor)
-    
-    $('#back_fondo_1').css({
-        top: '0',
-        left: '0',
-        width: '100%',
-        height: '100%'
-    });
-
-    $('#back_fondo_1').animate({
-        top: '-89%',
-        width: '199%',
-        height: '192%'
-    }, duracionAnimacion, 'swing', function() {
-        console.log('¡Animación completada!');
-    });
+  var duracionAnimacion = 2000; 
+  $('#back_fondo_1').css({top: '0', left: '0', width: '100%', height: '100%'});
+  $('#back_fondo_1').animate({top: '-89%', width: '199%', height: '192%'}, duracionAnimacion, 'swing', function () {
+    console.log('¡Animación completada!');
+  });
 
 }
-
 
 function resetFondo() {
-    $('#back_fondo_1').animate({
-        top: '0',
-        width: '100%',
-        height: '100%'
-    }, 1000);
+  $('#back_fondo_1').animate({top: '0', width: '100%', height: '100%'}, 1000);
 }
-
 
 setupCarouselControls('test_1');
 if (!testCompleted) {
-    $(".body-answers > div > div").click(function () {
-        if ($(this).hasClass('disabled')) return;
+  $(".body-answers > div > div").click(function () {
+    if ($(this).hasClass('disabled'))
+      return;
 
-        var $thisDiv = $(this); // El div clicado
-        var questionNum = $thisDiv.data('question');
-        var type = $thisDiv.parent().data('type');
-        var $questionOptions = $(".body-answers > div > div[data-question='" + questionNum + "']");
+    var $thisDiv = $(this); // El div clicado
+    var questionNum = $thisDiv.data('question');
+    var type = $thisDiv.parent().data('type');
+    var $questionOptions = $(".body-answers > div > div[data-question='" + questionNum + "']");
+    // Deshabilitar todas las opciones de esta pregunta
+    $questionOptions.addClass('disabled');
+    $questionOptions.off('click');
+    // Cambiar colores:
+    $thisDiv.find('.answer-text').css('color', '#f8fafc');
+    // - Otras opciones (deshabilitadas): #475569
+    $questionOptions.not($thisDiv).find('.answer-text').css('color', '#475569');
+    // Cambiar la imagen a "select.png" solo en el elemento clicado
+    $thisDiv.find('img').attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
+    // Actualizar selecciones
+    selections[type]++;
+    userSelections[questionNum] = type; // Guardar la selección del usuario
 
-        // Deshabilitar todas las opciones de esta pregunta
-        $questionOptions.addClass('disabled');
-        $questionOptions.off('click');
-
-        // Cambiar colores:
-        // - Opción seleccionada: #f8fafc
-        $thisDiv.find('.answer-text').css('color', '#f8fafc');
-        // - Otras opciones (deshabilitadas): #475569
-        $questionOptions.not($thisDiv).find('.answer-text').css('color', '#475569');
-        // Cambiar la imagen a "select.png" solo en el elemento clicado
-        $thisDiv.find('img').attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
-
-        // Actualizar selecciones
-        selections[type]++;
-        userSelections[questionNum] = type; // Guardar la selección del usuario
-
-        // Verificar si se han respondido todas las preguntas
-        var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
-        if (totalSelections === totalQuestions) {
-            calculateResults();
-        }
-    });
+    // Verificar si se han respondido todas las preguntas
+    var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
+    if (totalSelections === totalQuestions) {
+      calculateResults();
+    }
+  });
 }
 
 
@@ -232,8 +209,6 @@ function stopRotate() {
     cardItem.style.transform = 'rotate(0)';
 }
 
-
-
 const $buttons = $('.btn_estilosComunicacion');
 const $container = $('#slide_module1_9');
 
@@ -241,54 +216,36 @@ const $container = $('#slide_module1_9');
 $buttons.each(function () {
     var num = $(this).attr('id').split('_')[2];
     if ($('#hov_estilosComunicacion_' + num).length === 0) {
-        $('<img>')
-            .attr({
-                id: 'hov_estilosComunicacion_' + num,
-                src: 'assets/img/modules/module-1/slide-9/no_' + num + '.png'
-            })
+    $('<img>')
+            .attr({id: 'hov_estilosComunicacion_' + num, src: 'assets/img/modules/module-1/slide-9/no_' + num + '.png'})
             .addClass('absolute hov_estilosComunicacion')
             .appendTo($container);
-    }
+  }
 });
 
 // Manejar el hover
 $buttons.hover(
-    function () {
-        var num = $(this).attr('id').split('_')[2];
-        const $hoverImg = $(`#hov_estilosComunicacion_${num}`);
-
-        // Ocultar todas y remover animaciones
-        $('.hov_estilosComunicacion')
-            .hide()
-            .removeClass('animated fadeInRight');
-
-        // Mostrar la correspondiente con animación
-        $hoverImg
-            .show()
-            .addClass('animated fadeInRight');
-
-        // Efectos en botones
-        $buttons.css('opacity', '0.5');
-        $(this).css({
-            'opacity': '1',
-            'transform': 'scale(1.05)'
-        });
-    },
-    function () {
-        $('.hov_estilosComunicacion')
-            .hide()
-            .removeClass('animated fadeInRight');
-        $buttons.css({
-            'opacity': '1',
-            'transform': 'scale(1)'
-        });
-    }
+        function () {
+          var num = $(this).attr('id').split('_')[2];
+          const $hoverImg = $(`#hov_estilosComunicacion_${num}`);
+          // Ocultar todas y remover animaciones
+          $('.hov_estilosComunicacion').hide().removeClass('animated fadeInRight');
+          // Mostrar la correspondiente con animación
+          $hoverImg.show().addClass('animated fadeInRight');
+          // Efectos en botones
+          $buttons.css('opacity', '0.5');
+          $(this).css({'opacity': '1', 'transform': 'scale(1.05)'});
+        },
+        function () {
+          $('.hov_estilosComunicacion').hide().removeClass('animated fadeInRight');
+          $buttons.css({'opacity': '1', 'transform': 'scale(1)'});
+        }
 );
 
 
-$buttons.click(function(){
-    strID = $(this).attr('id').split("_")[2];
-    console.log('#mod_estilosComunicacion_' + strID);
+$buttons.click(function () {
+  strID = $(this).attr('id').split("_")[2];
+  console.log('#mod_estilosComunicacion_' + strID);
     $('#mod_estilosComunicacion_' + strID).show(); 
     $('#vid_estilosComunicacion_'+ strID).get(0).play();
 });
@@ -338,11 +295,14 @@ $('#btn_res_cont').click(function(){
 
 
 $("#btn_finmod1").click(function () {
-    myAvance.avModulos = 2;
-    nSlides.numSlides = 1;  
-    $("#carga_materia").hide().empty();
-     $('#slide_index_1').show();
-  });
+  myAvance.avModulos = 2;
+  nSlides.numSlides = 1;
+  if (myAvance.avModulos >= 2) {
+    myAvance.ch1.trofeo_1 = 1;
+  }
+  $('#slide_index_1').show();
+  $("#carga_materia").hide().empty();
+});
 
 
   $('#btn_comenzarModule_1').click(function () {
@@ -359,5 +319,3 @@ $("#btn_finmod1").click(function () {
     });
   });
   
-
-
