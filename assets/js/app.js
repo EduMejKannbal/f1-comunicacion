@@ -552,8 +552,10 @@ $('#cls_trofeo_1').click(function () {
 
 $('.txt_trofeo').on({
     mouseover: function () {
+        strID = $(this).attr('id').split("_")[2];
         const relativeTop = $(this).position().top + 'px'; // top relativo al contenedor
         $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
+        $('#img_modTrof_1').show().attr('src','assets/img/grls/trofeos/trofeo_' + strID +'.gif' );
     },
     mouseleave: function () {
       $('#img_menu_trofeo').hide();
@@ -561,10 +563,11 @@ $('.txt_trofeo').on({
   });
   
   $('.txt_logro').on({
-    
     mouseover: function () {
+        strID = $(this).attr('id').split("_")[2];
         const relativeTop = $(this).position().top + 'px'; // top relativo al contenedor
         $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
+        $('#img_modTrof_1').show().attr('src','assets/img/trofeos/logro_' + strID +'.gif' );
     },
     mouseleave: function () {
       $('#img_menu_trofeo').hide();
