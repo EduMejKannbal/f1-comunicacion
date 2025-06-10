@@ -34,8 +34,7 @@ function ctrl_slidesMod3() {
         $nextBtn.show();
         reproducirHasta("vid_module3_2", 4.99);
     } else if (currentSlide === 3 ) {
-        $prevBtn.show();
-       
+        $prevBtn.show();       
         if (myAvance.ch3.emocion < 2){
             $('.btn_emocion').addClass('myglow_img_white');
              $nextBtn.hide();
@@ -79,6 +78,7 @@ function ctrl_slidesMod3() {
     } else if (currentSlide === 10) {
         reproducirHasta("vid_module3_10", 4.99);
         $('#aud_logro').get(0).play();
+         0 === myAvance.ch3.logro_llantas2 && (myAvance.ch3.logro_llantas2 = 1);
         $prevBtn.hide();
         $nextBtn.hide();
     } else if (currentSlide === 11) {
@@ -93,6 +93,7 @@ function ctrl_slidesMod3() {
     } else if (currentSlide === 12) {
         reproducirHasta("vid_module3_12", 4.99);
         $('#aud_logro').get(0).play();
+        0 === myAvance.ch3.logro_volante && (myAvance.ch3.logro_volante = 1);
         $prevBtn.show();
         $nextBtn.hide();
     } else if (currentSlide === totalSlides) {
@@ -105,7 +106,9 @@ function ctrl_slidesMod3() {
 }
 
 // Eventos de navegación
-$("#module3_Prev").click(() => {
+$("#module3_Prev").click(() => {  if (myAvance.avModulos >= 2) {
+    myAvance.ch1.trofeo_1 = 1;
+  }
     1 < nSlides.numSlides_3 && nSlides.numSlides_3--;
     ctrl_slidesMod3();
 });
@@ -250,7 +253,7 @@ $("#btn_fin_mod312").click(function () {
 $("#btn_finmod3").click(function () {
   myAvance.avModulos = 4;
   nSlides.numSlides_3 = 1;
-  4 <= myAvance.avModulos && (myAvance.ch1.trofeo_3 = 1);
+  4 <= myAvance.avModulos && (myAvance.ch3.trofeo_3 = 1);
 
 
   if (myAvance.ganador !== null) {
@@ -268,7 +271,7 @@ $("#btn_finmod3").click(function () {
   } else {
     console.log("No hay un ganador asignado en myAvance.ganador");
   }
-
+resetFondo(3,2);
   $('#slide_index_1').show();
   $("#carga_materia").hide().empty();
 });

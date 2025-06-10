@@ -27,7 +27,7 @@ let myAvance = {
         caracter:1,
         vidTemp:1,
         emocion: 1,
-        logo_llantas2:0,
+        logro_llantas2:0,
         logro_volante:0,
         finish_juego: 0,
         trofeo_3:0
@@ -246,7 +246,6 @@ function showTestResults(results) {
 
         $progressFill.css("width", "0%");
         $card.css("transform", "scale(0.9)");
-
 
         setTimeout(() => {
             switch (index) {

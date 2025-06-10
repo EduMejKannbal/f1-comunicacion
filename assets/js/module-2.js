@@ -163,9 +163,6 @@ $('#btn_start_exam').click(function(){
     ctrl_slidesMod2();
 });
 
-
-
-
 $('.btn_resp').click(function () {
     //btn_resp_x_op_n
     strOp = $(this).attr("id").split("_")[4];
@@ -261,7 +258,8 @@ $('#btn_cls_slide16_modal').click(function(){
 $("#btn_finmod2").click(function () {
   myAvance.avModulos = 3;
   nSlides.numSlides_2 = 1;
-  3 <= myAvance.avModulos && (myAvance.ch1.trofeo_2 = 1);
+  3 <= myAvance.avModulos && (myAvance.ch2.trofeo_2 = 1);
+  resetFondo(2,2);
   $('#slide_index_1').show();
   $("#carga_materia").hide().empty();
 });

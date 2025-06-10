@@ -133,18 +133,8 @@ function calculateResults() {
     }
 }
 
-function anim_fondo() {
-  var duracionAnimacion = 2000; 
-  $('#back_fondo_1').css({top: '0', left: '0', width: '100%', height: '100%'});
-  $('#back_fondo_1').animate({top: '-89%', width: '199%', height: '192%'}, duracionAnimacion, 'swing', function () {
-    console.log('¡Animación completada!');
-  });
 
-}
 
-function resetFondo() {
-  $('#back_fondo_1').animate({top: '0', width: '100%', height: '100%'}, 1000);
-}
 
 setupCarouselControls('test_1');
 if (!testCompleted) {
@@ -301,6 +291,7 @@ $("#btn_finmod1").click(function () {
   if (myAvance.avModulos >= 2) {
     myAvance.ch1.trofeo_1 = 1;
   }
+  resetFondo(1,2);
   $('#slide_index_1').show();
   $("#carga_materia").hide().empty();
 });
