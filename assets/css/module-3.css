@@ -299,53 +299,13 @@
   left: 0;
   top: 0;
 }
-#slideM3-8-txt {
-  width: 36%;
-  height: auto;
-  left: 6%;
-  top: 24%;
-}
-#slideM3-8-ints {
-  width: 36%;
-  height: auto;
-  left: 32%;
-  bottom: 6%;
-}
-#btn_vidTemp_1 {
-  width: 10%;
-  height: auto;
-  left: 47%;
-  bottom: 17%;
-}
-#slideM3-9-title {
-  width: 75%;
-  height: auto;
-  top: 5%;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-#slideM3-9-btn {
-  width: 25%;
-  height: auto;
-  bottom: 5%;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-#juego3{
-  top: 0%;left: 0%;width: 100%;display: none;
-}
-.container-dragDrop {
-  top: 22%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 86%;
-  height: 63%;
-}
+#slideM3-8-txt{width:36%;height:auto;left:6%;top:24%}
+#slideM3-8-ints{width:36%;height:auto;left:32%;bottom:6%}
+#btn_vidTemp_1{width:10%;height:auto;left:47%;bottom:17%}
+#slideM3-9-title{width:75%;height:auto;top:5%;left:0;right:0;margin:auto}
+#slideM3-9-btn{width:25%;height:auto;bottom:5%;left:0;right:0;margin:auto}
+#juego3{top:0;left:0;width:100%;display:none}
+.container-dragDrop{top:22%;position:absolute;left:0;right:0;margin:auto;width:86%;height:63%}
 .dragDrop {
   display: grid;
   grid-auto-columns: 1fr;

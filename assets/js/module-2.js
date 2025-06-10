@@ -12,88 +12,91 @@ $("#precache_mod_2").waitForImages({
 
 
 function ctrl_slidesMod2() {
-    const $slides = $(".slide_module2");
-    const totalSlides = $slides.length;
-    const currentSlide = nSlides.numSlides_2;  //
-    const $prevBtn = $("#module2_Prev");
-    const $nextBtn = $("#module2_Next");
-    // resetLocution();
-    reiniciarVideos(".mod2_videoSlide")
-    $slides.hide();
-    $("#slide_module2_" + currentSlide).show();
-    console.log("#slide_module2_" + currentSlide);
-    // playAudio('transporte_', currentSlide)
+  const $slides = $(".slide_module2");
+  const totalSlides = $slides.length;
+  const currentSlide = nSlides.numSlides_2;  //
+  const $prevBtn = $("#module2_Prev");
+  const $nextBtn = $("#module2_Next");
+  // resetLocution();
+  reiniciarVideos(".mod2_videoSlide")
+  $slides.hide();
+  $("#slide_module2_" + currentSlide).show();
+  console.log("#slide_module2_" + currentSlide);
+  // playAudio('transporte_', currentSlide)
+  $prevBtn.show();
+  $nextBtn.show();
+  if (currentSlide === 1) {
+    $prevBtn.hide();
+    $nextBtn.show();
+    reproducirHasta("vid_module2_1", 9.99);
+  } else if (currentSlide === 2) {
     $prevBtn.show();
     $nextBtn.show();
-    if (currentSlide === 1) {
-        $prevBtn.hide();
-        $nextBtn.show();
-         reproducirHasta("vid_module2_1", 9.99);
-    } else if (currentSlide === 2 )  {
-        $prevBtn.show();
-        $nextBtn.show();
-        reproducirHasta("vid_module2_2", 4.99);
-   } else if (currentSlide === 4 )  {
-        $prevBtn.hide();
-        $nextBtn.hide();
-        reproducirHasta("vid_module2_4", 9.99);
-        $('#aud_logro').get(0).play()
-    } else if ( currentSlide === 8 )  {
-        $prevBtn.show();
-        $nextBtn.hide();
-    } else if (currentSlide === 5) {
-        if (veoComic !== 1) {
-            reproducirHasta("vid_module2_5", 4.99);
-        } else {
-            
-        }
+    reproducirHasta("vid_module2_2", 4.99);
+  } else if (currentSlide === 4) {
+    $prevBtn.hide();
+    $nextBtn.hide();
+    reproducirHasta("vid_module2_4", 9.99);
+    $('#aud_logro').get(0).play();
+    0 === myAvance.ch2.logro_traje && (myAvance.ch2.logro_traje = 1);
+  } else if (currentSlide === 8) {
+    $prevBtn.show();
+    $nextBtn.hide();
+  } else if (currentSlide === 5) {
+    if (veoComic !== 1) {
+      reproducirHasta("vid_module2_5", 4.99);
+    } else {
 
-        if (myAvance.ch2.comic < 3) {
-            $prevBtn.show();
-            $nextBtn.hide();
-        } else {
-            $prevBtn.show();
-            $nextBtn.show();
-        }
-    } else if (currentSlide === 6 ) {
-        reproducirHasta("vid_module2_6", 9);
-        $prevBtn.hide();
-        $nextBtn.hide();
-        $('#aud_logro').get(0).play()
-    }  else if (currentSlide === 7 ) {
-        reproducirHasta("vid_module2_7", 4.99);
-        $prevBtn.hide();
-        $nextBtn.hide();
-    }  else if (currentSlide === 9 && myAvance.ch2.preg_1 === null) {
-        $prevBtn.show();
-        $nextBtn.hide();
-    } else if (currentSlide === 10 && myAvance.ch2.preg_2 === null) {
-        $prevBtn.show();
-        $nextBtn.hide();
-    } else if (currentSlide === 11 && myAvance.ch2.preg_3 === null) {
-        $prevBtn.show();
-        $nextBtn.hide();
-    } else if (currentSlide === 12 && myAvance.ch2.preg_4 === null) {
-        $prevBtn.show();
-        $nextBtn.hide();
-    } else if (currentSlide === 13) {
-        $prevBtn.hide();
-        $nextBtn.hide();
-        reproducirHasta("vid_module2_13", 4.99);
-        $('#aud_logro').get(0).play()
-    } else if (currentSlide === 14) {
-        $prevBtn.show();
-        $nextBtn.show();
-        reproducirHasta("vid_module2_14", 4.99);
-    } else if (currentSlide === 15) {
-        $prevBtn.show();
-        $nextBtn.show();
-        reproducirHasta("vid_module2_15", 9.99);
-    } else if (currentSlide === totalSlides) {
-        $nextBtn.hide();
-        $prevBtn.show();
     }
-    // unlock_menu();
+
+    if (myAvance.ch2.comic < 3) {
+      $prevBtn.show();
+      $nextBtn.hide();
+    } else {
+      $prevBtn.show();
+      $nextBtn.show();
+    }
+  } else if (currentSlide === 6) {
+    reproducirHasta("vid_module2_6", 9);
+    $prevBtn.hide();
+    $nextBtn.hide();
+    $('#aud_logro').get(0).play();
+    0 === myAvance.ch2.logro_guantes && (myAvance.ch2.logro_guantes = 1);
+  } else if (currentSlide === 7) {
+    reproducirHasta("vid_module2_7", 4.99);
+    $prevBtn.hide();
+    $nextBtn.hide();
+  } else if (currentSlide === 9 && myAvance.ch2.preg_1 === null) {
+    $prevBtn.show();
+    $nextBtn.hide();
+  } else if (currentSlide === 10 && myAvance.ch2.preg_2 === null) {
+    $prevBtn.show();
+    $nextBtn.hide();
+  } else if (currentSlide === 11 && myAvance.ch2.preg_3 === null) {
+    $prevBtn.show();
+    $nextBtn.hide();
+  } else if (currentSlide === 12 && myAvance.ch2.preg_4 === null) {
+    $prevBtn.show();
+    $nextBtn.hide();
+  } else if (currentSlide === 13) {
+    $prevBtn.hide();
+    $nextBtn.hide();
+    reproducirHasta("vid_module2_13", 4.99);
+    $('#aud_logro').get(0).play();
+    0 === myAvance.ch2.logro_zapatos && (myAvance.ch2.logro_zapatos = 1);
+  } else if (currentSlide === 14) {
+    $prevBtn.show();
+    $nextBtn.show();
+    reproducirHasta("vid_module2_14", 4.99);
+  } else if (currentSlide === 15) {
+    $prevBtn.show();
+    $nextBtn.show();
+    reproducirHasta("vid_module2_15", 9.99);
+  } else if (currentSlide === totalSlides) {
+    $nextBtn.hide();
+    $prevBtn.show();
+  }
+  // unlock_menu();
 }
 
 $("#module2_Prev").click(() => {
@@ -159,9 +162,6 @@ $('#btn_start_exam').click(function(){
     nSlides.numSlides_2 = 8;  
     ctrl_slidesMod2();
 });
-
-
-
 
 $('.btn_resp').click(function () {
     //btn_resp_x_op_n
@@ -233,9 +233,6 @@ $('#btn_cls_error_modal').click(function(){
     ctrl_slidesMod2();
 });
 
-
-
-
 $('#btn_cls_slide4_modal').click(function(){
     nSlides.numSlides_2 = 5;  
     ctrl_slidesMod2();
@@ -259,17 +256,19 @@ $('#btn_cls_slide16_modal').click(function(){
 });
 
 $("#btn_finmod2").click(function () {
-    myAvance.avModulos = 3;
-    nSlides.numSlides_2 = 1;  
-    $("#carga_materia").hide().empty();
-     $('#slide_index_1').show();
-  });
+  myAvance.avModulos = 3;
+  nSlides.numSlides_2 = 1;
+  3 <= myAvance.avModulos && (myAvance.ch2.trofeo_2 = 1);
+  resetFondo(2,2);
+  $('#slide_index_1').show();
+  $("#carga_materia").hide().empty();
+});
 
-    $(".elem_click").click(function () {
-    const audio = $("#efct_clic2")[0];
-    audio.currentTime = 0; // Reinicia desde el principio
-    audio.play().catch((err) => {
-      console.warn("No se pudo reproducir el audio:", err);
-    });
+$(".elem_click").click(function () {
+  const audio = $("#efct_clic2")[0];
+  audio.currentTime = 0; 
+  audio.play().catch((err) => {
+    console.warn("No se pudo reproducir el audio:", err);
   });
+});
   
