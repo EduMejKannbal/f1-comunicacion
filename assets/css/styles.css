@@ -92,7 +92,7 @@ progress::-webkit-progress-bar{background:#e0e0e08c}
 .modal-llanta{width:20%;height:auto;position:absolute;top:-8%;left:0;right:0;margin:auto}
 
 .txt_btn_regresar{font-size:1.8vw;font-family:Formula_bold;top:-40%;left:19%;color:#fff}
-.slide_index,.slide_menu,.slide_trofeo,.slide_vidWelcome,.slide_portada{display:none;left:0;top:0}
+.slide_index,.slide_menu,.slide_trofeo,.slide_vidWelcome,.slide_portada,.slide_ganador{display:none;left:0;top:0}
 .slide_menu{z-index: 15;}
 #cls_menu{top:2.5%;right:1%;width:4%}
 
@@ -160,8 +160,6 @@ progress::-webkit-progress-bar{background:#e0e0e08c}
 #btn_module_1{right:17%;bottom:18%;width:15%;z-index:2}
 .slide_module1_1-ints{z-index:1;left:0;right:0;margin:auto;width:18%;bottom:3%;height:auto}
 
-
-
 #slide1_txt_1{width:14.12%;left:52.31%;top:29.81%;text-align:center;color:white;font-size:2.3vw;font-family:Formula_regular;font-weight:500;word-wrap:break-word}#slide1_img_1{width:100%;left:0;bottom:0}
 #slide1_elem_1{width:132.17%;height:148.21%;left:-22.91%;top:36.38%;transform:rotate(-8deg);transform-origin:top left;background:linear-gradient(221deg,rgba(255,255,255,0) 36%,#1a1a1a 94%)}
 #slide1_img_3{width:164.02%;left:-17.09%;top:278.28%;transform:rotate(-98deg);transform-origin:top left}
@@ -193,7 +191,7 @@ progress::-webkit-progress-bar{background:#e0e0e08c}
 .menu_flotante-inner{position:relative;width:100%;height:100%}
 #btn_menu{width:10%;left:20%;top:30%}
 #btn_trofeo{width:10%;left:60%;top:30%}
-#loading_screen,.slide_menu,.slide_trofeo,.slide_vidWelcome{z-index:50}
+#loading_screen,.slide_menu,.slide_trofeo,.slide_vidWelcome,.slide_ganador{z-index:50;}
 #div_menu{z-index:30}
 
 
@@ -207,7 +205,6 @@ progress::-webkit-progress-bar{background:#e0e0e08c}
 .txt_logro{position:absolute;font-size:1.5vw;font-family:Formula_regular;color:#fff;font-weight:700;    margin-block-start: 0em;
   margin-block-end: 0em;}
 
-/* Posiciones específicas del texto (ajustar según diseño) */
 #txt_trofeo_1 { top: 66%; left: 4%; }
 #txt_trofeo_2 { top: 70%; left: 4%; }
 #txt_trofeo_3 { top: 74%; left: 4%; }
@@ -220,17 +217,15 @@ progress::-webkit-progress-bar{background:#e0e0e08c}
 #txt_logro_llantas2 { top: 42%; left: 4%; }
 #txt_logro_volante { top: 46%; left: 4%; }
 
-#img_modTrof_1 {
-  top: 21%;
-  left: 48%;
-  width: 29%;
-  z-index: 2;
-}
+#img_modTrof_1{top:21%;left:48%;width:29%;z-index:2}
 #cls_trofeo_1{top:8%;right:5%;width:5%;cursor:pointer;z-index:3}
-#box_trofeo{left:0;width:40%;top:13%}#box_trofeo2{left:0;width:40%;top:58%}
+#box_trofeo{left:0;width:40%;top:13%}
+#box_trofeo2{left:0;width:40%;top:58%}
 
 .txt_trofeo1{font-size:2.9vw;font-family:Formula_bold;color:#fff;margin:0;top:-1%;left:10%;   }
 .txt_trofeo2{font-size:2.1vw;font-family:Formula_regular;color:#fff;margin:0;left:60%;top:21%; }
 
 #txt_trofeo2_nlogros{left: 55%;}
 #txt_trofeo2_ntrofeo{left: 55%;}
+
+.btn_cont_estandar{bottom:10%;width:15%;left:41.5%;z-index:2}

@@ -3,6 +3,7 @@ let gAvMax = 4;
 let myAvance = {
     avModulos: 0,
     g_avance: 0,
+    ganador: null,
     ch1:{
         estilosComunicacion:1,
         logro_llanta:0,
@@ -15,6 +16,7 @@ let myAvance = {
         preg_2: null,
         preg_3: null,
         preg_4: null,
+        logro_guantes:0,
         logro_traje:0,
         logro_zapatos:0,
         trofeo_2:0
@@ -478,8 +480,11 @@ $('#menu_trigger, #div_menu').hover(() => $menu.stop().animate({bottom: '0%'}, 3
 
 
 $('#btn_trofeo').click(function () {
-    $('#slide_trofeo_1').show();
-    $('#slide_menu_1').hide();
+  mostrar_trofeos();
+  mostrar_logros();
+  $('#slide_trofeo_1').show();
+  $('#slide_menu_1').hide();
+
 });
 
 $('#cls_trofeo_1').click(function () {
@@ -512,8 +517,61 @@ $('.txt_trofeo').on({
   });
 
   
-  function mostrar_trofeos(){
+function mostrar_trofeos() {
+    // Actualizar contador de trofeos
+    let trofeosDesbloqueados = 0;
+    if (myAvance.ch1.trofeo_1 === 1) trofeosDesbloqueados++;
+    if (myAvance.ch2.trofeo_2 === 1) trofeosDesbloqueados++;
+    if (myAvance.ch3.trofeo_3 === 1) trofeosDesbloqueados++;
     
-  }
+    $('#txt_trofeo2_ntrofeo').text(trofeosDesbloqueados);
 
+    // Controlar elementos de trofeos
+    $('#txt_trofeo_1').css('pointer-events', myAvance.ch1.trofeo_1 === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch1.trofeo_1 !== 1);
+    
+    $('#txt_trofeo_2').css('pointer-events', myAvance.ch2.trofeo_2 === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch2.trofeo_2 !== 1);
+    
+    $('#txt_trofeo_3').css('pointer-events', myAvance.ch3.trofeo_3 === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch3.trofeo_3 !== 1);
+}
 
+function mostrar_logros() {
+  // Actualizar contador de logros
+  let logrosDesbloqueados = 0;
+  if (myAvance.ch1.logro_llanta === 1)
+    logrosDesbloqueados++;
+  if (myAvance.ch1.logro_casco === 1)
+    logrosDesbloqueados++;
+  if (myAvance.ch2.logro_traje === 1)
+    logrosDesbloqueados++;
+  if (myAvance.ch2.logro_zapatos === 1)
+    logrosDesbloqueados++;
+  if (myAvance.ch3.logo_llantas2 === 1)
+    logrosDesbloqueados++;
+  if (myAvance.ch3.logro_volante === 1)
+    logrosDesbloqueados++;
+
+  $('#txt_trofeo2_nlogros').text(logrosDesbloqueados);
+
+  // Controlar elementos de logros
+  $('#txt_logro_llanta').css('pointer-events', myAvance.ch1.logro_llanta === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch1.logro_llanta !== 1);
+  $('#txt_logro_casco').css('pointer-events', myAvance.ch1.logro_casco === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch1.logro_casco !== 1);
+
+  $('#txt_logro_traje').css('pointer-events', myAvance.ch2.logro_traje === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch2.logro_traje !== 1);
+  $('#txt_logro_guantes').css('pointer-events', myAvance.ch2.logro_guantes === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch2.logro_guantes !== 1);
+  $('#txt_logro_zapatos').css('pointer-events', myAvance.ch2.logro_zapatos === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch2.logro_zapatos !== 1);
+
+  $('#txt_logro_llantas2').css('pointer-events', myAvance.ch3.logo_llantas2 === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch3.logo_llantas2 !== 1);
+  $('#txt_logro_volante').css('pointer-events', myAvance.ch3.logro_volante === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch3.logro_volante !== 1);
+}
+
+$('#cls_ganador_1').click(() => $('#slide_ganador_1').fadeOut());

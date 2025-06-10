@@ -7,11 +7,9 @@ function ctrl_slidesMod1() {
     const currentSlide = nSlides.numSlides;
     const $prevBtn = $("#module1_Prev");
     const $nextBtn = $("#module1_Next");
-
     $slides.hide();
     $("#slide_module1_" + currentSlide).show();
     console.log("#slide_module1_" + currentSlide);
-
     $prevBtn.show();
     $nextBtn.show();
 
@@ -116,6 +114,9 @@ function calculateResults() {
                 maxType = type;
             }
         }
+        
+        myAvance.ganador = maxType;
+        console.log("Ganador asignado a myAvance.ganador:", myAvance.ganador);
 
         // 🔹 Aplicar clase especial
         $('.cardTest').removeClass('mayor-resultado');

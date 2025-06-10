@@ -251,6 +251,24 @@ $("#btn_finmod3").click(function () {
   myAvance.avModulos = 4;
   nSlides.numSlides_3 = 1;
   4 <= myAvance.avModulos && (myAvance.ch1.trofeo_3 = 1);
+
+
+  if (myAvance.ganador !== null) {
+    $('#slide_ganador_1').show();  
+    const videoSrc = "assets/vid/ganador/piloto_" + myAvance.ganador + ".mp4";
+    const $video = $('#vid_ganador_1');
+
+    if ($video.length) {
+      $video.attr('src', videoSrc);
+      $video.get(0).load();
+      $video.get(0).play();
+    } else {
+      console.warn("Elemento #vid_ganador_1 no encontrado");
+    }
+  } else {
+    console.log("No hay un ganador asignado en myAvance.ganador");
+  }
+
   $('#slide_index_1').show();
   $("#carga_materia").hide().empty();
 });
