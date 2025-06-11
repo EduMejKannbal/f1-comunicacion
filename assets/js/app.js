@@ -1,8 +1,9 @@
 let strID;
-let gAvMax = 2
+let gAvMax = 4;
 let myAvance = {
     avModulos: 0,
     g_avance: 0,
+    ganador: null,
     ch1:{
         estilosComunicacion:1,
         logro_llanta:0,
@@ -15,6 +16,7 @@ let myAvance = {
         preg_2: null,
         preg_3: null,
         preg_4: null,
+        logro_guantes:0,
         logro_traje:0,
         logro_zapatos:0,
         trofeo_2:0
@@ -25,13 +27,12 @@ let myAvance = {
         caracter:1,
         vidTemp:1,
         emocion: 1,
-        logo_llantas2:0,
+        logro_llantas2:0,
         logro_volante:0,
         finish_juego: 0,
         trofeo_3:0
     }
 };
-
 
 let nSlides = {
     numSlides: 1,
@@ -57,7 +58,7 @@ let totalQuestions = 14;
 let testCompleted = false;
 let testResults = null;
 let userSelections = {};
-
+let $menu = $('#div_menu');
 // Obtener el elemento del video
 let video = document.getElementById('splash_1');
 
@@ -191,7 +192,7 @@ function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
     resetLocution();
     $(".carru_" + ptrCarruClass).hide();
     $("#carru_" + ptrCarruClass + "_" + ptrSlideActual).show();
-    playAudio(ptrCarruClass + '_', ptrSlideActual)
+    playAudio(ptrCarruClass + '_', ptrSlideActual);
     console.log('ptrCarruClass, ptrSlideActual', ptrCarruClass, ptrSlideActual);
     if (ptrSlideActual <= 1) {
         $("#" + ptrCarruClass + "_Prev").hide();
@@ -245,7 +246,6 @@ function showTestResults(results) {
 
         $progressFill.css("width", "0%");
         $card.css("transform", "scale(0.9)");
-
 
         setTimeout(() => {
             switch (index) {
@@ -350,8 +350,7 @@ function reproducirHasta(idVideo, tiempoFinal) {
     // Asegurar que los controles estén siempre ocultos
     video.removeAttribute('controls'); // Método nativo
     $video.removeAttr('controls');    // Método jQuery (redundante por seguridad)
-    
-    // Configuración inicial del video
+
     video.currentTime = 0;
     video.play();
 
@@ -376,6 +375,7 @@ function reiniciarVideos(ptrvidSLides) {
 
 $('#btn_menu').click(function () {
     $('#slide_menu_1').show();
+    $('#slide_trofeo_1').hide();
 });
 
 
@@ -385,12 +385,13 @@ $('#cls_menu').click(function () {
 
 $('.txt_menu').on({
   click: function () {
-    let strMod = parseInt($(this).attr('id').split("_")[2]);
-    let strID = parseInt($(this).attr('id').split("_")[3]);
+    const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
+    const $cargaMateria = $('#carga_materia');
+
     $('#slide_index_1').hide();
-    $("#carga_materia").hide().empty();
-    $('#carga_materia').show();
-    $('#carga_materia').load('module_' + strMod + '.html', function () {
+    $cargaMateria.hide().empty().show();
+
+    $cargaMateria.load('module_' + strMod + '.html', function () {
 
       if (strMod === 1) {
         1 === strID && (nSlides.numSlides = 4);
@@ -406,24 +407,12 @@ $('.txt_menu').on({
         ctrl_slidesMod2();
       }
       if (strMod === 3) {
-        if (strID === 1) {
-          nSlides.numSlides_3 = 3;
-        }
-        if (strID === 2) {
-          nSlides.numSlides_3 = 4;
-        }
-        if (strID === 3) {
-          nSlides.numSlides_3 = 6;
-        }
-        if (strID === 4) {
-          nSlides.numSlides_3 = 9;
-        }
-        if (strID === 5) {
-          nSlides.numSlides_3 = 11;
-        }
-        if (strID === 6) {
-          nSlides.numSlides_3 = 13;
-        }
+        1 === strID && (nSlides.numSlides_3 = 3);
+        2 === strID && (nSlides.numSlides_3 = 4);
+        3 === strID && (nSlides.numSlides_3 = 6);
+        4 === strID && (nSlides.numSlides_3 = 9);
+        5 === strID && (nSlides.numSlides_3 = 11);
+        6 === strID && (nSlides.numSlides_3 = 13);
         ctrl_slidesMod3();
       }
       $('#slide_menu_1').fadeOut();
@@ -442,11 +431,7 @@ $('.txt_menu').on({
 });
 
 
-$('#btn_homeComenzar_1').click(function(){
-    $('#mod_start').hide();
-});
-
-
+$('#btn_homeComenzar_1').click(() => $('#mod_start').hide());
 
 $('#btn_sobreMi_1').click(function () {
     $('#mod_BienvVid_1').show(); 
@@ -463,77 +448,129 @@ $('#btn_sobreMi_1').click(function () {
 
 
 
-$('#btn_sobreMi_2').click(function () {
-    $('#mod_conoceCoach_2').show();
-  });
-
-  $('#cls_conoceCoach_2').click(function () {
-    $('#mod_conoceCoach_2').fadeOut();
-  });
-
-
-
+$('#btn_sobreMi_2').click(() => $('#mod_conoceCoach_2').show());
+$('#cls_conoceCoach_2').click(() => $('#mod_conoceCoach_2').fadeOut());
 
 function anim_fondo(ptrDuracion, ptrNumFondo, ptrTop, ptrLeft, ptrWidth, ptrHeight) {
   var duracionAnimacion = ptrDuracion * 1000;
 
-  $('#back_fondo_' + ptrNumFondo).css({
-    top: '0',
-    left: '0',
-    width: '100%',
-    height: '100%'
-  });
-
-  $('#back_fondo_' + ptrNumFondo).animate({
-    top: ptrTop,
-    left: ptrLeft,
-    width: ptrWidth,
-    height: ptrHeight
-  }, duracionAnimacion, 'swing', function () {
-    console.log('¡Animación completada!');
-  });
+$("#back_fondo_"+ptrNumFondo).css({top:"0",left:"0",width:"100%",height:"100%"});
+  $('#back_fondo_' + ptrNumFondo).animate({top: ptrTop, left: ptrLeft, width: ptrWidth, height: ptrHeight}, duracionAnimacion, 'swing', () => console.log('¡Animación completada!'));
 
 }
 
 
 function resetFondo(ptrDuracion, ptrNumFondo, ) {
-  $('#back_fondo_' + ptrNumFondo).animate({
-    top: '0',
-    width: '100%',
-    height: '100%'
-  }, ptrDuracion * 1000);
+  $("#back_fondo_" + ptrNumFondo).animate({top: "0", width: "100%", height: "100%"}, 1E3 * ptrDuracion);
 }
 
-
-
 $('.btn_marcador').click(function () {
-
   strID = $(this).attr('id').split("_")[2];
   $('#slide_portada_' + strID).show();
-  if (strID === '1') {
-    anim_fondo(2, strID, '-89%', '0%', '199%', '192%')
-  }
-  if (strID === '2') {
-    anim_fondo(2, strID, '-128%', '-66%', '204%', '229%')
-  }
-  if (strID === '3') {
-    anim_fondo(2, strID, '-57%', '-75%', '235%', '201%')
-  }
-
+  "1" === strID && anim_fondo(2, strID, "-89%", "0%", "199%", "192%");
+  "2" === strID && anim_fondo(2, strID, "-128%", "-66%", "204%", "229%");
+  "3" === strID && anim_fondo(2, strID, "-57%", "-75%", "235%", "201%");
 });
 
 
 
+$('#menu_trigger, #div_menu').hover(() => $menu.stop().animate({bottom: '0%'}, 300),
+        () => $menu.stop().animate({bottom: '-10%'}, 300));
 
 
+$('#btn_trofeo').click(function () {
+  mostrar_trofeos();
+  mostrar_logros();
+  $('#slide_trofeo_1').show();
+  $('#slide_menu_1').hide();
 
-let $menu = $('#div_menu');
+});
 
-  $('#menu_trigger, #div_menu').hover(
-    function () {
-      $menu.stop().animate({ bottom: '0%' }, 300);
+$('#cls_trofeo_1').click(function () {
+    $('#slide_trofeo_1').hide();
+});
+
+
+$('.txt_trofeo').on({
+    mouseover: function () {
+        strID = $(this).attr('id').split("_")[2];
+        const relativeTop = $(this).position().top + 'px'; // top relativo al contenedor
+        $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
+        $('#img_modTrof_1').show().attr('src','assets/img/grls/trofeos/trofeo_' + strID +'.gif' );
     },
-    function () {
-      $menu.stop().animate({ bottom: '-10%' }, 300);
+    mouseleave: function () {
+      $('#img_menu_trofeo').hide();
     }
-  );
+  });
+  
+  $('.txt_logro').on({
+    mouseover: function () {
+        strID = $(this).attr('id').split("_")[2];
+        const relativeTop = $(this).position().top + 'px'; // top relativo al contenedor
+        $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
+        $('#img_modTrof_1').show().attr('src','assets/img/trofeos/logro_' + strID +'.gif' );
+    },
+    mouseleave: function () {
+      $('#img_menu_trofeo').hide();
+    }
+  });
+
+  
+function mostrar_trofeos() {
+    // Actualizar contador de trofeos
+    let trofeosDesbloqueados = 0;
+    if (myAvance.ch1.trofeo_1 === 1) trofeosDesbloqueados++;
+    if (myAvance.ch2.trofeo_2 === 1) trofeosDesbloqueados++;
+    if (myAvance.ch3.trofeo_3 === 1) trofeosDesbloqueados++;
+    
+    $('#txt_trofeo2_ntrofeo').text(trofeosDesbloqueados);
+
+    // Controlar elementos de trofeos
+    $('#txt_trofeo_1').css('pointer-events', myAvance.ch1.trofeo_1 === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch1.trofeo_1 !== 1);
+    
+    $('#txt_trofeo_2').css('pointer-events', myAvance.ch2.trofeo_2 === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch2.trofeo_2 !== 1);
+    
+    $('#txt_trofeo_3').css('pointer-events', myAvance.ch3.trofeo_3 === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch3.trofeo_3 !== 1);
+}
+
+function mostrar_logros() {
+  // Actualizar contador de logros
+  let logrosDesbloqueados = 0;
+  if (myAvance.ch1.logro_llanta === 1)
+    logrosDesbloqueados++;
+  if (myAvance.ch1.logro_casco === 1)
+    logrosDesbloqueados++;
+  if (myAvance.ch2.logro_traje === 1)
+    logrosDesbloqueados++;
+  if (myAvance.ch2.logro_zapatos === 1)
+    logrosDesbloqueados++;
+  if (myAvance.ch3.logo_llantas2 === 1)
+    logrosDesbloqueados++;
+  if (myAvance.ch3.logro_volante === 1)
+    logrosDesbloqueados++;
+
+  $('#txt_trofeo2_nlogros').text(logrosDesbloqueados);
+
+  // Controlar elementos de logros
+  $('#txt_logro_llanta').css('pointer-events', myAvance.ch1.logro_llanta === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch1.logro_llanta !== 1);
+  $('#txt_logro_casco').css('pointer-events', myAvance.ch1.logro_casco === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch1.logro_casco !== 1);
+
+  $('#txt_logro_traje').css('pointer-events', myAvance.ch2.logro_traje === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch2.logro_traje !== 1);
+  $('#txt_logro_guantes').css('pointer-events', myAvance.ch2.logro_guantes === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch2.logro_guantes !== 1);
+  $('#txt_logro_zapatos').css('pointer-events', myAvance.ch2.logro_zapatos === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch2.logro_zapatos !== 1);
+
+  $('#txt_logro_llantas2').css('pointer-events', myAvance.ch3.logo_llantas2 === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch3.logo_llantas2 !== 1);
+  $('#txt_logro_volante').css('pointer-events', myAvance.ch3.logro_volante === 1 ? 'auto' : 'none')
+          .toggleClass('w3-opacity-max', myAvance.ch3.logro_volante !== 1);
+}
+
+$('#cls_ganador_1').click(() => $('#slide_ganador_1').fadeOut());
