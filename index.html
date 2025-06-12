@@ -15,233 +15,232 @@
 
 <body class="container">
   <main class="content" role="main">
+      <img class="music hide" src="assets/img/icons/on.png" />
     <!--  <div id="btn_menu">
       <img src="assets/img/icons/squareclean.png" class="elem_click" style="width: 100%;" >
       <p class="txt_btn_regresar elem_click" style="    top: 0;    margin: 0;"> ☰ </p>
     </div> -->
-     <div id="loading_screen">
-        <img id="load_img" src="assets/img/icons/puff.svg" alt class="absolute" />
-        <button id="btn_close_loader"
-                class=" elem_click w3-border-white w3-black  w3-round-xlarge txt_btn_regresar">Comenzar</button>
-      </div>
+    <div id="loading_screen">
+      <img id="load_img" src="assets/img/icons/puff.svg" alt class="absolute" />
+      <button id="btn_close_loader"
+        class=" elem_click w3-border-white w3-black  w3-round-xlarge txt_btn_regresar">Comenzar</button>
+    </div>
 
-      <section id="slide_vidWelcome_1" class="slide_vidWelcome">
-        <div class="contenido-modulo">
-          <img src="assets/img/base_slide.png" class="absolute image-fondo" alt="">
-          <div class="vid_in_slide" style="height: 100%;z-index: 4;">
-            <video src="assets/vid/splash.mp4" preload="auto" class="myVideo locution splash" id="splash_1"></video>
-          </div>
-        </div>
-      </section>
-
-      <div id="slide_index_1" class="slide_index" style="display: block;">
-        <img src="assets/img/home/home.jpg" class="home_imageBack" alt="">
-        <div class="content-home">
-          <div class="vid_in_slide">
-            <video src="assets/vid/home.mp4" autoplay muted loop class="mod2_videoSlide"></video>
-          </div>
-          <img src="assets/img/icons/check_1.png" class="btn_marcador elem_click" id="btn_marcador_1">
-          <img src="assets/img/icons/check.png" class="btn_marcador elem_click" id="btn_marcador_2">
-          <img src="assets/img/icons/check.png" class="btn_marcador elem_click" id="btn_marcador_3">
-          <img src="assets/img/home/title_bienvenido.png" class="absolute home_titleBienvenido">
-          <img src="assets/img/home/title_project.png" class="absolute home_titleHome">
-          <img src="assets/img/home/trofeo.png" class="absolute animated zoomIn delay-3s home_trofeo btn_conoceCoach"
-            id="btn_conoceCoach_1">
-
-          <div id="mod_start" class="absolute animated zoomInUp" style="width: 100%;height: 100%; top: 0;left: 0;">
-            <img id="img_start_1" src="assets/img/modules/module-2/ModalCarera.png" style="width: 100%;">
-            <img id="mod_start_txt1" class="absolute animated zoomIn" src="assets/img/menu/txt_mod_menu.svg">
-            <img id="btn_homeComenzar_1" src="assets/img/home/btn_comenzar.png"
-              class="elem_click home_boton btn_homeComenzar">
-          </div>
-
+    <section id="slide_vidWelcome_1" class="slide_vidWelcome">
+      <div class="contenido-modulo">
+        <img src="assets/img/base_slide.png" class="absolute image-fondo" alt="">
+        <div class="vid_in_slide" style="height: 100%;z-index: 4;">
+          <video src="assets/vid/splash.mp4" preload="auto" class="myVideo locution splash" id="splash_1"></video>
         </div>
       </div>
-      <div class="mod_conoceCoach w3-modal" id="mod_conoceCoach_1" style="overflow: hidden; margin-top: 0;">
-        <div class="w3-animate-zoom w3-modal-content mt-4 conoceCoach-modal" style="background-color:transparent;;">
-          <div class="w3-display-container">
-            <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
-            <img src="assets/img/home/portfolio/modal.jpg" class="absolute modals-complete" />
-            <img src="assets/img/home/portfolio/btn_sobreMi_1.png" class="elem_click btn_sobreMi" id="btn_sobreMi_1">
-            <img src="assets/img/home/portfolio/btn_sobreMi_2.png" class="elem_click btn_sobreMi" id="btn_sobreMi_2">
-            <!-- <img src="assets/img/home/portfolio/btn_sobreMi_3.png" class="absolute btn_sobreMi" id="btn_sobreMi_3"> -->
-            <img src="assets/img/home/portfolio/comenzar-recorrido-2.png" class="absolute btn_comenzarModules"
-              id="btn_comenzarModules">
-            <img src="assets/img/home/portfolio/mario.png" class="absolute conoceCoach-imagen-cv">
-            <img src="assets/img/home/portfolio/title_mario.png" class="absolute conoceCoach-titleMario">
-            <img src="assets/img/home/portfolio/txt_sobreMi.png" class="absolute conoceCoach-sobreMi">
-            <img src="assets/img/home/portfolio/X.png" class="absolute close close_conoceCoach"
-              id="close_conoceCoach_1">
-          </div>
-        </div>
-      </div>
+    </section>
 
-      <div class="mod_conoceCoach w3-modal" id="mod_conoceCoach_2" style="overflow: hidden; margin-top: 0;">
-        <div class="w3-animate-zoom w3-modal-content mt-4 conoceCoach-modal" style="background-color:transparent;;">
-          <div class="w3-display-container">
-            <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
-            <img src="assets/img/home/portfolio/back_modal2.jpg" class="absolute modals-complete" />
-            <img src="assets/img/home/portfolio/txt_modal_2.svg" class="absolute" id="txt_coach2_1">
-            <img src="assets/img/home/portfolio/txt_modal_3.svg" class="absolute" id="txt_coach2_2">
-            <img src="assets/img/home/portfolio/X.png" class="absolute close close_conoceCoach"
-              id="close_conoceCoach_2">
-          </div>
-        </div>
-      </div>
-
-      <div id="mod_BienvVid_1" class="w3-modal modal_base modal mod_BienvVid_1" style="z-index: 10;">
-        <div class="w3-modal-content w3-animate-top" style="background-color:transparent;width: 70%;">
-          <div class="w3-display-container">
-            <img src="assets/img/base_slide.png" alt style="width: 100%;">
-            <div class="vid_in_modal">
-              <video id="BienvVid_1" src="assets/vid/vid_intro.mp4" controls></video>
-            </div>
-            <img id="cls_BienvVid_1" class="  w3-display-topright elem_click cls_impactBio"
-              src="assets/img/icons/cls.png" style="top: -2%;right: -2%;" />
-          </div>
-        </div>
-      </div>
-
-      <div id="slide_menu_1" class="slide_menu">
-        <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
-        <img id="back_menu" src="assets/img/menu/back_menu.jpeg" class="absolute  animated slideInLeft" alt="">
-        <img src="assets/img/home/portfolio/X.png" class="elem_click animated slideInLeft " id="cls_menu">
-        <img id="rect_menu" src="assets/img/menu/rect_menu.png " class="absolute animated slideInLeft" alt="">
-
-        <img id="img_sec_1" src="assets/img/menu/mod1_sec.svg " class="absolute animated slideInLeft" alt="">
-        <img id="img_sec_2" src="assets/img/menu/mod2_sec.svg " class="absolute animated slideInLeft" alt="">
-        <img id="img_sec_3" src="assets/img/menu/mod3_sec.svg " class="absolute animated slideInLeft" alt="">
-
-        <img id="img_casc_1" src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
-        <img id="img_casc_2" src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
-        <img id="img_casc_3" src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
-        <img id="txt_menu_tit" src="assets/img/menu/txt_menu.svg " class="absolute animated slideInLeft" alt="">
-        <img id="img_menu_rect" src="assets/img/menu/Rect_select.svg " class="absolute" alt="">
-
-        <p id="txt_menu_1_1" class="elem_click txt_menu"> Test de autoevaluación </p>
-        <p id="txt_menu_1_2" class="elem_click txt_menu"> Clasificación </p>
-        <p id="txt_menu_1_3" class="elem_click txt_menu"> Cierre </p>
-
-        <p id="txt_menu_2_1" class="elem_click txt_menu"> Sarp </p>
-        <p id="txt_menu_2_2" class="elem_click txt_menu"> Ejemplos </p>
-        <p id="txt_menu_2_3" class="elem_click txt_menu"> Evaluación</p>
-        <p id="txt_menu_2_4" class="elem_click txt_menu"> Cierre </p>
-
-        <p id="txt_menu_3_1" class="elem_click txt_menu"> Las emociones</p>
-        <p id="txt_menu_3_2" class="elem_click txt_menu"> Manejo efectivo </p>
-        <p id="txt_menu_3_3" class="elem_click txt_menu"> Bioimpactos</p>
-        <p id="txt_menu_3_4" class="elem_click txt_menu"> Temperamento </p>
-        <p id="txt_menu_3_5" class="elem_click txt_menu"> Evaluación Final </p>
-        <p id="txt_menu_3_6" class="elem_click txt_menu"> Cierre </p>
-      </div>
-
-
-      <div id="slide_trofeo_1" class="slide_trofeo">
-        <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
-        <img id="back_trofeo" src="assets/img/trofeos/back.jpg" class="absolute  animated slideInLeft" alt="">
-        <img id="rect_menuT" src="assets/img/menu/rect_menu.png " class="absolute animated slideInLeft" alt="">
-        <div id="box_trofeo" class="absolute">
-          <img src="assets/img/trofeos/pleca_logros.svg " alt style="top: 0;left: 0;position: relative; width: 100%;">
-          <p class="absolute txt_trofeo1"> Logros</p>
-          <p id="txt_trofeo2_nlogros" class="absolute txt_trofeo2"> 0 </p>
-          <p class="absolute txt_trofeo2"> /7 </p>
-        </div>
-        <div id="box_trofeo2" class="absolute">
-          <img src="assets/img/trofeos/pleca_logros.svg " alt style="top: 0;left: 0;position: relative; width: 100%;">
-          <p class="absolute txt_trofeo1"> Trofeos </p>
-          <p id="txt_trofeo2_ntrofeo" class="absolute txt_trofeo2"> 0 </p>
-          <p class="absolute txt_trofeo2"> /3 </p>
-        </div>
-
-
-        <img id="img_menu_trofeo" src="assets/img/menu/Rect_select.svg " class="absolute" alt="">
-
-        <p id="txt_logro_llanta" class="elem_click txt_logro"> Llantas de pavimento seco </p>
-        <p id="txt_logro_casco" class="elem_click txt_logro"> Casco </p>
-        <p id="txt_logro_traje" class="elem_click txt_logro"> Traje de piloto </p>
-        <p id="txt_logro_guantes" class="elem_click txt_logro"> Guantes de piloto </p>
-        <p id="txt_logro_zapatos" class="elem_click txt_logro"> Zapatos de piloto </p>
-        <p id="txt_logro_llantas2" class="elem_click txt_logro"> Llantas de pavimento húmedo </p>
-        <p id="txt_logro_volante" class="elem_click txt_logro"> Volante </p>
-
-        <p id="txt_trofeo_1" class="elem_click txt_trofeo"> Gran premio de Seoul</p>
-        <p id="txt_trofeo_2" class="elem_click txt_trofeo"> Gran premio de Francia </p>
-        <p id="txt_trofeo_3" class="elem_click txt_trofeo"> Gran premio de México</p>
-        <img id="img_modTrof_1" src="assets/img/trofeos/logro_casco.gif " class="absolute animated slideInLeft" alt
-          style="display: none;">
-        <img src="assets/img/home/portfolio/X.png" class="elem_click animated slideInLeft " id="cls_trofeo_1">
-      </div>
-
-      <div id="slide_ganador_1" class="slide_ganador">
-        <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
+    <div id="slide_index_1" class="slide_index" style="display: block;">
+      <img src="assets/img/home/home.jpg" class="home_imageBack" alt="">
+      <div class="content-home">
         <div class="vid_in_slide">
-          <video id="vid_ganador_1" src="assets/vid/ganador/piloto_buho.mp4" controls="false" muted
-            class="mod2_videoSlide"></video>
+          <video src="assets/vid/home.mp4" autoplay muted loop class="mod2_videoSlide"></video>
+        </div>
+        <img src="assets/img/icons/check_1.png" class="btn_marcador elem_click" id="btn_marcador_1">
+        <img src="assets/img/icons/check.png" class="btn_marcador elem_click" id="btn_marcador_2">
+        <img src="assets/img/icons/check.png" class="btn_marcador elem_click" id="btn_marcador_3">
+        <img src="assets/img/home/title_bienvenido.png" class="absolute home_titleBienvenido">
+        <img src="assets/img/home/title_project.png" class="absolute home_titleHome">
+        <img src="assets/img/home/trofeo.png" class="absolute animated zoomIn delay-3s home_trofeo btn_conoceCoach"
+          id="btn_conoceCoach_1">
 
-          <img id="cls_ganador_1" src="assets/img/grls/btn_continuar.png"
-            class="elem_click animated zoomIn btn_cont_estandar" alt="">
+        <div id="mod_start" class="absolute animated zoomInUp" style="width: 100%;height: 100%; top: 0;left: 0;">
+          <img id="img_start_1" src="assets/img/modules/module-2/ModalCarera.png" style="width: 100%;">
+          <img id="mod_start_txt1" class="absolute animated zoomIn" src="assets/img/menu/txt_mod_menu.svg">
+          <img id="btn_homeComenzar_1" src="assets/img/home/btn_comenzar.png"
+            class="elem_click home_boton btn_homeComenzar">
+        </div>
 
+      </div>
+    </div>
+    <div class="mod_conoceCoach w3-modal" id="mod_conoceCoach_1" style="overflow: hidden; margin-top: 0;">
+      <div class="w3-animate-zoom w3-modal-content mt-4 conoceCoach-modal" style="background-color:transparent;;">
+        <div class="w3-display-container">
+          <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
+          <img src="assets/img/home/portfolio/modal.jpg" class="absolute modals-complete" />
+          <img src="assets/img/home/portfolio/btn_sobreMi_1.png" class="elem_click btn_sobreMi" id="btn_sobreMi_1">
+          <img src="assets/img/home/portfolio/btn_sobreMi_2.png" class="elem_click btn_sobreMi" id="btn_sobreMi_2">
+          <!-- <img src="assets/img/home/portfolio/btn_sobreMi_3.png" class="absolute btn_sobreMi" id="btn_sobreMi_3"> -->
+          <img src="assets/img/home/portfolio/comenzar-recorrido-2.png" class="absolute btn_comenzarModules"
+            id="btn_comenzarModules">
+          <img src="assets/img/home/portfolio/mario.png" class="absolute conoceCoach-imagen-cv">
+          <img src="assets/img/home/portfolio/title_mario.png" class="absolute conoceCoach-titleMario">
+          <img src="assets/img/home/portfolio/txt_sobreMi.png" class="absolute conoceCoach-sobreMi">
+          <img src="assets/img/home/portfolio/X.png" class="absolute close close_conoceCoach" id="close_conoceCoach_1">
         </div>
       </div>
+    </div>
 
-      <section id="slide_portada_1" class="slide_portada">
-        <div class="contenido-modulo">
-          <img id="back_fondo_1" src="assets/img/home/back_full.jpg" class="absolute " alt="">
-          <img src="assets/img/modules/module-1/slide-1/title-principal.png"
-            class="absolute slide_module1_1-title animated fadeInRight delay-2s">
-          <img src="assets/img/modules/module-1/slide-1/btn_comenzar.png"
-            class="elem_click btn_module delay-2s animated fadeIn" id="btn_module_1">
-          <img src="assets/img/modules/module-1/slide-1/ints.png"
-            class="absolute slide_module1_1-ints animated fadeIn delay-1s">
-          <img src="assets/img/icons/check_1.png" class="absolute slide_module1_1-ubi animated zoomIn delay-1s" alt="">
+    <div class="mod_conoceCoach w3-modal" id="mod_conoceCoach_2" style="overflow: hidden; margin-top: 0;">
+      <div class="w3-animate-zoom w3-modal-content mt-4 conoceCoach-modal" style="background-color:transparent;;">
+        <div class="w3-display-container">
+          <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
+          <img src="assets/img/home/portfolio/back_modal2.jpg" class="absolute modals-complete" />
+          <img src="assets/img/home/portfolio/txt_modal_2.svg" class="absolute" id="txt_coach2_1">
+          <img src="assets/img/home/portfolio/txt_modal_3.svg" class="absolute" id="txt_coach2_2">
+          <img src="assets/img/home/portfolio/X.png" class="absolute close close_conoceCoach" id="close_conoceCoach_2">
         </div>
-      </section>
+      </div>
+    </div>
 
-      <section id="slide_portada_2" class="slide_portada">
-        <div class="contenido-modulo">
-          <img id="back_fondo_2" src="assets/img/home/back_full.jpg" class="absolute " alt="">
-          <div id="slide1_elem_1" class="absolute animated zoomIn"></div>
-          <div id="slide1_elem_2" class="absolute animated zoomIn delay-2s"></div>
-
-          <img id="slide1_img_4" class="absolute animated zoomIn delay-2s" src="assets/img/modules/module-2/map.png" />
-
-          <img id="slide1_img_5" class="absolute animated fadeIn delay-1s"
-            src="assets/img/modules/module-2/instr_start_box.svg" />
-          <img id="slide1_txt_2" class="absolute animated fadeIn delay-1s"
-            src="assets/img/modules/module-2/instr_start.svg" />
-          <div id="slide1_elem_4" class="absolute animated fadeInRight delay-2s">
-            <img id="btn_module_2" class="elem_click btn_module" src="assets/img/modules/module-2/btn_start.svg" />
-            <img id="slide1_img_6" class="absolute" src="assets/img/modules/module-2/casco.png" />
+    <div id="mod_BienvVid_1" class="w3-modal modal_base modal mod_BienvVid_1" style="z-index: 10;">
+      <div class="w3-modal-content w3-animate-top" style="background-color:transparent;width: 70%;">
+        <div class="w3-display-container">
+          <img src="assets/img/base_slide.png" alt style="width: 100%;">
+          <div class="vid_in_modal">
+            <video id="BienvVid_1" src="assets/vid/vid_intro.mp4" controls></video>
           </div>
-          <img id="slide1_txt_4" class="absolute animated fadeInRight delay-2s"
-            src="assets/img/modules/module-2/slide1_txt_4.svg" />
-          <img id="slide1_txt_5" class="absolute animated fadeInRight delay-2s"
-            src="assets/img/modules/module-2/slide1_txt_5.svg" />
-        </div>
-      </section>
-
-      <section id="slide_portada_3" class="slide_portada">
-        <div class="contenido-modulo">
-          <img id="back_fondo_3" src="assets/img/home/back_full.jpg" class="absolute " alt="">
-          <img src="assets/img/modules/module-3/title.png"
-            class="absolute slide_module3_1-title animated fadeInRight delay-2s">
-          <img src="assets/img/modules/module-1/slide-1/btn_comenzar.png"
-            class="elem_click btn_module delay-2s animated fadeIn" id="btn_module_3">
-          <img src="assets/img/modules/module-1/slide-1/ints.png"
-            class="absolute slide_module3_1-ints  animated fadeIn delay-1s">
-          <img src="assets/img/icons/check_1.png" class="absolute slide_module3_1-ubi  animated zoomIn delay-1s" alt="">
-        </div>
-      </section>
-
-      <div id="carga_materia" class="materia_content"></div>
-
-      <div id="div_menu" class="menu_flotante">
-        <div class="menu_flotante-inner">
-          <img alt src="assets/img/menu/bottom_bar.png" style="top: 0;left: 0;position: relative; width: 100%;">
-          <img id="btn_menu" class="elem_click" src="assets/img/menu/mapa_icon.png" />
-          <img id="btn_trofeo" class="elem_click" src="assets/img/menu/trofeo_icon.png" />
+          <img id="cls_BienvVid_1" class="  w3-display-topright elem_click cls_impactBio" src="assets/img/icons/cls.png"
+            style="top: -2%;right: -2%;" />
         </div>
       </div>
+    </div>
+
+    <div id="slide_menu_1" class="slide_menu">
+      <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
+      <img id="back_menu" src="assets/img/menu/back_menu.jpeg" class="absolute  animated slideInLeft" alt="">
+      <img src="assets/img/home/portfolio/X.png" class="elem_click animated slideInLeft " id="cls_menu">
+      <img id="rect_menu" src="assets/img/menu/rect_menu.png " class="absolute animated slideInLeft" alt="">
+
+      <img id="img_sec_1" src="assets/img/menu/mod1_sec.svg " class="absolute animated slideInLeft" alt="">
+      <img id="img_sec_2" src="assets/img/menu/mod2_sec.svg " class="absolute animated slideInLeft" alt="">
+      <img id="img_sec_3" src="assets/img/menu/mod3_sec.svg " class="absolute animated slideInLeft" alt="">
+
+      <img id="img_casc_1" src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
+      <img id="img_casc_2" src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
+      <img id="img_casc_3" src="assets/img/menu/img_casco.png " class="absolute animated slideInLeft" alt="">
+      <img id="txt_menu_tit" src="assets/img/menu/txt_menu.svg " class="absolute animated slideInLeft" alt="">
+      <img id="img_menu_rect" src="assets/img/menu/Rect_select.svg " class="absolute" alt="">
+
+      <p id="txt_menu_1_1" class="elem_click txt_menu"> Test de autoevaluación </p>
+      <p id="txt_menu_1_2" class="elem_click txt_menu"> Clasificación </p>
+      <p id="txt_menu_1_3" class="elem_click txt_menu"> Cierre </p>
+
+      <p id="txt_menu_2_1" class="elem_click txt_menu"> Sarp </p>
+      <p id="txt_menu_2_2" class="elem_click txt_menu"> Ejemplos </p>
+      <p id="txt_menu_2_3" class="elem_click txt_menu"> Evaluación</p>
+      <p id="txt_menu_2_4" class="elem_click txt_menu"> Cierre </p>
+
+      <p id="txt_menu_3_1" class="elem_click txt_menu"> Las emociones</p>
+      <p id="txt_menu_3_2" class="elem_click txt_menu"> Manejo efectivo </p>
+      <p id="txt_menu_3_3" class="elem_click txt_menu"> Bioimpactos</p>
+      <p id="txt_menu_3_4" class="elem_click txt_menu"> Temperamento </p>
+      <p id="txt_menu_3_5" class="elem_click txt_menu"> Evaluación Final </p>
+      <p id="txt_menu_3_6" class="elem_click txt_menu"> Cierre </p>
+    </div>
+
+
+    <div id="slide_trofeo_1" class="slide_trofeo">
+      <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
+      <img id="back_trofeo" src="assets/img/trofeos/back.jpg" class="absolute  animated slideInLeft" alt="">
+      <img id="rect_menuT" src="assets/img/menu/rect_menu.png " class="absolute animated slideInLeft" alt="">
+      <div id="box_trofeo" class="absolute">
+        <img src="assets/img/trofeos/pleca_logros.svg " alt style="top: 0;left: 0;position: relative; width: 100%;">
+        <p class="absolute txt_trofeo1"> Logros</p>
+        <p id="txt_trofeo2_nlogros" class="absolute txt_trofeo2"> 0 </p>
+        <p class="absolute txt_trofeo2"> /7 </p>
+      </div>
+      <div id="box_trofeo2" class="absolute">
+        <img src="assets/img/trofeos/pleca_logros.svg " alt style="top: 0;left: 0;position: relative; width: 100%;">
+        <p class="absolute txt_trofeo1"> Trofeos </p>
+        <p id="txt_trofeo2_ntrofeo" class="absolute txt_trofeo2"> 0 </p>
+        <p class="absolute txt_trofeo2"> /3 </p>
+      </div>
+
+
+      <img id="img_menu_trofeo" src="assets/img/menu/Rect_select.svg " class="absolute" alt="">
+
+      <p id="txt_logro_llanta" class="elem_click txt_logro"> Llantas de pavimento seco </p>
+      <p id="txt_logro_casco" class="elem_click txt_logro"> Casco </p>
+      <p id="txt_logro_traje" class="elem_click txt_logro"> Traje de piloto </p>
+      <p id="txt_logro_guantes" class="elem_click txt_logro"> Guantes de piloto </p>
+      <p id="txt_logro_zapatos" class="elem_click txt_logro"> Zapatos de piloto </p>
+      <p id="txt_logro_llantas2" class="elem_click txt_logro"> Llantas de pavimento húmedo </p>
+      <p id="txt_logro_volante" class="elem_click txt_logro"> Volante </p>
+
+      <p id="txt_trofeo_1" class="elem_click txt_trofeo"> Gran premio de Seoul</p>
+      <p id="txt_trofeo_2" class="elem_click txt_trofeo"> Gran premio de Francia </p>
+      <p id="txt_trofeo_3" class="elem_click txt_trofeo"> Gran premio de México</p>
+      <img id="img_modTrof_1" src="assets/img/trofeos/logro_casco.gif " class="absolute animated slideInLeft" alt
+        style="display: none;">
+      <img src="assets/img/home/portfolio/X.png" class="elem_click animated slideInLeft " id="cls_trofeo_1">
+    </div>
+
+    <div id="slide_ganador_1" class="slide_ganador">
+      <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
+      <div class="vid_in_slide">
+        <video id="vid_ganador_1" src="assets/vid/ganador/piloto_buho.mp4" controls="false" muted
+          class="mod2_videoSlide"></video>
+
+        <img id="cls_ganador_1" src="assets/img/grls/btn_continuar.png"
+          class="elem_click animated zoomIn btn_cont_estandar" alt="">
+
+      </div>
+    </div>
+
+    <section id="slide_portada_1" class="slide_portada">
+      <div class="contenido-modulo">
+        <img id="back_fondo_1" src="assets/img/home/back_full.jpg" class="absolute " alt="">
+        <img src="assets/img/modules/module-1/slide-1/title-principal.png"
+          class="absolute slide_module1_1-title animated fadeInRight delay-2s">
+        <img src="assets/img/modules/module-1/slide-1/btn_comenzar.png"
+          class="elem_click btn_module delay-2s animated fadeIn" id="btn_module_1">
+        <img src="assets/img/modules/module-1/slide-1/ints.png"
+          class="absolute slide_module1_1-ints animated fadeIn delay-1s">
+        <img src="assets/img/icons/check_1.png" class="absolute slide_module1_1-ubi animated zoomIn delay-1s" alt="">
+      </div>
+    </section>
+
+    <section id="slide_portada_2" class="slide_portada">
+      <div class="contenido-modulo">
+        <img id="back_fondo_2" src="assets/img/home/back_full.jpg" class="absolute " alt="">
+        <div id="slide1_elem_1" class="absolute animated zoomIn"></div>
+        <div id="slide1_elem_2" class="absolute animated zoomIn delay-2s"></div>
+
+        <img id="slide1_img_4" class="absolute animated zoomIn delay-2s" src="assets/img/modules/module-2/map.png" />
+
+        <img id="slide1_img_5" class="absolute animated fadeIn delay-1s"
+          src="assets/img/modules/module-2/instr_start_box.svg" />
+        <img id="slide1_txt_2" class="absolute animated fadeIn delay-1s"
+          src="assets/img/modules/module-2/instr_start.svg" />
+        <div id="slide1_elem_4" class="absolute animated fadeInRight delay-2s">
+          <img id="btn_module_2" class="elem_click btn_module" src="assets/img/modules/module-2/btn_start.svg" />
+          <img id="slide1_img_6" class="absolute" src="assets/img/modules/module-2/casco.png" />
+        </div>
+        <img id="slide1_txt_4" class="absolute animated fadeInRight delay-2s"
+          src="assets/img/modules/module-2/slide1_txt_4.svg" />
+        <img id="slide1_txt_5" class="absolute animated fadeInRight delay-2s"
+          src="assets/img/modules/module-2/slide1_txt_5.svg" />
+      </div>
+    </section>
+
+    <section id="slide_portada_3" class="slide_portada">
+      <div class="contenido-modulo">
+        <img id="back_fondo_3" src="assets/img/home/back_full.jpg" class="absolute " alt="">
+        <img src="assets/img/modules/module-3/title.png"
+          class="absolute slide_module3_1-title animated fadeInRight delay-2s">
+        <img src="assets/img/modules/module-1/slide-1/btn_comenzar.png"
+          class="elem_click btn_module delay-2s animated fadeIn" id="btn_module_3">
+        <img src="assets/img/modules/module-1/slide-1/ints.png"
+          class="absolute slide_module3_1-ints  animated fadeIn delay-1s">
+        <img src="assets/img/icons/check_1.png" class="absolute slide_module3_1-ubi  animated zoomIn delay-1s" alt="">
+      </div>
+    </section>
+
+    <div id="carga_materia" class="materia_content"></div>
+
+    <div id="div_menu" class="menu_flotante">
+      <div class="menu_flotante-inner">
+        <img alt src="assets/img/menu/bottom_bar.png" style="top: 0;left: 0;position: relative; width: 100%;">
+        <img id="btn_menu" class="elem_click" src="assets/img/menu/mapa_icon.png" />
+        <img id="btn_trofeo" class="elem_click" src="assets/img/menu/trofeo_icon.png" />
+      </div>
+    </div>
 
   </main>
 
@@ -262,6 +261,11 @@
   <audio id="efct_clic">
     <source src="assets/aud/clic.mp3" type="audio/mpeg" />
   </audio>
+  <audio id="musModu_1" class="back musModu" src="assets/aud/musica_fondo/mod_1.mp3" loop></audio>
+  <audio id="musModu_2" class="back musModu" src="assets/aud/musica_fondo/mod_2.mp3" loop></audio>
+  <audio id="musModu_3" class="back musModu" src="assets/aud/musica_fondo/mod_3.mp3" loop></audio>
+
+
   <script src="assets/js/lib/jquery2.2.4.js"></script>
   <script src="assets/js/lib/jquery.animate.js"></script>
   <script src="assets/js/lib/jquery-ui.js"></script>
