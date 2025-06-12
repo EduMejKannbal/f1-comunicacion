@@ -251,29 +251,30 @@ $("#btn_fin_mod312").click(function () {
 });
 
 $("#btn_finmod3").click(function () {
-  myAvance.avModulos = 4;
-  nSlides.numSlides_3 = 1;
-  4 <= myAvance.avModulos && (myAvance.ch3.trofeo_3 = 1);
-
-
-  if (myAvance.ganador !== null) {
-    $('#slide_ganador_1').show();  
-    const videoSrc = "assets/vid/ganador/piloto_" + myAvance.ganador + ".mp4";
-    const $video = $('#vid_ganador_1');
-
-    if ($video.length) {
-      $video.attr('src', videoSrc);
-      $video.get(0).load();
-      $video.get(0).play();
-    } else {
-      console.warn("Elemento #vid_ganador_1 no encontrado");
+    myAvance.avModulos = 4;
+    nSlides.numSlides_3 = 1;
+    if (myAvance.avModulos >= 4) {
+        myAvance.ch3.trofeo_3 = 1;
     }
-  } else {
-    console.log("No hay un ganador asignado en myAvance.ganador");
-  }
-resetFondo(3,2);
-  $('#slide_index_1').show();
-  $("#carga_materia").hide().empty();
+    pauseAllAudio(); // Stop music
+    $(".music").addClass("hide"); // Hide music button
+    if (myAvance.ganador !== null) {
+        $('#slide_ganador_1').show();
+        const videoSrc = `assets/vid/ganador/piloto_${myAvance.ganador}.mp4`;
+        const $video = $('#vid_ganador_1');
+        if ($video.length) {
+            $video.attr('src', videoSrc);
+            $video.get(0).load();
+            $video.get(0).play().catch(err => console.warn("Error playing winner video:", err));
+        } else {
+            console.warn("Element #vid_ganador_1 not found");
+        }
+    } else {
+        console.log("No winner assigned in myAvance.ganador");
+    }
+    resetFondo(3, 2);
+    $('#slide_index_1').show();
+    $("#carga_materia").hide().empty();
 });
 
 $("#btn_fin_mod37").click(function () {

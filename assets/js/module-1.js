@@ -286,14 +286,16 @@ $('#btn_res_cont').click(function(){
 
 
 $("#btn_finmod1").click(function () {
-  myAvance.avModulos = 2;
-  nSlides.numSlides = 1;
-  if (myAvance.avModulos >= 2) {
-    myAvance.ch1.trofeo_1 = 1;
-  }
-  resetFondo(1,2);
-  $('#slide_index_1').show();
-  $("#carga_materia").hide().empty();
+    myAvance.avModulos = 2;
+    nSlides.numSlides = 1;
+    if (myAvance.avModulos >= 2) {
+        myAvance.ch1.trofeo_1 = 1;
+    }
+    pauseAllAudio(); // Stop music
+    $(".music").addClass("hide"); // Hide music button
+    resetFondo(1, 2);
+    $('#slide_index_1').show();
+    $("#carga_materia").hide().empty();
 });
 
 
@@ -311,3 +313,21 @@ $("#btn_finmod1").click(function () {
     });
   });
   
+function bindClickEffect() {
+    $(document).off('click', '.elem_click'); // Desvincular manejadores previos para evitar duplicados
+    $(document).on('click', '.elem_click', function () {
+        const audio = $("#efct_clic1")[0];
+        if (audio && typeof audio.play === 'function') {
+            try {
+                audio.currentTime = 0; // Reinicia desde el principio
+                audio.play().catch((err) => {
+                    console.warn("No se pudo reproducir el audio:", err);
+                });
+            } catch (e) {
+                console.warn("Error resetting click audio:", e);
+            }
+        } else {
+            console.warn("Audio element #efct_clic1 not found");
+        }
+    });
+}

@@ -4,11 +4,11 @@ let myAvance = {
     avModulos: 0,
     g_avance: 0,
     ganador: null,
-    ch1:{
-        estilosComunicacion:1,
-        logro_llanta:0,
-        logro_casco:0,
-        trofeo_1:0
+    ch1: {
+        estilosComunicacion: 1,
+        logro_llanta: 0,
+        logro_casco: 0,
+        trofeo_1: 0
     },
     ch2: {
         comic: 1,
@@ -16,21 +16,21 @@ let myAvance = {
         preg_2: null,
         preg_3: null,
         preg_4: null,
-        logro_guantes:0,
-        logro_traje:0,
-        logro_zapatos:0,
-        trofeo_2:0
+        logro_guantes: 0,
+        logro_traje: 0,
+        logro_zapatos: 0,
+        trofeo_2: 0
     },
     ch3: {
-        vidManEm:1,
-        impactBio:1,
-        caracter:1,
-        vidTemp:1,
+        vidManEm: 1,
+        impactBio: 1,
+        caracter: 1,
+        vidTemp: 1,
         emocion: 1,
-        logro_llantas2:0,
-        logro_volante:0,
+        logro_llantas2: 0,
+        logro_volante: 0,
         finish_juego: 0,
-        trofeo_3:0
+        trofeo_3: 0
     }
 };
 
@@ -41,6 +41,7 @@ let nSlides = {
     general: 1,
     test_1: 1
 };
+let currentAudio = null;
 let flagMus = 1;
 let flagVoice = 1;
 let numAudio = 0;
@@ -102,50 +103,90 @@ $('#btn_close_loader').click(function () {
 
 });
 
+// Funciones de control de audio
 function muteMe(e) {
-    e.muted = !0;
+    e.muted = true;
 }
+
 function unMuteMe(e) {
-    e.muted = !1;
+    e.muted = false;
 }
+
+function pauseAllAudio() {
+    const audios = document.querySelectorAll("audio.back.musModu");
+    audios.forEach(audio => {
+        if (audio && typeof audio.pause === 'function') {
+            audio.pause();
+            try {
+                audio.currentTime = 0; 
+            } catch (e) {
+                console.warn("Error resetting audio time:", e);
+            }
+        }
+    });
+    currentAudio = null;
+}
+
+function playModuleAudio(moduleId) {
+    pauseAllAudio(); // Stop any currently playing audio
+    const audio = document.getElementById(`musModu_${moduleId}`);
+    if (audio && flagMus === 1) {
+        audio.loop = true; // Asegurar que el audio se repita
+        audio.play().then(() => {
+            currentAudio = audio;
+            $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
+        }).catch(err => {
+            console.warn("Autoplay blocked or error playing audio:", err);
+            $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
+        });
+    } else if (flagMus === 0) {
+        if (audio) {
+            audio.loop = true; // Configurar loop aunque esté muteado
+        }
+        $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+    } else {
+        console.warn(`Audio element musModu_${moduleId} not found`);
+        $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+    }
+}
+
 function saveFlagMus() {
     prevFlagMus = flagMus;
 }
 
+// Manejo del botón de música
 $(".music").click(function () {
-    var e = document.querySelectorAll(".back");
-    0 === flagMus ? (flagMus = 1,
-        $(".music").attr("src", "assets/img/icons/on.png"),
-        [].forEach.call(e, function (e) {
-            unMuteMe(e);
-        })) : 1 === flagMus && ($(".music").attr("src", "assets/img/icons/off.png"),
-            flagMus = 0,
-            [].forEach.call(e, function (e) {
-                muteMe(e);
-            })
-        );
+    const audios = document.querySelectorAll(".back.musModu");
+    if (flagMus === 0) {
+        flagMus = 1;
+        $(".music").attr("src", "assets/img/icons/on.png");
+        if (currentAudio) {
+            unMuteMe(currentAudio);
+            currentAudio.play().catch(err => console.warn("Error al reproducir audio:", err));
+        }
+    } else {
+        flagMus = 0;
+        $(".music").attr("src", "assets/img/icons/off.png");
+        audios.forEach(audio => muteMe(audio));
+    }
 });
 
-function playMusic() {
-    if (flagMus === 0) {
-        var elements = document.querySelectorAll(".back");
-        $(".music").attr("src", "assets/img/icons/on.png");
-        [].forEach.call(elements, function (element) {
-            unMuteMe(element);
-        });
-        flagMus = 1; 
-    }
-}
-function pauseMusic() {
-    if (flagMus === 1) {
-        var elements = document.querySelectorAll(".back");
-        $(".music").attr("src", "assets/img/icons/off.png");
-        [].forEach.call(elements, function (element) {
-            muteMe(element);
-        });
-        flagMus = 0; 
-    }
-}
+$('.btn_module').click(function () {
+    strID = $(this).attr("id").split("_")[2];
+    $('.slide_index,.slide_portada').hide();
+    $('#carga_materia').show();
+    $('#carga_materia').load(`module_${strID}.html`, function () {
+        playModuleAudio(strID); // Play music for the loaded module
+        bindClickEffect(); // Asociar manejador de clic para efectos
+        if (strID === "1") {
+            ctrl_slidesMod1();
+        } else if (strID === "2") {
+            ctrl_slidesMod2();
+        } else if (strID === "3") {
+            ctrl_slidesMod3();
+        }
+    });
+});
 //Inicio botón locución
 function stopLocution(e) {
     e.pause();
@@ -181,12 +222,12 @@ function muteMe_Locut(e) {
 function unMuteMe_Locut(e) {
     e.muted = !1;
 }
-$('.btn_module').click(function () {
-    strID = $(this).attr("id").split("_")[2];
-    $('.slide_index,.slide_portada').hide();
-    $('#carga_materia').show();
-    $('#carga_materia').load('module_' + strID + '.html');
-});
+// $('.btn_module').click(function () {
+//     strID = $(this).attr("id").split("_")[2];
+//     $('.slide_index,.slide_portada').hide();
+//     $('#carga_materia').show();
+//     $('#carga_materia').load('module_' + strID + '.html');
+// });
 //Control general para curruseles sencillos
 function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
     resetLocution();
@@ -339,14 +380,14 @@ $('.close_conoceCoach').click(function () {
 
 function reproducirHasta(idVideo, tiempoFinal) {
     const $video = $("#" + idVideo);
-    
+
     if ($video.length === 0) {
         console.error("No se encontró el video con ID:", idVideo);
         return;
     }
 
     const video = $video[0];
-    
+
     // Asegurar que los controles estén siempre ocultos
     video.removeAttribute('controls'); // Método nativo
     $video.removeAttr('controls');    // Método jQuery (redundante por seguridad)
@@ -355,7 +396,7 @@ function reproducirHasta(idVideo, tiempoFinal) {
     video.play();
 
     // Control del tiempo
-    $video.on("timeupdate", function() {
+    $video.on("timeupdate", function () {
         if (this.currentTime >= tiempoFinal) {
             this.pause();
             $video.off("timeupdate");
@@ -366,9 +407,15 @@ function reproducirHasta(idVideo, tiempoFinal) {
 }
 function reiniciarVideos(ptrvidSLides) {
     $(ptrvidSLides).each(function() {
-        const video = $(this)[0]; 
-        video.pause();            
-        video.currentTime = 0;  
+        const video = this; // Usar this en lugar de $(this)[0]
+        if (video && typeof video.pause === 'function') {
+            video.pause();
+            try {
+                video.currentTime = 0;
+            } catch (e) {
+                console.warn("Error resetting video time:", e);
+            }
+        }
     });
 }
 
@@ -384,67 +431,67 @@ $('#cls_menu').click(function () {
 });
 
 $('.txt_menu').on({
-  click: function () {
-    const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
-    const $cargaMateria = $('#carga_materia');
+    click: function () {
+        const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
+        const $cargaMateria = $('#carga_materia');
 
-    $('#slide_index_1').hide();
-    $cargaMateria.hide().empty().show();
+        $('#slide_index_1').hide();
+        $cargaMateria.hide().empty().show();
 
-    $cargaMateria.load('module_' + strMod + '.html', function () {
+        // Simular interacción para habilitar autoplay
+        document.dispatchEvent(new Event('click'));
 
-      if (strMod === 1) {
-        1 === strID && (nSlides.numSlides = 4);
-        2 === strID && (nSlides.numSlides = 9);
-        3 === strID && (nSlides.numSlides = 13);
-        ctrl_slidesMod1();
-      }
-      if (strMod === 2) {
-        1 === strID && (nSlides.numSlides_2 = 3);
-        2 === strID && (nSlides.numSlides_2 = 5);
-        3 === strID && (nSlides.numSlides_2 = 7);
-        4 === strID && (nSlides.numSlides_2 = 14);
-        ctrl_slidesMod2();
-      }
-      if (strMod === 3) {
-        1 === strID && (nSlides.numSlides_3 = 3);
-        2 === strID && (nSlides.numSlides_3 = 4);
-        3 === strID && (nSlides.numSlides_3 = 6);
-        4 === strID && (nSlides.numSlides_3 = 9);
-        5 === strID && (nSlides.numSlides_3 = 11);
-        6 === strID && (nSlides.numSlides_3 = 13);
-        ctrl_slidesMod3();
-      }
-      $('#slide_menu_1').fadeOut();
-    });
-  },
-  mouseover: function () {
-    strMod = $(this).attr('id').split("_")[2];
-    strID = $(this).attr('id').split("_")[3];
-    $('#img_menu_rect').show().css('top', $(this).css('top')).doAnim('slideInLeft');
-  },
-  mouseleave: function () {
-    strMod = $(this).attr('id').split("_")[2];
-    strID = $(this).attr('id').split("_")[3];
-    $('#img_menu_rect').hide();
-  }
+        $cargaMateria.load(`module_${strMod}.html`, function () {
+            playModuleAudio(strMod); // Play music for the loaded module
+            bindClickEffect(); // Asociar manejador de clic para efectos
+            if (strMod === 1) {
+                if (strID === 1) nSlides.numSlides = 4;
+                if (strID === 2) nSlides.numSlides = 9;
+                if (strID === 3) nSlides.numSlides = 13;
+                ctrl_slidesMod1();
+            }
+            if (strMod === 2) {
+                if (strID === 1) nSlides.numSlides_2 = 3;
+                if (strID === 2) nSlides.numSlides_2 = 5;
+                if (strID === 3) nSlides.numSlides_2 = 7;
+                if (strID === 4) nSlides.numSlides_2 = 14;
+                ctrl_slidesMod2();
+            }
+            if (strMod === 3) {
+                if (strID === 1) nSlides.numSlides_3 = 3;
+                if (strID === 2) nSlides.numSlides_3 = 4;
+                if (strID === 3) nSlides.numSlides_3 = 6;
+                if (strID === 4) nSlides.numSlides_3 = 9;
+                if (strID === 5) nSlides.numSlides_3 = 11;
+                if (strID === 6) nSlides.numSlides_3 = 13;
+                ctrl_slidesMod3();
+            }
+            $('#slide_menu_1').fadeOut();
+        });
+    },
+    mouseover: function () {
+        const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
+        $('#img_menu_rect').show().css('top', $(this).css('top')).doAnim('slideInLeft');
+    },
+    mouseleave: function () {
+        $('#img_menu_rect').hide();
+    }
 });
-
 
 $('#btn_homeComenzar_1').click(() => $('#mod_start').hide());
 
 $('#btn_sobreMi_1').click(function () {
-    $('#mod_BienvVid_1').show(); 
+    $('#mod_BienvVid_1').show();
     $('#BienvVid_1').get(0).play();
-  });
+});
 
 
-  $('#cls_BienvVid_1').click(function () {
-    $('#mod_BienvVid_1').hide(); 
+$('#cls_BienvVid_1').click(function () {
+    $('#mod_BienvVid_1').hide();
     var video = $('#BienvVid_1').get(0);
     video.pause();
     video.currentTime = 0;
-  });
+});
 
 
 
@@ -452,37 +499,37 @@ $('#btn_sobreMi_2').click(() => $('#mod_conoceCoach_2').show());
 $('#cls_conoceCoach_2').click(() => $('#mod_conoceCoach_2').fadeOut());
 
 function anim_fondo(ptrDuracion, ptrNumFondo, ptrTop, ptrLeft, ptrWidth, ptrHeight) {
-  var duracionAnimacion = ptrDuracion * 1000;
+    var duracionAnimacion = ptrDuracion * 1000;
 
-$("#back_fondo_"+ptrNumFondo).css({top:"0",left:"0",width:"100%",height:"100%"});
-  $('#back_fondo_' + ptrNumFondo).animate({top: ptrTop, left: ptrLeft, width: ptrWidth, height: ptrHeight}, duracionAnimacion, 'swing', () => console.log('¡Animación completada!'));
+    $("#back_fondo_" + ptrNumFondo).css({ top: "0", left: "0", width: "100%", height: "100%" });
+    $('#back_fondo_' + ptrNumFondo).animate({ top: ptrTop, left: ptrLeft, width: ptrWidth, height: ptrHeight }, duracionAnimacion, 'swing', () => console.log('¡Animación completada!'));
 
 }
 
 
-function resetFondo(ptrDuracion, ptrNumFondo, ) {
-  $("#back_fondo_" + ptrNumFondo).animate({top: "0", width: "100%", height: "100%"}, 1E3 * ptrDuracion);
+function resetFondo(ptrDuracion, ptrNumFondo,) {
+    $("#back_fondo_" + ptrNumFondo).animate({ top: "0", width: "100%", height: "100%" }, 1E3 * ptrDuracion);
 }
 
 $('.btn_marcador').click(function () {
-  strID = $(this).attr('id').split("_")[2];
-  $('#slide_portada_' + strID).show();
-  "1" === strID && anim_fondo(2, strID, "-89%", "0%", "199%", "192%");
-  "2" === strID && anim_fondo(2, strID, "-128%", "-66%", "204%", "229%");
-  "3" === strID && anim_fondo(2, strID, "-57%", "-75%", "235%", "201%");
+    strID = $(this).attr('id').split("_")[2];
+    $('#slide_portada_' + strID).show();
+    "1" === strID && anim_fondo(2, strID, "-89%", "0%", "199%", "192%");
+    "2" === strID && anim_fondo(2, strID, "-128%", "-66%", "204%", "229%");
+    "3" === strID && anim_fondo(2, strID, "-57%", "-75%", "235%", "201%");
 });
 
 
 
-$('#menu_trigger, #div_menu').hover(() => $menu.stop().animate({bottom: '0%'}, 300),
-        () => $menu.stop().animate({bottom: '-10%'}, 300));
+$('#menu_trigger, #div_menu').hover(() => $menu.stop().animate({ bottom: '0%' }, 300),
+    () => $menu.stop().animate({ bottom: '-10%' }, 300));
 
 
 $('#btn_trofeo').click(function () {
-  mostrar_trofeos();
-  mostrar_logros();
-  $('#slide_trofeo_1').show();
-  $('#slide_menu_1').hide();
+    mostrar_trofeos();
+    mostrar_logros();
+    $('#slide_trofeo_1').show();
+    $('#slide_menu_1').hide();
 
 });
 
@@ -496,81 +543,82 @@ $('.txt_trofeo').on({
         strID = $(this).attr('id').split("_")[2];
         const relativeTop = $(this).position().top + 'px'; // top relativo al contenedor
         $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
-        $('#img_modTrof_1').show().attr('src','assets/img/grls/trofeos/trofeo_' + strID +'.gif' );
+        $('#img_modTrof_1').show().attr('src', 'assets/img/grls/trofeos/trofeo_' + strID + '.gif');
     },
     mouseleave: function () {
-      $('#img_menu_trofeo').hide();
+        $('#img_menu_trofeo').hide();
     }
-  });
-  
-  $('.txt_logro').on({
+});
+
+$('.txt_logro').on({
     mouseover: function () {
         strID = $(this).attr('id').split("_")[2];
         const relativeTop = $(this).position().top + 'px'; // top relativo al contenedor
         $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
-        $('#img_modTrof_1').show().attr('src','assets/img/trofeos/logro_' + strID +'.gif' );
+        $('#img_modTrof_1').show().attr('src', 'assets/img/trofeos/logro_' + strID + '.gif');
     },
     mouseleave: function () {
-      $('#img_menu_trofeo').hide();
+        $('#img_menu_trofeo').hide();
     }
-  });
+});
 
-  
+
 function mostrar_trofeos() {
     // Actualizar contador de trofeos
     let trofeosDesbloqueados = 0;
     if (myAvance.ch1.trofeo_1 === 1) trofeosDesbloqueados++;
     if (myAvance.ch2.trofeo_2 === 1) trofeosDesbloqueados++;
     if (myAvance.ch3.trofeo_3 === 1) trofeosDesbloqueados++;
-    
+
     $('#txt_trofeo2_ntrofeo').text(trofeosDesbloqueados);
 
     // Controlar elementos de trofeos
     $('#txt_trofeo_1').css('pointer-events', myAvance.ch1.trofeo_1 === 1 ? 'auto' : 'none')
         .toggleClass('w3-opacity-max', myAvance.ch1.trofeo_1 !== 1);
-    
+
     $('#txt_trofeo_2').css('pointer-events', myAvance.ch2.trofeo_2 === 1 ? 'auto' : 'none')
         .toggleClass('w3-opacity-max', myAvance.ch2.trofeo_2 !== 1);
-    
+
     $('#txt_trofeo_3').css('pointer-events', myAvance.ch3.trofeo_3 === 1 ? 'auto' : 'none')
         .toggleClass('w3-opacity-max', myAvance.ch3.trofeo_3 !== 1);
 }
 
 function mostrar_logros() {
-  // Actualizar contador de logros
-  let logrosDesbloqueados = 0;
-  if (myAvance.ch1.logro_llanta === 1)
-    logrosDesbloqueados++;
-  if (myAvance.ch1.logro_casco === 1)
-    logrosDesbloqueados++;
-  if (myAvance.ch2.logro_traje === 1)
-    logrosDesbloqueados++;
-  if (myAvance.ch2.logro_zapatos === 1)
-    logrosDesbloqueados++;
-  if (myAvance.ch3.logo_llantas2 === 1)
-    logrosDesbloqueados++;
-  if (myAvance.ch3.logro_volante === 1)
-    logrosDesbloqueados++;
+    // Actualizar contador de logros
+    let logrosDesbloqueados = 0;
+    if (myAvance.ch1.logro_llanta === 1)
+        logrosDesbloqueados++;
+    if (myAvance.ch1.logro_casco === 1)
+        logrosDesbloqueados++;
+    if (myAvance.ch2.logro_traje === 1)
+        logrosDesbloqueados++;
+    if (myAvance.ch2.logro_zapatos === 1)
+        logrosDesbloqueados++;
+    if (myAvance.ch3.logo_llantas2 === 1)
+        logrosDesbloqueados++;
+    if (myAvance.ch3.logro_volante === 1)
+        logrosDesbloqueados++;
 
-  $('#txt_trofeo2_nlogros').text(logrosDesbloqueados);
+    $('#txt_trofeo2_nlogros').text(logrosDesbloqueados);
 
-  // Controlar elementos de logros
-  $('#txt_logro_llanta').css('pointer-events', myAvance.ch1.logro_llanta === 1 ? 'auto' : 'none')
-          .toggleClass('w3-opacity-max', myAvance.ch1.logro_llanta !== 1);
-  $('#txt_logro_casco').css('pointer-events', myAvance.ch1.logro_casco === 1 ? 'auto' : 'none')
-          .toggleClass('w3-opacity-max', myAvance.ch1.logro_casco !== 1);
+    // Controlar elementos de logros
+    $('#txt_logro_llanta').css('pointer-events', myAvance.ch1.logro_llanta === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch1.logro_llanta !== 1);
+    $('#txt_logro_casco').css('pointer-events', myAvance.ch1.logro_casco === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch1.logro_casco !== 1);
 
-  $('#txt_logro_traje').css('pointer-events', myAvance.ch2.logro_traje === 1 ? 'auto' : 'none')
-          .toggleClass('w3-opacity-max', myAvance.ch2.logro_traje !== 1);
-  $('#txt_logro_guantes').css('pointer-events', myAvance.ch2.logro_guantes === 1 ? 'auto' : 'none')
-          .toggleClass('w3-opacity-max', myAvance.ch2.logro_guantes !== 1);
-  $('#txt_logro_zapatos').css('pointer-events', myAvance.ch2.logro_zapatos === 1 ? 'auto' : 'none')
-          .toggleClass('w3-opacity-max', myAvance.ch2.logro_zapatos !== 1);
+    $('#txt_logro_traje').css('pointer-events', myAvance.ch2.logro_traje === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch2.logro_traje !== 1);
+    $('#txt_logro_guantes').css('pointer-events', myAvance.ch2.logro_guantes === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch2.logro_guantes !== 1);
+    $('#txt_logro_zapatos').css('pointer-events', myAvance.ch2.logro_zapatos === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch2.logro_zapatos !== 1);
 
-  $('#txt_logro_llantas2').css('pointer-events', myAvance.ch3.logo_llantas2 === 1 ? 'auto' : 'none')
-          .toggleClass('w3-opacity-max', myAvance.ch3.logo_llantas2 !== 1);
-  $('#txt_logro_volante').css('pointer-events', myAvance.ch3.logro_volante === 1 ? 'auto' : 'none')
-          .toggleClass('w3-opacity-max', myAvance.ch3.logro_volante !== 1);
+    $('#txt_logro_llantas2').css('pointer-events', myAvance.ch3.logo_llantas2 === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch3.logo_llantas2 !== 1);
+    $('#txt_logro_volante').css('pointer-events', myAvance.ch3.logro_volante === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch3.logro_volante !== 1);
 }
 
 $('#cls_ganador_1').click(() => $('#slide_ganador_1').fadeOut());
+
