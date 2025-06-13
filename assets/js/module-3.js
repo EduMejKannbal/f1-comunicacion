@@ -289,6 +289,13 @@ $(".elem_click").click(function () {
         console.warn("No se pudo reproducir el audio:", err);
     });
 });
+$(".elem_click_modal").click(function () {
+    const audio = $("#efct_clic_mod_3")[0];
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
+        console.warn("No se pudo reproducir el audio:", err);
+    });
+});
 
 // Juego
 $('#slideM3-9-btn').click(function(){

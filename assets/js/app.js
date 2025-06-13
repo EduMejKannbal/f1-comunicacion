@@ -574,3 +574,11 @@ function mostrar_logros() {
 }
 
 $('#cls_ganador_1').click(() => $('#slide_ganador_1').fadeOut());
+
+$(".elem_click").click(function () {
+    const audio = $("#efct_clic")[0];
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
+        console.warn("No se pudo reproducir el audio:", err);
+    });
+});

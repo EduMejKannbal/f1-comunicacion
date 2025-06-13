@@ -3,7 +3,7 @@
 #btn_comenzarModule_3{width:21%;left:39.7%;top:81%;height:auto}
 #slideM3-ubi{width:15%;height:auto;top:27%;right:29%}
 
-#slide3_img2_1{width:64%;height:100%;left:0;top:0;z-index:2;opacity:.8}
+#slide3_img2_1{width:64%;height:100%;left:0;top:0;z-index:2;opacity: 1;}
 #slideM3_txt_1{width:33%;height:auto;left:5%;top:23%;z-index: 2;}
 #slideM3_txt_2{width:38%;height:auto;left:5%;top:29%;z-index: 2;}
 #slideM3_txt_3{width:43%;height:auto;left:4%;top:56%;z-index: 2;}
@@ -102,6 +102,36 @@
     width: 16.2%;
     left: 81%;
     top: 45%;
+}
+#txt_emocion_1_1 {
+  position: absolute;
+  width: 52%;
+  left: 23%;
+  top: 78%;
+}
+#txt_emocion_2_1 {
+    position: absolute;
+    width: 21.7%;
+    left: 29%;
+    top: 78%;
+}
+#txt_emocion_3_1 {
+    position: absolute;
+    width: 65.4%;
+    left: 5%;
+    top: 78%;
+}
+#txt_emocion_4_1 {
+    position: absolute;
+    width: 52.7%;
+    left: 13%;
+    top: 78%;
+}
+#txt_emocion_5_1 {
+    position: absolute;
+    width: 77%;
+    left: 9%;
+    top: 78%;
 }
 .mod_emocion{top:0;left:0;width:100%;display:none}
 #slideM3_3-inst{width:30%;height:auto;left:0;right:0;margin:auto;bottom:5%}
