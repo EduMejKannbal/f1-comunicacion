@@ -9,6 +9,7 @@ $("#precache_mod_3").waitForImages({
         ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_white', true);
         ctrl_avElem_chk(3, 'caracter', myAvance.ch3.caracter, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
         ctrl_avElem_chk(3, 'vidTemp', myAvance.ch3.vidTemp, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
+        autoNextSlide('module3', nSlides, ctrl_slidesMod3); 
     },
     waitForAll: true
 });
@@ -18,6 +19,7 @@ function ctrl_slidesMod3() {
     const $slides = $(".slide_module3");
     const totalSlides = $slides.length;
     const currentSlide = nSlides.numSlides_3;
+    autoNextSlide('module3', nSlides, ctrl_slidesMod3);
     const $prevBtn = $("#module3_Prev");
     const $nextBtn = $("#module3_Next");    
     reiniciarVideos(".mod3_videoSlide");
@@ -144,6 +146,7 @@ $('.btn_comenzarModule').click(function () {
 
 // Eventos de emociones
 $('.btn_emocion').click(function () {
+    pauseMusicAndUpdateIcon();
     $('#mod_emocion_6').fadeIn();
     var video = $('#emoc_6').get(0);
     video.currentTime = 0;
@@ -159,12 +162,14 @@ $('.cls_emocion').click(function () {
     if (myAvance.ch3.emocion < 2){
         myAvance.ch3.emocion = 2;
     }
+    restoreMusicAndIcon('1');
     ctrl_slidesMod3();
 });
 
 // Eventos de video manejo emocional
 $('.btn_vidManEm').click(function(){
     strID = $(this).attr('id').split("_")[2];
+    pauseMusicAndUpdateIcon();
     $('#mod_vidManEm_' + strID).show(); 
     $('#vidManEm_'+ strID).get(0).play();
 });
@@ -179,11 +184,13 @@ $('.cls_vidManEm').click(function(){
     var video = $('#vidManEm_' + strID).get(0);
     video.pause();
     video.currentTime = 0;
+    restoreMusicAndIcon('1');
 });
 
 // Eventos de impacto biológico
 $('.btn_impactBio').click(function(){
     strID = $(this).attr('id').split("_")[2];
+    pauseMusicAndUpdateIcon();
     $('#mod_impactBio_' + strID).show(); 
     $('#impactBio_'+ strID).get(0).play();
 });
@@ -198,11 +205,13 @@ $('.cls_impactBio').click(function(){
     var video = $('#impactBio_' + strID).get(0);
     video.pause();
     video.currentTime = 0;
+    restoreMusicAndIcon('1');
 });
 
 // Eventos de caracter
 $('.btn_caracter').click(function(){
     strID = $(this).attr('id').split("_")[2];
+    pauseMusicAndUpdateIcon();
     $('#mod_caracter_' + strID).show(); 
     $('#caracter_'+ strID).get(0).play();
 });
@@ -217,11 +226,13 @@ $('.cls_caracter').click(function(){
     var video = $('#caracter_' + strID).get(0);
     video.pause();
     video.currentTime = 0;
+    restoreMusicAndIcon('1');
 });
 
 // Eventos de video temporal
 $('.btn_vidTemp').click(function(){
     strID = $(this).attr('id').split("_")[2];
+    pauseMusicAndUpdateIcon();
     $('#mod_vidTemp_' + strID).show(); 
     $('#vidTemp_'+ strID).get(0).play();
 });
@@ -236,15 +247,15 @@ $('.cls_vidTemp').click(function(){
     var video = $('#vidTemp_' + strID).get(0);
     video.pause();
     video.currentTime = 0;
+    restoreMusicAndIcon('1');
 });
 
 // Botones de finalización
 $("#btn_fin_mod310").click(function () {
     nSlides.numSlides_3 = 11;  
     ctrl_slidesMod3();
-    
-    
 });
+
 $("#btn_fin_mod312").click(function () {
     nSlides.numSlides_3 = 13;  
     ctrl_slidesMod3();
@@ -275,6 +286,7 @@ $("#btn_finmod3").click(function () {
     resetFondo(3, 2);
     $('#slide_index_1').show();
     $("#carga_materia").hide().empty();
+    ctrl_AvGeneral(3, gAvMax);
 });
 
 $("#btn_fin_mod37").click(function () {

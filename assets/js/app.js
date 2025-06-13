@@ -1,7 +1,7 @@
 let strID;
 let gAvMax = 4;
 let myAvance = {
-    avModulos: 0,
+    avModulos: 1,
     g_avance: 0,
     ganador: null,
     ch1: {
@@ -92,6 +92,7 @@ $("#precache_index").waitForImages({
     finished: function () {
         //$("#precache_index").hide();
         $('html,body').css({ 'overflow-y': 'hidden' });
+        ctrl_AvGeneral(myAvance.avModulos, gAvMax);
     },
     waitForAll: true
 });
@@ -118,7 +119,7 @@ function pauseAllAudio() {
         if (audio && typeof audio.pause === 'function') {
             audio.pause();
             try {
-                audio.currentTime = 0; 
+                audio.currentTime = 0;
             } catch (e) {
                 console.warn("Error resetting audio time:", e);
             }
@@ -222,12 +223,7 @@ function muteMe_Locut(e) {
 function unMuteMe_Locut(e) {
     e.muted = !1;
 }
-// $('.btn_module').click(function () {
-//     strID = $(this).attr("id").split("_")[2];
-//     $('.slide_index,.slide_portada').hide();
-//     $('#carga_materia').show();
-//     $('#carga_materia').load('module_' + strID + '.html');
-// });
+
 //Control general para curruseles sencillos
 function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
     resetLocution();
@@ -366,10 +362,9 @@ function ctrl_avElem(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isInit) 
 //conoceCoach
 $('.btn_conoceCoach').click(function () {
     strID = $(this).attr('id').split("_")[2];
+    console.log('conoceCoach ID:', strID);
     resetLocution();
     $('#mod_conoceCoach_' + strID).show();
-
-
 });
 $('.close_conoceCoach').click(function () {
     strID = $(this).attr('id').split("_")[2];
@@ -406,7 +401,7 @@ function reproducirHasta(idVideo, tiempoFinal) {
     });
 }
 function reiniciarVideos(ptrvidSLides) {
-    $(ptrvidSLides).each(function() {
+    $(ptrvidSLides).each(function () {
         const video = this; // Usar this en lugar de $(this)[0]
         if (video && typeof video.pause === 'function') {
             video.pause();
@@ -481,6 +476,7 @@ $('.txt_menu').on({
 $('#btn_homeComenzar_1').click(() => $('#mod_start').hide());
 
 $('#btn_sobreMi_1').click(function () {
+    pauseAllAudio();
     $('#mod_BienvVid_1').show();
     $('#BienvVid_1').get(0).play();
 });
@@ -511,7 +507,7 @@ function resetFondo(ptrDuracion, ptrNumFondo,) {
     $("#back_fondo_" + ptrNumFondo).animate({ top: "0", width: "100%", height: "100%" }, 1E3 * ptrDuracion);
 }
 
-$('.btn_marcador').click(function () {
+$('.btn_avModulos').click(function () {
     strID = $(this).attr('id').split("_")[2];
     $('#slide_portada_' + strID).show();
     "1" === strID && anim_fondo(2, strID, "-89%", "0%", "199%", "192%");
@@ -629,3 +625,43 @@ $(".elem_click").click(function () {
         console.warn("No se pudo reproducir el audio:", err);
     });
 });
+function pauseMusicAndUpdateIcon() {
+    saveFlagMus(); // Guardar el estado actual de flagMus
+    pauseAllAudio(); // Pausar todos los audios de fondo
+    $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide"); // Cambiar ícono a mute
+    flagMus = 0; // Actualizar flagMus a "mute"
+}
+
+function restoreMusicAndIcon(moduleId) {
+    if (prevFlagMus === 1) { // Restaurar solo si la música estaba activa antes
+        flagMus = 1; // Actualizar flagMus a "activo"
+        playModuleAudio(moduleId); // Reanudar la música del módulo correspondiente
+        $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide"); // Cambiar ícono a activo
+    }
+}
+function autoNextSlide(moduleId, numSlidesObj, callback) {
+    const slideKey = moduleId === 'module1' ? 'numSlides' : `numSlides_${moduleId.slice(-1)}`;
+    if (numSlidesObj[slideKey] === 1) {
+        clearTimeout(window[`autoSlideTimer_${moduleId}`]);
+        window[`autoSlideTimer_${moduleId}`] = setTimeout(() => {
+            if (numSlidesObj[slideKey] === 1) {
+                numSlidesObj[slideKey]++;
+                callback();
+            }
+        }, 5000);
+    }
+}
+
+function ctrl_AvGeneral(ptrID, ptrAvMax) {
+  $('.btn_avModulos').removeClass('myglow_img_blue animated pulse infinite custom-pulse active-button-glow').css({ 'pointer-events': 'none' }).addClass('w3-opacity');
+  if (myAvance.avModulos <= ptrAvMax) {
+    for (let i = 1; i < myAvance.avModulos; i++) {
+      $(`#btn_avModulos_${i}`).css('pointer-events', 'auto').removeClass('w3-opacity');
+    }
+    if (myAvance.avModulos >= 1 && myAvance.avModulos <= 3) {
+      $(`#btn_avModulos_${myAvance.avModulos}`).addClass('active-button-glow').css('pointer-events', 'auto').removeClass('w3-opacity');
+    }
+  } else if (myAvance.avModulos >= ptrAvMax) {
+    $('.btn_avModulos').css('pointer-events', 'auto').removeClass('w3-opacity');
+  }
+}

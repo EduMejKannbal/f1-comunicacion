@@ -1,10 +1,11 @@
 ctrl_slidesMod1();
 ctrl_avElem(1, 'estilosComunicacion', myAvance.ch1.estilosComunicacion, $(".btn_estilosComunicacion").length + 1, 'myglow_img_white', true);
-
+autoNextSlide('module1', nSlides, ctrl_slidesMod1);
 function ctrl_slidesMod1() {
   const $slides = $(".slide_module1");
   const totalSlides = $slides.length;
   const currentSlide = nSlides.numSlides;
+  autoNextSlide('module1', nSlides, ctrl_slidesMod1);
   const $prevBtn = $("#module1_Prev");
   const $nextBtn = $("#module1_Next");
   $slides.hide();
@@ -15,7 +16,7 @@ function ctrl_slidesMod1() {
 
   if (currentSlide === 1) {
     $prevBtn.hide();
-    $nextBtn.show();
+    $nextBtn.hide();
     reproducirHasta("vid_module1_1", 9.99);
   } else if (currentSlide === 4) {
     reproducirHasta("vid_module1_4", 4.99);
@@ -219,23 +220,43 @@ $buttons.hover(
   function () {
     var num = $(this).attr('id').split('_')[2];
     const $hoverImg = $(`#hov_estilosComunicacion_${num}`);
-    // Ocultar todas y remover animaciones
+    const $audio = $(`#aud_estilosComunicacion_${num}`)[0]; // Selecciona el audio correspondiente
+
+    // Ocultar todas las imágenes y remover animaciones
     $('.hov_estilosComunicacion').hide().removeClass('animated fadeInRight');
-    // Mostrar la correspondiente con animación
+    // Mostrar la imagen correspondiente con animación
     $hoverImg.show().addClass('animated fadeInRight');
     // Efectos en botones
     $buttons.css('opacity', '0.5');
     $(this).css({ 'opacity': '1', 'transform': 'scale(1.05)' });
+
+    // Reproducir el audio
+    if ($audio) {
+      $audio.currentTime = 0; // Reinicia el audio
+      $audio.play();
+    }
   },
   function () {
+    var num = $(this).attr('id').split('_')[2];
+    const $audio = $(`#aud_estilosComunicacion_${num}`)[0]; // Selecciona el audio correspondiente
+
+    // Ocultar todas las imágenes y remover animaciones
     $('.hov_estilosComunicacion').hide().removeClass('animated fadeInRight');
+    // Restaurar estilos de botones
     $buttons.css({ 'opacity': '1', 'transform': 'scale(1)' });
+
+    // Pausar el audio y reiniciar
+    if ($audio) {
+      $audio.pause();
+      $audio.currentTime = 0;
+    }
   }
 );
 
 
 $buttons.click(function () {
   strID = $(this).attr('id').split("_")[2];
+  pauseMusicAndUpdateIcon();
   console.log('#mod_estilosComunicacion_' + strID);
   $('#mod_estilosComunicacion_' + strID).show();
   $('#vid_estilosComunicacion_' + strID).get(0).play();
@@ -252,6 +273,7 @@ $('.cls_estilosComunicacion').click(function () {
     ctrl_avElem(1, 'estilosComunicacion', myAvance.ch1.estilosComunicacion, $(".btn_estilosComunicacion").length + 1, 'myglow_img_white', false);
   }
   ctrl_slidesMod1();
+  restoreMusicAndIcon('1');
 });
 
 
@@ -291,11 +313,12 @@ $("#btn_finmod1").click(function () {
   if (myAvance.avModulos >= 2) {
     myAvance.ch1.trofeo_1 = 1;
   }
-  pauseAllAudio(); // Stop music
+  pauseAllAudio();
   $(".music").addClass("hide"); // Hide music button
   resetFondo(1, 2);
   $('#slide_index_1').show();
   $("#carga_materia").hide().empty();
+  ctrl_AvGeneral(1, gAvMax);
 });
 
 
@@ -357,6 +380,7 @@ $(".elem_click_bhuo").click(function () {
     console.warn("No se pudo reproducir el audio:", err);
   });
 });
+
 function bindClickEffect() {
   $(document).off('click', '.elem_click'); // Desvincular manejadores previos para evitar duplicados
   $(document).on('click', '.elem_click', function () {
