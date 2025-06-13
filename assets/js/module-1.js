@@ -43,6 +43,7 @@ function ctrl_slidesMod1() {
     if (testCompleted) {
       showTestResults(testResults);
     }
+    playAudio('module1_', currentSlide);
 
   } else if (currentSlide === 7) {
     $prevBtn.hide();
@@ -77,13 +78,13 @@ function ctrl_slidesMod1() {
   }
 }
 $("#module1_Prev").click(() => {
-  // resetLocution();
+  resetLocution();
   1 < nSlides.numSlides && nSlides.numSlides--;
   ctrl_slidesMod1();
   // $("#efct_next")[0].play();
 });
 $("#module1_Next").click(() => {
-  // resetLocution();
+  resetLocution();
   $('.slide_module1').length > nSlides.numSlides && nSlides.numSlides++;
   ctrl_slidesMod1();
   // $("#efct_next")[0].play();
@@ -304,6 +305,7 @@ $('#btn_cls_slide12_modal').click(function () {
 $('#btn_res_cont').click(function () {
   nSlides.numSlides = 7;
   ctrl_slidesMod1();
+  resetLocution();
 });
 
 

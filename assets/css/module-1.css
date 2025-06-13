@@ -412,6 +412,7 @@
 .footer-continuar {
   width: 15%;
   height: auto;
+  cursor: pointer;
 }
 .contenido-resultadoTest {
   display: grid;
@@ -471,7 +472,7 @@
   border-left: none;
   border-right: none;
   width: 100%;
-  height: 25%;
+  height: 35%;
   z-index: 1;
   bottom: 20%;
   margin: auto;
@@ -484,12 +485,28 @@
   display: grid;
   justify-items: center;
   align-items: center;
+  height: 100%;
 }
 .testResult-name {
+  height: auto;
+  object-fit: contain;
+}
+#testResult-name_1 {
+  width: 50%;
+  height: auto;
+}
+#testResult-name_2 {
+  width: 60%;
+  height: auto;
+}
+#testResult-name_3 {
   width: 40%;
   height: auto;
 }
-
+#testResult-name_4 {
+  width: 45%;
+  height: auto;
+}
 .testResult-text {
   color: #fff;
 }
@@ -683,7 +700,7 @@
 
 #modal_trofeo1,#modal_trofeo2,#modal_trofeo3{top:2%;width:74%;right:0;z-index:2}
 
-#btn_cls_slide7_modal{bottom:10%;width:15%;left:41.5%;z-index:2}
+#btn_cls_slide7_modal{bottom: 7%;width:15%;left:41.5%;z-index:2}
 #btn_cls_slide10_modal{bottom:10%;width:15%;left:41.5%;z-index:2}
 #btn_cls_slide12_modal{bottom:25%;width:19%;left:23.5%;z-index:2}
 #btn_finmod1{bottom:10%;width:15%;left:41.5%;z-index:2}

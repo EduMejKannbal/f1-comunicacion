@@ -1,5 +1,6 @@
 let strID;
 let gAvMax = 4;
+let currentModule = null; 
 let myAvance = {
     avModulos: 1,
     g_avance: 0,
@@ -85,6 +86,8 @@ function stopSplashVideo() {
 video.addEventListener('ended', function () {
     stopSplashVideo();
     $('#slide_vidWelcome_1').hide();
+    $('#mod_start').show();
+    playModuleAudio(null);
 });
 
 
@@ -93,6 +96,7 @@ $("#precache_index").waitForImages({
         //$("#precache_index").hide();
         $('html,body').css({ 'overflow-y': 'hidden' });
         ctrl_AvGeneral(myAvance.avModulos, gAvMax);
+
     },
     waitForAll: true
 });
@@ -129,8 +133,10 @@ function pauseAllAudio() {
 }
 
 function playModuleAudio(moduleId) {
-    pauseAllAudio(); // Stop any currently playing audio
-    const audio = document.getElementById(`musModu_${moduleId}`);
+    pauseAllAudio(); // Detener cualquier audio en reproducción
+    let audioId = moduleId && moduleId !== "0" ? `musModu_${moduleId}` : `musModu_0`; // Usar musModu_0 si no hay módulo
+    const audio = document.getElementById(audioId);
+
     if (audio && flagMus === 1) {
         audio.loop = true; // Asegurar que el audio se repita
         audio.play().then(() => {
@@ -146,7 +152,7 @@ function playModuleAudio(moduleId) {
         }
         $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
     } else {
-        console.warn(`Audio element musModu_${moduleId} not found`);
+        console.warn(`Audio element ${audioId} not found`);
         $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
     }
 }
@@ -174,6 +180,7 @@ $(".music").click(function () {
 
 $('.btn_module').click(function () {
     strID = $(this).attr("id").split("_")[2];
+    currentModule = strID;
     $('.slide_index,.slide_portada').hide();
     $('#carga_materia').show();
     $('#carga_materia').load(`module_${strID}.html`, function () {
@@ -418,6 +425,7 @@ function reiniciarVideos(ptrvidSLides) {
 $('#btn_menu').click(function () {
     $('#slide_menu_1').show();
     $('#slide_trofeo_1').hide();
+    playModuleAudio(null);
 });
 
 
@@ -428,6 +436,7 @@ $('#cls_menu').click(function () {
 $('.txt_menu').on({
     click: function () {
         const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
+        // currentModule = strMod.toString();
         const $cargaMateria = $('#carga_materia');
 
         $('#slide_index_1').hide();
@@ -487,6 +496,9 @@ $('#cls_BienvVid_1').click(function () {
     var video = $('#BienvVid_1').get(0);
     video.pause();
     video.currentTime = 0;
+    setTimeout(() => {
+        restoreMusicAndIcon(0)
+    }, 100); 
 });
 
 
@@ -633,11 +645,24 @@ function pauseMusicAndUpdateIcon() {
 }
 
 function restoreMusicAndIcon(moduleId) {
-    if (prevFlagMus === 1) { // Restaurar solo si la música estaba activa antes
-        flagMus = 1; // Actualizar flagMus a "activo"
-        playModuleAudio(moduleId); // Reanudar la música del módulo correspondiente
-        $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide"); // Cambiar ícono a activo
+    // 1. Parar todo audio primero
+    pauseAllAudio();
+    
+    // 2. Determinar qué ID de audio usar
+    const audioId = moduleId !== undefined ? `musModu_${moduleId}` : 'musModu_0';
+    
+    // 3. Reproducir solo si no está muteado
+    if (flagMus === 1) {
+        const audio = document.getElementById(audioId);
+        if (audio) {
+            audio.loop = true;
+            audio.play().catch(e => console.log("Error autoplay:", e));
+            currentAudio = audio;
+        }
     }
+    
+    // 4. Actualizar icono (usando tu sistema actual)
+    $(".music").attr("src", `assets/img/icons/${flagMus === 1 ? 'on' : 'off'}.png`);
 }
 function autoNextSlide(moduleId, numSlidesObj, callback) {
     const slideKey = moduleId === 'module1' ? 'numSlides' : `numSlides_${moduleId.slice(-1)}`;
@@ -653,15 +678,15 @@ function autoNextSlide(moduleId, numSlidesObj, callback) {
 }
 
 function ctrl_AvGeneral(ptrID, ptrAvMax) {
-  $('.btn_avModulos').removeClass('myglow_img_blue animated pulse infinite custom-pulse active-button-glow').css({ 'pointer-events': 'none' }).addClass('w3-opacity');
-  if (myAvance.avModulos <= ptrAvMax) {
-    for (let i = 1; i < myAvance.avModulos; i++) {
-      $(`#btn_avModulos_${i}`).css('pointer-events', 'auto').removeClass('w3-opacity');
+    $('.btn_avModulos').removeClass('myglow_img_blue animated pulse infinite custom-pulse active-button-glow').css({ 'pointer-events': 'none' }).addClass('w3-opacity');
+    if (myAvance.avModulos <= ptrAvMax) {
+        for (let i = 1; i < myAvance.avModulos; i++) {
+            $(`#btn_avModulos_${i}`).css('pointer-events', 'auto').removeClass('w3-opacity');
+        }
+        if (myAvance.avModulos >= 1 && myAvance.avModulos <= 3) {
+            $(`#btn_avModulos_${myAvance.avModulos}`).addClass('active-button-glow').css('pointer-events', 'auto').removeClass('w3-opacity');
+        }
+    } else if (myAvance.avModulos >= ptrAvMax) {
+        $('.btn_avModulos').css('pointer-events', 'auto').removeClass('w3-opacity');
     }
-    if (myAvance.avModulos >= 1 && myAvance.avModulos <= 3) {
-      $(`#btn_avModulos_${myAvance.avModulos}`).addClass('active-button-glow').css('pointer-events', 'auto').removeClass('w3-opacity');
-    }
-  } else if (myAvance.avModulos >= ptrAvMax) {
-    $('.btn_avModulos').css('pointer-events', 'auto').removeClass('w3-opacity');
-  }
 }
