@@ -275,4 +275,25 @@ $(".elem_click").click(function () {
     console.warn("No se pudo reproducir el audio:", err);
   });
 });
+$(".elem_click_cierre").click(function () {
+  const audio = $("#efct_clic_feli")[0];
+  audio.currentTime = 0;
+  audio.play().then(() => {
+    setTimeout(() => {
+      audio.pause();
+      audio.currentTime = 0;
+    }, 10000);
+  }).catch((err) => {
+    console.warn("No se pudo reproducir el audio:", err);
+  });
+});
+
+
+$(".elem_click_modal").click(function () {
+    const audio = $("#efct_clic_mod_2")[0];
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
+        console.warn("No se pudo reproducir el audio:", err);
+    });
+});
   

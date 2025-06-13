@@ -65,6 +65,14 @@ progress::-webkit-progress-bar{background:#e0e0e08c}
 }
 
 .elem_click{cursor:pointer;position:absolute}
+.elem_click_cierre{cursor:pointer;position:absolute}
+.elem_click_modal{cursor:pointer;position:absolute}
+.elem_click_pant{cursor:pointer;position:absolute}
+.elem_click_pavo{cursor:pointer;position:absolute}
+.elem_click_delf{cursor:pointer;position:absolute}
+.elem_click_bhuo{cursor:pointer;position:absolute}
+
+
 .hide{display:none}
 .modals-complete{width:100%;top:0;left:0;height:100%}
 
@@ -91,7 +99,7 @@ progress::-webkit-progress-bar{background:#e0e0e08c}
 .modal-casco{width:20%;height:auto;position:absolute;top:-8%;left:0;right:0;margin:auto}
 .modal-llanta{width:20%;height:auto;position:absolute;top:-8%;left:0;right:0;margin:auto}
 
-.txt_btn_regresar{font-size:1.8vw;font-family:Formula_bold;top:-40%;left:19%;color:#fff}
+.txt_btn_regresar{font-size:1.8vw;font-family:Formula_bold;top: -34%;left: 23%;color:#fff}
 .slide_index,.slide_menu,.slide_trofeo,.slide_vidWelcome,.slide_portada,.slide_ganador{display:none;left:0;top:0}
 .slide_menu{z-index: 15;}
 #cls_menu{top:2.5%;right:1%;width:4%}
