@@ -439,8 +439,8 @@
 }
 .cardTest-item {
   background-image: url("../img/modules/module-1/slide-5/fondo.png");
-  width: 200px;
-  height: 300px;
+  width: 240px;
+  height: 360px;
   overflow: hidden;
   background-position: center;
   border-radius: 10%;
@@ -697,12 +697,11 @@
 @media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {
 }
 
-.video_trofeo{top:2%;width:74%;right:0;position: absolute;}
-#video_trof1{top:2%;width:74%;right:0;position: absolute;}
-#modal_trofeo1,#modal_trofeo2,#modal_trofeo3{top:2%;width:74%;right:0;z-index:2}
 
-#btn_cls_slide7_modal{bottom: 7%;width:15%;left:41.5%;z-index:2}
-#btn_cls_slide10_modal{bottom:10%;width:15%;left:41.5%;z-index:2}
+#modal_trofeo1,#modal_trofeo2,#modal_trofeo3{top:2%;width: 63%;right:0;z-index:2}
+
+#btn_cls_slide7_modal{bottom: 6%;width:15%;left:41.5%;z-index:2}
+#btn_cls_slide10_modal{bottom: 7%;width:15%;left:41.5%;z-index:2}
 #btn_cls_slide12_modal{bottom:25%;width:19%;left:23.5%;z-index:2}
 #btn_finmod1{bottom:10%;width:15%;left:41.5%;z-index:2}
 
@@ -710,7 +709,7 @@
 .cardTest.mayor-resultado{transform:scale(1.25);z-index:3}
 .cardTest.mayor-resultado .testResult-text{color:#21dee4 !important}
 .cardTest-item:hover{box-shadow:0 0 20px rgba(0,128,128,0.5);transition:box-shadow .3s ease}
-.resultadoTest_body{display:flex;justify-content:center;align-items:flex-end;flex-wrap:nowrap;gap:3.5rem;padding:2rem 0}
+.resultadoTest_body{display:flex;justify-content:center;align-items:flex-end;flex-wrap:nowrap;gap: 3rem;padding: 2rem 0;}
 
 .cardTest{transition:transform .3s ease;margin:0;flex-shrink:0}
 .cardTest.mayor-resultado{transform:scale(1.25);z-index:2}
