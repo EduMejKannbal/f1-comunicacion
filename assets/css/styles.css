@@ -1126,10 +1126,10 @@ progress::-webkit-progress-bar {
 }
 
 .music {
-  width: 5%;
+  width: 3%;
   position: absolute;
   top: 1%;
-  right: 10%;
+  right: 12%;
   z-index: 999;
   cursor: pointer;
   background: #ffffff6e;

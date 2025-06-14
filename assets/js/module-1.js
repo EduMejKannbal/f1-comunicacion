@@ -1,6 +1,7 @@
 ctrl_slidesMod1();
 ctrl_avElem(1, 'estilosComunicacion', myAvance.ch1.estilosComunicacion, $(".btn_estilosComunicacion").length + 1, 'myglow_img_white', true);
 autoNextSlide('module1', nSlides, ctrl_slidesMod1);
+
 function ctrl_slidesMod1() {
   const $slides = $(".slide_module1");
   const totalSlides = $slides.length;
@@ -13,7 +14,7 @@ function ctrl_slidesMod1() {
   console.log("#slide_module1_" + currentSlide);
   $prevBtn.show();
   $nextBtn.show();
-
+  playAudio('module1_', currentSlide);
   if (currentSlide === 1) {
     $prevBtn.hide();
     $nextBtn.hide();
@@ -33,21 +34,20 @@ function ctrl_slidesMod1() {
     } else {
       $prevBtn.hide();
       $nextBtn.hide();
+      pauseMusicAndUpdateIcon();
     }
   } else if (currentSlide === 2) {
     reproducirHasta("vid_module1_2", 4.99);
   } else if (currentSlide === 6) {
-
     $prevBtn.hide();
     $nextBtn.hide();
     if (testCompleted) {
       showTestResults(testResults);
     }
-    playAudio('module1_', currentSlide);
-
   } else if (currentSlide === 7) {
     $prevBtn.hide();
     $nextBtn.hide();
+    playAudio('module1_', currentSlide);
     reproducirHasta("vid_module1_7", 9.99);
     $('#aud_logro').get(0).play();
     0 === myAvance.ch1.logro_llanta && (myAvance.ch1.logro_llanta = 1);
@@ -59,7 +59,6 @@ function ctrl_slidesMod1() {
       $prevBtn.show();
       $nextBtn.show();
     }
-
   } else if (currentSlide === 10) {
     $prevBtn.hide();
     $nextBtn.hide();
@@ -76,6 +75,13 @@ function ctrl_slidesMod1() {
     reproducirHasta("vid_module1_13", 8.99);
     $('#aud_logro').get(0).play();
   }
+
+
+  if (previousSlide === 5 && currentSlide !== 5) {
+    restoreMusicAndIcon('1');
+  }
+
+  previousSlide = currentSlide;
 }
 $("#module1_Prev").click(() => {
   resetLocution();
@@ -135,9 +141,6 @@ function calculateResults() {
   }
 }
 
-
-
-
 setupCarouselControls('test_1');
 if (!testCompleted) {
   $(".body-answers > div > div").click(function () {
@@ -169,7 +172,6 @@ if (!testCompleted) {
   });
 }
 
-
 function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
   $({ Counter: current }).animate({ Counter: ptrTarget }, {
     duration: ptrDuration,
@@ -179,8 +181,6 @@ function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
     }
   });
 }
-
-
 
 const cards = document.querySelectorAll('.cardTest');
 for (let i = 0; i < cards.length; i++) {
@@ -221,7 +221,7 @@ $buttons.hover(
   function () {
     var num = $(this).attr('id').split('_')[2];
     const $hoverImg = $(`#hov_estilosComunicacion_${num}`);
-    const $audio = $(`#aud_estilosComunicacion_${num}`)[0]; // Selecciona el audio correspondiente
+    const $audio = $(`#aud_estilosComunicacion_${num}`)[0];
 
     // Ocultar todas las imágenes y remover animaciones
     $('.hov_estilosComunicacion').hide().removeClass('animated fadeInRight');
@@ -305,7 +305,6 @@ $('#btn_cls_slide12_modal').click(function () {
 $('#btn_res_cont').click(function () {
   nSlides.numSlides = 7;
   ctrl_slidesMod1();
-  resetLocution();
 });
 
 
@@ -316,11 +315,12 @@ $("#btn_finmod1").click(function () {
     myAvance.ch1.trofeo_1 = 1;
   }
   pauseAllAudio();
-  $(".music").addClass("hide"); // Hide music button
+  $(".music").addClass("hide");
   resetFondo(1, 2);
   $('#slide_index_1').show();
   $("#carga_materia").hide().empty();
   ctrl_AvGeneral(1, gAvMax);
+  playModuleAudio(null);
 });
 
 
@@ -330,74 +330,3 @@ $('#btn_comenzarModule_1').click(function () {
 });
 
 
-$(".elem_click").click(function () {
-  const audio = $("#efct_clic1")[0];
-  audio.currentTime = 0; // Reinicia desde el principio
-  audio.play().catch((err) => {
-    console.warn("No se pudo reproducir el audio:", err);
-  });
-});
-
-$(".elem_click_modal").click(function () {
-  const audio = $("#efct_clic_mod")[0];
-  audio.currentTime = 0;
-  audio.play().catch((err) => {
-    console.warn("No se pudo reproducir el audio:", err);
-  });
-});
-
-$(".elem_click_pant").click(function () {
-  const audio = $("#efct_clic_pant")[0];
-  audio.currentTime = 0;
-  audio.play().then(() => {
-    setTimeout(() => {
-      audio.pause();
-      audio.currentTime = 0;
-    }, 3000);
-  }).catch((err) => {
-    console.warn("No se pudo reproducir el audio:", err);
-  });
-});
-
-$(".elem_click_pavo").click(function () {
-  const audio = $("#efct_clic:pavo")[0];
-  audio.currentTime = 0; // Reinicia desde el principio
-  audio.play().catch((err) => {
-    console.warn("No se pudo reproducir el audio:", err);
-  });
-});
-
-$(".elem_click_delf").click(function () {
-  const audio = $("#efct_clic_delf")[0];
-  audio.currentTime = 0; // Reinicia desde el principio
-  audio.play().catch((err) => {
-    console.warn("No se pudo reproducir el audio:", err);
-  });
-});
-
-$(".elem_click_bhuo").click(function () {
-  const audio = $("#efct_clic_bhuo")[0];
-  audio.currentTime = 0; // Reinicia desde el principio
-  audio.play().catch((err) => {
-    console.warn("No se pudo reproducir el audio:", err);
-  });
-});
-
-function bindClickEffect() {
-  $(document).off('click', '.elem_click'); // Desvincular manejadores previos para evitar duplicados
-  $(document).on('click', '.elem_click', function () {
-    const audio = $("#efct_clic1")[0];
-    if (audio && typeof audio.play === 'function') {
-      try {
-        audio.currentTime = 0; // Reinicia desde el principio
-        audio.play().catch((err) => {
-          console.warn("No se pudo reproducir el audio:", err);
-        });
-      } catch (e) {
-        console.warn("Error resetting click audio:", e);
-      }
-    } else {
-      console.warn("Audio element #efct_clic1 not found");
-    }
-  });
-}
