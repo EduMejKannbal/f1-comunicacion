@@ -345,6 +345,20 @@ $(".elem_click_modal").click(function () {
     console.warn("No se pudo reproducir el audio:", err);
   });
 });
+$(".elem_click_reto").click(function () {
+  const audio = $("#efct_clic_reto")[0];
+  audio.currentTime = 0;
+  audio.play().catch((err) => {
+    console.warn("No se pudo reproducir el audio:", err);
+  });
+});
+$(".elem_click_logro").click(function () {
+  const audio = $("#efct_clic_logro")[0];
+  audio.currentTime = 0;
+  audio.play().catch((err) => {
+    console.warn("No se pudo reproducir el audio:", err);
+  });
+});
 
 $(".elem_click_pant").click(function () {
   const audio = $("#efct_clic_pant")[0];

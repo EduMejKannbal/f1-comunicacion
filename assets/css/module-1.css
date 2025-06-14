@@ -697,7 +697,8 @@
 @media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {
 }
 
-
+.video_trofeo{top:2%;width:74%;right:0;position: absolute;}
+#video_trof1{top:2%;width:74%;right:0;position: absolute;}
 #modal_trofeo1,#modal_trofeo2,#modal_trofeo3{top:2%;width:74%;right:0;z-index:2}
 
 #btn_cls_slide7_modal{bottom: 7%;width:15%;left:41.5%;z-index:2}
