@@ -511,12 +511,6 @@ progress::-webkit-progress-bar {
   height: 104%;
   width: 45%;
 }
-#back_menu {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 .txt_menu {
   font-size: 0.9vw;
   font-family: Formula_regular;
@@ -529,6 +523,7 @@ progress::-webkit-progress-bar {
   left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 #img_sec_1 {
@@ -1134,4 +1129,12 @@ progress::-webkit-progress-bar {
   cursor: pointer;
   background: #ffffff6e;
   border-radius: 50%;
+}
+.lock-icon {
+    margin-left: 10px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+.txt_menu.locked {
+    cursor: not-allowed;
 }

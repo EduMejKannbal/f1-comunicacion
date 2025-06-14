@@ -1,3 +1,31 @@
+const MODULE_CONFIG = {
+    1: {
+        sections: [
+            { id: 1, slide: 4 }, // Test de autoevaluación
+            { id: 2, slide: 9 }, // Clasificación
+            { id: 3, slide: 13 } // Cierre
+        ]
+    },
+    2: {
+        sections: [
+            { id: 1, slide: 3 }, // Sarp
+            { id: 2, slide: 5 }, // Ejemplos
+            { id: 3, slide: 7 }, // Evaluación
+            { id: 4, slide: 14 } // Cierre
+        ]
+    },
+    3: {
+        sections: [
+            { id: 1, slide: 3 }, // Las emociones
+            { id: 2, slide: 4 }, // Manejo efectivo
+            { id: 3, slide: 6 }, // Bioimpactos
+            { id: 4, slide: 9 }, // Temperamento
+            { id: 5, slide: 11 }, // Evaluación Final
+            { id: 6, slide: 13 } // Cierre
+        ]
+    }
+};
+
 // State Variables
 let strID;
 let gAvMax = 4;
@@ -9,7 +37,8 @@ let myAvance = {
         estilosComunicacion: 1,
         logro_llanta: 0,
         logro_casco: 0,
-        trofeo_1: 0
+        trofeo_1: 0,
+        progress: 1
     },
     ch2: {
         comic: 1,
@@ -20,7 +49,8 @@ let myAvance = {
         logro_guantes: 0,
         logro_traje: 0,
         logro_zapatos: 0,
-        trofeo_2: 0
+        trofeo_2: 0,
+        progress: 1
     },
     ch3: {
         vidManEm: 1,
@@ -31,7 +61,8 @@ let myAvance = {
         logro_llantas2: 0,
         logro_volante: 0,
         finish_juego: 0,
-        trofeo_3: 0
+        trofeo_3: 0,
+        progress: 1
     }
 };
 let nSlides = {
@@ -60,6 +91,7 @@ let testCompleted = false;
 let testResults = null;
 let userSelections = {};
 let previousSlide = 0;
+
 
 // DOM References
 let $menu = $('#div_menu');
@@ -562,6 +594,7 @@ $('#btn_menu').click(function () {
     $('#slide_menu_1').show();
     $('#slide_trofeo_1').hide();
     playModuleAudio(null);
+    ctrl_menuAccess();
 });
 
 $('#cls_menu').click(function () {
@@ -571,41 +604,47 @@ $('#cls_menu').click(function () {
 $('.txt_menu').on({
     click: function () {
         const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
-        const $cargaMateria = $('#carga_materia');
-        $('#slide_index_1, .w3-modal, .slide_vidWelcome, .slide_index, .slide_portada, .slide_ganador').hide();
-        $cargaMateria.hide().empty().show();
-        document.dispatchEvent(new Event('click'));
-        $cargaMateria.load(`module_${strMod}.html`, function () {
-            playModuleAudio(strMod);
-            bindClickEffect();
-            if (strMod === 1) {
-                if (strID === 1) nSlides.numSlides = 4;
-                if (strID === 2) nSlides.numSlides = 9;
-                if (strID === 3) nSlides.numSlides = 13;
-                ctrl_slidesMod1();
+        let canAccess = false;
+
+        // Verify module and section access
+        if (strMod <= myAvance.avModulos) {
+            if (myAvance[`ch${strMod}`].progress >= strID) {
+                canAccess = true;
             }
-            if (strMod === 2) {
-                if (strID === 1) nSlides.numSlides_2 = 3;
-                if (strID === 2) nSlides.numSlides_2 = 5;
-                if (strID === 3) nSlides.numSlides_2 = 7;
-                if (strID === 4) nSlides.numSlides_2 = 14;
-                ctrl_slidesMod2();
-            }
-            if (strMod === 3) {
-                if (strID === 1) nSlides.numSlides_3 = 3;
-                if (strID === 2) nSlides.numSlides_3 = 4;
-                if (strID === 3) nSlides.numSlides_3 = 6;
-                if (strID === 4) nSlides.numSlides_3 = 9;
-                if (strID === 5) nSlides.numSlides_3 = 11;
-                if (strID === 6) nSlides.numSlides_3 = 13;
-                ctrl_slidesMod3();
-            }
-            $('#slide_menu_1').fadeOut();
-        });
+        }
+
+        if (canAccess) {
+            const $cargaMateria = $('#carga_materia');
+            $('#slide_index_1, .w3-modal, .slide_vidWelcome, .slide_index, .slide_portada, .slide_ganador').hide();
+            $cargaMateria.hide().empty().show();
+            document.dispatchEvent(new Event('click'));
+            $cargaMateria.load(`module_${strMod}.html`, function () {
+                playModuleAudio(strMod);
+                bindClickEffect();
+                const slide = MODULE_CONFIG[strMod].sections.find(s => s.id === strID)?.slide;
+                if (slide) {
+                    if (strMod === 1) {
+                        nSlides.numSlides = slide;
+                        ctrl_slidesMod1();
+                    } else if (strMod === 2) {
+                        nSlides.numSlides_2 = slide;
+                        ctrl_slidesMod2();
+                    } else if (strMod === 3) {
+                        nSlides.numSlides_3 = slide;
+                        ctrl_slidesMod3();
+                    }
+                }
+                $('#slide_menu_1').fadeOut();
+            });
+        } else {
+            alert(`Debes completar la sección anterior del Módulo ${strMod} antes de continuar.`);
+        }
     },
     mouseover: function () {
         const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
-        $('#img_menu_rect').show().css('top', $(this).css('top')).doAnim('slideInLeft');
+        if (strMod <= myAvance.avModulos && myAvance[`ch${strMod}`].progress >= strID) {
+            $('#img_menu_rect').show().css('top', $(this).css('top')).doAnim('slideInLeft');
+        }
     },
     mouseleave: function () {
         $('#img_menu_rect').hide();
@@ -734,6 +773,32 @@ function bindClickEffect() {
     });
 }
 
+function ctrl_menuAccess() {
+    $('.txt_menu').each(function () {
+        const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
+        let isAccessible = false;
+
+        // Check if the module is unlocked
+        if (strMod <= myAvance.avModulos) {
+            // Check section progress within the module
+            const moduleProgress = myAvance[`ch${strMod}`].progress;
+            if (strID <= moduleProgress) {
+                isAccessible = true;
+            }
+        }
+
+        if (isAccessible) {
+            $(this).removeClass('w3-opacity-max locked').css('pointer-events', 'auto');
+            $(this).find('.lock-icon').remove();
+        } else {
+            $(this).addClass('w3-opacity-max locked').css('pointer-events', 'none');
+            if (!$(this).find('.lock-icon').length) {
+                $(this).append('<span class="lock-icon">🔒</span>');
+            }
+        }
+    });
+}
+
 // Initialization
 document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(Flip, ScrollTrigger, Observer, ScrollToPlugin, Draggable, MotionPathPlugin, EaselPlugin, PixiPlugin, TextPlugin, RoughEase, ExpoScaleEase, SlowMo, CustomEase);
@@ -746,6 +811,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     setupCarouselControls('test_1');
+    ctrl_menuAccess();
 
     if (!testCompleted) {
         $(".body-answers > div > div").click(function () {

@@ -15,6 +15,7 @@ function ctrl_slidesMod1() {
   $prevBtn.show();
   $nextBtn.show();
   playAudio('module1_', currentSlide);
+
   if (currentSlide === 1) {
     $prevBtn.hide();
     $nextBtn.hide();
@@ -41,7 +42,9 @@ function ctrl_slidesMod1() {
   } else if (currentSlide === 6) {
     $prevBtn.hide();
     $nextBtn.hide();
-    if (testCompleted) {
+    if (testCompleted && myAvance.ch1.progress < 2) {
+      myAvance.ch1.progress = 2; // Unlock Clasificación
+      ctrl_menuAccess();
       showTestResults(testResults);
     }
   } else if (currentSlide === 7) {
@@ -50,7 +53,9 @@ function ctrl_slidesMod1() {
     playAudio('module1_', currentSlide);
     reproducirHasta("vid_module1_7", 9.99);
     $('#aud_logro').get(0).play();
-    0 === myAvance.ch1.logro_llanta && (myAvance.ch1.logro_llanta = 1);
+    if (myAvance.ch1.logro_llanta === 0) {
+      myAvance.ch1.logro_llanta = 1;
+    }
   } else if (currentSlide === 9) {
     if (myAvance.ch1.estilosComunicacion < $(".btn_estilosComunicacion").length + 1) {
       $prevBtn.show();
@@ -64,7 +69,13 @@ function ctrl_slidesMod1() {
     $nextBtn.hide();
     reproducirHasta("vid_module1_10", 4.99);
     $('#aud_logro').get(0).play();
-    0 === myAvance.ch1.logro_casco && (myAvance.ch1.logro_casco = 1);
+    if (myAvance.ch1.logro_casco === 0) {
+      myAvance.ch1.logro_casco = 1;
+      if (myAvance.ch1.progress < 3) {
+        myAvance.ch1.progress = 3; // Unlock Cierre
+        ctrl_menuAccess();
+      }
+    }
   } else if (currentSlide === 12) {
     $prevBtn.hide();
     $nextBtn.hide();
@@ -76,13 +87,13 @@ function ctrl_slidesMod1() {
     $('#aud_logro').get(0).play();
   }
 
-
   if (previousSlide === 5 && currentSlide !== 5) {
     restoreMusicAndIcon('1');
   }
 
   previousSlide = currentSlide;
 }
+
 $("#module1_Prev").click(() => {
   resetLocution();
   1 < nSlides.numSlides && nSlides.numSlides--;
@@ -321,6 +332,7 @@ $("#btn_finmod1").click(function () {
   $("#carga_materia").hide().empty();
   ctrl_AvGeneral(1, gAvMax);
   playModuleAudio(null);
+  ctrl_menuAccess();
 });
 
 
