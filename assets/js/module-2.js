@@ -24,6 +24,11 @@ function ctrl_slidesMod2() {
   console.log("#slide_module2_" + currentSlide);
   $prevBtn.show();
   $nextBtn.show();
+  $("#slide_module2_" + currentSlide).show();
+  console.log("#slide_module2_" + currentSlide);
+  $prevBtn.show();
+  $nextBtn.show();
+  playAudio('module2_', currentSlide);
 
   if (currentSlide === 1) {
     $prevBtn.hide();

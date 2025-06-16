@@ -341,4 +341,10 @@ $('#btn_comenzarModule_1').click(function () {
   ctrl_slidesMod1();
 });
 
-
+$(".elem_click_reto").click(function () {
+    const audio = $("#efct_clic_jue")[0];
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
+        console.warn("No se pudo reproducir el audio:", err);
+    });
+});
