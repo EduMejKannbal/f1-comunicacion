@@ -44,8 +44,11 @@ function ctrl_slidesMod1() {
     $nextBtn.hide();
     if (testCompleted && myAvance.ch1.progress < 2) {
       myAvance.ch1.progress = 2; // Unlock Clasificación
+      localStorage.setItem('myAvance', JSON.stringify(myAvance));
       ctrl_menuAccess();
-      showTestResults(testResults);
+    }
+    if (testCompleted && testResults) {
+      showTestResults(testResults); // Restaurar resultados
     }
   } else if (currentSlide === 7) {
     $prevBtn.hide();
@@ -55,6 +58,7 @@ function ctrl_slidesMod1() {
     $('#aud_logro').get(0).play();
     if (myAvance.ch1.logro_llanta === 0) {
       myAvance.ch1.logro_llanta = 1;
+      localStorage.setItem('myAvance', JSON.stringify(myAvance));
     }
   } else if (currentSlide === 9) {
     if (myAvance.ch1.estilosComunicacion < $(".btn_estilosComunicacion").length + 1) {
@@ -73,6 +77,7 @@ function ctrl_slidesMod1() {
       myAvance.ch1.logro_casco = 1;
       if (myAvance.ch1.progress < 3) {
         myAvance.ch1.progress = 3; // Unlock Cierre
+        localStorage.setItem('myAvance', JSON.stringify(myAvance));
         ctrl_menuAccess();
       }
     }
@@ -342,9 +347,9 @@ $('#btn_comenzarModule_1').click(function () {
 });
 
 $(".elem_click_reto").click(function () {
-    const audio = $("#efct_clic_jue")[0];
-    audio.currentTime = 0;
-    audio.play().catch((err) => {
-        console.warn("No se pudo reproducir el audio:", err);
-    });
+  const audio = $("#efct_clic_jue")[0];
+  audio.currentTime = 0;
+  audio.play().catch((err) => {
+    console.warn("No se pudo reproducir el audio:", err);
+  });
 });

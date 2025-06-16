@@ -406,10 +406,19 @@ function calculateResults() {
             delfin: Math.round((selections.delfin / totalQuestions) * 100),
             buho: Math.round((selections.buho / totalQuestions) * 100)
         };
+
         console.log("Resultados del Test:", testResults);
         testCompleted = true;
+
+        // Guardar en localStorage
+        localStorage.setItem('testResults', JSON.stringify(testResults));
+        localStorage.setItem('userSelections', JSON.stringify(userSelections));
+        localStorage.setItem('testCompleted', JSON.stringify(testCompleted));
+        localStorage.setItem('myAvance', JSON.stringify(myAvance));
+
         nSlides.numSlides = 6;
         ctrl_slidesMod1();
+
         let maxType = null;
         let maxValue = -1;
         for (let type in testResults) {
@@ -418,11 +427,14 @@ function calculateResults() {
                 maxType = type;
             }
         }
+
         myAvance.ganador = maxType;
         console.log("Ganador asignado a myAvance.ganador:", myAvance.ganador);
+
         $('.cardTest').removeClass('mayor-resultado');
         const indexMap = { pantera: 1, pavorreal: 2, delfin: 3, buho: 4 };
         $(`.cardTest:nth-of-type(${indexMap[maxType]})`).addClass('mayor-resultado');
+
         animateCalif(".cardTest:nth-of-type(1) .testResult-text", testResults.pantera, 1500);
         animateCalif(".cardTest:nth-of-type(2) .testResult-text", testResults.pavorreal, 1500);
         animateCalif(".cardTest:nth-of-type(3) .testResult-text", testResults.delfin, 1500);
@@ -645,11 +657,11 @@ $('.txt_menu').on({
         const $audio = $(`#aud_menuOver`)[0];
         if (strMod <= myAvance.avModulos && myAvance[`ch${strMod}`].progress >= strID) {
             $('#img_menu_rect').show().css('top', $(this).css('top')).doAnim('slideInLeft');
-        if ($audio) {
-      $audio.currentTime = 0; // Reinicia el audio
-      $audio.play();
-    }
-            
+            if ($audio) {
+                $audio.currentTime = 0; // Reinicia el audio
+                $audio.play();
+            }
+
         }
     },
     mouseleave: function () {
@@ -706,19 +718,19 @@ $('.txt_trofeo').on({
         $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
         $('#img_modTrof_1').show().attr('src', 'assets/img/grls/trofeos/trofeo_' + strID + '.gif');
         if ($audio) {
-      $audio.currentTime = 0; // Reinicia el audio
-      $audio.play();
-    }
-    
-        
+            $audio.currentTime = 0; // Reinicia el audio
+            $audio.play();
+        }
+
+
     },
     mouseleave: function () {
         $('#img_menu_trofeo').hide();
-        
-        
+
+
     }
-    
-    
+
+
 });
 
 $('.txt_logro').on({
@@ -729,9 +741,9 @@ $('.txt_logro').on({
         $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
         $('#img_modTrof_1').show().attr('src', 'assets/img/trofeos/logro_' + strID + '.gif');
         if ($audio) {
-      $audio.currentTime = 0; // Reinicia el audio
-      $audio.play();
-    }
+            $audio.currentTime = 0; // Reinicia el audio
+            $audio.play();
+        }
 
     },
     mouseleave: function () {
@@ -824,6 +836,20 @@ function ctrl_menuAccess() {
 
 // Initialization
 document.addEventListener("DOMContentLoaded", (event) => {
+    // Cargar estado desde localStorage
+    if (localStorage.getItem('testResults')) {
+        testResults = JSON.parse(localStorage.getItem('testResults'));
+        userSelections = JSON.parse(localStorage.getItem('userSelections'));
+        testCompleted = JSON.parse(localStorage.getItem('testCompleted'));
+        myAvance = JSON.parse(localStorage.getItem('myAvance')) || myAvance;
+        selections = {
+            pantera: Object.values(userSelections).filter(val => val === 'pantera').length,
+            pavorreal: Object.values(userSelections).filter(val => val === 'pavorreal').length,
+            delfin: Object.values(userSelections).filter(val => val === 'delfin').length,
+            buho: Object.values(userSelections).filter(val => val === 'buho').length
+        };
+    }
+
     gsap.registerPlugin(Flip, ScrollTrigger, Observer, ScrollToPlugin, Draggable, MotionPathPlugin, EaselPlugin, PixiPlugin, TextPlugin, RoughEase, ExpoScaleEase, SlowMo, CustomEase);
 
     const cards = document.querySelectorAll('.cardTest');
@@ -850,10 +876,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
             $thisDiv.find('img').attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
             selections[type]++;
             userSelections[questionNum] = type;
+            // Guardar selecciones en localStorage
+            localStorage.setItem('userSelections', JSON.stringify(userSelections));
             var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
             if (totalSelections === totalQuestions) {
                 calculateResults();
             }
         });
+    } else {
+        restoreSelections();
     }
 });
