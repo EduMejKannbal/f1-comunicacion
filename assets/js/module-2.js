@@ -24,6 +24,11 @@ function ctrl_slidesMod2() {
   console.log("#slide_module2_" + currentSlide);
   $prevBtn.show();
   $nextBtn.show();
+  $("#slide_module2_" + currentSlide).show();
+  console.log("#slide_module2_" + currentSlide);
+  $prevBtn.show();
+  $nextBtn.show();
+  playAudio('module2_', currentSlide);
 
   if (currentSlide === 1) {
     $prevBtn.hide();
@@ -285,6 +290,13 @@ $("#btn_finmod2").click(function () {
 
 $(".elem_click").click(function () {
   const audio = $("#efct_clic2")[0];
+  audio.currentTime = 0;
+  audio.play().catch((err) => {
+    console.warn("No se pudo reproducir el audio:", err);
+  });
+});
+$(".elem_click_logro").click(function () {
+  const audio = $("#efct_clic_logro_2")[0];
   audio.currentTime = 0;
   audio.play().catch((err) => {
     console.warn("No se pudo reproducir el audio:", err);

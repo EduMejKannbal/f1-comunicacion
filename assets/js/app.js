@@ -642,8 +642,14 @@ $('.txt_menu').on({
     },
     mouseover: function () {
         const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
+        const $audio = $(`#aud_menuOver`)[0];
         if (strMod <= myAvance.avModulos && myAvance[`ch${strMod}`].progress >= strID) {
             $('#img_menu_rect').show().css('top', $(this).css('top')).doAnim('slideInLeft');
+        if ($audio) {
+      $audio.currentTime = 0; // Reinicia el audio
+      $audio.play();
+    }
+            
         }
     },
     mouseleave: function () {
@@ -696,20 +702,37 @@ $('.txt_trofeo').on({
     mouseover: function () {
         strID = $(this).attr('id').split("_")[2];
         const relativeTop = $(this).position().top + 'px';
+        const $audio = $(`#aud_menutrof`)[0];
         $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
         $('#img_modTrof_1').show().attr('src', 'assets/img/grls/trofeos/trofeo_' + strID + '.gif');
+        if ($audio) {
+      $audio.currentTime = 0; // Reinicia el audio
+      $audio.play();
+    }
+    
+        
     },
     mouseleave: function () {
         $('#img_menu_trofeo').hide();
+        
+        
     }
+    
+    
 });
 
 $('.txt_logro').on({
     mouseover: function () {
         strID = $(this).attr('id').split("_")[2];
         const relativeTop = $(this).position().top + 'px';
+        const $audio = $(`#aud_menulogro`)[0];
         $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
         $('#img_modTrof_1').show().attr('src', 'assets/img/trofeos/logro_' + strID + '.gif');
+        if ($audio) {
+      $audio.currentTime = 0; // Reinicia el audio
+      $audio.play();
+    }
+
     },
     mouseleave: function () {
         $('#img_menu_trofeo').hide();

@@ -320,6 +320,14 @@ progress::-webkit-progress-bar {
   cursor: pointer;
   position: absolute;
 }
+.elem_click_reto {
+  cursor: pointer;
+  position: absolute;
+}
+.elem_click_logro {
+  cursor: pointer;
+  position: absolute;
+}
 .elem_click_cierre {
   cursor: pointer;
   position: absolute;
