@@ -560,7 +560,7 @@
   width: 41%;
 }
 #btn_finmod2 {
-  bottom: 13%;
+  bottom: 9%;
   left: 42.5%;
   width: 16%;
 }
@@ -641,6 +641,7 @@
 }
 .btn_mod2Continuar{
   width: 15%;
+  cursor: pointer;
 }
 #btn_mod2Continuar_1{
   left: 21%;

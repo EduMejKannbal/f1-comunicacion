@@ -243,7 +243,7 @@ function reproducirHasta(idVideo, tiempoFinal) {
     }
     const video = $video[0];
     video.removeAttribute('controls');
-    $video.removeAttr('controls');
+    // $video.removeAttr('controls');
     video.currentTime = 0;
     video.play();
     $video.on("timeupdate", function () {

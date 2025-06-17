@@ -115,7 +115,7 @@ function ctrl_slidesMod2() {
     reproducirHasta("vid_module2_15", 9.99);
   } else if (currentSlide === totalSlides) {
     $nextBtn.hide();
-    $prevBtn.show();
+    $prevBtn.hide();
   }
 }
 

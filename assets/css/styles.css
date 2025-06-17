@@ -154,7 +154,7 @@ progress::-webkit-progress-bar {
   height: auto;
 }
 .home_titleHome {
-  width: 42%;
+  width: 70%;
   height: auto;
   left: 4%;
   top: 16%;
@@ -1163,8 +1163,8 @@ progress::-webkit-progress-bar {
   right: 52%;
 }
 #contenido-logro-animado-3 {
-    top: 10%;
-    right: 54%;
+  top: 10%;
+  right: 54%;
 }
 .videoAnimadoLogro {
   width: 100%;
@@ -1198,10 +1198,13 @@ progress::-webkit-progress-bar {
 }
 
 @media (min-width: 1600px) {
-  #btn_cls_slide7_modal{
+  #btn_cls_slide7_modal {
     bottom: 6%;
     width: 15%;
     left: 41.5%;
     z-index: 2;
+  }
+  .home_titleHome {
+    width: 68%;
   }
 }

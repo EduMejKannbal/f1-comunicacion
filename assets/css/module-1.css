@@ -481,8 +481,8 @@
 }
 .cardTest-item {
   background-image: url("../img/modules/module-1/slide-5/fondo.png");
-  width: 210px;
-  height: 320px;
+  width: 200px;
+  height: 310px;
   overflow: hidden;
   background-position: center;
   border-radius: 10%;
@@ -778,8 +778,8 @@
 }
 #btn_cls_slide12_modal {
   bottom: 25%;
-  width: 19%;
-  left: 23.5%;
+  width: 17%;
+  left: 21.5%;
   z-index: 2;
 }
 #btn_finmod1 {
@@ -842,4 +842,18 @@
 }
 
 @media (min-width: 1600px) {
+  .module1_2-txt {
+    width: 75%;
+  }
+  .answer-text {
+    font-size: 75%;
+  }
+  .cardTest-item {
+    width: 250px;
+    height: 400px;
+  }
+  #contenido-logro-animado-2 {
+    top: 9.5%;
+    right: 54%;
+  }
 }
