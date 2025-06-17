@@ -603,6 +603,7 @@ $('.btn_module').click(function () {
 });
 
 $('#btn_menu').click(function () {
+    resetLocution()
     $('#slide_menu_1').show();
     $('#slide_trofeo_1').hide();
     playModuleAudio(null);
@@ -617,6 +618,7 @@ $('.txt_menu').on({
     click: function () {
         const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
         let canAccess = false;
+        resetLocution()
 
         // Verify module and section access
         if (strMod <= myAvance.avModulos) {
@@ -682,6 +684,7 @@ $('#cls_BienvVid_1').click(function () {
     var video = $('#BienvVid_1').get(0);
     video.pause();
     video.currentTime = 0;
+    playModuleAudio(null);
 });
 
 $('#btn_sobreMi_2').click(() => $('#mod_conoceCoach_2').show());
