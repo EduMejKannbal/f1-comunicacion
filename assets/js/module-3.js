@@ -35,7 +35,7 @@ function ctrl_slidesMod3() {
 
     if (currentSlide === 1) {
         $prevBtn.hide();
-        $nextBtn.show();
+        $nextBtn.hide();
         reproducirHasta("vid_module3_1", 9.99);
     } else if (currentSlide === 2) {
         $prevBtn.show();
@@ -84,7 +84,7 @@ function ctrl_slidesMod3() {
     } else if (currentSlide === 7) {
         reproducirHasta("vid_module3_7", 4.99);
         $prevBtn.hide();
-        $nextBtn.hide;
+        $nextBtn.hide();
     } else if (currentSlide === 8) {
         $prevBtn.show();
         if (myAvance.ch3.caracter < 2) {
@@ -107,7 +107,7 @@ function ctrl_slidesMod3() {
     } else if (currentSlide === 10) {
         reproducirHasta("vid_module3_10", 4.99);
         $prevBtn.hide();
-        $nextBtn.hide;
+        $nextBtn.hide();
         $('#aud_logro').get(0).play();
         if (myAvance.ch3.logro_llantas2 === 0) {
             myAvance.ch3.logro_llantas2 = 1;
@@ -127,19 +127,19 @@ function ctrl_slidesMod3() {
     } else if (currentSlide === 12) {
         reproducirHasta("vid_module3_12", 4.99);
         $prevBtn.hide();
-        $nextBtn.hide;
+        $nextBtn.hide();
         $('#aud_logro').get(0).play();
         if (myAvance.ch3.logro_volante === 0) {
             myAvance.ch3.logro_volante = 1;
         }
     } else if (currentSlide === 13) {
         $prevBtn.show();
-        $nextBtn.hide;
+        $nextBtn.hide();
         reproducirHasta("vid_module3_13", 8.99);
         $('#aud_logro').get(0).play();
     } else if (currentSlide === totalSlides) {
         $prevBtn.show();
-        $nextBtn.hide;
+        $nextBtn.hide();
     } else {
         $prevBtn.show();
         $nextBtn.show();

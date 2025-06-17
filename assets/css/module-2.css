@@ -627,6 +627,14 @@
   object-fit: cover;
   pointer-events: none;
 }
+#contenido-logro-animado-m2-1{
+    top: 5%;
+    right: 59%;
+}
+#contenido-logro-animado-m2-2{
+top: 5%;
+    right: 59%;
+}
 @media (min-width: 1199px) and (max-width: 1290px) {
 }
 @media (min-width: 1360px) {

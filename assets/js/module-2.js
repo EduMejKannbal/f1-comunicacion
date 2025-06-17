@@ -32,7 +32,7 @@ function ctrl_slidesMod2() {
 
   if (currentSlide === 1) {
     $prevBtn.hide();
-    $nextBtn.show();
+    $nextBtn.hide();
     reproducirHasta("vid_module2_1", 9.99);
   } else if (currentSlide === 2) {
     $prevBtn.show();
@@ -103,7 +103,7 @@ function ctrl_slidesMod2() {
     }
   } else if (currentSlide === 14) {
     $prevBtn.show();
-    $nextBtn.show();
+    $nextBtn.hide();
     reproducirHasta("vid_module2_14", 4.99);
   } else if (currentSlide === 15) {
     $prevBtn.show();
