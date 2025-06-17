@@ -135,7 +135,7 @@ function playModuleAudio(moduleId) {
 }
 
 function pauseAllAudio() {
-    const audios = document.querySelectorAll("audio.back.musModu");
+    const audios = document.querySelectorAll("audio.back.musModu.locution");
     audios.forEach(audio => {
         if (audio && typeof audio.pause === 'function') {
             audio.pause();

@@ -328,6 +328,7 @@ $("#btn_finmod3").click(function () {
     $("#carga_materia").hide().empty();
     ctrl_AvGeneral(3, gAvMax);
     ctrl_menuAccess();
+    playModuleAudio(null);
 });
 
 $("#btn_fin_mod37").click(function () {

@@ -77,7 +77,11 @@ function ctrl_slidesMod2() {
       myAvance.ch2.progress = 3; // Unlock Evaluación
       ctrl_menuAccess();
     }
-  } else if (currentSlide === 9 && myAvance.ch2.preg_1 === null) {
+  } else if (currentSlide === 8) {
+    $prevBtn.show();
+    $nextBtn.hide();
+  }
+  else if (currentSlide === 9 && myAvance.ch2.preg_1 === null) {
     $prevBtn.show();
     $nextBtn.hide();
   } else if (currentSlide === 10 && myAvance.ch2.preg_2 === null) {
@@ -107,7 +111,7 @@ function ctrl_slidesMod2() {
     reproducirHasta("vid_module2_14", 4.99);
   } else if (currentSlide === 15) {
     $prevBtn.show();
-    $nextBtn.show();
+    $nextBtn.hide();
     reproducirHasta("vid_module2_15", 9.99);
   } else if (currentSlide === totalSlides) {
     $nextBtn.hide();
@@ -272,7 +276,11 @@ $('#btn_cls_slide16_modal').click(function () {
   nSlides.numSlides_2 = 17;
   ctrl_slidesMod2();
 });
-
+//btn_mod2Continua
+$('.btn_mod2Continuar').click(function () {
+  nSlides.numSlides_2 = 15;
+  ctrl_slidesMod2();
+});
 $("#btn_finmod2").click(function () {
   myAvance.avModulos = 3;
   nSlides.numSlides_2 = 1;
@@ -286,6 +294,7 @@ $("#btn_finmod2").click(function () {
   $("#carga_materia").hide().empty();
   ctrl_AvGeneral(2, gAvMax);
   ctrl_menuAccess();
+  playModuleAudio(null);
 });
 
 $(".elem_click").click(function () {

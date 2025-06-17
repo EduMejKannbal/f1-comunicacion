@@ -627,13 +627,25 @@
   object-fit: cover;
   pointer-events: none;
 }
-#contenido-logro-animado-m2-1{
-    top: 5%;
-    right: 59%;
+#contenido-logro-animado-m2-1 {
+  top: 5%;
+  right: 64%;
 }
-#contenido-logro-animado-m2-2{
-top: 5%;
-    right: 59%;
+#contenido-logro-animado-m2-2 {
+  top: 5%;
+  right: 64%;
+}
+#contenido-logro-animado-m2-3 {
+  top: 5%;
+  right: 63%;
+}
+.btn_mod2Continuar{
+  width: 15%;
+}
+#btn_mod2Continuar_1{
+  left: 21%;
+  bottom: 22%;
+  height: auto;
 }
 @media (min-width: 1199px) and (max-width: 1290px) {
 }
