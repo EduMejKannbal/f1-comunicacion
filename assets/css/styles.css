@@ -735,7 +735,9 @@ progress::-webkit-progress-bar {
 #btn_close_loader {
   top: 80%;
   width: 15%;
-  left: 42.5%;
+  left: 0;
+  margin: auto;
+  right: 0;
 }
 
 #precache_index {
