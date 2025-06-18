@@ -325,19 +325,20 @@ $('#btn_res_cont').click(function () {
 
 
 $("#btn_finmod1").click(function () {
-  myAvance.avModulos = 2;
-  nSlides.numSlides = 1;
-  if (myAvance.avModulos >= 2) {
-    myAvance.ch1.trofeo_1 = 1;
-  }
-  pauseAllAudio();
-  $(".music").addClass("hide");
-  resetFondo(1, 2);
-  $('#slide_index_1').show();
-  $("#carga_materia").hide().empty();
-  ctrl_AvGeneral(1, gAvMax);
-  playModuleAudio(null);
-  ctrl_menuAccess();
+    myAvance.avModulos = 2;
+    nSlides.numSlides = 1;
+    if (myAvance.avModulos >= 2) {
+        myAvance.ch1.trofeo_1 = 1;
+    }
+    pauseAllAudio(); 
+    $(".music").removeClass("hide"); 
+    resetFondo(1, 2);
+    $('#slide_index_1').show();
+    $("#carga_materia").hide().empty();
+    ctrl_AvGeneral(1, gAvMax);
+    ctrl_menuAccess();
+    playModuleAudio(null); 
+    localStorage.setItem('myAvance', JSON.stringify(myAvance)); // Save progress
 });
 
 

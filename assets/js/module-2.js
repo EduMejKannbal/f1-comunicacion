@@ -281,6 +281,7 @@ $('.btn_mod2Continuar').click(function () {
   nSlides.numSlides_2 = 15;
   ctrl_slidesMod2();
 });
+
 $("#btn_finmod2").click(function () {
   myAvance.avModulos = 3;
   nSlides.numSlides_2 = 1;
@@ -288,13 +289,14 @@ $("#btn_finmod2").click(function () {
     myAvance.ch2.trofeo_2 = 1;
   }
   pauseAllAudio();
-  $(".music").addClass("hide");
+  $(".music").removeClass("hide");
   resetFondo(2, 2);
   $('#slide_index_1').show();
   $("#carga_materia").hide().empty();
   ctrl_AvGeneral(2, gAvMax);
   ctrl_menuAccess();
   playModuleAudio(null);
+  localStorage.setItem('myAvance', JSON.stringify(myAvance));
 });
 
 $(".elem_click").click(function () {

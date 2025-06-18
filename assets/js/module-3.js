@@ -308,13 +308,14 @@ $("#btn_finmod3").click(function () {
         myAvance.ch3.trofeo_3 = 1;
     }
     pauseAllAudio();
-    $(".music").addClass("hide");
+    $(".music").removeClass("hide");
     if (myAvance.ganador !== null) {
         $('#slide_ganador_1').show();
         const videoSrc = `assets/vid/ganador/piloto_${myAvance.ganador}.mp4`;
         const $video = $('#vid_ganador_1');
         if ($video.length) {
             $video.attr('src', videoSrc);
+            $video.get(0).volume = 0.5;
             $video.get(0).load();
             $video.get(0).play().catch(err => console.warn("Error playing winner video:", err));
         } else {
@@ -329,6 +330,7 @@ $("#btn_finmod3").click(function () {
     ctrl_AvGeneral(3, gAvMax);
     ctrl_menuAccess();
     playModuleAudio(null);
+    localStorage.setItem('myAvance', JSON.stringify(myAvance));
 });
 
 $("#btn_fin_mod37").click(function () {
