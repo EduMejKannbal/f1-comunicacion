@@ -629,7 +629,7 @@ $('.txt_menu').on({
 
         if (canAccess) {
             const $cargaMateria = $('#carga_materia');
-            $('#slide_index_1, .w3-modal, .slide_vidWelcome, .slide_index, .slide_portada, .slide_ganador').hide();
+            $('#slide_index_1, .w3-modal, .slide_vidWelcome, .slide_index, .slide_portada, .slide_ganador, #vid_in_modal').hide();
             $cargaMateria.hide().empty().show();
             document.dispatchEvent(new Event('click'));
             $cargaMateria.load(`module_${strMod}.html`, function () {

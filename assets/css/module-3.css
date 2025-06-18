@@ -1,687 +1,212 @@
-.slide_modal,
-.slide_juego,
-.slide_module3 {
-  display: none;
-  left: 0;
-  top: 0;
-}
-.slide_fondo {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-#slideM3_title {
-  width: 68%;
-  left: 0;
-  bottom: 44%;
-  height: auto;
-}
-#btn_comenzarModule_3 {
-  width: 21%;
-  left: 39.7%;
-  top: 81%;
-  height: auto;
-}
-#slideM3-ubi {
-  width: 15%;
-  height: auto;
-  top: 27%;
-  right: 29%;
-}
-
-#slide3_img2_1 {
-  width: 64%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: 2;
-  opacity: 1;
-}
-#slideM3_txt_1 {
-  width: 29%;
-  height: auto;
-  left: 5%;
-  top: 23%;
-  z-index: 2;
-}
-#slideM3_txt_2 {
-  width: 35%;
-  height: auto;
-  left: 5%;
-  top: 29%;
-  z-index: 2;
-}
-#slideM3_txt_3 {
-  width: 39%;
-  height: auto;
-  left: 4%;
-  top: 56%;
-  z-index: 2;
-}
-#slideM3_pista {
-  width: 68%;
-  left: 0;
-  bottom: 0;
-  height: auto;
-  opacity: 0.3;
-}
-.slideM3-plaqueta {
-  width: 62%;
-  height: 27%;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  left: 0;
-  top: 2%;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-#plaqueta-relative {
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  align-items: center;
-  justify-items: start;
-  justify-content: space-between;
-  padding-inline-start: 5%;
-}
-.container-emocionesBasicas {
-  width: 74%;
-  height: 55%;
-  top: 30%;
-  left: 13%;
-}
-.emocionesBasicas {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-auto-columns: 1fr;
-  grid-auto-flow: row;
-  justify-items: center;
-  justify-content: center;
-  align-items: center;
-}
-#slideM3-title {
-  width: 75%;
-  height: auto;
-}
-.div_emocionesBasicas {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  position: relative;
-}
-.btn_emocion {
-  height: auto;
-  cursor: pointer;
-}
-.cls_emocion {
-  top: 3%;
-  right: 3%;
-  width: 18%;
-}
-.txt_btn_regresar {
-  font-size: 1.8vw;
-  font-family: Formula_bold;
-  top: -40%;
-  left: 19%;
-  color: white;
-}
-#slide3_emoContainer {
-  width: 100%;
-  left: 0;
-  bottom: 70.5%;
-}
-#btn_emocion_1 {
-  width: 16%;
-  left: 5%;
-  top: 45%;
-}
-#btn_emocion_2 {
-  width: 14.7%;
-  left: 26%;
-  top: 42%;
-}
-#btn_emocion_3 {
-  width: 15.4%;
-  left: 45%;
-  top: 31%;
-}
-#btn_emocion_4 {
-  width: 14.7%;
-  left: 64%;
-  top: 41%;
-}
-#btn_emocion_5 {
-  width: 16.2%;
-  left: 81%;
-  top: 45%;
-}
-#txt_emocion_1_1 {
-  position: absolute;
-  width: 52%;
-  left: 23%;
-  top: 78%;
-}
-#txt_emocion_2_1 {
-  position: absolute;
-  width: 21.7%;
-  left: 29%;
-  top: 78%;
-}
-#txt_emocion_3_1 {
-  position: absolute;
-  width: 65.4%;
-  left: 5%;
-  top: 78%;
-}
-#txt_emocion_4_1 {
-  position: absolute;
-  width: 52.7%;
-  left: 13%;
-  top: 78%;
-}
-#txt_emocion_5_1 {
-  position: absolute;
-  width: 77%;
-  left: 9%;
-  top: 78%;
-}
-.mod_emocion {
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: none;
-}
-#slideM3_3-inst {
-  width: 15%;
-  height: auto;
-  left: 0;
-  right: 0;
-  margin: auto;
-  bottom: 5%;
-}
-.chk_emocion {
-  width: 40%;
-  height: auto;
-  bottom: -15%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: none;
-}
-
-#title_emocion_1 {
-  left: 53%;
-  width: 5%;
-  top: 20%;
-}
-
-#txt_emocion_1 {
-  left: 53%;
-  width: 41%;
-  top: 27%;
-}
-
-#title_emocion_1 {
-  left: 53%;
-  width: 15%;
-  top: 20%;
-}
-
-#txt_emocion_2 {
-  left: 53%;
-  width: 41%;
-  top: 27%;
-}
-
-#title_emocion_2 {
-  left: 53%;
-  width: 5%;
-  top: 20%;
-}
-
-#txt_emocion_2 {
-  left: 53%;
-  width: 41%;
-  top: 27%;
-}
-
-#title_emocion_3 {
-  left: 53%;
-  width: 17%;
-  top: 20%;
-}
-
-#txt_emocion_3 {
-  left: 53%;
-  width: 41%;
-  top: 27%;
-}
-
-#title_emocion_4 {
-  left: 53%;
-  width: 13%;
-  top: 20%;
-}
-
-#txt_emocion_4 {
-  left: 53%;
-  width: 41%;
-  top: 27%;
-}
-
-#title_emocion_5 {
-  left: 53%;
-  width: 36%;
-  top: 20%;
-}
-
-#txt_emocion_5 {
-  left: 53%;
-  width: 41%;
-  top: 27%;
-}
-
-#txt_emocion_6 {
-  left: 4%;
-  width: 77%;
-  top: 15%;
-  z-index: 2;
-}
-
-#cls_emocion_6 {
-  top: -2%;
-  right: -2%;
-  width: 5%;
-}
-#slideM3-4-pleca {
-  left: 0;
-  top: 0;
-  width: 65%;
-  height: 100%;
-  opacity: 0.7;
-  backdrop-filter: blur(4px);
-}
-#slideM3-4-txt {
-  width: 40%;
-  height: auto;
-  left: 4%;
-  bottom: 0;
-  top: 0;
-  margin: auto;
-}
-#btn_vidManEm_1 {
-  bottom: 18%;
-  left: 22%;
-  width: 9%;
-  height: auto;
-  cursor: pointer;
-}
-#slideM3-5-pleca {
-  top: 0;
-  left: 0;
-  width: 58%;
-  height: 100%;
-}
-#slideM3-5-txt {
-  width: 40%;
-  height: auto;
-  bottom: 24%;
-  left: 3%;
-}
-#slideM3_6-txt {
-  width: 70%;
-  height: auto;
-}
-.container-emociones {
-  width: 75%;
-  height: 15%;
-  bottom: 11%;
-  margin: auto;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5%;
-}
-.btn_impactBio {
-  width: 35%;
-  height: auto;
-  cursor: pointer;
-}
-#slideM3-6_plaqueta {
-  top: 29%;
-}
-.container_7_temp {
-  width: 58%;
-  height: 66%;
-  right: 0;
-  top: 15%;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-}
-.temp-7-round {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-#slideM3-7-title {
-  width: 45%;
-  height: auto;
-}
-#slideM3-7-paragraph {
-  width: 70%;
-  height: auto;
-}
-#slideM3-7-pista {
-  width: 85%;
-  height: 100%;
-  left: 0;
-  top: 0;
-}
-#slideM3-7-person {
-  width: 46%;
-  height: auto;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
-}
-#btn_caracter_1 {
-  bottom: 13%;
-  width: 10%;
-  left: 67%;
-  height: auto;
-  cursor: pointer;
-}
-#slideM3-8-pleca {
-  width: 72%;
-  height: 100%;
-  left: 0;
-  top: 0;
-}
-#slideM3-8-txt {
-  width: 36%;
-  height: auto;
-  left: 6%;
-  top: 24%;
-}
-#slideM3-8-ints {
-  width: 36%;
-  height: auto;
-  left: 32%;
-  bottom: 6%;
-}
-#btn_vidTemp_1 {
-  width: 10%;
-  height: auto;
-  left: 47%;
-  bottom: 17%;
-}
-#slideM3-9-title {
-  width: 75%;
-  height: auto;
-  top: 5%;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-#slideM3-9-btn {
-  width: 25%;
-  height: auto;
-  bottom: 5%;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-#juego3 {
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: none;
-}
-.container-dragDrop {
-  top: 10%;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 86%;
-  height: 63%;
-}
-.dragDrop {
-  display: grid;
-  grid-auto-columns: 1fr;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  width: 100%;
-  height: 100%;
-  justify-items: center;
-  align-items: center;
-  gap: 2%;
-}
-.dragDrop_answers {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  position: relative;
-  justify-items: center;
-  grid-auto-columns: 1fr;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-.dragDrop_quest {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  position: relative;
-  align-items: center;
-  align-content: center;
-  justify-items: center;
-}
-.dragDrop_answers div {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.draggable {
-  width: 90%;
-  height: auto;
-  position: absolute;
-  z-index: 5;
-  cursor: move;
-}
-.dragDrop_quest .question {
-  width: 75%;
-  height: auto;
-  z-index: 1;
-}
-.dropzone {
-  position: absolute;
-  width: 60%;
-  height: 10%;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dropzone img {
-  width: 80%;
-}
-.dropzone-1 {
-  top: 29%;
-  left: 27%;
-}
-.dropzone-2 {
-  top: 57%;
-  left: 22%;
-}
-.dropzone-3 {
-  top: 29%;
-  left: 20%;
-}
-.dropzone-4 {
-  top: 20%;
-  left: 21%;
-}
-
-.mod_retroIncorrect,
-.mod_retroCorrect {
-  top: 0;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-}
-.modal-retross {
-  width: 100%;
-  height: 100%;
-}
-.modal-background {
-  width: 100%;
-  height: 100%;
-}
-.modal-animate {
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 55%;
-  height: auto;
-  right: 0;
-  margin: auto;
-  bottom: 0;
-}
-.modal-txt {
-  z-index: 1;
-  position: absolute;
-  top: 30%;
-  width: 35%;
-  left: 0;
-  margin: auto;
-  right: 0;
-}
-.close_retroIncorrect,
-.close_retroCorrect {
-  width: 15%;
-  height: auto;
-  left: 0;
-  right: 0;
-  margin: auto;
-  bottom: 35%;
-  z-index: 5;
-}
-.retross_round {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  z-index: 0;
-}
-
-#trofeo3 {
-  top: 6%;
-  width: 32%;
-  left: 5%;
-}
-#btn_fin_mod310 {
-  bottom: 2%;
-  left: 0;
-  width: 19%;
-  right: 0;
-  margin: auto;
-}
-#modal_trofeo3 {
-  top: 2%;
-  width: 74%;
-  right: 0;
-}
-#slide15_modal {
-  top: 32%;
-  left: 0;
-  width: 57%;
-}
-#slide15_modal_txt_1 {
-  top: 5%;
-  left: 9%;
-  width: 85%;
-}
-#btn_finmod3 {
-  bottom: 22%;
-  left: 38%;
-  width: 26%;
-}
-
-#txt_trofeo3 {
-  top: 48%;
-  left: 44%;
-  width: 38%;
-}
-.vid_in_modal {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
-.vid_in_modal video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
-#modal_trofeo1,
-#modal_trofeo2 {
-  top: 2%;
-  width: 74%;
-  right: 0;
-}
-#btn_fin_mod37 {
-  bottom: 2%;
-  width: 20%;
-  left: 40%;
-}
+.slide_modal, .slide_juego, .slide_module3 { display: none; left: 0px; top: 0px; }
+.slide_fondo { top: 0px; left: 0px; width: 100%; height: 100%; }
+#slideM3_title { width: 68%; left: 0px; bottom: 44%; height: auto; }
+#btn_comenzarModule_3 { width: 21%; left: 39.7%; top: 81%; height: auto; }
+#slideM3-ubi { width: 15%; height: auto; top: 27%; right: 29%; }
+#slide3_img2_1 { width: 64%; height: 100%; left: 0px; top: 0px; z-index: 2; opacity: 1; }
+#slideM3_txt_1 { width: 29%; height: auto; left: 5%; top: 23%; z-index: 2; }
+#slideM3_txt_2 { width: 35%; height: auto; left: 5%; top: 29%; z-index: 2; }
+#slideM3_txt_3 { width: 39%; height: auto; left: 4%; top: 56%; z-index: 2; }
+#slideM3_pista { width: 68%; left: 0px; bottom: 0px; height: auto; opacity: 0.3; }
+.slideM3-plaqueta { width: 62%; height: 27%; background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(3px); border: 1px solid rgba(255, 255, 255, 0.18); left: 0px; top: 2%; border-radius: 0px 15px 15px 0px; }
+#plaqueta-relative { border-radius: 0px 15px 15px 0px; width: 100%; height: 100%; display: grid; place-items: center start; justify-content: space-between; padding-inline-start: 5%; }
+.container-emocionesBasicas { width: 74%; height: 55%; top: 30%; left: 13%; }
+.emocionesBasicas { width: 100%; height: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; grid-auto-columns: 1fr; grid-auto-flow: row; place-items: center; justify-content: center; }
+#slideM3-title { width: 75%; height: auto; }
+.div_emocionesBasicas { display: grid; place-items: center; position: relative; }
+.btn_emocion { height: auto; cursor: pointer; }
+.cls_emocion { top: 3%; right: 3%; width: 18%; }
+.txt_btn_regresar { font-size: 1.8vw; font-family: Formula_bold; top: -40%; left: 19%; color: white; }
+#slide3_emoContainer { width: 100%; left: 0px; bottom: 70.5%; }
+#btn_emocion_1 { width: 16%; left: 5%; top: 45%; }
+#btn_emocion_2 { width: 14.7%; left: 26%; top: 42%; }
+#btn_emocion_3 { width: 15.4%; left: 45%; top: 31%; }
+#btn_emocion_4 { width: 14.7%; left: 64%; top: 41%; }
+#btn_emocion_5 { width: 16.2%; left: 81%; top: 45%; }
+#txt_emocion_1_1 { position: absolute; width: 52%; left: 23%; top: 78%; }
+#txt_emocion_2_1 { position: absolute; width: 21.7%; left: 29%; top: 78%; }
+#txt_emocion_3_1 { position: absolute; width: 65.4%; left: 5%; top: 78%; }
+#txt_emocion_4_1 { position: absolute; width: 52.7%; left: 13%; top: 78%; }
+#txt_emocion_5_1 { position: absolute; width: 77%; left: 9%; top: 78%; }
+.mod_emocion { top: 0px; left: 0px; width: 100%; display: none; }
+#slideM3_3-inst { width: 15%; height: auto; left: 0px; right: 0px; margin: auto; bottom: 5%; }
+.chk_emocion { width: 40%; height: auto; bottom: -15%; left: 0px; right: 0px; margin: auto; display: none; }
+#title_emocion_1 { left: 53%; width: 5%; top: 20%; }
+#txt_emocion_1 { left: 53%; width: 41%; top: 27%; }
+#title_emocion_1 { left: 53%; width: 15%; top: 20%; }
+#txt_emocion_2 { left: 53%; width: 41%; top: 27%; }
+#title_emocion_2 { left: 53%; width: 5%; top: 20%; }
+#txt_emocion_2 { left: 53%; width: 41%; top: 27%; }
+#title_emocion_3 { left: 53%; width: 17%; top: 20%; }
+#txt_emocion_3 { left: 53%; width: 41%; top: 27%; }
+#title_emocion_4 { left: 53%; width: 13%; top: 20%; }
+#txt_emocion_4 { left: 53%; width: 41%; top: 27%; }
+#title_emocion_5 { left: 53%; width: 36%; top: 20%; }
+#txt_emocion_5 { left: 53%; width: 41%; top: 27%; }
+#txt_emocion_6 { left: 4%; width: 77%; top: 15%; z-index: 2; }
+#cls_emocion_6 { top: -2%; right: -2%; width: 5%; }
+#slideM3-4-pleca { left: 0px; top: 0px; width: 65%; height: 100%; opacity: 0.7; backdrop-filter: blur(4px); }
+#slideM3-4-txt { width: 40%; height: auto; left: 4%; bottom: 0px; top: 0px; margin: auto; }
+#btn_vidManEm_1 { bottom: 18%; left: 22%; width: 9%; height: auto; cursor: pointer; }
+#slideM3-5-pleca { top: 0px; left: 0px; width: 58%; height: 100%; }
+#slideM3-5-txt { width: 40%; height: auto; bottom: 24%; left: 3%; }
+#slideM3_6-txt { width: 70%; height: auto; }
+.container-emociones { width: 75%; height: 15%; bottom: 11%; margin: auto; left: 0px; right: 0px; display: flex; align-items: center; justify-content: center; gap: 5%; }
+.btn_impactBio { width: 35%; height: auto; cursor: pointer; }
+#slideM3-6_plaqueta { top: 29%; }
+.container_7_temp { width: 58%; height: 66%; right: 0px; top: 15%; border-radius: 15px 0px 0px 15px; }
+.temp-7-round { display: grid; place-items: center; background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(3px); border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.18); }
+#slideM3-7-title { width: 45%; height: auto; }
+#slideM3-7-paragraph { width: 70%; height: auto; }
+#slideM3-7-pista { width: 85%; height: 100%; left: 0px; top: 0px; }
+#slideM3-7-person { width: 46%; height: auto; z-index: 1; bottom: 0px; left: 0px; }
+#btn_caracter_1 { bottom: 13%; width: 10%; left: 67%; height: auto; cursor: pointer; }
+#slideM3-8-pleca { width: 72%; height: 100%; left: 0px; top: 0px; }
+#slideM3-8-txt { width: 36%; height: auto; left: 6%; top: 24%; }
+#slideM3-8-ints { width: 36%; height: auto; left: 32%; bottom: 6%; }
+#btn_vidTemp_1 { width: 10%; height: auto; left: 47%; bottom: 17%; }
+#slideM3-9-title { width: 75%; height: auto; top: 5%; left: 0px; right: 0px; margin: auto; }
+#slideM3-9-btn { width: 25%; height: auto; bottom: 5%; left: 0px; right: 0px; margin: auto; }
+#juego3 { top: 0px; left: 0px; width: 100%; display: none; }
+.container-dragDrop { top: 10%; position: absolute; left: 0px; right: 0px; margin: auto; width: 86%; height: 63%; }
+.dragDrop { display: grid; grid-auto-columns: 1fr; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; width: 100%; height: 100%; place-items: center; gap: 2%; }
+.dragDrop_answers { width: 100%; height: 100%; display: grid; position: relative; justify-items: center; grid-auto-columns: 1fr; grid-template-columns: 1fr; grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr; }
+.dragDrop_quest { width: 100%; height: 100%; display: grid; position: relative; place-items: center; align-content: center; }
+.dragDrop_answers div { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
+.draggable { width: 90%; height: auto; position: absolute; z-index: 5; cursor: move; }
+.dragDrop_quest .question { width: 75%; height: auto; z-index: 1; }
+.dropzone { position: absolute; width: 60%; height: 10%; background: transparent; display: flex; justify-content: center; align-items: center; }
+.dropzone img { width: 80%; }
+.dropzone-1 { top: 29%; left: 27%; }
+.dropzone-2 { top: 57%; left: 22%; }
+.dropzone-3 { top: 29%; left: 20%; }
+.dropzone-4 { top: 20%; left: 21%; }
+.mod_retroIncorrect, .mod_retroCorrect { top: 0px; position: absolute; left: 0px; width: 100%; height: 100%; display: grid; place-items: center; place-content: center; }
+.modal-retross { width: 100%; height: 100%; }
+.modal-background { width: 100%; height: 100%; }
+.modal-animate {z-index: 1;position: absolute;inset: 0px;width: 63%;height: auto;margin: auto;}
+.modal-txt {z-index: 1;position: absolute;top: 36%;width: 39%;left: 0px;margin: auto;right: 0px;}
+.close_retroIncorrect, .close_retroCorrect {width: 15%;height: auto;left: 0px;right: 0px;margin: auto;bottom: 32%;z-index: 5;}
+.retross_round { width: 100%; height: 100%; object-fit: fill; z-index: 0; }
+#trofeo3 { top: 6%; width: 32%; left: 5%; }
+#btn_fin_mod310 { bottom: 2%; left: 0px; width: 19%; right: 0px; margin: auto; }
+#modal_trofeo3 { top: 2%; width: 74%; right: 0px; }
+#slide15_modal { top: 32%; left: 0px; width: 57%; }
+#slide15_modal_txt_1 { top: 5%; left: 9%; width: 85%; }
+#btn_finmod3 {bottom: 12%;left: 38%;width: 26%;}
+#txt_trofeo3 { top: 48%; left: 44%; width: 38%; }
+.vid_in_modal { position: absolute; width: 100%; height: 100%; overflow: hidden; top: 0px; left: 0px; pointer-events: none; }
+.vid_in_modal video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+#modal_trofeo1, #modal_trofeo2 { top: 2%; width: 74%; right: 0px; }
+#btn_fin_mod37 { bottom: 2%; width: 20%; left: 40%; }
+#contenido-logro-animado-m3-1 { top: 5%; right: 64%; }
+#contenido-logro-animado-m3-2 { top: 5%; right: 64%; }
+#contenido-logro-animado-m3-3 { top: 4%; right: 57%; }
 @media (min-width: 1199px) and (max-width: 1290px) {
+    
 }
 @media (min-width: 1360px) {
+    .vid_in_modal {
+    width: 114%;
+    height: 121%;
+    top: -67px;
+    left: -67px;
+}
+#cls_vidManEm_1 {
+    top: -12.5%;
+    right: -7%;
+    width: 5%;
+}
+#cls_impactBio_1 {
+    top: -12.5%;
+    right: -7%;
+    width: 5%;
+}
+#cls_impactBio_2 {
+    top: -12.5%;
+    right: -7%;
+    width: 5%;
+}
+#cls_caracter_1 {
+    top: -12.5%;
+    right: -7%;
+    width: 5%;
+}
+#cls_vidTemp_1 {
+    top: -12.5%;
+    right: -7%;
+    width: 5%;
+}
 }
 @media (min-width: 1400px) and (max-width: 1500px) {
+        .vid_in_modal {
+    width: 114.5%;
+    height: 120%;
+    top: 74px;
+    left: -72px;
+  }
+    #cls_2sarp_1 {
+    top: 14%;
+    right: -7%;
 }
-
+#cls_vidManEm_1 {
+    top: 14.5%;
+    right: -7%;
+    width: 5%;
+}
+#cls_impactBio_1 {
+    top: 14.5%;
+    right: -7%;
+    width: 5%;
+}
+#cls_impactBio_2 {
+    top: 14.5%;
+    right: -7%;
+    width: 5%;
+}
+#cls_caracter_1 {
+    top: 14.5%;
+    right: -7%;
+    width: 5%;
+}
+#cls_vidTemp_1 {
+    top: 14.5%;
+    right: -7%;
+    width: 5%;
+}
+}
 @media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {
 }
-
 @media (min-width: 1600px) {
+    .vid_in_modal {
+    width: 114%;
+    height: 121%;
+    top: -53px;
+    left: -79px;
+}
+    #cls_vidManEm_1 {
+    top: -8.5%;
+    right: -7.5%;
+    width: 5%;
+}
+#cls_impactBio_1 {
+    top: -8.5%;
+    right: -7.5%;
+    width: 5%;
+}
+#cls_impactBio_2 {
+    top: -8.5%;
+    right: -7.5%;
+    width: 5%;
+}
+#cls_caracter_1 {
+    top: -8.5%;
+    right: -7.5%;
+    width: 5%;
+}
+#cls_vidTemp_1 {
+    top: -8.5%;
+    right: -7.5%;
+    width: 5%;
+}
 }

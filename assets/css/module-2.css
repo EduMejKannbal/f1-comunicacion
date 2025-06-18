@@ -639,6 +639,10 @@
   top: 5%;
   right: 63%;
 }
+#contenido-logro-animado-m2-4 {
+  top: 4%;
+  right: 57%;
+}
 .btn_mod2Continuar{
   width: 15%;
   cursor: pointer;
@@ -651,12 +655,44 @@
 @media (min-width: 1199px) and (max-width: 1290px) {
 }
 @media (min-width: 1360px) {
+    #cls_2sarp_1 {
+    top: -12%;
+    right: -7%;
+    width: 4%;
+}
+    .vid_in_modal {
+    width: 114.5%;
+    height: 120%;
+    top: -65px;
+    left: -70px;
+  }
+
 }
 @media (min-width: 1400px) and (max-width: 1500px) {
+    .vid_in_modal {
+    width: 114.5%;
+    height: 120%;
+    top: 74px;
+    left: -72px;
+  }
+    #cls_2sarp_1 {
+    top: 14%;
+    right: -7%;
+}
 }
 
 @media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {
 }
 
 @media (min-width: 1600px) {
+    .vid_in_modal {
+    width: 114.5%;
+    height: 120%;
+    top: -47px;
+    left: -81px;
+  }
+  #cls_2sarp_1 {
+    top: -8%;
+    right: -7%;
+}
 }

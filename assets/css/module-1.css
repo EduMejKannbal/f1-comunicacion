@@ -846,7 +846,7 @@
     width: 75%;
   }
   .answer-text {
-    font-size: 75%;
+    font-size: 71%;
   }
   .cardTest-item {
     width: 250px;
@@ -856,4 +856,5 @@
     top: 9.5%;
     right: 54%;
   }
+
 }
