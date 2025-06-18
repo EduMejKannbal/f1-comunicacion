@@ -27,9 +27,9 @@ function ctrl_slidesMod3() {
     console.log("#slide_module3_" + currentSlide);
     $prevBtn.show();
     $nextBtn.show();
-      $("#slide_module3_" + currentSlide).show();
+    $("#slide_module3_" + currentSlide).show();
     console.log("#slide_module3_" + currentSlide);
-     $prevBtn.show();
+    $prevBtn.show();
     $nextBtn.show();
     playAudio('module3_', currentSlide);
 
@@ -302,6 +302,7 @@ $("#btn_fin_mod312").click(function () {
 });
 
 $("#btn_finmod3").click(function () {
+    resetLocution();
     myAvance.avModulos = 4;
     nSlides.numSlides_3 = 1;
     if (myAvance.avModulos >= 4) {

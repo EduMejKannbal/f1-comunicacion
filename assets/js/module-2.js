@@ -283,6 +283,7 @@ $('.btn_mod2Continuar').click(function () {
 });
 
 $("#btn_finmod2").click(function () {
+  resetLocution();
   myAvance.avModulos = 3;
   nSlides.numSlides_2 = 1;
   if (myAvance.avModulos >= 3) {

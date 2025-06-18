@@ -862,6 +862,7 @@ $('#btn_sobreMi_2').click(() => $('#mod_conoceCoach_2').show());
 $('#cls_conoceCoach_2').click(() => $('#mod_conoceCoach_2').fadeOut());
 
 $('.btn_avModulos').click(function () {
+    resetLocution();
     strID = $(this).attr('id').split('_')[2];
     $('#slide_portada_' + strID).show();
     "1" === strID && anim_fondo(2, strID, "-89%", "0%", "199%", "192%");
