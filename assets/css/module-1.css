@@ -426,6 +426,7 @@
   bottom: 0;
   /* font-size: clamp(10%, 60%, 55%); */
   width: 81%;
+  width: 80%;
   display: grid;
   justify-items: center;
   align-items: center;
@@ -473,7 +474,9 @@
 }
 .cardTest {
   perspective: 1000px;
-  /* transform-style: preserve-3d; */
+  transition: transform 0.5s ease, opacity 0.5s ease; /* Transiciones suaves */
+  margin: 0;
+  flex-shrink: 0;
 }
 .cardTest-item {
   background-image: url("../img/modules/module-1/slide-5/fondo.png");
@@ -486,6 +489,8 @@
   display: grid;
   align-items: end;
   justify-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
 }
 .cardTest-item .item-testimage {
   top: 10%;
@@ -560,7 +565,7 @@
 .progress-bar-fill {
   height: 100%;
   width: 0%;
-  background: #0497ec;
+  background: #0497f0;
   transition: width 1s ease-in-out;
 }
 .module1_7-cars {
@@ -785,7 +790,8 @@
   z-index: 2;
 }
 
-.mod_estilosComunicacion {
+.mod_estilosComunicacion,
+.modalesVideosContenido {
   top: 0;
   left: 0;
   width: 100%;
@@ -822,8 +828,43 @@
 .cardTest.mayor-resultado {
   transform: scale(1.25);
   z-index: 2;
+  border-radius: 10%;
+}
+.loader-gif {
+  width: 10%;
+  height: auto;
+  animation: spin 1.5s linear infinite;
+  z-index: 3;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 25%;
+}
+.processing-text {
+  animation: pulse 2s infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Pulse animation for the text */
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
 @media (min-width: 1199px) and (max-width: 1290px) {
 }
 @media (min-width: 1360px) {
@@ -852,5 +893,4 @@
     top: 9.5%;
     right: 54%;
   }
-
 }

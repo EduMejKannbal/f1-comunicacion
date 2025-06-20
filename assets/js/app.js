@@ -1,32 +1,41 @@
+
+// Configuración de módulos
 const MODULE_CONFIG = {
     1: {
         sections: [
-            { id: 1, slide: 4 }, // Test de autoevaluación
-            { id: 2, slide: 9 }, // Clasificación
-            { id: 3, slide: 13 } // Cierre
+            { id: 1, slide: 4 },
+            { id: 2, slide: 9 },
+            { id: 3, slide: 13 }
         ]
     },
     2: {
         sections: [
-            { id: 1, slide: 3 }, // Sarp
-            { id: 2, slide: 5 }, // Ejemplos
-            { id: 3, slide: 7 }, // Evaluación
-            { id: 4, slide: 14 } // Cierre
+            { id: 1, slide: 3 },
+            { id: 2, slide: 5 },
+            { id: 3, slide: 7 },
+            { id: 4, slide: 14 }
         ]
     },
     3: {
         sections: [
-            { id: 1, slide: 3 }, // Las emociones
-            { id: 2, slide: 4 }, // Manejo efectivo
-            { id: 3, slide: 6 }, // Bioimpactos
-            { id: 4, slide: 9 }, // Temperamento
-            { id: 5, slide: 11 }, // Evaluación Final
-            { id: 6, slide: 13 } // Cierre
+            { id: 1, slide: 3 },
+            { id: 2, slide: 4 },
+            { id: 3, slide: 6 },
+            { id: 4, slide: 9 },
+            { id: 5, slide: 11 },
+            { id: 6, slide: 13 }
         ]
     }
 };
 
-// State Variables
+// Diapositivas sin música
+const NO_MUSIC_SLIDES = {
+    1: [5, 6, 7, 10, 12, 13],
+    2: [4, 6, 9, 13, 15],
+    3: [7, 10, 12, 13]
+};
+
+// Variables de estado
 let strID;
 let gAvMax = 4;
 let myAvance = {
@@ -57,7 +66,7 @@ let myAvance = {
         impactBio: 1,
         caracter: 1,
         vidTemp: 1,
-        emocion: 1,
+        trofeoModal: 1,
         logro_llantas2: 0,
         logro_volante: 0,
         finish_juego: 0,
@@ -92,28 +101,28 @@ let testResults = null;
 let userSelections = {};
 let previousSlide = 0;
 
-// DOM References
+// Referencias DOM
 let $menu = $('#div_menu');
 let video = document.getElementById('splash_1');
 
-// Audio Control
+// Funciones de control de audio
 function playModuleAudio(moduleId) {
     console.log(`playModuleAudio called with moduleId: ${moduleId}, flagMus: ${flagMus}, isAudioPlaying: ${isAudioPlaying}`);
     let audioId = moduleId && moduleId !== "0" ? `musModu_${moduleId}` : `musModu_0`;
     const audio = document.getElementById(audioId);
     console.log(`Audio element: ${audioId}, found: ${!!audio}`);
 
-    pauseAllAudio(); // Pause only background music
+    pauseAllAudio(); // Pausar toda la música de fondo
 
     if (audio && flagMus === 1) {
         audio.loop = true;
-        audio.volume = 0.5;
+        audio.volume = 0.3;
         audio.muted = false;
+        currentAudio = audio;
         const playPromise = audio.play();
         if (playPromise !== undefined) {
             playPromise.then(() => {
                 console.log(`Playing audio: ${audioId}`);
-                currentAudio = audio;
                 isAudioPlaying = true;
                 if (!$('#slide_vidWelcome_1').is(':visible')) {
                     $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
@@ -127,7 +136,6 @@ function playModuleAudio(moduleId) {
                 document.addEventListener('click', function retryAudio() {
                     audio.play().then(() => {
                         console.log(`Retry successful, playing audio: ${audioId}`);
-                        currentAudio = audio;
                         isAudioPlaying = true;
                         $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
                     }).catch(err => console.warn(`Retry failed for ${audioId}:`, err));
@@ -138,8 +146,9 @@ function playModuleAudio(moduleId) {
     } else if (flagMus === 0) {
         if (audio) {
             audio.loop = true;
-            audio.volume = 0.5;
+            audio.volume = 0.3;
             audio.muted = true;
+            currentAudio = audio;
             console.log(`Audio ${audioId} muted due to flagMus=0`);
         }
         isAudioPlaying = false;
@@ -149,6 +158,7 @@ function playModuleAudio(moduleId) {
     } else {
         console.warn(`Audio element ${audioId} not found`);
         isAudioPlaying = false;
+        currentAudio = null;
         if (!$('#slide_vidWelcome_1').is(':visible')) {
             $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
         }
@@ -156,9 +166,9 @@ function playModuleAudio(moduleId) {
 }
 
 function pauseAllAudio() {
-    const audios = document.querySelectorAll("audio.back.musModu"); // Only background music
+    const audios = document.querySelectorAll("audio.back.musModu");
     audios.forEach(audio => {
-        if (audio && typeof audio.pause === 'function') {
+        if (audio && typeof audio.pause === 'function' && !audio.paused) {
             audio.pause();
             try {
                 audio.currentTime = 0;
@@ -168,7 +178,6 @@ function pauseAllAudio() {
             }
         }
     });
-    currentAudio = null;
     isAudioPlaying = false;
     console.log("Background audio paused");
 }
@@ -190,11 +199,20 @@ function pauseMusicAndUpdateIcon() {
     pauseAllAudio();
     $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
     flagMus = 0;
+    localStorage.setItem('flagMus', flagMus);
 }
 
 function restoreMusicAndIcon(moduleId) {
-    if (prevFlagMus === 1 && !isAudioPlaying) {
+    if (prevFlagMus === 1 && !isAudioPlaying && currentAudio) {
         flagMus = 1;
+        localStorage.setItem('flagMus', flagMus);
+        unMuteMe(currentAudio);
+        currentAudio.volume = 0.3;
+        currentAudio.play().then(() => {
+            isAudioPlaying = true;
+            $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
+        }).catch(err => console.warn("Error restoring audio:", err));
+    } else if (flagMus === 1) {
         playModuleAudio(moduleId);
     }
 }
@@ -210,7 +228,7 @@ function playAudio(id, audPlay) {
 
     let audio = document.getElementById(targetAudioId);
     if (audio) {
-        audio.volume = 0.5;
+        audio.volume = 0.3;
         audio.muted = false;
         audio.currentTime = 0;
         audio.play().then(() => {
@@ -252,10 +270,10 @@ function unMuteMe_Locut(e) {
     e.muted = false;
 }
 
-// Video Control
+// Funciones de control de video
 function playSplashVideo() {
     if (video) {
-        video.volume = 0.5;
+        video.volume = 0.3;
         video.play().then(() => {
             console.log("Video splash iniciado");
         }).catch((error) => {
@@ -280,7 +298,7 @@ function reproducirHasta(idVideo, tiempoFinal) {
     }
     const video = $video[0];
     video.removeAttribute('controls');
-    video.volume = 0.5;
+    video.volume = 0.3;
     video.currentTime = 0;
     video.play();
     $video.on("timeupdate", function () {
@@ -306,7 +324,7 @@ function reiniciarVideos(ptrvidSLides) {
     });
 }
 
-// Slide and Carousel Control
+// Funciones de control de diapositivas
 function autoNextSlide(moduleId, numSlidesObj, callback) {
     const slideKey = moduleId === 'module1' ? 'numSlides' : `numSlides_${moduleId.slice(-1)}`;
     if (numSlidesObj[slideKey] === 1) {
@@ -376,7 +394,7 @@ function ctrl_slidesMod1() {
         setTimeout(() => {
             const logroAudio = $('#aud_logro').get(0);
             if (logroAudio) {
-                logroAudio.volume = 0.5;
+                logroAudio.volume = 0.3;
                 logroAudio.muted = false;
                 logroAudio.currentTime = 0;
                 logroAudio.play().catch(err => console.warn("Error playing aud_logro:", err));
@@ -425,6 +443,7 @@ function ctrl_slidesMod1() {
     previousSlide = currentSlide;
 }
 
+
 function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
     $(".carru_" + ptrCarruClass).hide();
     $("#carru_" + ptrCarruClass + "_" + ptrSlideActual).show();
@@ -467,59 +486,46 @@ function resetSlide(variableName) {
     }
 }
 
-// Test Logic
 function showTestResults(results) {
+    console.log("Mostrando resultados con animación secuencial");
     const $cardItems = $("#slide_module1_6 .cardTest-item");
     const percentages = [
-        { index: 0, value: results.pantera },
-        { index: 1, value: results.pavorreal },
-        { index: 2, value: results.delfin },
-        { index: 3, value: results.buho }
+        { index: 0, value: results.pantera, type: 'pantera' },
+        { index: 1, value: results.pavorreal, type: 'pavorreal' },
+        { index: 2, value: results.delfin, type: 'delfin' },
+        { index: 3, value: results.buho, type: 'buho' }
     ];
     const maxPercentage = percentages.reduce((max, current) =>
         current.value > max.value ? current : max, percentages[0]);
 
-    $cardItems.each(function (index) {
-        const $percentageText = $(this).find(".testResult-relative p");
-        const $progressFill = $(this).find(".progress-bar-fill");
-        const $card = $(this);
+    $cardItems.css({ opacity: 0, transform: 'scale(0.8)' });
 
-        $progressFill.css("width", "0%");
-        $card.css("transform", "scale(0.9)");
+    const $winnerCard = $cardItems.eq(maxPercentage.index);
+    const winnerDelay = 500;
+    setTimeout(() => {
+        console.log(`Animando card ganadora: ${maxPercentage.type} (${maxPercentage.value}%)`);
+        const $percentageText = $winnerCard.find(".testResult-relative p");
+        const $progressFill = $winnerCard.find(".progress-bar-fill");
+        $percentageText.text(`${maxPercentage.value}%`);
+        $progressFill.css("width", `${maxPercentage.value}%`);
+        $winnerCard.parent().addClass('mayor-resultado');
+        $winnerCard.css({ opacity: 1, transform: 'scale(1.05)' });
+    }, winnerDelay);
 
-        setTimeout(() => {
-            switch (index) {
-                case 0:
-                    $percentageText.text(`${results.pantera}%`);
-                    $progressFill.css("width", `${results.pantera}%`);
-                    if (maxPercentage.index === 0) {
-                        $card.css("transform", "scale(1.05)");
-                    }
-                    break;
-                case 1:
-                    $percentageText.text(`${results.pavorreal}%`);
-                    $progressFill.css("width", `${results.pavorreal}%`);
-                    if (maxPercentage.index === 1) {
-                        $card.css("transform", "scale(1.05)");
-                    }
-                    break;
-                case 2:
-                    $percentageText.text(`${results.delfin}%`);
-                    $progressFill.css("width", `${results.delfin}%`);
-                    if (maxPercentage.index === 2) {
-                        $card.css("transform", "scale(1.05)");
-                    }
-                    break;
-                case 3:
-                    $percentageText.text(`${results.buho}%`);
-                    $progressFill.css("width", `${results.buho}%`);
-                    if (maxPercentage.index === 3) {
-                        $card.css("transform", "scale(1.05)");
-                    }
-                    break;
-            }
-        }, 100);
-    });
+    percentages
+        .filter(p => p.index !== maxPercentage.index)
+        .forEach((p, i) => {
+            const $card = $cardItems.eq(p.index);
+            const delay = winnerDelay + 500 + (i + 1) * 500;
+            setTimeout(() => {
+                console.log(`Animando card: ${p.type} (${p.value}%)`);
+                const $percentageText = $card.find(".testResult-relative p");
+                const $progressFill = $card.find(".progress-bar-fill");
+                $percentageText.text(`${p.value}%`);
+                $progressFill.css("width", `${p.value}%`);
+                $card.css({ opacity: 1, transform: 'scale(0.9)' });
+            }, delay);
+        });
 }
 
 function restoreSelections() {
@@ -537,8 +543,20 @@ function restoreSelections() {
 }
 
 function calculateResults() {
+    console.log("Usando la función calculateResults correcta con lógica de modal");
     var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
+    console.log("Total selecciones:", totalSelections, "Total preguntas:", totalQuestions);
     if (totalSelections === totalQuestions) {
+        console.log("Mostrando el modal de procesamiento");
+        $('#processingModal').show();
+
+        const processingAudio = $('#aud_processing').get(0);
+        if (processingAudio) {
+            processingAudio.volume = 0.3;
+            processingAudio.currentTime = 0;
+            processingAudio.play().catch(err => console.warn("Error al reproducir audio de procesamiento:", err));
+        }
+
         testResults = {
             pantera: Math.round((selections.pantera / totalQuestions) * 100),
             pavorreal: Math.round((selections.pavorreal / totalQuestions) * 100),
@@ -554,9 +572,6 @@ function calculateResults() {
         localStorage.setItem('testCompleted', JSON.stringify(testCompleted));
         localStorage.setItem('myAvance', JSON.stringify(myAvance));
 
-        nSlides.numSlides = 6;
-        ctrl_slidesMod1();
-
         let maxType = null;
         let maxValue = -1;
         for (let type in testResults) {
@@ -565,24 +580,29 @@ function calculateResults() {
                 maxType = type;
             }
         }
-
         myAvance.ganador = maxType;
         console.log("Ganador asignado a myAvance.ganador:", myAvance.ganador);
 
-        $('.cardTest').removeClass('mayor-resultado');
-        const indexMap = { pantera: 1, pavorreal: 2, delfin: 3, buho: 4 };
-        $(`.cardTest:nth-of-type(${indexMap[maxType]})`).addClass('mayor-resultado');
+        setTimeout(() => {
+            console.log("Ocultando modal y pasando al slide 6");
+            $('#processingModal').hide();
+            nSlides.numSlides = 6;
+            ctrl_slidesMod1();
 
-        animateCalif(".cardTest:nth-of-type(1) .testResult-text", testResults.pantera, 1500);
-        animateCalif(".cardTest:nth-of-type(2) .testResult-text", testResults.pavorreal, 1500);
-        animateCalif(".cardTest:nth-of-type(3) .testResult-text", testResults.delfin, 1500);
-        animateCalif(".cardTest:nth-of-type(4) .testResult-text", testResults.buho, 1500);
+            $('.cardTest').removeClass('mayor-resultado');
+            const indexMap = { pantera: 1, pavorreal: 2, delfin: 3, buho: 4 };
+            $(`.cardTest:nth-of-type(${indexMap[maxType]})`).addClass('mayor-resultado');
+
+            animateCalif(".cardTest:nth-of-type(1) .testResult-text", testResults.pantera, 1500);
+            animateCalif(".cardTest:nth-of-type(2) .testResult-text", testResults.pavorreal, 1500);
+            animateCalif(".cardTest:nth-of-type(3) .testResult-text", testResults.delfin, 1500);
+            animateCalif(".cardTest:nth-of-type(4) .testResult-text", testResults.buho, 1500);
+        }, 3000);
     } else {
-        console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
+        console.log("Test incompleto. Faltan preguntas:", totalQuestions - totalSelections);
     }
 }
 
-// Progress and Achievements
 function ctrl_AvGeneral(ptrID, ptrAvMax) {
     $('.btn_avModulos').removeClass('myglow_img_blue animated pulse infinite custom-pulse active-button-glow').css({ 'pointer-events': 'none' }).addClass('w3-opacity');
     if (myAvance.avModulos <= ptrAvMax) {
@@ -630,10 +650,10 @@ function mostrar_logros() {
     if (myAvance.ch1.logro_casco === 1) logrosDesbloqueados++;
     if (myAvance.ch2.logro_traje === 1) logrosDesbloqueados++;
     if (myAvance.ch2.logro_zapatos === 1) logrosDesbloqueados++;
-    if (myAvance.ch3.logo_llantas2 === 1) logrosDesbloqueados++;
+    if (myAvance.ch3.logro_llantas2 === 1) logrosDesbloqueados++;
     if (myAvance.ch3.logro_volante === 1) logrosDesbloqueados++;
     $('#txt_trofeo2_nlogros').text(logrosDesbloqueados);
-    $('#txt_logro_llanta').css('pointer-events', myAvance.ch1.logro_llanta == 0 ? 'none' : 'auto')
+    $('#txt_logro_llanta').css('pointer-events', myAvance.ch1.logro_llanta === 0 ? 'none' : 'auto')
         .toggleClass('w3-opacity-max', myAvance.ch1.logro_llanta !== 1);
     $('#txt_logro_casco').css('pointer-events', myAvance.ch1.logro_casco === 1 ? 'auto' : 'none')
         .toggleClass('w3-opacity-max', myAvance.ch1.logro_casco !== 1);
@@ -643,13 +663,13 @@ function mostrar_logros() {
         .toggleClass('w3-opacity-max', myAvance.ch2.logro_guantes !== 1);
     $('#txt_logro_zapatos').css('pointer-events', myAvance.ch2.logro_zapatos === 1 ? 'auto' : 'none')
         .toggleClass('w3-opacity-max', myAvance.ch2.logro_zapatos !== 1);
-    $('#txt_logro_llantas2').css('pointer-events', myAvance.ch3.logo_llantas2 === 1 ? 'auto' : 'none')
-        .toggleClass('w3-opacity-max', myAvance.ch3.logo_llantas2 !== 1);
+    $('#txt_logro_llantas2').css('pointer-events', myAvance.ch3.logro_llantas2 === 1 ? 'auto' : 'none')
+        .toggleClass('w3-opacity-max', myAvance.ch3.logro_llantas2 !== 1);
     $('#txt_logro_volante').css('pointer-events', myAvance.ch3.logro_volante === 1 ? 'auto' : 'none')
         .toggleClass('w3-opacity-max', myAvance.ch3.logro_volante !== 1);
 }
 
-// Animations
+// Funciones de animación
 function anim_fondo(ptrDuracion, ptrNumFondo, ptrTop, ptrLeft, ptrWidth, ptrHeight) {
     var duracionAnimacion = ptrDuracion * 1000;
     $("#back_fondo_" + ptrNumFondo).css({ top: "0", left: "0", width: "100%", height: "100%" });
@@ -682,10 +702,47 @@ function stopRotate() {
     cardItem.style.transform = 'rotate(0)';
 }
 
-// Event Handlers
+function controlBackgroundMusic(moduleId, currentSlide) {
+    if (NO_MUSIC_SLIDES[moduleId].includes(currentSlide)) {
+        pauseAllAudio();
+        if (currentAudio) {
+            muteMe(currentAudio);
+        }
+        $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+    } else if (flagMus === 1 && !isAudioPlaying) {
+        restoreMusicAndIcon(moduleId.toString());
+    }
+}
+
+// Funciones de soporte para el menú
+function stopPreviousAnimations($element) {
+    $element.stop(true, true);
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function resetMenuImages() {
+    $('#img_menu_rect, #img_menu_trofeo, #img_modTrof_1')
+        .hide()
+        .removeClass('animated slideInLeft')
+        .stop(true, true);
+}
+
+// Manejadores de eventos
 video.addEventListener('ended', function () {
     stopSplashVideo();
     $('#slide_vidWelcome_1').hide();
+    $('#mod_start').css('display', 'block');
     playModuleAudio(null);
 });
 
@@ -704,24 +761,31 @@ $('#btn_close_loader').click(function () {
 });
 
 $(".music").click(function () {
-    const audios = document.querySelectorAll(".back.musModu");
     if (flagMus === 0) {
         flagMus = 1;
         localStorage.setItem('flagMus', flagMus);
         $(".music").attr("src", "assets/img/icons/on.png");
-        if (currentAudio && !isAudioPlaying) {
+        if (currentAudio) {
             unMuteMe(currentAudio);
-            currentAudio.volume = 0.5;
+            currentAudio.volume = 0.3;
             currentAudio.play().then(() => {
                 isAudioPlaying = true;
-            }).catch(err => console.warn("Error al reproducir audio:", err));
+                console.log("Audio resumed after unmute");
+            }).catch(err => console.warn("Error resuming audio:", err));
+        } else {
+            const moduleId = strID || null;
+            playModuleAudio(moduleId);
         }
     } else {
         flagMus = 0;
         localStorage.setItem('flagMus', flagMus);
         $(".music").attr("src", "assets/img/icons/off.png");
-        audios.forEach(audio => muteMe(audio));
-        isAudioPlaying = false;
+        if (currentAudio) {
+            muteMe(currentAudio);
+            currentAudio.pause();
+            isAudioPlaying = false;
+            console.log("Audio muted and paused");
+        }
     }
 });
 
@@ -754,7 +818,7 @@ $('#btn_menu').click(function () {
         if (menuAudio) {
             pauseAllAudio();
             menuAudio.loop = true;
-            menuAudio.volume = 0.5;
+            menuAudio.volume = 0.3;
             menuAudio.muted = false;
             menuAudio.play().then(() => {
                 console.log("Playing menu audio: musModu_4");
@@ -783,60 +847,185 @@ $('#cls_menu').click(function () {
     }
 });
 
-$('.txt_menu').on({
-    click: function () {
-        const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
-        let canAccess = false;
-        resetLocution();
+$('.txt_menu').each(function () {
+    const $this = $(this);
+    const [, , strMod, strID] = $this.attr('id').split("_").map(Number);
 
-        if (strMod <= myAvance.avModulos) {
-            if (myAvance[`ch${strMod}`].progress >= strID) {
-                canAccess = true;
+    $this.on({
+        mouseover: debounce(function () {
+            resetMenuImages();
+            if (strMod <= myAvance.avModulos && strID <= myAvance[`ch${strMod}`].progress) {
+                const $audio = $(`#aud_menuOver`)[0];
+                const relativeTop = $this.position().top + 'px';
+                const $imgMenuRect = $('#img_menu_rect');
+
+                stopPreviousAnimations($imgMenuRect);
+
+                $imgMenuRect
+                    .show()
+                    .css({ top: relativeTop, left: '0px' })
+                    .addClass('animated slideInLeft');
+
+                console.log(`[Menu] Mostrando img_menu_rect para txt_menu_${strMod}_${strID} en top: ${relativeTop}`);
+
+                if ($audio) {
+                    $audio.currentTime = 0;
+                    $audio.play().catch(err => console.warn(`Error al reproducir aud_menuOver: ${err}`));
+                }
+            }
+        }, 100),
+
+        mouseleave: function () {
+            const $imgMenuRect = $('#img_menu_rect');
+            stopPreviousAnimations($imgMenuRect);
+            $imgMenuRect.hide().removeClass('animated slideInLeft');
+            console.log(`[Menu] Ocultando img_menu_rect para txt_menu_${strMod}_${strID}`);
+        },
+
+        click: function () {
+            let canAccess = false;
+            resetLocution();
+
+            if (strMod <= myAvance.avModulos) {
+                if (myAvance[`ch${strMod}`].progress >= strID) {
+                    canAccess = true;
+                }
+            }
+
+            if (canAccess) {
+                const $cargaMateria = $('#carga_materia');
+                $('#slide_index_1, .mod_estilosComunicacion, .modalesVideosContenido .w3-modal, .slide_vidWelcome, .slide_index, .slide_portada, .slide_ganador, #vid_in_modal').hide();
+                $cargaMateria.hide().empty().show();
+                document.dispatchEvent(new Event('click'));
+                $cargaMateria.load(`module_${strMod}.html`, function () {
+                    playModuleAudio(strMod);
+                    restoreMusicAndIcon(strMod);
+                    bindClickEffect();
+                    const slide = MODULE_CONFIG[strMod].sections.find(s => s.id === strID)?.slide;
+                    if (slide) {
+                        if (strMod === 1) {
+                            nSlides.numSlides = slide;
+                            ctrl_slidesMod1();
+                        } else if (strMod === 2) {
+                            nSlides.numSlides_2(slide);
+                            ctrl_slidesMod2();
+                        } else if (strMod === 3) {
+                            nSlides.slide = slide;
+                            ctrl_slidesMod3();
+                        }
+                    }
+                    $('#slide_menu_1').fadeOut();
+                });
+            } else {
+                alert(`Debes completar la sección anterior del Módulo ${strMod} antes de continuar.`);
             }
         }
+    });
+});
 
-        if (canAccess) {
-            const $cargaMateria = $('#carga_materia');
-            $('#slide_index_1, .w3-modal, .slide_vidWelcome, .slide_index, .slide_portada, .slide_ganador, #vid_in_modal').hide();
-            $cargaMateria.hide().empty().show();
-            document.dispatchEvent(new Event('click'));
-            $cargaMateria.load(`module_${strMod}.html`, function () {
-                playModuleAudio(strMod);
-                restoreMusicAndIcon(strMod);
-                bindClickEffect();
-                const slide = MODULE_CONFIG[strMod].sections.find(s => s.id === strID)?.slide;
-                if (slide) {
-                    if (strMod === 1) {
-                        nSlides.numSlides = slide;
-                        ctrl_slidesMod1();
-                    } else if (strMod === 2) {
-                        nSlides.numSlides_2 = slide;
-                        ctrl_slidesMod2();
-                    } else if (strMod === 3) {
-                        nSlides.numSlides_3 = slide;
-                        ctrl_slidesMod3();
-                    }
-                }
-                $('#slide_menu_1').fadeOut();
-            });
-        } else {
-            alert(`Debes completar la sección anterior del Módulo ${strMod} antes de continuar.`);
-        }
-    },
-    mouseover: function () {
-        const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
-        const $audio = $(`#aud_menuOver`)[0];
-        if (strMod <= myAvance.avModulos && myAvance[`ch${strMod}`].progress >= strID) {
-            $('#img_menu_rect').show().css('top', $(this).css('top')).doAnim('slideInLeft');
+// Función para resetear imágenes del menú
+function resetMenuImages() {
+    $('#img_menu_rect, #img_menu_trofeo, #img_modTrof_1')
+        .stop(true, true) // Detiene todas las animaciones pendientes
+        .hide() // Oculta explícitamente
+        .removeClass('animated slideInLeft') // Elimina clases de animación
+        .css('display', 'none'); // Asegura que el display sea none
+}
+
+// Manejador para trofeos
+$('.txt_trofeo').each(function () {
+    const $this = $(this);
+    const strID = $this.attr('id').split("_")[2];
+
+    $this.on({
+        mouseover: debounce(function () {
+            resetMenuImages();
+            const relativeTop = $this.position().top + 'px';
+            const $audio = $(`#aud_menutrof`)[0];
+            const $imgMenuTrofeo = $('#img_menu_trofeo');
+            const $imgModTrof = $('#img_modTrof_1');
+            const trofeoSrc = `assets/img/grls/trofeos/trofeo_${strID}.gif`;
+
+            stopPreviousAnimations($imgMenuTrofeo);
+            stopPreviousAnimations($imgModTrof);
+
+            $imgMenuTrofeo
+                .css({ top: relativeTop, left: '0px', display: 'block' }) // Asegura que se muestre
+                .addClass('animated slideInLeft');
+
+            $imgModTrof
+                .attr('src', trofeoSrc)
+                .css('display', 'block'); // Asegura que se muestre
+
+            console.log(`[Trofeo] Mostrando img_menu_trofeo y img_modTrof_1 (${trofeoSrc}) para txt_trofeo_${strID}`);
+
             if ($audio) {
                 $audio.currentTime = 0;
-                $audio.play();
+                $audio.play().catch(err => console.warn(`Error al reproducir aud_menutrof: ${err}`));
             }
+        }, 100),
+
+        mouseleave: function () {
+            const $imgMenuTrofeo = $('#img_menu_trofeo');
+            const $imgModTrof = $('#img_modTrof_1');
+            stopPreviousAnimations($imgMenuTrofeo);
+            stopPreviousAnimations($imgModTrof);
+            $imgMenuTrofeo
+                .removeClass('animated slideInLeft')
+                .css('display', 'none'); // Oculta explícitamente
+            $imgModTrof
+                .css('display', 'none'); // Oculta explícitamente
+            console.log(`[Trofeo] Ocultando img_menu_trofeo y img_modTrof_1 para txt_trofeo_${strID}`);
         }
-    },
-    mouseleave: function () {
-        $('#img_menu_rect').hide();
-    }
+    });
+});
+
+// Manejador para logros
+$('.txt_logro').each(function () {
+    const $this = $(this);
+    const strID = $this.attr('id').split("_")[2];
+
+    $this.on({
+        mouseover: debounce(function () {
+            resetMenuImages();
+            const relativeTop = $this.position().top + 'px';
+            const $audio = $(`#aud_menulogro`)[0];
+            const $imgMenuTrofeo = $('#img_menu_trofeo');
+            const $imgModTrof = $('#img_modTrof_1');
+            const logroSrc = `assets/img/trofeos/logro_${strID}.gif`;
+
+            stopPreviousAnimations($imgMenuTrofeo);
+            stopPreviousAnimations($imgModTrof);
+
+            $imgMenuTrofeo
+                .css({ top: relativeTop, left: '0px', display: 'block' }) // Asegura que se muestre
+                .addClass('animated slideInLeft');
+
+            $imgModTrof
+                .attr('src', logroSrc)
+                .css('display', 'block'); // Asegura que se muestre
+
+            console.log(`[Logro] Mostrando img_menu_trofeo y img_modTrof_1 (${logroSrc}) para txt_logro_${strID}`);
+
+            if ($audio) {
+                $audio.currentTime = 0;
+                $audio.play().catch(err => console.warn(`Error al reproducir aud_menulogro: ${err}`));
+            }
+        }, 100),
+
+        mouseleave: function () {
+            const $imgMenuTrofeo = $('#img_menu_trofeo');
+            const $imgModTrof = $('#img_modTrof_1');
+            stopPreviousAnimations($imgMenuTrofeo);
+            stopPreviousAnimations($imgModTrof);
+            $imgMenuTrofeo
+                .removeClass('animated slideInLeft')
+                .css('display', 'none'); // Oculta explícitamente
+            $imgModTrof
+                .css('display', 'none'); // Oculta explícitamente
+            console.log(`[Logro] Ocultando img_menu_trofeo y img_modTrof_1 para txt_logro_${strID}`);
+        }
+    });
 });
 
 $('#btn_homeComenzar_1').click(() => $('#mod_start').hide());
@@ -845,7 +1034,6 @@ $('#btn_sobreMi_1').click(function () {
     pauseAllAudio();
     $('#mod_BienvVid_1').show();
     const bienvVideo = $('#BienvVid_1').get(0);
-    bienvVideo.volume = 0.5;
     bienvVideo.play();
 });
 
@@ -859,29 +1047,37 @@ $('#cls_BienvVid_1').click(function () {
 
 $('#btn_sobreMi_2').click(() => $('#mod_conoceCoach_2').show());
 
-$('#cls_conoceCoach_2').click(() => $('#mod_conoceCoach_2').fadeOut());
+$('#cls_conoceCoach_2').click(() => {
+    $('#mod_conoceCoach_2').fadeOut();
+});
 
 $('.btn_avModulos').click(function () {
     resetLocution();
     strID = $(this).attr('id').split('_')[2];
     $('#slide_portada_' + strID).show();
-    "1" === strID && anim_fondo(2, strID, "-89%", "0%", "199%", "192%");
-    "2" === strID && anim_fondo(2, strID, "-128%", "-66%", "204%", "229%");
-    "3" === strID && anim_fondo(2, strID, "-57%", "-75%", "235%", "201%");
+    if (strID === "1") {
+        anim_fondo(2, strID, "-89%", "0%", "199%", "192%");
+    } else if (strID === "2") {
+        anim_fondo(2, strID, "-128%", "-66%", "204%", "229%");
+    } else if (strID === "3") {
+        anim_fondo(2, strID, "-57%", "-75%", "235%", "201%");
+    }
 });
 
-$('#menu_trigger, #div_menu').hover(() => $menu.stop().animate({ bottom: '0%' }, 300),
-    () => $menu.stop().animate({ bottom: '-10%' }, 300));
+$('#menu_trigger, #div_menu').hover(() => {
+    $menu.stop().animate({ bottom: '0%' }, 300);
+}, () => {
+    $menu.stop().animate({ bottom: '0%' }, 300);
+});
 
 $('#btn_trofeo').click(function () {
     pauseAllAudio();
     mostrar_trofeos();
     mostrar_logros();
     $('#slide_trofeo_1').show();
-    $('#slide_menu_1').hide();
     setTimeout(() => {
         playModuleAudio(4);
-        restoreMusicAndIcon(4);
+        restoreMusicAndIcon();
     }, 100);
 });
 
@@ -894,69 +1090,39 @@ $('#cls_trofeo_1').click(function () {
     }, 100);
 });
 
-$('.txt_trofeo').on({
-    mouseover: function () {
-        strID = $(this).attr('id').split("_")[2];
-        const relativeTop = $(this).position().top + 'px';
-        const $audio = $(`#aud_menutrof`)[0];
-        $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
-        $('#img_modTrof_1').show().attr('src', 'assets/img/grls/trofeos/trofeo_' + strID + '.gif');
-        if ($audio) {
-            $audio.currentTime = 0;
-            $audio.play();
-        }
-    },
-    mouseleave: function () {
-        $('#img_menu_trofeo').hide();
-    }
-});
-
-$('.txt_logro').on({
-    mouseover: function () {
-        strID = $(this).attr('id').split("_")[2];
-        const relativeTop = $(this).position().top + 'px';
-        const $audio = $(`#aud_menulogro`)[0];
-        $('#img_menu_trofeo').show().css('top', relativeTop).doAnim('slideInLeft');
-        $('#img_modTrof_1').show().attr('src', 'assets/img/trofeos/logro_' + strID + '.gif');
-        if ($audio) {
-            $audio.currentTime = 0;
-            $audio.play();
-        }
-    },
-    mouseleave: function () {
-        $('#img_menu_trofeo').hide();
-    }
-});
-
 $('#cls_ganador_1').click(() => $('#slide_ganador_1').fadeOut());
 
 $('.btn_conoceCoach').click(function () {
-    strID = $(this).attr('id').split("_")[2];
+    strID = $(this).attr('id').split('_')[2];
     console.log('conoceCoach ID:', strID);
     resetLocution();
     $('#mod_conoceCoach_' + strID).show();
 });
 
 $('.close_conoceCoach').click(function () {
-    strID = $(this).attr('id').split("_")[2];
-    $('#mod_conoceCoach_' + strID).hide();
+    strID = $(this).attr('id').split('_')[2];
+    $('#mod_conoceCoach_' + strID).fadeOut();
 });
 
 $('#btn_comenzarModule_1').click(function () {
-    nSlides.numSlides = 2;
+    nSlides.numSlides = numSlides2;
     ctrl_slidesMod1();
 });
 
-$("#module1_Prev").click(() => {
+$("#module1_Prev").click(function () {
     resetLocution();
-    1 < nSlides.numSlides && nSlides.numSlides--;
-    ctrl_slidesMod1();
+    if (1 < nSlides.numSlides) {
+        nSlides.numSlides--;
+        ctrl_slidesMod1();
+    }
 });
 
-$("#module1_Next").click(() => {
+$("#module1_Next").click(function () {
     resetLocution();
-    $('.slide_module1').length > nSlides.numSlides && nSlides.numSlides++;
-    ctrl_slidesMod1();
+    if ($('.slide_module1').length > nSlides.numSlides) {
+        nSlides.numSlides++;
+        ctrl_slidesMod1();
+    }
 });
 
 $(".elem_click").click(function () {
@@ -964,47 +1130,48 @@ $(".elem_click").click(function () {
     audio.currentTime = 0;
     audio.play().catch((err) => {
         console.warn("No se pudo reproducir el audio:", err);
+        console.log("Error al reproducir el audio: ", err);
     });
 });
 
 $(".elem_click_modal").click(function () {
     const audio = $("#efct_clic_mod")[0];
-    audio.currentTime = 0;
-    audio.play().catch((err) => {
-        console.warn("No se pudo reproducir el audio:", err);
+    audio.currentTime = 0; audio.play().catch((err) => {
+        console.warn("Error al reproducir el.span audio", err);
     });
 });
 
 $(".elem_click_reto").click(function () {
     const audio = $("#efct_clic_jue")[0];
+    console.log("elemClick clic reto");
     audio.currentTime = 0;
-    audio.play().catch((err) => {
-        console.warn("No se pudo reproducir el audio:", err);
+    audio.play().catch(err => {
+        console.warn("Error al reproducir el audio: ", err);
     });
 });
 
 function bindClickEffect() {
     $(document).off('click', '.elem_click');
     $(document).on('click', '.elem_click', function () {
-        const audio = $("#efct_clic1")[0];
+        const audio = document.querySelector("#efct_clic1");
         if (audio && typeof audio.play === 'function') {
             try {
                 audio.currentTime = 0;
                 audio.play().catch((err) => {
-                    console.warn("No se pudo reproducir el audio:", err);
+                    console.warn("error al reproducir el audio:", err);
                 });
             } catch (e) {
-                console.warn("Error resetting click audio:", e);
+                console.warn("Error resetting el audio de click:", e);
             }
         } else {
-            console.warn("Audio element #efct_clic1 not found");
+            console.warn("Elemento de audio #efct_clic1 no encontrado");
         }
     });
 }
 
 function ctrl_menuAccess() {
     $('.txt_menu').each(function () {
-        const [, , strMod, strID] = $(this).attr('id').split("_").map(Number);
+        const [, , strMod, strID] = $(this).attr('id').split('_').map(Number);
         let isAccessible = false;
 
         if (strMod <= myAvance.avModulos) {
@@ -1031,7 +1198,7 @@ const $container = $('#slide_module1_9');
 
 $buttons.each(function () {
     var num = $(this).attr('id').split('_')[2];
-    if ($('#hov_estilosComunicacion_' + num).length === 0) {
+    if (!$('#hov_estilosComunicacion_' + num).length) {
         $('<img>')
             .attr({ id: 'hov_estilosComunicacion_' + num, src: 'assets/img/modules/module-1/slide-9/no_' + num + '.png' })
             .addClass('absolute hov_estilosComunicacion')
@@ -1127,16 +1294,14 @@ $("#btn_finmod1").click(function () {
     resetFondo(1, 2);
     $('#slide_index_1').show();
     $("#carga_materia").hide().empty();
-    ctrl_AvGeneral(1, gAvMax);
+    ctrl_AvGeneral();
     ctrl_menuAccess();
     playModuleAudio(null);
     localStorage.setItem('myAvance', JSON.stringify(myAvance));
 });
 
-
-
-// Initialization
-document.addEventListener("DOMContentLoaded", (event) => {
+// Inicialización
+document.addEventListener("DOMContentLoaded", function () {
     if (localStorage.getItem('testResults')) {
         testResults = JSON.parse(localStorage.getItem('testResults'));
         userSelections = JSON.parse(localStorage.getItem('userSelections'));
@@ -1150,7 +1315,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         };
     }
 
-    $(".music").addClass("hide").attr("src", "assets/img/icons/on.png");
+    $(".music").addClass("hide").attr("src', 'assets/img/icons/icon.png");
     if (localStorage.getItem('flagMus')) {
         flagMus = parseInt(localStorage.getItem('flagMus'));
         if (flagMus === 0) {
@@ -1175,19 +1340,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (!testCompleted) {
         $(".body-answers > div > div").click(function () {
             if ($(this).hasClass('disabled')) return;
-            var $thisDiv = $(this);
-            var questionNum = $thisDiv.data('question');
-            var type = $thisDiv.parent().data('type');
-            var $questionOptions = $(".body-answers > div > div[data-question='" + questionNum + "']");
+            const $this = $(this);
+            const questionNum = parseInt($this.data('question'));
+            const type = $this.parent().data('type');
+            const $questionOptions = $(`.body-answers > div > div[data-question="${questionNum}"]`);
             $questionOptions.addClass('disabled');
             $questionOptions.off('click');
-            $thisDiv.find('.answer-text').css('color', '#f8fafc');
-            $questionOptions.not($thisDiv).find('.answer-text').css('color', '#475569');
-            $thisDiv.find('img').attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
+            $this.find('.answer-text').css('color', '#f8fafc');
+            $questionOptions.not($this).find('.answer-text').css('color', '#475569');
+            $this.find('img').attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
             selections[type]++;
             userSelections[questionNum] = type;
+            console.log("Pregunta", questionNum, "seleccionada:", type, "Selections:", selections, "User selections:", userSelections);
             localStorage.setItem('userSelections', JSON.stringify(userSelections));
-            var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
+            const totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
             if (totalSelections === totalQuestions) {
                 calculateResults();
             }

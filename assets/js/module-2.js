@@ -24,11 +24,10 @@ function ctrl_slidesMod2() {
   console.log("#slide_module2_" + currentSlide);
   $prevBtn.show();
   $nextBtn.show();
-  $("#slide_module2_" + currentSlide).show();
-  console.log("#slide_module2_" + currentSlide);
-  $prevBtn.show();
-  $nextBtn.show();
-  playAudio('module2_', currentSlide);
+
+  // Control de música de fondo
+  controlBackgroundMusic(2, currentSlide);
+  playAudio('module2_', currentSlide)
 
   if (currentSlide === 1) {
     $prevBtn.hide();
@@ -80,17 +79,20 @@ function ctrl_slidesMod2() {
   } else if (currentSlide === 8) {
     $prevBtn.show();
     $nextBtn.hide();
-  }
-  else if (currentSlide === 9 && myAvance.ch2.preg_1 === null) {
+  } else if (currentSlide === 9 && myAvance.ch2.preg_1 === null) {
+    resetearBotonesPregunta('1'); // Restablecer botones de pregunta 1
     $prevBtn.show();
     $nextBtn.hide();
   } else if (currentSlide === 10 && myAvance.ch2.preg_2 === null) {
+    resetearBotonesPregunta('2'); // Restablecer botones de pregunta 2
     $prevBtn.show();
     $nextBtn.hide();
   } else if (currentSlide === 11 && myAvance.ch2.preg_3 === null) {
+    resetearBotonesPregunta('3'); // Restablecer botones de pregunta 3
     $prevBtn.show();
     $nextBtn.hide();
   } else if (currentSlide === 12 && myAvance.ch2.preg_4 === null) {
+    resetearBotonesPregunta('4'); // Restablecer botones de pregunta 4
     $prevBtn.show();
     $nextBtn.hide();
   } else if (currentSlide === 13) {
@@ -234,12 +236,25 @@ function verificarSumaPreguntas() {
       suma += numero;
     }
   });
-  console.log(suma);
+  console.log('Preguntas:', ch2.preg_1, ch2.preg_2, ch2.preg_3, ch2.preg_4, 'Suma:', suma);
+
+  // Ocultar botones de navegación al mostrar cualquier modal
+  $("#module2_Next").hide();
+  $("#module2_Prev").hide();
 
   if (suma === 4) {
     $('#slide_ok_1').show();
   } else {
     $('#slide_error_1').show();
+  }
+}
+
+function resetearBotonesPregunta(strPreg) {
+  for (let n = 1; n <= 4; n++) {
+    $(`#btn_resp_${strPreg}_op_${n}`).css({
+      'opacity': '1',
+      'pointer-events': 'auto'
+    }).doAnim({ "animation": "" }); // Quitar animación si la tiene
   }
 }
 
@@ -251,7 +266,18 @@ $('#btn_cls_ok_modal').click(function () {
 
 $('#btn_cls_error_modal').click(function () {
   $('#slide_error_1').hide();
-  nSlides.numSlides_2 += 1;
+
+  // Reiniciar las preguntas que estén incorrectas o no contestadas
+  for (let i = 1; i <= 4; i++) {
+    if (myAvance.ch2[`preg_${i}`] !== '1') {
+      myAvance.ch2[`preg_${i}`] = null; // Restablecer a null para repetir
+    }
+    // Restablecer botones de todas las preguntas
+    resetearBotonesPregunta(i);
+  }
+
+  // Regresar a la primera pregunta (diapositiva 9)
+  nSlides.numSlides_2 = 9;
   ctrl_slidesMod2();
 });
 
