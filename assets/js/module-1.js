@@ -3,6 +3,9 @@ ctrl_avElem(1, 'estilosComunicacion', myAvance.ch1.estilosComunicacion, $(".btn_
 autoNextSlide('module1', nSlides, ctrl_slidesMod1);
 
 function ctrl_slidesMod1() {
+  // Clear previous timeouts
+  dismissTimeouts.forEach(timeout => clearTimeout(timeout));
+  dismissTimeouts = [];
   const $slides = $(".slide_module1");
   const totalSlides = $slides.length;
   const currentSlide = nSlides.numSlides;
@@ -17,7 +20,9 @@ function ctrl_slidesMod1() {
 
   // Control de música de fondo
   controlBackgroundMusic(1, currentSlide);
-  playAudio('module1_', currentSlide)
+  playAudio('module1_', currentSlide);
+  //Control de elementos
+  autoDismissElements(1, currentSlide);
 
   if (currentSlide === 1) {
     $prevBtn.hide();

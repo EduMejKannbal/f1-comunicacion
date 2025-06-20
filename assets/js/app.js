@@ -100,6 +100,7 @@ let testCompleted = false;
 let testResults = null;
 let userSelections = {};
 let previousSlide = 0;
+let dismissTimeouts = [];
 
 // Referencias DOM
 let $menu = $('#div_menu');
@@ -738,6 +739,66 @@ function resetMenuImages() {
         .stop(true, true);
 }
 
+
+function autoDismissElements(moduleNum, slideNumber) {
+  // Clear existing timeouts
+  dismissTimeouts.forEach(timeout => clearTimeout(timeout));
+  dismissTimeouts = [];
+
+  const moduleConfig = {
+    1: {
+      slides: [7, 10, 13],
+      trofeoIds: ['#modal_trofeo1', '#modal_trofeo2', '#modal_trofeo3']
+    },
+    2: {
+      slides: [4, 6, 13, 15],
+      trofeoIds: ['#modal_trofeo2', '#modal_trofeo3', '#modal_trofeo3', '#modal_trofeo4']
+    },
+    3: {
+      slides: [7, 10, 12],
+      trofeoIds: ['#modal_trofeo1', '#modal_trofeo2', '#modal_trofeo3']
+    }
+  };
+
+  const config = moduleConfig[moduleNum];
+  if (!config || !config.slides.includes(slideNumber)) {
+    console.log(`No config for module ${moduleNum}, slide ${slideNumber}`);
+    return;
+  }
+
+  const contenidoClass = '.contenido-logro-animado';
+  const contenidoDelay = 5000; // 5 seconds for contenido-logro-animado
+  const trofeoDelay = 6000; // 6 seconds for trophies (after contenido animation completes)
+
+  // Dismiss contenido-logro-animado first
+  const $contenido = $(`#slide_module${moduleNum}_${slideNumber} ${contenidoClass}`);
+  console.log(`Contenido found:`, $contenido.length, `Visible:`, $contenido.is(':visible'));
+  if ($contenido.length) {
+    const timeout = setTimeout(() => {
+      $contenido.removeClass('fadeIn').addClass('fadeOut');
+      setTimeout(() => {
+        $contenido.hide();
+      }, 1000); // Wait for fadeOut animation (1s)
+    }, contenidoDelay);
+    dismissTimeouts.push(timeout);
+  }
+
+  // Dismiss trophies after contenido
+  config.trofeoIds.forEach(id => {
+    const $element = $(`#slide_module${moduleNum}_${slideNumber} ${id}`);
+    console.log(`Trophy ${id} found:`, $element.length, `Visible:`, $element.is(':visible'));
+    if ($element.length) {
+      const timeout = setTimeout(() => {
+        $element.removeClass('slideInRight').addClass('slideOutRight');
+        setTimeout(() => {
+          $element.hide();
+        }, 1000); // Wait for slideOutRight animation (1s)
+      }, trofeoDelay);
+      dismissTimeouts.push(timeout);
+    }
+  });
+}
+
 // Manejadores de eventos
 video.addEventListener('ended', function () {
     stopSplashVideo();
@@ -1064,11 +1125,8 @@ $('.btn_avModulos').click(function () {
     }
 });
 
-$('#menu_trigger, #div_menu').hover(() => {
-    $menu.stop().animate({ bottom: '0%' }, 300);
-}, () => {
-    $menu.stop().animate({ bottom: '0%' }, 300);
-});
+$('#menu_trigger, #div_menu').hover(() => $menu.stop().animate({ bottom: '0%' }, 300),
+    () => $menu.stop().animate({ bottom: '-10%' }, 300));
 
 $('#btn_trofeo').click(function () {
     pauseAllAudio();

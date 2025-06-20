@@ -15,6 +15,9 @@ $("#precache_mod_3").waitForImages({
 });
 
 function ctrl_slidesMod3() {
+    // Clear previous timeouts
+    dismissTimeouts.forEach(timeout => clearTimeout(timeout));
+    dismissTimeouts = [];
     const $slides = $(".slide_module3");
     const totalSlides = $slides.length;
     const currentSlide = nSlides.numSlides_3;
@@ -27,9 +30,11 @@ function ctrl_slidesMod3() {
     console.log("#slide_module3_" + currentSlide);
     $prevBtn.show();
     $nextBtn.show();
-
+    controlBackgroundMusic(3, currentSlide);
     // Reproducir audio para el slide actual
     playAudio('module3_', currentSlide);
+    // Call autoDismissElements for module 3
+    autoDismissElements(3, currentSlide);
 
     if (currentSlide === 1) {
         $prevBtn.hide();

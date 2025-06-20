@@ -12,6 +12,9 @@ $("#precache_mod_2").waitForImages({
 
 
 function ctrl_slidesMod2() {
+  // Clear previous timeouts
+  dismissTimeouts.forEach(timeout => clearTimeout(timeout));
+  dismissTimeouts = [];
   const $slides = $(".slide_module2");
   const totalSlides = $slides.length;
   const currentSlide = nSlides.numSlides_2;
@@ -28,6 +31,8 @@ function ctrl_slidesMod2() {
   // Control de música de fondo
   controlBackgroundMusic(2, currentSlide);
   playAudio('module2_', currentSlide)
+  // Call autoDismissElements for module 2
+  autoDismissElements(2, currentSlide);
 
   if (currentSlide === 1) {
     $prevBtn.hide();
