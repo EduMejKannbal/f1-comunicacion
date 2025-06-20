@@ -14,7 +14,10 @@ function ctrl_slidesMod1() {
   console.log("#slide_module1_" + currentSlide);
   $prevBtn.show();
   $nextBtn.show();
-  playAudio('module1_', currentSlide);
+
+  // Control de música de fondo
+  controlBackgroundMusic(1, currentSlide);
+  playAudio('module1_', currentSlide)
 
   if (currentSlide === 1) {
     $prevBtn.hide();
@@ -53,9 +56,16 @@ function ctrl_slidesMod1() {
   } else if (currentSlide === 7) {
     $prevBtn.hide();
     $nextBtn.hide();
-    playAudio('module1_', currentSlide);
     reproducirHasta("vid_module1_7", 9.99);
-    $('#aud_logro').get(0).play();
+    setTimeout(() => {
+      const logroAudio = $('#aud_logro').get(0);
+      if (logroAudio) {
+        logroAudio.volume = 0.3;
+        logroAudio.muted = false;
+        logroAudio.currentTime = 0;
+        logroAudio.play().catch(err => console.warn("Error playing aud_logro:", err));
+      }
+    }, 100);
     if (myAvance.ch1.logro_llanta === 0) {
       myAvance.ch1.logro_llanta = 1;
       localStorage.setItem('myAvance', JSON.stringify(myAvance));
@@ -91,12 +101,6 @@ function ctrl_slidesMod1() {
     reproducirHasta("vid_module1_13", 8.99);
     $('#aud_logro').get(0).play();
   }
-
-  if (previousSlide === 5 && currentSlide !== 5) {
-    restoreMusicAndIcon('1');
-  }
-
-  previousSlide = currentSlide;
 }
 
 $("#module1_Prev").click(() => {
@@ -112,50 +116,6 @@ $("#module1_Next").click(() => {
   // $("#efct_next")[0].play();
 });
 
-
-function calculateResults() {
-  var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
-  if (totalSelections === totalQuestions) {
-    testResults = {
-      pantera: Math.round((selections.pantera / totalQuestions) * 100),
-      pavorreal: Math.round((selections.pavorreal / totalQuestions) * 100),
-      delfin: Math.round((selections.delfin / totalQuestions) * 100),
-      buho: Math.round((selections.buho / totalQuestions) * 100)
-    };
-
-    console.log("Resultados del Test:", testResults);
-    testCompleted = true;
-    nSlides.numSlides = 6;
-    ctrl_slidesMod1();
-
-    // 🔹 Detectar el tipo con mayor resultado
-    let maxType = null;
-    let maxValue = -1;
-
-    for (let type in testResults) {
-      if (testResults[type] > maxValue) {
-        maxValue = testResults[type];
-        maxType = type;
-      }
-    }
-
-    myAvance.ganador = maxType;
-    console.log("Ganador asignado a myAvance.ganador:", myAvance.ganador);
-
-    // 🔹 Aplicar clase especial
-    $('.cardTest').removeClass('mayor-resultado');
-    const indexMap = { pantera: 1, pavorreal: 2, delfin: 3, buho: 4 };
-    $(`.cardTest:nth-of-type(${indexMap[maxType]})`).addClass('mayor-resultado');
-
-    // 🔹 Animar resultados
-    animateCalif(".cardTest:nth-of-type(1) .testResult-text", testResults.pantera, 1500);
-    animateCalif(".cardTest:nth-of-type(2) .testResult-text", testResults.pavorreal, 1500);
-    animateCalif(".cardTest:nth-of-type(3) .testResult-text", testResults.delfin, 1500);
-    animateCalif(".cardTest:nth-of-type(4) .testResult-text", testResults.buho, 1500);
-  } else {
-    console.log("Por favor responde todas las preguntas. Faltan " + (totalQuestions - totalSelections) + " preguntas por responder.");
-  }
-}
 
 setupCarouselControls('test_1');
 if (!testCompleted) {

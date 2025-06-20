@@ -1,14 +1,14 @@
-// Precarga de imágenes
 $("#precache_mod_3").waitForImages({
     finished: function () {
         $("#loading_screen").fadeOut("slow");
         $("#precache_bas").hide();
         ctrl_slidesMod3();
-        //ctrl_avElem_chk(3, 'emocion', myAvance.ch3.emocion, 2, 'myglow_img_white', true);
+        ctrl_avElem_chk(3, 'trofeoModal', myAvance.ch3.trofeoModal, $(".btn_trofeoModal").length + 1, 'myglow_img_white', true);
         ctrl_avElem_chk(3, 'vidManEm', myAvance.ch3.vidManEm, $(".btn_vidManEm").length + 1, 'myglow_img_blue', true);
         ctrl_avElem_chk(3, 'impactBio', myAvance.ch3.impactBio, $(".btn_impactBio").length + 1, 'myglow_img_white', true);
         ctrl_avElem_chk(3, 'caracter', myAvance.ch3.caracter, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
         ctrl_avElem_chk(3, 'vidTemp', myAvance.ch3.vidTemp, $(".btn_caracter").length + 1, 'myglow_img_blue', true);
+
         autoNextSlide('module3', nSlides, ctrl_slidesMod3);
     },
     waitForAll: true
@@ -27,31 +27,29 @@ function ctrl_slidesMod3() {
     console.log("#slide_module3_" + currentSlide);
     $prevBtn.show();
     $nextBtn.show();
-    $("#slide_module3_" + currentSlide).show();
-    console.log("#slide_module3_" + currentSlide);
-    $prevBtn.show();
-    $nextBtn.show();
+
+    // Reproducir audio para el slide actual
     playAudio('module3_', currentSlide);
 
     if (currentSlide === 1) {
         $prevBtn.hide();
         $nextBtn.hide();
         reproducirHasta("vid_module3_1", 9.99);
-    } else if (currentSlide === 2) {
-        $prevBtn.show();
-        $nextBtn.show();
-        reproducirHasta("vid_module3_2", 4.99);
     } else if (currentSlide === 3) {
+        console.log('Slide 3: myAvance.ch3.trofeoModal =', myAvance.ch3.trofeoModal);
         $prevBtn.show();
-        if (myAvance.ch3.emocion < 2) {
-            $('.btn_emocion').addClass('myglow_img_white');
+        if (myAvance.ch3.trofeoModal < 2) {
+            console.log('Enabling trofeoModal button');
+            $('.btn_trofeoModal').addClass('myglow_img_white elem_click_modal').css('pointer-events', 'auto');
             $nextBtn.hide();
         } else {
-            $('.btn_emocion').removeClass('myglow_img_white');
+            console.log('Disabling trofeoModal button');
+            $('.btn_trofeoModal').removeClass('myglow_img_white elem_click_modal').css('pointer-events', 'none');
             $nextBtn.show();
             if (myAvance.ch3.progress < 2) {
                 myAvance.ch3.progress = 2; // Unlock Manejo efectivo
                 ctrl_menuAccess();
+                localStorage.setItem('myAvance', JSON.stringify(myAvance));
             }
         }
     } else if (currentSlide === 4) {
@@ -116,11 +114,14 @@ function ctrl_slidesMod3() {
         reproducirHasta("vid_module3_11", 4.99);
         $prevBtn.show();
         if (myAvance.ch3.finish_juego === 0) {
+            console.log('Juego no completado, ocultando Next');
             $nextBtn.hide();
         } else {
+            console.log('Juego completado, mostrando Next y actualizando progreso');
             $nextBtn.show();
             if (myAvance.ch3.progress < 6) {
                 myAvance.ch3.progress = 6; // Unlock Cierre
+                localStorage.setItem('myAvance', JSON.stringify(myAvance));
                 ctrl_menuAccess();
             }
         }
@@ -144,6 +145,9 @@ function ctrl_slidesMod3() {
         $prevBtn.show();
         $nextBtn.show();
     }
+
+    // Control de música de fondo
+    controlBackgroundMusic(3, currentSlide);
 }
 
 // Eventos de navegación
@@ -160,21 +164,6 @@ $("#module3_Next").click(() => {
     ctrl_slidesMod3();
 });
 
-// Control de avance de elementos
-function ctrl_avElem_chk(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isInit) {
-    $('.btn_' + ptrClass).removeClass(ptrAnimClass).css({ 'pointer-events': 'none' }).addClass('w3-opacity');
-    if ((myAvance["ch" + ptrChptr][ptrClass] < ptrAvMax) && (myAvance["ch" + ptrChptr][ptrClass] <= parseInt(ptrID))) {
-        !1 === isInit && (myAvance["ch" + ptrChptr][ptrClass] = parseInt(ptrID) + 1);
-        for (i = 0; i < myAvance["ch" + ptrChptr][ptrClass]; i++) {
-            $('#btn_' + ptrClass + '_' + i).css('pointer-events', 'auto').removeClass('w3-opacity ' + ptrAnimClass);
-            $('#chk_emocion_' + i).show();
-        }
-        $('#btn_' + ptrClass + '_' + myAvance["ch" + ptrChptr][ptrClass]).addClass(ptrAnimClass).css('pointer-events', 'auto').removeClass('w3-opacity');
-    } else if ((myAvance["ch" + ptrChptr][ptrClass]) >= ptrAvMax) {
-        $('.btn_' + ptrClass).css('pointer-events', 'auto').removeClass('w3-opacity');
-    }
-}
-
 // Eventos de botones de comienzo
 $('.btn_comenzarModule').click(function () {
     const strID = $(this).attr('id').split("_")[2];
@@ -183,26 +172,57 @@ $('.btn_comenzarModule').click(function () {
         ctrl_slidesMod3();
     }
 });
+// Control de avance de elementos
+function ctrl_avElem_chk(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isInit) {
+    $('.btn_' + ptrClass).removeClass(ptrAnimClass).css({ 'pointer-events': 'none' }).addClass('w3-opacity');
+    if (ptrClass === 'trofeoModal' && myAvance["ch" + ptrChptr][ptrClass] >= 2) {
+        // Para trofeoModal, mantener pointer-events: none cuando está completado
+        $('.btn_' + ptrClass).removeClass(ptrAnimClass + ' elem_click_modal').css({ 'pointer-events': 'none' }).addClass('w3-opacity');
+    } else if (myAvance["ch" + ptrChptr][ptrClass] < ptrAvMax && myAvance["ch" + ptrChptr][ptrClass] <= parseInt(ptrID)) {
+        if (!isInit) {
+            myAvance["ch" + ptrChptr][ptrClass] = parseInt(ptrID) + 1;
+        }
+        for (let i = 0; i < myAvance["ch" + ptrChptr][ptrClass]; i++) {
+            $('#btn_' + ptrClass + '_' + i).css('pointer-events', 'auto').removeClass('w3-opacity ' + ptrAnimClass);
+        }
+        $('#btn_' + ptrClass + '_' + myAvance["ch" + ptrChptr][ptrClass]).addClass(ptrAnimClass).css('pointer-events', 'auto').removeClass('w3-opacity');
+    } else if (myAvance["ch" + ptrChptr][ptrClass] >= ptrAvMax) {
+        $('.btn_' + ptrClass).css('pointer-events', 'auto').removeClass('w3-opacity');
+    }
+}
 
-// Eventos de emociones
-$('.btn_emocion').click(function () {
-    pauseMusicAndUpdateIcon();
-    $('#mod_emocion_6').fadeIn();
-    var video = $('#emoc_6').get(0);
-    video.currentTime = 0;
-    video.play();
+// Eventos de btn_trofeoModal para abrir modal
+$('.btn_trofeoModal').click(function () {
+    if (myAvance.ch3.trofeoModal >= 2) {
+        console.log('TrofeoModal already completed, ignoring click');
+        return;
+    }
+    if ($(this).hasClass('elem_click_modal')) {
+        pauseMusicAndUpdateIcon();
+        $('#mod_trofeoModal_1').fadeIn();
+        var video = $('#emoc_6').get(0);
+        video.currentTime = 0;
+        video.play();
+        const audio = $("#efct_clic_mod_3")[0];
+        audio.currentTime = 0;
+        audio.play().catch((err) => {
+            console.warn("No se pudo reproducir el audio:", err);
+        });
+    }
 });
 
-$('.cls_emocion').click(function () {
-    strID = $(this).attr('id').split("_")[2];
-    $('#mod_emocion_6').fadeOut();
+$('.cls_trofeoModal').click(function () {
+    $('#mod_trofeoModal_1').fadeOut();
     var video = $('#emoc_6').get(0);
     video.currentTime = 0;
     video.pause();
-    if (myAvance.ch3.emocion < 2) {
-        myAvance.ch3.emocion = 2;
+    if (myAvance.ch3.trofeoModal < 2) {
+        myAvance.ch3.trofeoModal = 2;
+        localStorage.setItem('myAvance', JSON.stringify(myAvance));
+        console.log('Updated myAvance.ch3.trofeoModal to 2');
     }
-    restoreMusicAndIcon('1');
+    console.log('After closing modal, myAvance.ch3.trofeoModal =', myAvance.ch3.trofeoModal);
+    restoreMusicAndIcon('3');
     ctrl_slidesMod3();
 });
 
@@ -316,7 +336,7 @@ $("#btn_finmod3").click(function () {
         const $video = $('#vid_ganador_1');
         if ($video.length) {
             $video.attr('src', videoSrc);
-            $video.get(0).volume = 0.5;
+            $video.get(0).volume = 0.3;
             $video.get(0).load();
             $video.get(0).play().catch(err => console.warn("Error playing winner video:", err));
         } else {
@@ -342,13 +362,6 @@ $("#btn_fin_mod37").click(function () {
 // Efecto de click
 $(".elem_click").click(function () {
     const audio = $("#efct_clic3")[0];
-    audio.currentTime = 0;
-    audio.play().catch((err) => {
-        console.warn("No se pudo reproducir el audio:", err);
-    });
-});
-$(".elem_click_modal").click(function () {
-    const audio = $("#efct_clic_mod_3")[0];
     audio.currentTime = 0;
     audio.play().catch((err) => {
         console.warn("No se pudo reproducir el audio:", err);
