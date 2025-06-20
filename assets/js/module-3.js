@@ -44,10 +44,10 @@ function ctrl_slidesMod3() {
     } else if (currentSlide === 3) {
         $prevBtn.show();
         if (myAvance.ch3.emocion < 2) {
-            $('.btn_emocion').addClass('myglow_img_white');
+            $('.slideM3_3-inst').addClass('myglow_img_white');
             $nextBtn.hide();
         } else {
-            $('.btn_emocion').removeClass('myglow_img_white');
+            $('.slideM3_3-inst').removeClass('myglow_img_white');
             $nextBtn.show();
             if (myAvance.ch3.progress < 2) {
                 myAvance.ch3.progress = 2; // Unlock Manejo efectivo
@@ -185,7 +185,7 @@ $('.btn_comenzarModule').click(function () {
 });
 
 // Eventos de emociones
-$('.btn_emocion').click(function () {
+$('#slideM3_3-inst').click(function () {
     pauseMusicAndUpdateIcon();
     $('#mod_emocion_6').fadeIn();
     var video = $('#emoc_6').get(0);

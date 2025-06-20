@@ -54,7 +54,7 @@ function ctrl_slidesMod1() {
     $prevBtn.hide();
     $nextBtn.hide();
     playAudio('module1_', currentSlide);
-    reproducirHasta("vid_module1_7", 9.99);
+    reproducirHasta("vid_module1_7", 8.99);
     $('#aud_logro').get(0).play();
     if (myAvance.ch1.logro_llanta === 0) {
       myAvance.ch1.logro_llanta = 1;

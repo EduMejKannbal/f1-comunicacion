@@ -30,7 +30,7 @@
   height: 100%;
   left: 0;
   top: 0;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 #slide2_elem_2 {
@@ -240,16 +240,16 @@
 }
 
 #btn_cls_slide4_modal {
-  bottom: -1%;
-  left: 38.5%;
-  width: 23%;
+  bottom: 2%;
+  left: 42.5%;
+  width: 16%;
 }
 
 #slide5_img_1 {
-  width: 100%;
+  width: 87%;
   left: 0%;
   top: 0%;
-  opacity: 0.5;
+  opacity: .8;
 }
 
 #slide5_img_2 {
@@ -382,9 +382,9 @@
 }
 
 #btn_cls_slide6_modal {
-  bottom: 9%;
-  left: 39.5%;
-  width: 23%;
+  bottom: 3%;
+  left: 40.5%;
+  width: 16%;
 }
 #slide7_img_1 {
   width: 100%;
@@ -539,9 +539,9 @@
   width: 60%;
 }
 #btn_cls_slide13_modal {
-  bottom: 9%;
-  left: 37.5%;
-  width: 23%;
+  bottom: 3%;
+  left: 41.5%;
+  width: 16%;
 }
 
 #txt_finSlides {
