@@ -38,11 +38,13 @@ function ctrl_slidesMod3() {
     } else if (currentSlide === 3) {
         console.log('Slide 3: myAvance.ch3.trofeoModal =', myAvance.ch3.trofeoModal);
         $prevBtn.show();
-        if (myAvance.ch3.emocion < 2) {
-            $('.btn_emocion').addClass('myglow_img_white');
+        if (myAvance.ch3.trofeoModal < 2) {
+            console.log('Enabling trofeoModal button');
+            $('.btn_trofeoModal').addClass('myglow_img_white elem_click_modal').css('pointer-events', 'auto');
             $nextBtn.hide();
         } else {
-            $('.btn_emocion').removeClass('myglow_img_white');
+            console.log('Disabling trofeoModal button');
+            $('.btn_trofeoModal').removeClass('myglow_img_white elem_click_modal').css('pointer-events', 'none');
             $nextBtn.show();
             if (myAvance.ch3.progress < 2) {
                 myAvance.ch3.progress = 2; // Unlock Manejo efectivo
@@ -170,14 +172,43 @@ $('.btn_comenzarModule').click(function () {
         ctrl_slidesMod3();
     }
 });
+// Control de avance de elementos
+function ctrl_avElem_chk(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isInit) {
+    $('.btn_' + ptrClass).removeClass(ptrAnimClass).css({ 'pointer-events': 'none' }).addClass('w3-opacity');
+    if (ptrClass === 'trofeoModal' && myAvance["ch" + ptrChptr][ptrClass] >= 2) {
+        // Para trofeoModal, mantener pointer-events: none cuando está completado
+        $('.btn_' + ptrClass).removeClass(ptrAnimClass + ' elem_click_modal').css({ 'pointer-events': 'none' }).addClass('w3-opacity');
+    } else if (myAvance["ch" + ptrChptr][ptrClass] < ptrAvMax && myAvance["ch" + ptrChptr][ptrClass] <= parseInt(ptrID)) {
+        if (!isInit) {
+            myAvance["ch" + ptrChptr][ptrClass] = parseInt(ptrID) + 1;
+        }
+        for (let i = 0; i < myAvance["ch" + ptrChptr][ptrClass]; i++) {
+            $('#btn_' + ptrClass + '_' + i).css('pointer-events', 'auto').removeClass('w3-opacity ' + ptrAnimClass);
+        }
+        $('#btn_' + ptrClass + '_' + myAvance["ch" + ptrChptr][ptrClass]).addClass(ptrAnimClass).css('pointer-events', 'auto').removeClass('w3-opacity');
+    } else if (myAvance["ch" + ptrChptr][ptrClass] >= ptrAvMax) {
+        $('.btn_' + ptrClass).css('pointer-events', 'auto').removeClass('w3-opacity');
+    }
+}
 
-// Eventos de emociones
-$('.btn_emocion').click(function () {
-    pauseMusicAndUpdateIcon();
-    $('#mod_emocion_6').fadeIn();
-    var video = $('#emoc_6').get(0);
-    video.currentTime = 0;
-    video.play();
+// Eventos de btn_trofeoModal para abrir modal
+$('.btn_trofeoModal').click(function () {
+    if (myAvance.ch3.trofeoModal >= 2) {
+        console.log('TrofeoModal already completed, ignoring click');
+        return;
+    }
+    if ($(this).hasClass('elem_click_modal')) {
+        pauseMusicAndUpdateIcon();
+        $('#mod_trofeoModal_1').fadeIn();
+        var video = $('#emoc_6').get(0);
+        video.currentTime = 0;
+        video.play();
+        const audio = $("#efct_clic_mod_3")[0];
+        audio.currentTime = 0;
+        audio.play().catch((err) => {
+            console.warn("No se pudo reproducir el audio:", err);
+        });
+    }
 });
 
 $('.cls_trofeoModal').click(function () {
