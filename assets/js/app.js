@@ -742,6 +742,7 @@ function resetMenuImages() {
 video.addEventListener('ended', function () {
     stopSplashVideo();
     $('#slide_vidWelcome_1').hide();
+    $('#mod_start').css('display', 'block');
     playModuleAudio(null);
 });
 
