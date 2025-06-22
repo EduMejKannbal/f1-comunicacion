@@ -42,20 +42,23 @@ function ctrl_slidesMod3() {
         reproducirHasta("vid_module3_1", 9.99);
     } else if (currentSlide === 3) {
         console.log('Slide 3: myAvance.ch3.trofeoModal =', myAvance.ch3.trofeoModal);
-        $prevBtn.show();
-        if (myAvance.ch3.trofeoModal < 2) {
-            console.log('Enabling trofeoModal button');
-            $('.btn_trofeoModal').addClass('myglow_img_white elem_click_modal').css('pointer-events', 'auto');
-            $nextBtn.hide();
-        } else {
-            console.log('Disabling trofeoModal button');
-            $('.btn_trofeoModal').removeClass('myglow_img_white elem_click_modal').css('pointer-events', 'none');
+        $
+
+        prevBtn.show();
+        // Mantener el botón interactivo, pero sin myglow_img_white si ya se vio
+        $('.btn_trofeoModal').css('pointer-events', 'auto')
+            .addClass('elem_click_modal')
+            .toggleClass('myglow_img_white', myAvance.ch3.trofeoModal < 2)
+            .toggleClass('w3-opacity', myAvance.ch3.trofeoModal >= 2);
+        if (myAvance.ch3.trofeoModal >= 2) {
             $nextBtn.show();
             if (myAvance.ch3.progress < 2) {
                 myAvance.ch3.progress = 2; // Unlock Manejo efectivo
                 ctrl_menuAccess();
                 localStorage.setItem('myAvance', JSON.stringify(myAvance));
             }
+        } else {
+            $nextBtn.hide();
         }
     } else if (currentSlide === 4) {
         $prevBtn.show();
@@ -198,24 +201,19 @@ function ctrl_avElem_chk(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isIn
 
 // Eventos de btn_trofeoModal para abrir modal
 $('.btn_trofeoModal').click(function () {
-    if (myAvance.ch3.trofeoModal >= 2) {
-        console.log('TrofeoModal already completed, ignoring click');
-        return;
-    }
-    if ($(this).hasClass('elem_click_modal')) {
-        pauseMusicAndUpdateIcon();
-        $('#mod_trofeoModal_1').fadeIn();
-        var video = $('#emoc_6').get(0);
-        video.currentTime = 0;
-        video.play();
-        const audio = $("#efct_clic_mod_3")[0];
-        audio.currentTime = 0;
-        audio.play().catch((err) => {
-            console.warn("No se pudo reproducir el audio:", err);
-        });
-    }
+    pauseMusicAndUpdateIcon();
+    $('#mod_trofeoModal_1').fadeIn();
+    var video = $('#emoc_6').get(0);
+    video.currentTime = 0;
+    video.play();
+    const audio = $("#efct_clic_mod_3")[0];
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
+        console.warn("No se pudo reproducir el audio:", err);
+    });
 });
 
+// Eventos de cierre de la modal trofeoModal
 $('.cls_trofeoModal').click(function () {
     $('#mod_trofeoModal_1').fadeOut();
     var video = $('#emoc_6').get(0);
@@ -226,7 +224,11 @@ $('.cls_trofeoModal').click(function () {
         localStorage.setItem('myAvance', JSON.stringify(myAvance));
         console.log('Updated myAvance.ch3.trofeoModal to 2');
     }
-    console.log('After closing modal, myAvance.ch3.trofeoModal =', myAvance.ch3.trofeoModal);
+    // Restaurar interactividad del botón sin myglow_img_white
+    $('#btn_trofeoModal_1').css('pointer-events', 'auto')
+        .addClass('elem_click_modal')
+        .removeClass('myglow_img_white')
+        .toggleClass('w3-opacity', myAvance.ch3.trofeoModal >= 2);
     restoreMusicAndIcon('3');
     ctrl_slidesMod3();
 });
@@ -375,6 +377,12 @@ $(".elem_click").click(function () {
 
 // Juego
 $('#slideM3-9-btn').click(function () {
+    pauseMusicAndUpdateIcon();
+    const $prevBtn = $("#module3_Prev");
+    const $nextBtn = $("#module3_Next");
+    $prevBtn.hide();
+    $nextBtn.hide();
     $('#juego3').show();
     $('#juego3').loadHTML('juego3.html');
+    initializeDragDropGame();
 });

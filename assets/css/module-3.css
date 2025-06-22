@@ -84,6 +84,11 @@
   left: 0px;
   top: 2%;
   border-radius: 0px 15px 15px 0px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
 }
 .container-emocionesBasicas {
   width: 74%;
@@ -286,8 +291,8 @@
   top: 0px;
   width: 65%;
   height: 100%;
-  opacity: 0.7;
-  backdrop-filter: blur(4px);
+  opacity: 1;
+  backdrop-filter: blur(5px);
 }
 #slideM3-4-txt {
   width: 40%;
@@ -678,5 +683,18 @@
     height: 121%;
     top: -53px;
     left: -79px;
+  }
+  #slideM3_txt_1 {
+    left: 1%;
+  }
+  #slideM3_txt_2 {
+    left: 1%;
+  }
+  #slideM3_txt_3 {
+    left: 1%;
+  }
+  .slideM3-plaqueta {
+    left: 0;
+    top: 4%;
   }
 }

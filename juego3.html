@@ -130,13 +130,19 @@
 
             if (isApproved) {
                 $modalCorrect.fadeIn(300);
-                console.log(`[Game] Mostrando modal correcto, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`);
+                console.log(`[Game] Mostrando modal correcto, Aciertos: ${correctAnswersCount}/${gameConfig.js}`);
             } else {
                 attempts++;
-                $modalIncorrect.fadeIn(300);
-                console.log(`[Game] Mostrando modal incorrecto, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`);
+                if (attempts < gameConfig.maxAttempts) {
+                    $modalIncorrect.fadeIn(300);
+                    console.log(`[Game] Mostrando modal incorrecto, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}, Intento: ${attempts}`);
+                } else {
+                    $modalIncorrect.fadeIn(300);
+                    console.log(`[Game] Límite de intentos alcanzado, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`);
+                }
             }
         }
+
 
         // Configurar arrastrables
         function setupDraggables() {
@@ -167,12 +173,24 @@
                 ctrl_menuAccess(); // Actualizar el menú inmediatamente
                 ctrl_slidesMod3();
                 $('#juego3').hide();
+                restoreMusicAndIcon('3');
             });
 
             $("#close_retroIncorrect_1").on("click", () => {
                 $("#mod_retroIncorrect_1").fadeOut(300);
-                ctrl_slidesMod3();
-                $('#juego3').hide().empty();
+                if (attempts < gameConfig.maxAttempts) {
+                    console.log("[Game] Reintentando juego, intento: " + (attempts + 1));
+                    currentQuestionIndex = 0; // Reiniciar índice de preguntas
+                    correctAnswersCount = 0; // Reiniciar conteo de respuestas correctas
+                    $('#juego3').hide().empty();
+                    $('#juego3').show();
+                    init(); // Reiniciar el juego
+                } else {
+                    console.log("[Game] Límite de intentos alcanzado, volviendo a diapositiva");
+                    $('#juego3').hide().empty();
+                    ctrl_slidesMod3();
+                    restoreMusicAndIcon('3'); // Restaurar música al cerrar modal incorrecta
+                }
             });
         }
 
