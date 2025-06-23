@@ -169,7 +169,7 @@ progress::-webkit-progress-bar {
 .home_boton {
   left: 49%;
   margin: auto;
-  bottom: 22%;
+  bottom: 15%;
   width: 18%;
 }
 .absolute {
@@ -368,6 +368,7 @@ progress::-webkit-progress-bar {
 }
 .conoceCoach-modal {
   width: 80%;
+  overflow: hidden;
 }
 .btn_sobreMi {
   height: auto;
@@ -680,36 +681,23 @@ progress::-webkit-progress-bar {
   top: 46%;
   width: 50%;
 }
-#mod_start_txt1 {
-  right: 15%;
-  top: 22%;
-  width: 39%;
+#mod_start_txt_1 {
+  right: 7%;
+  top: 35%;
+  width: 50%;
+}
+#mod_start_txt_2 {
+  right: 11%;
+  top: 18%;
+  width: 48%;
 }
 #img_start_1 {
-  top: 16%;
-  left: 10%;
-  width: 80%;
-}
-#mod_start_txt2 {
-  right: 19%;
-  top: 24%;
-  width: 41%;
-}
-
-#img_start_2 {
-  top: 17%;
-  left: 9%;
-  width: 78%;
-}
-.modal-backdrop {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: #000000fc;
-  opacity: 0.6;
-  z-index: 0; /* Asegúrate de que esté detrás */
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
 .vid_in_modal {
   position: absolute;
@@ -1004,7 +992,13 @@ progress::-webkit-progress-bar {
 #div_menu {
   z-index: 30;
 }
-
+.videoMenuTrofeos {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+}
 #back_trofeo {
   top: 0;
   left: 0;
@@ -1155,7 +1149,7 @@ progress::-webkit-progress-bar {
   width: 4%;
   position: absolute;
   top: 1%;
-  left: 90%;
+  left: 1%;
   z-index: 999;
   cursor: pointer;
   background: #ffffff6e;
@@ -1210,7 +1204,7 @@ progress::-webkit-progress-bar {
   width: 4%;
   height: auto;
 }
-.modalesVideosContenido{
+.modalesVideosContenido {
   top: 0;
   left: 0;
   width: 100%;
@@ -1223,6 +1217,9 @@ progress::-webkit-progress-bar {
 @media (min-width: 1360px) {
 }
 @media (min-width: 1400px) and (max-width: 1500px) {
+  #mod_start_txt_2 {
+    top: 21%;
+  }
 }
 
 @media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {
@@ -1237,5 +1234,8 @@ progress::-webkit-progress-bar {
   }
   .home_titleHome {
     width: 68%;
+  }
+  #mod_start_txt_2 {
+    top: 22%;
   }
 }

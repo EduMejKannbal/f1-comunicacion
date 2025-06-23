@@ -51,19 +51,9 @@
 
         <div id="mod_start" class="absolute animated zoomInUp"
           style="width: 100%;height: 100%; top: 0;left: 0;z-index: 999;display: none;">
-          <div class="modal-backdrop"></div>
-          <img id="img_start_1" src="assets/img/modules/module-2/ModalCarera.png" class="absolute" >
-          <img id="mod_start_txt1" class="absolute animated zoomIn" src="assets/img/txtx_modal_bienvenida1.png">
-          <img id="btn_homeComenzar_1" src="assets/img/siguiente.png"
-            class="elem_click home_boton btn_homeComenzar">
-        </div>
-        <div id="mod_start_2" class="absolute animated zoomInUp"
-        style="width: 100%;height: 100%; top: 0; left: 0; z-index: 999; display: none;">
-        <div class="modal-backdrop"></div>
-        <img id="img_start_2" src="assets/img/modal2.png" class="absolute">
-        <img id="mod_start_txt2" class="absolute animated fadeIn" src="assets/img/txtx_modal_bienvenida2.png">
-        <img id="btn_homeComenzar_2" src="assets/img/home/btn_comenzar.png"
-          class="elem_click home_boton btn_homeComenzar">
+          <img id="img_start_1" class="absolute" src="assets/img/modules/module-2/ModalCarera.png">
+          <img id="mod_start_txt_1" class="absolute animated zoomIn mod_start_txt" src="assets/img/menu/txt_mod_menu_1.svg">
+          <img id="btn_homeComenzar_1" src="assets/img/icons/btn_1.png" class="elem_click home_boton btn_homeComenzar">
         </div>
 
       </div>
@@ -103,10 +93,11 @@
         <div class="w3-display-container">
           <img src="assets/img/base_slide.png" alt style="width: 100%;">
           <div class="vid_in_modal">
-            <video id="BienvVid_1" class="locution" src="assets/vid/vid_intro.mp4" controls controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture></video>
+            <video id="BienvVid_1" class="locution" src="assets/vid/vid_intro.mp4" controls
+              controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture></video>
           </div>
-          <img id="cls_BienvVid_1" class="  w3-display-topright elem_click cls_impactBio delay-2s" src="assets/img/icons/cls.png"
-            style="top: -2%;right: -2%;" />
+          <img id="cls_BienvVid_1" class="  w3-display-topright elem_click cls_impactBio delay-2s"
+            src="assets/img/icons/cls.png" style="top: -2%;right: -2%;" />
         </div>
       </div>
     </div>
@@ -144,10 +135,13 @@
       <p id="txt_menu_3_6" class="elem_click txt_menu"> Cierre </p>
     </div>
 
-
     <div id="slide_trofeo_1" class="slide_trofeo">
       <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
-      <img id="back_trofeo" src="assets/img/trofeos/back.jpg" class="absolute  animated slideInLeft" alt="">
+      <!-- <img id="back_trofeo" src="assets/img/trofeos/back.jpg" class="absolute  animated slideInLeft" alt=""> -->
+      <video class="videoMenuTrofeos absolute" id="videoMenuTrofeos_1" src="assets/vid/fondo_Menutrofeos.mp4" autoplay muted loop playsinline
+          aria-label="Animación de fondo con trofeo">
+          Tu navegador no soporta el video HTML5.
+        </video>
       <img id="rect_menuT" src="assets/img/menu/rect_menu.png " class="absolute animated slideInLeft" alt="">
       <div id="box_trofeo" class="absolute">
         <img src="assets/img/trofeos/pleca_logros.svg " alt style="top: 0;left: 0;position: relative; width: 100%;">
