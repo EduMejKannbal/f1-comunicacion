@@ -1089,7 +1089,16 @@ $('.txt_logro').each(function () {
     });
 });
 
-$('#btn_homeComenzar_1').click(() => $('#mod_start').hide());
+// $('#btn_homeComenzar_1').click(() => $('#mod_start').hide());
+$('#btn_homeComenzar_1').click(function () {
+  $('#mod_start').hide();
+  $('#mod_start_2').show();
+});
+
+// Click en el segundo botón "¡Vamos!" → cierra ambas
+$('#btn_homeComenzar_2').click(function () {
+  $('#mod_start_2').hide();
+});
 
 $('#btn_sobreMi_1').click(function () {
     pauseAllAudio();

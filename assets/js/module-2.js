@@ -45,7 +45,7 @@ function ctrl_slidesMod2() {
   } else if (currentSlide === 4) {
     $prevBtn.hide();
     $nextBtn.hide();
-    reproducirHasta("vid_module2_4", 9.99);
+    reproducirHasta("vid_module2_4", 8.99);
     $('#aud_logro').get(0).play();
     if (myAvance.ch2.logro_traje === 0) {
       myAvance.ch2.logro_traje = 1;
@@ -119,7 +119,11 @@ function ctrl_slidesMod2() {
   } else if (currentSlide === 15) {
     $prevBtn.show();
     $nextBtn.hide();
-    reproducirHasta("vid_module2_15", 9.99);
+    reproducirHasta("vid_module2_15", 8.99);
+  }else if (currentSlide === 16) {
+    $prevBtn.show();
+    $nextBtn.hide();
+    reproducirHasta("vid_module2_16", 4.99);
   } else if (currentSlide === totalSlides) {
     $nextBtn.hide();
     $prevBtn.hide();

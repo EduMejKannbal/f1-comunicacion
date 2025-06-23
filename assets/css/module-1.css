@@ -175,7 +175,9 @@
   grid-row: span 2 / span 2;
   display: grid;
   justify-items: center;
-  width: 70%;
+  width: 76%;
+  position: relative;
+  right: 18%;
 }
 
 .div3 {
@@ -184,7 +186,9 @@
   grid-row-start: 3;
   display: grid;
   justify-items: center;
-  width: 65%;
+  width: 77%;
+  position: relative;
+  right: 17%;
 }
 
 .div4 {
@@ -200,7 +204,10 @@
   grid-row-start: 1;
   display: grid;
   justify-items: center;
-  width: 55%;
+  width: 60%;
+  position: relative;
+  left: 17%;
+  bottom: 8%;
 }
 
 .div6 {
@@ -209,7 +216,9 @@
   grid-row-start: 3;
   display: grid;
   justify-items: center;
-  width: 63%;
+  width: 79%;
+  position: relative;
+  left: 25%;
 }
 
 .contenido-conductas {
@@ -231,11 +240,12 @@
   object-fit: contain;
 }
 .contenido-conductas {
-  width: 100%;
+  width: 122%;
   height: 100%;
   background-image: url("../img/modules/module-1/slide-2/marco.png");
   background-position: center;
   background-size: 100% 100%;
+  right: 12%;
 }
 .contenido-conductas div {
   display: grid;
