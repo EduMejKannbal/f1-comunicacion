@@ -34,8 +34,10 @@ const NO_MUSIC_SLIDES = {
     3: [7, 10, 12, 13]
 };
 
-// Valores predeterminados para myAvance
-const defaultAvance = {
+// Variables de estado
+let strID;
+let gAvMax = 4;
+let myAvance = {
     avModulos: 1,
     g_avance: 0,
     ganador: null,
@@ -71,11 +73,6 @@ const defaultAvance = {
         progress: 1
     }
 };
-
-// Variables de estado
-let strID;
-let gAvMax = 4;
-let myAvance = JSON.parse(localStorage.getItem('myAvance')) || defaultAvance; // Cargar desde localStorage o usar valores predeterminados
 let nSlides = {
     numSlides: 1,
     numSlides_2: 1,
@@ -85,7 +82,7 @@ let nSlides = {
 };
 let currentAudio = null;
 let isAudioPlaying = false;
-let flagMus = parseInt(localStorage.getItem('flagMus')) || 1;
+let flagMus = 1;
 let flagVoice = 1;
 let numAudio = 0;
 let flagLocution = 1;
@@ -98,9 +95,9 @@ let selections = {
     buho: 0
 };
 let totalQuestions = 14;
-let testCompleted = JSON.parse(localStorage.getItem('testCompleted')) || false;
-let testResults = JSON.parse(localStorage.getItem('testResults')) || null;
-let userSelections = JSON.parse(localStorage.getItem('userSelections')) || {};
+let testCompleted = false;
+let testResults = null;
+let userSelections = {};
 let previousSlide = 0;
 let dismissTimeouts = [];
 let isAutoDismissEnabled = false;
@@ -385,7 +382,6 @@ function ctrl_slidesMod1() {
         if (testCompleted && myAvance.ch1.progress < 2) {
             myAvance.ch1.progress = 2; // Unlock Clasificación
             localStorage.setItem('myAvance', JSON.stringify(myAvance));
-            console.log("[Module 1] Progreso actualizado: ch1.progress = 2");
             ctrl_menuAccess();
         }
         if (testCompleted && testResults) {
@@ -408,7 +404,6 @@ function ctrl_slidesMod1() {
         if (myAvance.ch1.logro_llanta === 0) {
             myAvance.ch1.logro_llanta = 1;
             localStorage.setItem('myAvance', JSON.stringify(myAvance));
-            console.log("[Module 1] Progreso actualizado: ch1.logro_llanta = 1");
         }
     } else if (currentSlide === 9) {
         if (myAvance.ch1.estilosComunicacion < $(".btn_estilosComunicacion").length + 1) {
@@ -428,7 +423,6 @@ function ctrl_slidesMod1() {
             if (myAvance.ch1.progress < 3) {
                 myAvance.ch1.progress = 3; // Unlock Cierre
                 localStorage.setItem('myAvance', JSON.stringify(myAvance));
-                console.log("[Module 1] Progreso actualizado: ch1.progress = 3, logro_casco = 1");
                 ctrl_menuAccess();
             }
         }
@@ -449,6 +443,7 @@ function ctrl_slidesMod1() {
 
     previousSlide = currentSlide;
 }
+
 
 function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
     $(".carru_" + ptrCarruClass).hide();
@@ -477,7 +472,7 @@ function setupCarouselControls(carruClass) {
     });
 
     $("#" + carruClass + "_Next").click(function () {
-        if (nSlides[carruClass] < $(".carru_" + ptrCarruClass).length) {
+        if (nSlides[carruClass] < $(".carru_" + carruClass).length) {
             nSlides[carruClass]++;
             ctrl_carru_simple(carruClass, nSlides[carruClass]);
         }
@@ -587,7 +582,6 @@ function calculateResults() {
             }
         }
         myAvance.ganador = maxType;
-        localStorage.setItem('myAvance', JSON.stringify(myAvance));
         console.log("Ganador asignado a myAvance.ganador:", myAvance.ganador);
 
         setTimeout(() => {
@@ -595,7 +589,6 @@ function calculateResults() {
             $('#processingModal').hide();
             nSlides.numSlides = 6;
             ctrl_slidesMod1();
-            localStorage.setItem('myAvance', JSON.stringify(myAvance));
 
             $('.cardTest').removeClass('mayor-resultado');
             const indexMap = { pantera: 1, pavorreal: 2, delfin: 3, buho: 4 };
@@ -623,14 +616,12 @@ function ctrl_AvGeneral(ptrID, ptrAvMax) {
     } else if (myAvance.avModulos >= ptrAvMax) {
         $('.btn_avModulos').css('pointer-events', 'auto').removeClass('w3-opacity');
     }
-    localStorage.setItem('myAvance', JSON.stringify(myAvance));
-    console.log("[ctrl_AvGeneral] Progreso guardado:", myAvance);
 }
 
 function ctrl_avElem(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isInit) {
     $('.btn_' + ptrClass).removeClass(ptrAnimClass).css({ 'pointer-events': 'none' }).addClass('w3-opacity');
     if ((myAvance["ch" + ptrChptr][ptrClass] < ptrAvMax) && (myAvance["ch" + ptrChptr][ptrClass] <= parseInt(ptrID))) {
-        !isInit && (myAvance["ch" + ptrChptr][ptrClass] = parseInt(ptrID) + 1);
+        !1 === isInit && (myAvance["ch" + ptrChptr][ptrClass] = parseInt(ptrID) + 1);
         for (i = 0; i < myAvance["ch" + ptrChptr][ptrClass]; i++) {
             $('#btn_' + ptrClass + '_' + i).css('pointer-events', 'auto').removeClass('w3-opacity ' + ptrAnimClass);
         }
@@ -638,8 +629,6 @@ function ctrl_avElem(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isInit) 
     } else if ((myAvance["ch" + ptrChptr][ptrClass]) >= ptrAvMax) {
         $('.btn_' + ptrClass).css('pointer-events', 'auto').removeClass('w3-opacity');
     }
-    localStorage.setItem('myAvance', JSON.stringify(myAvance));
-    console.log("[ctrl_avElem] Progreso actualizado para ch" + ptrChptr + "." + ptrClass + ": " + myAvance["ch" + ptrChptr][ptrClass]);
 }
 
 function mostrar_trofeos() {
@@ -963,8 +952,10 @@ $('.txt_menu').each(function () {
             let canAccess = false;
             resetLocution();
 
-            if (strMod <= myAvance.avModulos && strID <= myAvance[`ch${strMod}`].progress) {
-                canAccess = true;
+            if (strMod <= myAvance.avModulos) {
+                if (myAvance[`ch${strMod}`].progress >= strID) {
+                    canAccess = true;
+                }
             }
 
             if (canAccess) {
@@ -982,10 +973,10 @@ $('.txt_menu').each(function () {
                             nSlides.numSlides = slide;
                             ctrl_slidesMod1();
                         } else if (strMod === 2) {
-                            nSlides.numSlides_2 = slide;
+                            nSlides.numSlides_2(slide);
                             ctrl_slidesMod2();
                         } else if (strMod === 3) {
-                            nSlides.numSlides_3 = slide;
+                            nSlides.slide = slide;
                             ctrl_slidesMod3();
                         }
                     }
@@ -1129,6 +1120,7 @@ $('.btn_homeComenzar').click(function () {
     }
 });
 
+
 $('#btn_sobreMi_1').click(function () {
     pauseAllAudio();
     $('#mod_BienvVid_1').show();
@@ -1233,7 +1225,7 @@ $(".elem_click").click(function () {
 $(".elem_click_modal").click(function () {
     const audio = $("#efct_clic_mod")[0];
     audio.currentTime = 0; audio.play().catch((err) => {
-        console.warn("Error al reproducir el audio", err);
+        console.warn("Error al reproducir el.span audio", err);
     });
 });
 
@@ -1268,7 +1260,14 @@ function bindClickEffect() {
 function ctrl_menuAccess() {
     $('.txt_menu').each(function () {
         const [, , strMod, strID] = $(this).attr('id').split('_').map(Number);
-        let isAccessible = strMod <= myAvance.avModulos && strID <= myAvance[`ch${strMod}`].progress;
+        let isAccessible = false;
+
+        if (strMod <= myAvance.avModulos) {
+            const moduleProgress = myAvance[`ch${strMod}`].progress;
+            if (strID <= moduleProgress) {
+                isAccessible = true;
+            }
+        }
 
         if (isAccessible) {
             $(this).removeClass('w3-opacity-max locked').css('pointer-events', 'auto');
@@ -1279,7 +1278,6 @@ function ctrl_menuAccess() {
                 $(this).append('<span class="lock-icon">🔒</span>');
             }
         }
-        console.log(`[ctrl_menuAccess] Módulo ${strMod}, Sección ${strID}, Accesible: ${isAccessible}`);
     });
 }
 
@@ -1379,8 +1377,6 @@ $("#btn_finmod1").click(function () {
     if (myAvance.avModulos >= 2) {
         myAvance.ch1.trofeo_1 = 1;
     }
-    localStorage.setItem('myAvance', JSON.stringify(myAvance));
-    console.log("[btn_finmod1] Progreso actualizado: avModulos = 2, ch1.trofeo_1 = 1");
     pauseAllAudio();
     $(".music").removeClass("hide");
     resetFondo(1, 2);
@@ -1389,29 +1385,25 @@ $("#btn_finmod1").click(function () {
     ctrl_AvGeneral();
     ctrl_menuAccess();
     playModuleAudio(null);
+    localStorage.setItem('myAvance', JSON.stringify(myAvance));
 });
 
 // Inicialización
 document.addEventListener("DOMContentLoaded", function () {
-    // Cargar datos desde localStorage
     if (localStorage.getItem('testResults')) {
         testResults = JSON.parse(localStorage.getItem('testResults'));
-        userSelections = JSON.parse(localStorage.getItem('userSelections')) || {};
-        testCompleted = JSON.parse(localStorage.getItem('testCompleted')) || false;
-        myAvance = JSON.parse(localStorage.getItem('myAvance')) || defaultAvance;
+        userSelections = JSON.parse(localStorage.getItem('userSelections'));
+        testCompleted = JSON.parse(localStorage.getItem('testCompleted'));
+        myAvance = JSON.parse(localStorage.getItem('myAvance')) || myAvance;
         selections = {
             pantera: Object.values(userSelections).filter(val => val === 'pantera').length,
             pavorreal: Object.values(userSelections).filter(val => val === 'pavorreal').length,
             delfin: Object.values(userSelections).filter(val => val === 'delfin').length,
             buho: Object.values(userSelections).filter(val => val === 'buho').length
         };
-        console.log("[DOMContentLoaded] Datos cargados desde localStorage:", { myAvance, testResults, userSelections, testCompleted });
-    } else {
-        localStorage.setItem('myAvance', JSON.stringify(myAvance));
-        console.log("[DOMContentLoaded] Progreso inicial guardado:", myAvance);
     }
 
-    $(".music").addClass("hide").attr("src", 'assets/img/icons/icon.png');
+    $(".music").addClass("hide").attr("src', 'assets/img/icons/icon.png");
     if (localStorage.getItem('flagMus')) {
         flagMus = parseInt(localStorage.getItem('flagMus'));
         if (flagMus === 0) {

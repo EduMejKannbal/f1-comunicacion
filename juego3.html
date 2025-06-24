@@ -71,14 +71,16 @@
     initializeDragDropGame();
 
     function initializeDragDropGame() {
+        // Inicializar attempts dentro de la función
+        let attempts = parseInt(localStorage.getItem('gameAttempts')) || 0;
         const $questionContainer = $("#question-container");
         let currentQuestionIndex = 0;
         let correctAnswersCount = 0;
-        let attempts = parseInt(localStorage.getItem('game3Attempts')) || 0;
 
+        // Mostrar pregunta
         function showQuestion() {
             const question = gameConfig.questions[currentQuestionIndex];
-            console.log(`[Game3] Pregunta ${currentQuestionIndex + 1}: ${question.image}, Dropzone: ${question.dropzoneClass}`);
+            console.log(`[Game] Pregunta ${currentQuestionIndex + 1}: ${question.image}, Dropzone: ${question.dropzoneClass}`);
 
             $questionContainer.html(`
             <img src="assets/img/modules/module-3/found-round.png" class="absolute retross_round">
@@ -86,31 +88,25 @@
             <div class="dropzone ${question.dropzoneClass}"></div>
         `);
 
+            // Configurar dropzone
             $(".dropzone").droppable({
                 accept: ".draggable",
                 drop: function (event, ui) {
                     const droppedAnswer = ui.draggable.data("answer");
                     const isCorrect = droppedAnswer === question.correctAnswer;
-                    console.log(`[Game3] Soltado: ${droppedAnswer}, Correcto: ${question.correctAnswer}, Es correcto: ${isCorrect}`);
+                    console.log(`[Game] Soltado: ${droppedAnswer}, Correcto: ${question.correctAnswer}, Es correcto: ${isCorrect}`);
 
                     if (isCorrect) {
                         correctAnswersCount++;
                         $(this).html(`<img src="${question.dropzoneImage}" alt="Respuesta correcta" />`);
-                        const successSound = $("#aud_win")[0];
-                        if (successSound) {
-                            successSound.currentTime = 0;
-                            successSound.play().catch(err => console.warn("Error playing aud_win:", err));
-                        }
-                        console.log(`[Game3] Aciertos: ${correctAnswersCount}`);
+                        // try { $("#successSound")[0].play(); } catch (e) { console.warn("[Game] Error sonido: ", e); }
+                        console.log(`[Game] Aciertos: ${correctAnswersCount}`);
                     } else {
                         $(this).html(`<img src="${ui.draggable.attr("src")}" alt="Incorrecto" />`);
-                        const errorSound = $("#aud_error")[0];
-                        if (errorSound) {
-                            errorSound.currentTime = 0;
-                            errorSound.play().catch(err => console.warn("Error playing aud_error:", err));
-                        }
+                        // try { $("#errorSound")[0].play(); } catch (e) { console.warn("[Game] Error sonido: ", e); }
                     }
 
+                    // Avanzar a la siguiente pregunta o mostrar modal
                     setTimeout(() => {
                         currentQuestionIndex++;
                         if (currentQuestionIndex < gameConfig.questions.length) {
@@ -123,47 +119,52 @@
             });
         }
 
+        // Mostrar modal de resultado
         function showResultModal() {
             const score = correctAnswersCount / gameConfig.questions.length;
             const isApproved = score >= gameConfig.passingScore;
             const $modalCorrect = $("#mod_retroCorrect_1");
             const $modalIncorrect = $("#mod_retroIncorrect_1");
 
-            console.log(`[Game3] Resultado: Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}, Puntuación: ${score}, Aprobado: ${isApproved}, Intento: ${attempts + 1}`);
-
             if (isApproved) {
                 $modalCorrect.fadeIn(300);
-                console.log(`[Game3] Mostrando modal correcto`);
+                console.log(`[Game] Mostrando modal correcto, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`);
+                // Reiniciar attempts al aprobar
+                attempts = 0;
+                localStorage.setItem('gameAttempts', attempts);
             } else {
                 attempts++;
-                localStorage.setItem('game3Attempts', attempts);
-                console.log(`[Game3] game3Attempts actualizado: ${attempts}`);
-                if (attempts < gameConfig.maxAttempts) {
-                    $modalIncorrect.fadeIn(300);
-                    console.log(`[Game3] Mostrando modal incorrecto`);
-                } else {
-                    console.log(`[Game3] Límite de intentos alcanzado, avanzando a diapositiva 12`);
+                localStorage.setItem('gameAttempts', attempts); // Guardar intentos
+                console.log(`[Game] Intento fallido, Intentos: ${attempts}/${gameConfig.maxAttempts}, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`);
+
+                if (attempts >= gameConfig.maxAttempts) {
+                    console.log(`[Game] Límite de intentos alcanzado, avanzando a diapositiva 12`);
                     advanceToNextSection();
+                } else {
+                    $modalIncorrect.fadeIn(300);
+                    console.log(`[Game] Mostrando modal incorrecto, Intento: ${attempts}`);
                 }
             }
         }
 
+        // Función para avanzar a la siguiente sección
         function advanceToNextSection() {
+            attempts = 0; // Reiniciar intentos
+            localStorage.setItem('gameAttempts', attempts);
             $('#juego3').hide().empty();
             nSlides.numSlides_3 = 12;
             if (myAvance.ch3.finish_juego === 0) {
                 myAvance.ch3.finish_juego = 1;
-                if (myAvance.ch3.progress < 6) {
-                    myAvance.ch3.progress = 6; // Asegurar que Cierre se desbloquee
-                    localStorage.setItem('myAvance', JSON.stringify(myAvance));
-                    console.log("[Game3] Progreso actualizado: ch3.finish_juego = 1, ch3.progress = 6");
-                    ctrl_menuAccess();
-                }
+                myAvance.ch3.progress = 6; // Asegurar que Cierre se desbloquee
+                localStorage.setItem('myAvance', JSON.stringify(myAvance)); // Guardar progreso
+                console.log("[Game] Progreso actualizado: finish_juego = 1, progress = 6");
             }
+            ctrl_menuAccess(); // Actualizar el menú inmediatamente
             ctrl_slidesMod3();
             restoreMusicAndIcon('3');
         }
 
+        // Configurar arrastrables
         function setupDraggables() {
             $(".draggable").draggable({
                 revert: "invalid",
@@ -177,51 +178,34 @@
             });
         }
 
+        // Configurar botones de cierre de modales
         function setupModalButtons() {
-            $("#close_retroCorrect_1").on("click", () => {
+            // Limpiar eventos previos
+            $("#close_retroCorrect_1").off("click").on("click", () => {
                 $("#mod_retroCorrect_1").fadeOut(300);
-                console.log("[Game3] Aprobado, avanzando a diapositiva 12");
+                console.log("[Game] Aprobado, avanzando a diapositiva 12");
                 advanceToNextSection();
             });
 
-            $("#close_retroIncorrect_1").on("click", () => {
+            $("#close_retroIncorrect_1").off("click").on("click", () => {
                 $("#mod_retroIncorrect_1").fadeOut(300);
                 if (attempts < gameConfig.maxAttempts) {
-                    console.log(`[Game3] Reintentando juego, intento: ${attempts + 1}`);
+                    console.log("[Game] Reintentando juego, intento: " + (attempts + 1));
                     currentQuestionIndex = 0;
                     correctAnswersCount = 0;
                     $('#juego3').hide().empty();
                     $('#juego3').show();
-                    init();
+                    init(); // Reiniciar el juego
                 } else {
-                    console.log("[Game3] Límite de intentos alcanzado, avanzando a diapositiva 12");
+                    console.log("[Game] Límite de intentos alcanzado, avanzando a diapositiva 12");
                     advanceToNextSection();
                 }
             });
         }
 
+        // Inicializar juego
         function init() {
-            if (myAvance.avModulos < 3) {
-                console.warn("[Game3] No se puede iniciar el juego, módulo 3 no desbloqueado: avModulos =", myAvance.avModulos);
-                alert("Debes completar los módulos anteriores para iniciar el juego.");
-                nSlides.numSlides_3 = 9;
-                ctrl_slidesMod3();
-                return;
-            }
-            if (myAvance.ch3.progress < 5) {
-                console.warn("[Game3] No se puede iniciar el juego, progreso insuficiente: ch3.progress =", myAvance.ch3.progress);
-                alert("Debes completar las secciones anteriores para iniciar el juego.");
-                nSlides.numSlides_3 = 9;
-                ctrl_slidesMod3();
-                return;
-            }
-            if (myAvance.ch3.finish_juego === 1) {
-                console.log("[Game3] Juego ya completado, avanzando a diapositiva 12");
-                advanceToNextSection();
-                return;
-            }
-
-            console.log("[Game3] Iniciando juego, intento:", attempts + 1);
+            console.log("[Game] Inicializando juego, Intentos actuales: " + attempts);
             $questionContainer.empty();
             $("#mod_retroCorrect_1, #mod_retroIncorrect_1").hide();
             setupDraggables();
