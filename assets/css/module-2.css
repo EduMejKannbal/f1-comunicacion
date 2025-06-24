@@ -26,7 +26,7 @@
 }
 
 #slide2_elem_1 {
-  width: 71.59%;
+  width: 81%;
   height: 100%;
   left: 0;
   top: 0;
@@ -92,26 +92,26 @@
 
 #slide2_txt_1 {
   width: 45.14%;
-  left: 6.37%;
-  top: 73.96%;
+  left: 1.37%;
+  top: 72.96%;
 }
 
 #slide2_txt_2 {
-  width: 45.57%;
-  left: 6.37%;
-  top: 48.5%;
+  width: 40%;
+  left: 1.37%;
+  top: 46.5%;
 }
 
 #slide2_txt_3 {
-  width: 45.57%;
-  left: 6.37%;
-  top: 60.25%;
+  width: 45%;
+  left: 1.37%;
+  top: 58.25%;
 }
 
 #slide2_txt_4 {
-  width: 45.14%;
-  left: 6.37%;
-  top: 37.84%;
+  width: 36%;
+  left: 1.37%;
+  top: 36%;
 }
 
 #slide2_img_4 {
@@ -331,9 +331,9 @@
 }
 
 #slide5_txt_1 {
-  width: 41.44%;
-  left: 4.34%;
-  top: 11.91%;
+  width: 50%;
+  left: 2%;
+  top: 11%;
   color: white;
   font-size: 1.9vw;
   font-family: Fredoka;
@@ -531,9 +531,9 @@
 }
 
 #txt_finSlides {
-  left: 3%;
-  width: 50%;
-  bottom: 38%;
+  left: 2%;
+  width: 53%;
+  bottom: 32%;
 }
 #slide15_modal {
   top: 3%;
@@ -635,7 +635,7 @@
 }
 #btn_mod2Continuar_1 {
   left: 21%;
-  bottom: 22%;
+  bottom: 15%;
   height: auto;
 }
 @media (min-width: 1199px) and (max-width: 1290px) {

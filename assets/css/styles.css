@@ -693,7 +693,7 @@ progress::-webkit-progress-bar {
 }
 #mod_start_txt_1 {
   right: 7%;
-  top: 35%;
+  top: 18%;
   width: 50%;
 }
 #mod_start_txt_2 {
@@ -965,7 +965,7 @@ progress::-webkit-progress-bar {
   width: 100%;
 }
 .btn_dis_estandar {
-  bottom: 10%;
+  bottom: 3%;
   width: 15%;
   left: 41.5%;
   z-index: 2;
@@ -1037,7 +1037,7 @@ progress::-webkit-progress-bar {
 #rect_menuT {
   top: -1%;
   left: -3%;
-  width: 40%;
+  width: 45%;
   height: 105%;
 }
 .txt_trofeo {
