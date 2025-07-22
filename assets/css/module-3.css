@@ -357,6 +357,17 @@
   cursor: pointer;
 }
 
+#btn_fin_mod312 {
+  bottom: 5%;
+  width: 20%;
+  left: 40%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 #slideM3-5-pleca {
   top: 0px;
   left: 0px;
