@@ -46,9 +46,7 @@ function ctrl_slidesMod3() {
         $prevBtn.show();
         // Mantener el botón interactivo, pero sin myglow_img_white si ya se vio
         $('.btn_trofeoModal').css('pointer-events', 'auto')
-            .addClass('elem_click_modal')
-            .toggleClass('myglow_img_white', myAvance.ch3.trofeoModal < 2)
-            .toggleClass('w3-opacity', myAvance.ch3.trofeoModal >= 2);
+            .addClass('elem_click_modal myglow_img_white w3-opacity')
         if (myAvance.ch3.trofeoModal >= 2) {
             $nextBtn.show();
             if (myAvance.ch3.progress < 2) {
