@@ -46,7 +46,7 @@ function ctrl_slidesMod3() {
         $prevBtn.show();
         // Mantener el botón interactivo, pero sin myglow_img_white si ya se vio
         $('.btn_trofeoModal').css('pointer-events', 'auto')
-            .addClass('elem_click_modal myglow_img_white w3-opacity')
+            .addClass('elem_click_modal myglow_img_white').removeClass('w3-opacity')
         if (myAvance.ch3.trofeoModal >= 2) {
             $nextBtn.show();
             if (myAvance.ch3.progress < 2) {
@@ -223,11 +223,6 @@ $('.cls_trofeoModal').click(function () {
         localStorage.setItem('myAvance', JSON.stringify(myAvance));
         console.log('Updated myAvance.ch3.trofeoModal to 2');
     }
-    // Restaurar interactividad del botón sin myglow_img_white
-    $('#btn_trofeoModal_1').css('pointer-events', 'auto')
-        .addClass('elem_click_modal')
-        .removeClass('myglow_img_white')
-        .toggleClass('w3-opacity', myAvance.ch3.trofeoModal >= 2);
     restoreMusicAndIcon('3');
     ctrl_slidesMod3();
 });
