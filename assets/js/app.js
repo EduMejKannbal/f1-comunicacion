@@ -179,6 +179,18 @@ function pauseAllAudio() {
             }
         }
     });
+    const audiosJuegos = document.querySelectorAll("audio.juegos");
+    audiosJuegos.forEach(audio => {
+        if (audio && typeof audio.pause === 'function' && !audio.paused) {
+            audio.pause();
+            try {
+                audio.currentTime = 0;
+                audio.muted = true;
+            } catch (e) {
+                console.warn("Error resetting audio time:", e);
+            }
+        }
+    });
     isAudioPlaying = false;
     console.log("Background audio paused");
 }
@@ -650,6 +662,7 @@ function mostrar_logros() {
     if (myAvance.ch1.logro_llanta === 1) logrosDesbloqueados++;
     if (myAvance.ch1.logro_casco === 1) logrosDesbloqueados++;
     if (myAvance.ch2.logro_traje === 1) logrosDesbloqueados++;
+    if (myAvance.ch2.logro_guantes === 1) logrosDesbloqueados++;
     if (myAvance.ch2.logro_zapatos === 1) logrosDesbloqueados++;
     if (myAvance.ch3.logro_llantas2 === 1) logrosDesbloqueados++;
     if (myAvance.ch3.logro_volante === 1) logrosDesbloqueados++;
