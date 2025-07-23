@@ -227,6 +227,18 @@
   display: none;
 }
 
+#div-blured-mod3_4{
+  top: 70%;
+  left: 55%;
+  width: 70vw;
+  height: 150vh;
+  transform: translate(-112%, -50%) rotate(-32deg);
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.2);
+  /* z-index: 1; */
+  pointer-events: none;
+}
+
 .btn_trofeoModal {
   width: 15%;
   height: auto;
@@ -368,6 +380,18 @@
   text-align: center;
 }
 
+#div-blured-mod3_5{
+  top: 70%;
+  left: 52%;
+  width: 70vw;
+  height: 150vh;
+  transform: translate(-112%, -50%) rotate(-29deg);
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.2);
+  /* z-index: 1; */
+  pointer-events: none;
+}
+
 #slideM3-5-pleca {
   top: 0px;
   left: 0px;
@@ -418,6 +442,7 @@
   right: 0px;
   top: 15%;
   border-radius: 15px 0px 0px 15px;
+  z-index: 1;
 }
 
 .temp-7-round {
@@ -460,6 +485,7 @@
   left: 67%;
   height: auto;
   cursor: pointer;
+  z-index: 2;
 }
 
 #btn_fin_mod310 {
@@ -468,6 +494,12 @@
   width: 15%;
   right: 0px;
   margin: auto;
+}
+
+#slideM3-8-pleca {
+  height: 100%;
+  position: relative;
+  right: 32%;
 }
 
 #slideM3-8-txt {
@@ -489,6 +521,18 @@
   height: auto;
   left: 45%;
   bottom: 17%;
+}
+
+#div-blured-mod3_9{
+  top: 50%;
+  left: 50%;
+  width: 70vw;
+  height: 150vh;
+  transform: translate(-112%, -50%) rotate(-30deg);
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.2);
+  /* z-index: 1; */
+  pointer-events: none;
 }
 
 #slideM3-9-title {
