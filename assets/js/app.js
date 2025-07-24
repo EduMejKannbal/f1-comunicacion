@@ -986,10 +986,10 @@ $('.txt_menu').each(function () {
                             nSlides.numSlides = slide;
                             ctrl_slidesMod1();
                         } else if (strMod === 2) {
-                            nSlides.numSlides_2(slide);
+                            nSlides.numSlides = slide;
                             ctrl_slidesMod2();
                         } else if (strMod === 3) {
-                            nSlides.slide = slide;
+                            nSlides.numSlides = slide;
                             ctrl_slidesMod3();
                         }
                     }
