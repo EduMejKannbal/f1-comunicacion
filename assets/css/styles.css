@@ -604,8 +604,9 @@ progress::-webkit-progress-bar {
 }
 
 .txt_btn_concluir {
+  font-size: 1.4vw;
   font-family: Formula_bold;
-  margin-bottom: 18.344px;
+  margin-bottom: 28px;
   color: #fff;
 }
 
