@@ -29,13 +29,14 @@
         src="assets/img/modules/module-3/slide-2/paragraph.png" />
 </div>
 
-<div id="slide_module3_3" class="slide_module3 ">
+<div id="slide_module3_3" class="slide_module3" style="display: flex;">
     <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
     <img id="slide3_img_1" class="absolute slide_fondo animated slideInLeft"
         src="assets/img/modules/module-3/slide3a.jpg" />
-    <div class="slideM3-plaqueta absolute animated slideInLeft ">
-        <div id="plaqueta-relative" class="contenido-relativo">
-            <img id="slideM3-title" src="assets/img/modules/module-3/slide-3/title.png" alt="">
+    <div class="slideM3-plaqueta absolute animated slideInLeft">
+        <div id="plaqueta-relative" class="contenido-relativo" style="display: flex; justify-content: center;">
+            <img id="slideM3-title" src="assets/img/modules/module-3/slide-3/title.png"
+                style="margin-top: auto; margin-bottom: auto;">
         </div>
     </div>
 
@@ -78,19 +79,23 @@
     </div>
     <img id="btn_trofeoModal_1" class="absolute btn_trofeoModal elem_click_modal"
         src="assets/img/modules/module-3/Group28.png" alt="">
-    <div id="mod_trofeoModal_1" class="mod_trofeoModal modalesVideosContenido absolute animated zoomIn">
-        <div class="vid_in_slide" style="height: 100%; z-index: 2;">
-            <video id="emoc_6" class="locution" src="assets/vid/trofeo.mp4" controls
-                controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture></video>
+    <div class="mod_trofeoModal modalNoPantallaCompletaBackground absolute animated zoomIn">
+        <div id="mod_trofeoModal_1" class="mod_trofeoModal modalNoPantallaCompleta absolute animated zoomIn">
+            <div class="vid_in_slide" style="height: 100%; z-index: 2;">
+                <video id="emoc_6" class="locution" src="assets/vid/trofeo.mp4" controls
+                    controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture
+                    autoplay muted loop></video>
+            </div>
+            <img src="assets/img/base_slide.png" alt
+                style="width: 100%; position: absolute; top: 0; left: 0; z-index: 1;">
+            <img id="txt_emocion_6" src="assets/img/modules/module-3/txt_emoc6.svg" alt class="absolute"
+                style="z-index: 3;">
+            <div class="absolute"
+                style="background: linear-gradient(70deg, rgba(255, 255, 255, 0) 0%, rgb(17, 17, 17, 0.2) 32%, rgba(13, 13, 13, 0.8) 63%, rgba(0, 0, 0, 1) 100%); top: 0; left: 0; height: 100%; width: 100%; z-index: 2;">
+            </div>
+            <img id="cls_trofeoModal_1" class="w3-display-topright delay-2s animated zoomIn elem_click cls_trofeoModal"
+                src="assets/img/icons/cls.png" />
         </div>
-        <img src="assets/img/base_slide.png" alt style="width: 100%; position: absolute; top: 0; left: 0; z-index: 1;">
-        <img id="txt_emocion_6" src="assets/img/modules/module-3/txt_emoc6.svg" alt class="absolute"
-            style="z-index: 3;">
-        <div class="absolute"
-            style="background: linear-gradient(70deg, rgba(255, 255, 255, 0) 0%, rgb(17, 17, 17, 0.2) 32%, rgba(13, 13, 13, 0.8) 63%, rgba(0, 0, 0, 1) 100%); top: 0; left: 0; height: 100%; width: 100%; z-index: 2;">
-        </div>
-        <img id="cls_trofeoModal_1" class="w3-display-topright delay-2s animated zoomIn elem_click cls_trofeoModal"
-            src="assets/img/icons/cls.png" />
     </div>
 </div>
 
@@ -98,6 +103,7 @@
     <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
     <img id="slide4_img_1" class="absolute slide_fondo animated slideInUp"
         src="assets/img/modules/module-3/slide4a.jpg" />
+    <div id="div-blured-mod3_4" class="absolute animated"></div>
     <img id="slideM3-4-pleca" class="absolute  animated slideInLeft"
         src="assets/img/modules/module-3/slide-4/pleca.png" />
     <img id="slideM3-4-txt" class="absolute  animated slideInLeft" src="assets/img/modules/module-3/slide-4/txt.png" />
@@ -114,11 +120,12 @@
 </div>
 
 <div id="slide_module3_5" class="slide_module3">
-    <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
+    <!-- <img alt src="assets/img/base_slide.png" style0="top: 0;left: 0;position: relative; width: 100%;"> -->
 
     <div class="vid_in_slide">
         <video id="vid_module3_5" src="assets/vid/modulo3/slide5a.mp4" muted class="mod3_videoSlide"></video>
     </div>
+    <div id="div-blured-mod3_5" class="animated absolute"></div>
     <img id="slideM3-5-pleca" class="absolute" src="assets/img/modules/module-3/slide-5/pleca.png" />
     <img id="slideM3-5-txt" class="absolute animated slideInLeft" src="assets/img/modules/module-3/slide-5/txt.png" />
 </div>
@@ -190,21 +197,22 @@
         src="assets/img/modules/module-3/slide-7/person.png" />
     <img id="btn_caracter_1" class=" btn_caracter elem_click" src="assets/img/video_play.png" />
     <div id="mod_caracter_1" class="mod_caracter modalesVideosContenido absolute animated zoomIn">
-        <div class="vid_in_slide" style="height: 100%;z-index: 2;">
+        <div class="vid_in_slide" style="height: 100%;z-index: 3;">
             <video id="caracter_1" class="locution" src="assets/vid/modulo3/caracter_temp.mp4" controls
                 controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture></video>
         </div>
         <img id="cls_caracter_1" class="w3-display-topright delay-2s animated zoomIn elem_click cls_caracter"
-            src="assets/img/icons/cls.png" />
+            src="assets/img/icons/cls.png" style="z-index: 4;" />
     </div>
 </div>
 
 <div id="slide_module3_9" class="slide_module3">
-    <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
+    <!-- <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;"> -->
     <div class="vid_in_slide">
         <video id="vid_module3_9" src="assets/vid/modulo3/slide8a.mp4" muted class="mod3_videoSlide"></video>
     </div>
-    <img id="slideM3-8-pleca" class="absolute animated slideInLeft" src="assets/img/grls/pleca.png" />
+    <img id="slideM3-8-pleca" class="animated slideInLeft" src="assets/img/grls/pleca.png" />
+    <div id="div-blured-mod3_9" class="absolute animated"></div>
     <img id="slideM3-8-txt" class="absolute animated slideInLeft" src="assets/img/modules/module-3/slide-8/txt.png" />
     <img id="slideM3-8-ints" class="absolute" src="assets/img/modules/module-3/slide-8/int.png" />
     <img id="btn_vidTemp_1" class="elem_click btn_vidTemp" src="assets/img/video_play.png" />
@@ -256,8 +264,10 @@
         <video id="vid_module3_12" src="assets/vid/modulo3/back_trofeo3.mp4" muted class="mod3_videoSlide"></video>
         <img id="modal_trofeo3" src="assets/img/modules/module-3/trofeo3.png" class="absolute animated slideInRight"
             alt>
-        <img id="btn_fin_mod312" src="assets/img/grls/btn_finalizar.png"
-            class="elem_click  btn_dis_estandar animated zoomIn" alt>
+        <div id="btn_fin_mod312" class="elem_click animated zoomIn delay-5s">
+            <img alt src="assets/img/btn_clean.svg" style="top: 0; left: 0; position: relative; width: 100%" />
+            <p class="txt_btn_concluir absolute">Concluir Módulo</p>
+        </div>
         <div class="contenido-logro-animado absolute animated fadeIn delay-1s" id="contenido-logro-animado-m3-3">
             <video class="videoAnimadoLogro" src="assets/vid/fondoTrof.mp4" autoplay muted loop playsinline
                 aria-label="Animación de fondo con trofeo">
@@ -271,7 +281,7 @@
 <div id="slide_module3_13" class="slide_module3">
     <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
     <img id="slide11_img_1" class="absolute slide_fondo animated slideInLeft"
-        src="assets/img/modules/module-3/slide16a.jpg" />
+        src="assets/img/modules/module-3/slide16a.png" />
     <div id="slide15_modal" class="absolute animated zoomIn">
         <img src="assets/img/base_slide.png" style="width: 100%;" />
         <img id="slide15_modal_txt_1" class="absolute " src="assets/img/modules/module-3/slide16_txt.svg" />
@@ -284,8 +294,9 @@
         <div class="w3-display-container">
             <div class="modal-retross">
                 <div class="contenido-relativo">
-                    <video class="videoMenuTrofeos modal-background" id="videoMenuTrofeos_4" src="assets/vid/modulo3/bien_hecho.mp4"
-                        autoplay muted loop playsinline aria-label="Animación de fondo con trofeo">
+                    <video class="videoMenuTrofeos modal-background" id="videoMenuTrofeos_4"
+                        src="assets/vid/modulo3/bien_hecho.mp4" autoplay muted loop playsinline
+                        aria-label="Animación de fondo con trofeo">
                         Tu navegador no soporta el video HTML5.
                     </video>
                     <img src="assets/img/grls/modal.png" class="modal-animate animated zoomInUp" />
@@ -304,8 +315,9 @@
         <div class="w3-display-container">
             <div class="modal-retross">
                 <div class="contenido-relativo">
-                    <video class="videoMenuTrofeos modal-background" id="videoMenuTrofeos_5" src="assets/vid/modulo3/retro_error.mp4"
-                        autoplay muted loop playsinline aria-label="Animación de fondo con trofeo">
+                    <video class="videoMenuTrofeos modal-background" id="videoMenuTrofeos_5"
+                        src="assets/vid/modulo3/retro_error.mp4" autoplay muted loop playsinline
+                        aria-label="Animación de fondo con trofeo">
                         Tu navegador no soporta el video HTML5.
                     </video>
                     <img src="assets/img/grls/modal.png" class="modal-animate  animated zoomInUp" />

@@ -5,30 +5,35 @@
   left: 0px;
   top: 0px;
 }
+
 .slide_fondo {
   top: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
 }
+
 #slideM3_title {
   width: 68%;
   left: 0px;
   bottom: 44%;
   height: auto;
 }
+
 #btn_comenzarModule_3 {
   width: 21%;
   left: 39.7%;
   top: 81%;
   height: auto;
 }
+
 #slideM3-ubi {
   width: 15%;
   height: auto;
   top: 27%;
   right: 29%;
 }
+
 #slide3_img2_1 {
   width: 64%;
   height: 100%;
@@ -37,6 +42,7 @@
   z-index: 2;
   opacity: 1;
 }
+
 #slideM3_txt_1 {
   width: 31%;
   height: auto;
@@ -44,6 +50,7 @@
   top: 21%;
   z-index: 2;
 }
+
 #slideM3_txt_2 {
   width: 39%;
   height: auto;
@@ -51,6 +58,7 @@
   top: 28%;
   z-index: 2;
 }
+
 #slideM3_txt_3 {
   width: 37%;
   height: auto;
@@ -58,6 +66,7 @@
   top: 59%;
   z-index: 2;
 }
+
 #slideM3_pista {
   width: 68%;
   left: 0px;
@@ -65,6 +74,7 @@
   height: auto;
   opacity: 0.3;
 }
+
 .slideM3-plaqueta {
   width: 62%;
   height: 27%;
@@ -75,6 +85,7 @@
   top: 2%;
   border-radius: 0px 15px 15px 0px;
 }
+
 .slideM3-plaqueta {
   width: 62%;
   height: 27%;
@@ -89,12 +100,14 @@
   align-content: center;
   justify-content: center;
 }
+
 .container-emocionesBasicas {
   width: 74%;
   height: 55%;
   top: 30%;
   left: 13%;
 }
+
 .emocionesBasicas {
   width: 100%;
   height: 100%;
@@ -105,25 +118,29 @@
   place-items: center;
   justify-content: center;
 }
+
 #slideM3-title {
   width: 75%;
   height: auto;
 }
+
 .div_emocionesBasicas {
   display: grid;
   place-items: center;
   position: relative;
 }
+
 .btn_emocion {
   height: auto;
-  cursor: pointer;
 }
+
 .cls_trofeoModal {
   top: 2%;
   right: 1%;
   width: 4%;
   z-index: 5;
 }
+
 .txt_btn_regresar {
   font-size: 1.8vw;
   font-family: Formula_bold;
@@ -131,72 +148,97 @@
   left: 19%;
   color: white;
 }
+
 #slide3_emoContainer {
   width: 100%;
   left: 0px;
   bottom: 63.5%;
 }
+
 #btn_emocion_1 {
   width: 16%;
   left: 5%;
   top: 45%;
 }
+
 #btn_emocion_2 {
   width: 14.7%;
   left: 26%;
   top: 42%;
 }
+
 #btn_emocion_3 {
   width: 15.4%;
   left: 45%;
   top: 31%;
 }
+
 #btn_emocion_4 {
   width: 14.7%;
   left: 64%;
   top: 41%;
 }
+
 #btn_emocion_5 {
   width: 16.2%;
   left: 81%;
   top: 45%;
 }
+
 #txt_emocion_1_1 {
   position: absolute;
   width: 52%;
   left: 23%;
   top: 78%;
 }
+
 #txt_emocion_2_1 {
   position: absolute;
   width: 21.7%;
   left: 29%;
   top: 78%;
 }
+
 #txt_emocion_3_1 {
   position: absolute;
   width: 65.4%;
   left: 5%;
   top: 78%;
 }
+
 #txt_emocion_4_1 {
   position: absolute;
   width: 52.7%;
   left: 13%;
   top: 78%;
 }
+
 #txt_emocion_5_1 {
   position: absolute;
   width: 77%;
   left: 9%;
   top: 78%;
 }
+
 .mod_emocion {
   top: 0px;
   left: 0px;
   width: 100%;
   display: none;
 }
+
+#div-blured-mod3_4{
+  top: 70%;
+  left: 55%;
+  width: 70vw;
+  height: 150vh;
+  transform: translate(-112%, -50%) rotate(-32deg);
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.2);
+  /* z-index: 1; */
+  pointer-events: none;
+}
+
 .btn_trofeoModal {
   width: 15%;
   height: auto;
@@ -205,6 +247,7 @@
   margin: auto;
   bottom: 5%;
 }
+
 .chk_emocion {
   width: 40%;
   height: auto;
@@ -214,85 +257,101 @@
   margin: auto;
   display: none;
 }
+
 #title_emocion_1 {
   left: 53%;
   width: 5%;
   top: 20%;
 }
+
 #txt_emocion_1 {
   left: 53%;
   width: 41%;
   top: 27%;
 }
+
 #title_emocion_1 {
   left: 53%;
   width: 15%;
   top: 20%;
 }
+
 #txt_emocion_2 {
   left: 53%;
   width: 41%;
   top: 27%;
 }
+
 #title_emocion_2 {
   left: 53%;
   width: 5%;
   top: 20%;
 }
+
 #txt_emocion_2 {
   left: 53%;
   width: 41%;
   top: 27%;
 }
+
 #title_emocion_3 {
   left: 53%;
   width: 17%;
   top: 20%;
 }
+
 #txt_emocion_3 {
   left: 53%;
   width: 41%;
   top: 27%;
 }
+
 #title_emocion_4 {
   left: 53%;
   width: 13%;
   top: 20%;
 }
+
 #txt_emocion_4 {
   left: 53%;
   width: 41%;
   top: 27%;
 }
+
 #title_emocion_5 {
   left: 53%;
   width: 36%;
   top: 20%;
 }
+
 #txt_emocion_5 {
   left: 53%;
   width: 41%;
   top: 27%;
 }
+
 #txt_emocion_6 {
   right: 2%;
   width: 77%;
   top: 15%;
   z-index: 2;
 }
+
 #cls_emocion_6 {
   /* top: 0%; */
   /* right: 0%; */
   /* width: 5%; */
 }
+
 #slideM3-4-pleca {
   left: 0px;
   top: 0px;
   width: 65%;
   height: 100%;
   opacity: 1;
-  backdrop-filter: blur(8px);
+  /* filter: blur(8px); */
 }
+
 #slideM3-4-txt {
   width: 43%;
   height: auto;
@@ -301,6 +360,7 @@
   top: 0px;
   margin: auto;
 }
+
 #btn_vidManEm_1 {
   bottom: 15%;
   left: 22%;
@@ -308,23 +368,50 @@
   height: auto;
   cursor: pointer;
 }
+
+#btn_fin_mod312 {
+  bottom: 5%;
+  width: 20%;
+  left: 40%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#div-blured-mod3_5{
+  top: 70%;
+  left: 52%;
+  width: 70vw;
+  height: 150vh;
+  transform: translate(-112%, -50%) rotate(-29deg);
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.2);
+  /* z-index: 1; */
+  pointer-events: none;
+}
+
 #slideM3-5-pleca {
   top: 0px;
   left: 0px;
   width: 58%;
   height: 100%;
-  backdrop-filter: blur(8px);
+  /* backdrop-filter: blur(10px); */
 }
+
 #slideM3-5-txt {
   width: 40%;
   height: auto;
   bottom: 24%;
   left: 3%;
 }
+
 #slideM3_6-txt {
   width: 90%;
   height: auto;
 }
+
 .container-emociones {
   width: 75%;
   height: 15%;
@@ -337,22 +424,27 @@
   justify-content: center;
   gap: 5%;
 }
+
 .btn_impactBio {
   width: 35%;
   height: auto;
   cursor: pointer;
 }
+
 #slideM3-6_plaqueta {
   top: 29%;
   height: 40%;
 }
+
 .container_7_temp {
   width: 58%;
   height: 66%;
   right: 0px;
   top: 15%;
   border-radius: 15px 0px 0px 15px;
+  z-index: 1;
 }
+
 .temp-7-round {
   display: grid;
   place-items: center;
@@ -361,20 +453,24 @@
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
 #slideM3-7-title {
   width: 45%;
   height: auto;
 }
+
 #slideM3-7-paragraph {
   width: 70%;
   height: auto;
 }
+
 #slideM3-7-pista {
   width: 85%;
   height: 100%;
   left: 0px;
   top: 0px;
 }
+
 #slideM3-7-person {
   width: 46%;
   height: auto;
@@ -382,13 +478,16 @@
   bottom: 0px;
   left: 0px;
 }
+
 #btn_caracter_1 {
   bottom: 13%;
   width: 10%;
   left: 67%;
   height: auto;
   cursor: pointer;
+  z-index: 2;
 }
+
 #btn_fin_mod310 {
   bottom: 2%;
   left: 0px;
@@ -396,24 +495,46 @@
   right: 0px;
   margin: auto;
 }
+
+#slideM3-8-pleca {
+  height: 100%;
+  position: relative;
+  right: 32%;
+}
+
 #slideM3-8-txt {
   width: 36%;
   height: auto;
   left: 6%;
   top: 24%;
 }
+
 #slideM3-8-ints {
   width: 36%;
   height: auto;
   left: 32%;
   bottom: 6%;
 }
+
 #btn_vidTemp_1 {
   width: 10%;
   height: auto;
-  left: 47%;
+  left: 45%;
   bottom: 17%;
 }
+
+#div-blured-mod3_9{
+  top: 50%;
+  left: 50%;
+  width: 70vw;
+  height: 150vh;
+  transform: translate(-112%, -50%) rotate(-30deg);
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.2);
+  /* z-index: 1; */
+  pointer-events: none;
+}
+
 #slideM3-9-title {
   width: 75%;
   height: auto;
@@ -422,6 +543,7 @@
   right: 0px;
   margin: auto;
 }
+
 #slideM3-9-btn {
   width: 25%;
   height: auto;
@@ -430,12 +552,14 @@
   right: 0px;
   margin: auto;
 }
+
 #juego3 {
   top: 0px;
   left: 0px;
   width: 100%;
   display: none;
 }
+
 .container-dragDrop {
   top: 10%;
   position: absolute;
@@ -445,6 +569,7 @@
   width: 86%;
   height: 63%;
 }
+
 .dragDrop {
   display: grid;
   grid-auto-columns: 1fr;
@@ -455,6 +580,7 @@
   place-items: center;
   gap: 2%;
 }
+
 .dragDrop_answers {
   width: 100%;
   height: 100%;
@@ -465,6 +591,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
+
 .dragDrop_quest {
   width: 100%;
   height: 100%;
@@ -473,6 +600,7 @@
   place-items: center;
   align-content: center;
 }
+
 .dragDrop_answers div {
   position: relative;
   width: 100%;
@@ -481,6 +609,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .draggable {
   width: 90%;
   height: auto;
@@ -488,11 +617,13 @@
   z-index: 5;
   cursor: move;
 }
+
 .dragDrop_quest .question {
   width: 75%;
   height: auto;
   z-index: 1;
 }
+
 .dropzone {
   position: absolute;
   width: 60%;
@@ -502,25 +633,31 @@
   justify-content: center;
   align-items: center;
 }
+
 .dropzone img {
   width: 80%;
 }
+
 .dropzone-1 {
   top: 29%;
   left: 27%;
 }
+
 .dropzone-2 {
   top: 57%;
   left: 22%;
 }
+
 .dropzone-3 {
   top: 29%;
   left: 20%;
 }
+
 .dropzone-4 {
   top: 20%;
   left: 21%;
 }
+
 .mod_retroIncorrect,
 .mod_retroCorrect {
   top: 0px;
@@ -532,14 +669,17 @@
   place-items: center;
   place-content: center;
 }
+
 .modal-retross {
   width: 100%;
   height: 100%;
 }
+
 .modal-background {
   width: 100%;
   height: 100%;
 }
+
 .modal-animate {
   z-index: 1;
   position: absolute;
@@ -548,6 +688,7 @@
   height: auto;
   margin: auto;
 }
+
 .modal-txt {
   z-index: 1;
   position: absolute;
@@ -557,6 +698,7 @@
   margin: auto;
   right: 0px;
 }
+
 .close_retroIncorrect,
 .close_retroCorrect {
   width: 15%;
@@ -567,17 +709,20 @@
   bottom: 32%;
   z-index: 5;
 }
+
 .retross_round {
   width: 100%;
   height: 100%;
   object-fit: fill;
   z-index: 0;
 }
+
 #trofeo3 {
   top: 6%;
   width: 32%;
   left: 5%;
 }
+
 #btn_fin_mod310 {
   bottom: 2%;
   left: 0px;
@@ -585,31 +730,36 @@
   right: 0px;
   margin: auto;
 }
+
 #modal_trofeo3 {
   top: 2%;
   width: 74%;
   right: 0px;
 }
+
 #slide15_modal {
-  top: 32%;
+  top: 30%;
   left: 0px;
   width: 57%;
 }
+
 #slide15_modal_txt_1 {
-  top: 5%;
   left: 9%;
   width: 85%;
 }
+
 #btn_finmod3 {
-  bottom: 12%;
+  bottom: 10%;
   left: 38%;
   width: 26%;
 }
+
 #txt_trofeo3 {
   top: 48%;
   left: 44%;
   width: 38%;
 }
+
 .vid_in_modal {
   position: absolute;
   width: 100%;
@@ -619,35 +769,42 @@
   left: 0px;
   pointer-events: none;
 }
+
 .vid_in_modal video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   pointer-events: none;
 }
+
 #modal_trofeo1,
 #modal_trofeo2 {
   top: 2%;
   width: 74%;
   right: 0px;
 }
+
 #btn_fin_mod37 {
   bottom: 2%;
   width: 17%;
   left: 41%;
 }
+
 #contenido-logro-animado-m3-1 {
   top: 5%;
   right: 64%;
 }
+
 #contenido-logro-animado-m3-2 {
   top: 5%;
   right: 64%;
 }
+
 #contenido-logro-animado-m3-3 {
   top: 4%;
   right: 57%;
 }
+
 .cls_impactBio,
 .cls_vidManEm,
 .cls_caracter,
@@ -658,8 +815,9 @@
   width: 5%;
   height: auto;
 }
-@media (min-width: 1199px) and (max-width: 1290px) {
-}
+
+@media (min-width: 1199px) and (max-width: 1290px) {}
+
 @media (min-width: 1360px) {
   .vid_in_modal {
     width: 114%;
@@ -668,6 +826,7 @@
     left: -67px;
   }
 }
+
 @media (min-width: 1400px) and (max-width: 1500px) {
   .vid_in_modal {
     width: 114.5%;
@@ -676,8 +835,9 @@
     left: -72px;
   }
 }
-@media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {
-}
+
+@media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {}
+
 @media (min-width: 1600px) {
   .vid_in_modal {
     width: 114%;
@@ -685,15 +845,19 @@
     top: -53px;
     left: -79px;
   }
+
   #slideM3_txt_1 {
     left: 1%;
   }
+
   #slideM3_txt_2 {
     left: 1%;
   }
+
   #slideM3_txt_3 {
     left: 1%;
   }
+
   .slideM3-plaqueta {
     left: 0;
     top: 4%;

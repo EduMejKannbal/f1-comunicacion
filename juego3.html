@@ -6,23 +6,23 @@
             <div class="dragDrop_answers">
                 <div>
                     <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/1.png"
-                        data-answer="distractor" alt="distractor" />
+                        data-answer="sentimientos" alt="Sentimientos" />
                 </div>
                 <div>
                     <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/2.png"
-                        data-answer="reacciones" alt="reacciones" />
+                        data-answer="reacciones" alt="Reacciones" />
                 </div>
                 <div>
                     <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/3.png"
-                        data-answer="temperamento" alt="temperamento" />
+                        data-answer="temperamento" alt="Temperamento" />
                 </div>
                 <div>
                     <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/4.png"
-                        data-answer="caracter" alt="caracter" />
+                        data-answer="caracter" alt="Caracter" />
                 </div>
                 <div>
                     <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/5.png"
-                        data-answer="distractor" alt="Distractor" />
+                        data-answer="animo" alt="Animo" />
                 </div>
                 <div>
                     <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/6.png"
@@ -102,7 +102,7 @@
                         // try { $("#successSound")[0].play(); } catch (e) { console.warn("[Game] Error sonido: ", e); }
                         console.log(`[Game] Aciertos: ${correctAnswersCount}`);
                     } else {
-                        $(this).html(`<img src="${ui.draggable.attr("src")}" alt="Incorrecto" />`);
+                        $(this).html(`<img src="assets/img/modules/module-3/slide-9/juego/answers/${droppedAnswer}.png" alt="Incorrecto" />`);
                         // try { $("#errorSound")[0].play(); } catch (e) { console.warn("[Game] Error sonido: ", e); }
                     }
 

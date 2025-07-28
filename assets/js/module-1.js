@@ -19,7 +19,9 @@ function ctrl_slidesMod1() {
   $nextBtn.show();
 
   // Control de música de fondo
-  controlBackgroundMusic(1, currentSlide);
+  manageSlideAudio(1, currentSlide);
+
+
   playAudio('module1_', currentSlide);
   //Control de elementos
   autoDismissElements(1, currentSlide);
@@ -124,35 +126,40 @@ $("#module1_Next").click(() => {
 
 
 setupCarouselControls('test_1');
-if (!testCompleted) {
-  $(".body-answers > div > div").click(function () {
-    if ($(this).hasClass('disabled'))
-      return;
+$(".body-answers > div > div").click(function () {
+  if (testCompleted) return;
+  if ($(this).hasClass('disabled')) return;
 
-    var $thisDiv = $(this); // El div clicado
-    var questionNum = $thisDiv.data('question');
-    var type = $thisDiv.parent().data('type');
-    var $questionOptions = $(".body-answers > div > div[data-question='" + questionNum + "']");
-    // Deshabilitar todas las opciones de esta pregunta
-    $questionOptions.addClass('disabled');
-    $questionOptions.off('click');
-    // Cambiar colores:
-    $thisDiv.find('.answer-text').css('color', '#f8fafc');
-    // - Otras opciones (deshabilitadas): #475569
-    $questionOptions.not($thisDiv).find('.answer-text').css('color', '#475569');
-    // Cambiar la imagen a "select.png" solo en el elemento clicado
-    $thisDiv.find('img').attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
-    // Actualizar selecciones
-    selections[type]++;
-    userSelections[questionNum] = type; // Guardar la selección del usuario
+  var $thisDiv = $(this);
+  var questionNum = $thisDiv.data('question');
+  var type = $thisDiv.parent().data('type');
+  var $questionOptions = $(".body-answers > div > div[data-question='" + questionNum + "']");
 
-    // Verificar si se han respondido todas las preguntas
-    var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
-    if (totalSelections === totalQuestions) {
-      calculateResults();
-    }
-  });
-}
+  // Restaurar colores e imágenes para todas las opciones
+  $questionOptions.find('.answer-text').css('color', '#475569');
+  $questionOptions.find('img').attr('src', 'assets/img/modules/module-1/slide-4/test/answers/default.png');
+
+  // Marcar esta opción como seleccionada
+  $thisDiv.find('.answer-text').css('color', '#f8fafc');
+  $thisDiv.find('img').attr('src', 'assets/img/modules/module-1/slide-4/test/answers/select.png');
+
+  // Restar selección anterior (si la había)
+  var prevType = userSelections[questionNum];
+  if (prevType !== undefined && selections[prevType] > 0) {
+    selections[prevType]--;
+  }
+
+  // Sumar nueva selección
+  selections[type]++;
+  userSelections[questionNum] = type;
+
+  // Verificar si se han respondido todas las preguntas
+  var totalSelections = selections.pantera + selections.pavorreal + selections.delfin + selections.buho;
+  if (totalSelections === totalQuestions) {
+    calculateResults();
+  }
+});
+
 
 function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
   $({ Counter: current }).animate({ Counter: ptrTarget }, {
@@ -292,10 +299,11 @@ $('#btn_res_cont').click(function () {
 
 $("#btn_finmod1").click(function () {
   resetLocution();
-  myAvance.avModulos = 2;
   nSlides.numSlides = 1;
-  if (myAvance.avModulos >= 2) {
+  if (myAvance.avModulos <= 2) {
+    myAvance.avModulos = 2;
     myAvance.ch1.trofeo_1 = 1;
+    ctrl_menuAccess();
   }
   pauseAllAudio();
   $(".music").removeClass("hide");
@@ -303,7 +311,6 @@ $("#btn_finmod1").click(function () {
   $('#slide_index_1').show();
   $("#carga_materia").hide().empty();
   ctrl_AvGeneral(1, gAvMax);
-  ctrl_menuAccess();
   playModuleAudio(null);
   localStorage.setItem('myAvance', JSON.stringify(myAvance)); // Save progress
 });

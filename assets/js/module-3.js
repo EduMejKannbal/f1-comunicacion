@@ -30,7 +30,9 @@ function ctrl_slidesMod3() {
     console.log("#slide_module3_" + currentSlide);
     $prevBtn.show();
     $nextBtn.show();
-    controlBackgroundMusic(3, currentSlide);
+
+    manageSlideAudio(3, currentSlide);
+
     // Reproducir audio para el slide actual
     playAudio('module3_', currentSlide);
     // Call autoDismissElements for module 3
@@ -40,16 +42,13 @@ function ctrl_slidesMod3() {
         $prevBtn.hide();
         $nextBtn.hide();
         reproducirHasta("vid_module3_1", 9.99);
+        // $('.modalNoPantallaCompletaBackground').css('display', 'block')
     } else if (currentSlide === 3) {
         console.log('Slide 3: myAvance.ch3.trofeoModal =', myAvance.ch3.trofeoModal);
-        $
-
-        prevBtn.show();
+        $prevBtn.show();
         // Mantener el botón interactivo, pero sin myglow_img_white si ya se vio
         $('.btn_trofeoModal').css('pointer-events', 'auto')
-            .addClass('elem_click_modal')
-            .toggleClass('myglow_img_white', myAvance.ch3.trofeoModal < 2)
-            .toggleClass('w3-opacity', myAvance.ch3.trofeoModal >= 2);
+            .addClass('elem_click_modal myglow_img_white').removeClass('w3-opacity')
         if (myAvance.ch3.trofeoModal >= 2) {
             $nextBtn.show();
             if (myAvance.ch3.progress < 2) {
@@ -203,6 +202,7 @@ function ctrl_avElem_chk(ptrChptr, ptrClass, ptrID, ptrAvMax, ptrAnimClass, isIn
 $('.btn_trofeoModal').click(function () {
     pauseMusicAndUpdateIcon();
     $('#mod_trofeoModal_1').fadeIn();
+    $('.modalNoPantallaCompletaBackground').css('display', 'block')
     var video = $('#emoc_6').get(0);
     video.currentTime = 0;
     video.play();
@@ -215,7 +215,8 @@ $('.btn_trofeoModal').click(function () {
 
 // Eventos de cierre de la modal trofeoModal
 $('.cls_trofeoModal').click(function () {
-    $('#mod_trofeoModal_1').fadeOut();
+    $('#mod_trofeoModal_1').css('display', 'none');
+    $('.modalNoPantallaCompletaBackground').fadeOut()
     var video = $('#emoc_6').get(0);
     video.currentTime = 0;
     video.pause();
@@ -224,11 +225,6 @@ $('.cls_trofeoModal').click(function () {
         localStorage.setItem('myAvance', JSON.stringify(myAvance));
         console.log('Updated myAvance.ch3.trofeoModal to 2');
     }
-    // Restaurar interactividad del botón sin myglow_img_white
-    $('#btn_trofeoModal_1').css('pointer-events', 'auto')
-        .addClass('elem_click_modal')
-        .removeClass('myglow_img_white')
-        .toggleClass('w3-opacity', myAvance.ch3.trofeoModal >= 2);
     restoreMusicAndIcon('3');
     ctrl_slidesMod3();
 });
@@ -330,10 +326,11 @@ $("#btn_fin_mod312").click(function () {
 
 $("#btn_finmod3").click(function () {
     resetLocution();
-    myAvance.avModulos = 4;
     nSlides.numSlides_3 = 1;
-    if (myAvance.avModulos >= 4) {
+    if (myAvance.avModulos < 4) {
+        myAvance.avModulos = 4;
         myAvance.ch3.trofeo_3 = 1;
+        ctrl_menuAccess();
     }
     pauseAllAudio();
     $(".music").removeClass("hide");
@@ -356,7 +353,6 @@ $("#btn_finmod3").click(function () {
     $('#slide_index_1').show();
     $("#carga_materia").hide().empty();
     ctrl_AvGeneral(3, gAvMax);
-    ctrl_menuAccess();
     playModuleAudio(null);
     localStorage.setItem('myAvance', JSON.stringify(myAvance));
 });
@@ -377,7 +373,10 @@ $(".elem_click").click(function () {
 
 // Juego
 $('#slideM3-9-btn').click(function () {
-    pauseMusicAndUpdateIcon();
+    if (flagMus === 1) {
+        playMusicaJuegos();
+    }
+
     const $prevBtn = $("#module3_Prev");
     const $nextBtn = $("#module3_Next");
     $prevBtn.hide();

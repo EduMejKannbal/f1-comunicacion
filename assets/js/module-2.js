@@ -1,6 +1,6 @@
 let veoComic = 0;
-let gameAttempts = 0; 
-const maxGameAttempts = 3; 
+let gameAttempts = 0;
+const maxGameAttempts = 3;
 
 $("#precache_mod_2").waitForImages({
   finished: function () {
@@ -30,7 +30,8 @@ function ctrl_slidesMod2() {
   $nextBtn.show();
 
   // Control de música de fondo
-  controlBackgroundMusic(2, currentSlide);
+  manageSlideAudio(2, currentSlide);
+
   playAudio('module2_', currentSlide)
   // Call autoDismissElements for module 2
   autoDismissElements(2, currentSlide);
@@ -274,8 +275,8 @@ function advanceToSlide13() {
       console.log("[Game] Progreso actualizado: logro_zapatos = 1, progress = 4");
     }
     $('#aud_logro').get(0).play(); // Reproducir sonido de logro
+    ctrl_menuAccess(); // Actualizar el menú inmediatamente
   }
-  ctrl_menuAccess(); // Actualizar el menú inmediatamente
   ctrl_slidesMod2(); // Mostrar la diapositiva 13
 }
 
@@ -344,10 +345,11 @@ $('.btn_mod2Continuar').click(function () {
 
 $("#btn_finmod2").click(function () {
   resetLocution();
-  myAvance.avModulos = 3;
   nSlides.numSlides_2 = 1;
-  if (myAvance.avModulos >= 3) {
+  if (myAvance.avModulos < 3) {
+    myAvance.avModulos = 3;
     myAvance.ch2.trofeo_2 = 1;
+    ctrl_menuAccess();
   }
   pauseAllAudio();
   $(".music").removeClass("hide");
@@ -355,7 +357,6 @@ $("#btn_finmod2").click(function () {
   $('#slide_index_1').show();
   $("#carga_materia").hide().empty();
   ctrl_AvGeneral(2, gAvMax);
-  ctrl_menuAccess();
   playModuleAudio(null);
   localStorage.setItem('myAvance', JSON.stringify(myAvance));
 });
