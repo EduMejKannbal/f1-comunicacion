@@ -30,8 +30,13 @@ const MODULE_CONFIG = {
 // Diapositivas sin música
 const NO_MUSIC_SLIDES = {
     1: [5, 6, 7, 10, 12, 13],
-    2: [4, 6, 9, 13, 15],
+    2: [4, 6, 9, 10, 11, 12, 13, 15],
     3: [7, 10, 12, 13]
+};
+const JUEGOS_AUDIO_SLIDES = {
+    1: [5],
+    2: [9, 10, 11, 12],
+    3: [11]
 };
 
 // Variables de estado
@@ -101,6 +106,8 @@ let userSelections = {};
 let previousSlide = 0;
 let dismissTimeouts = [];
 let isAutoDismissEnabled = false;
+let isPlaying = false;
+let musicaJuegos = document.getElementById("musica_juegos")
 
 // Referencias DOM
 let $menu = $('#div_menu');
@@ -121,55 +128,67 @@ function playModuleAudio(moduleId) {
     const audio = document.getElementById(audioId);
     console.log(`Audio element: ${audioId}, found: ${!!audio}`);
 
-    pauseAllAudio(); // Pausar toda la música de fondo
+    if (currentAudio === audio && !audio.paused) {
+        console.log(`Audio ${audioId} ya está reproduciéndose, no se reinicia.`);
+        return;
+    }
 
-    if (audio && flagMus === 1) {
-        audio.loop = true;
-        audio.volume = 0.3;
-        audio.muted = false;
-        currentAudio = audio;
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                console.log(`Playing audio: ${audioId}`);
-                isAudioPlaying = true;
-                if (!$('#slide_vidWelcome_1').is(':visible')) {
-                    $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
-                }
-            }).catch(err => {
-                console.warn(`Autoplay blocked or error playing audio: ${audioId}`, err);
-                isAudioPlaying = false;
-                if (!$('#slide_vidWelcome_1').is(':visible')) {
-                    $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
-                }
-                document.addEventListener('click', function retryAudio() {
-                    audio.play().then(() => {
-                        console.log(`Retry successful, playing audio: ${audioId}`);
-                        isAudioPlaying = true;
-                        $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
-                    }).catch(err => console.warn(`Retry failed for ${audioId}:`, err));
-                    document.removeEventListener('click', retryAudio);
-                }, { once: true });
-            });
-        }
-    } else if (flagMus === 0) {
-        if (audio) {
+    if (moduleId == 3) {
+        audio.currentTime = 1;
+    }
+
+    pauseAllAudio(); // Pausar toda la música de fondo
+    if (isPlaying) {
+        playMusicaJuegos()
+    } else {
+        if (audio && flagMus === 1) {
             audio.loop = true;
             audio.volume = 0.3;
-            audio.muted = true;
+            audio.muted = false;
             currentAudio = audio;
-            console.log(`Audio ${audioId} muted due to flagMus=0`);
-        }
-        isAudioPlaying = false;
-        if (!$('#slide_vidWelcome_1').is(':visible')) {
-            $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
-        }
-    } else {
-        console.warn(`Audio element ${audioId} not found`);
-        isAudioPlaying = false;
-        currentAudio = null;
-        if (!$('#slide_vidWelcome_1').is(':visible')) {
-            $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log(`Playing audio: ${audioId}`);
+                    isAudioPlaying = true;
+                    if (!$('#slide_vidWelcome_1').is(':visible')) {
+                        $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
+                    }
+                }).catch(err => {
+                    console.warn(`Autoplay blocked or error playing audio: ${audioId}`, err);
+                    isAudioPlaying = false;
+                    if (!$('#slide_vidWelcome_1').is(':visible')) {
+                        $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+                    }
+                    document.addEventListener('click', function retryAudio() {
+                        audio.play().then(() => {
+                            console.log(`Retry successful, playing audio: ${audioId}`);
+                            isAudioPlaying = true;
+                            $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
+                        }).catch(err => console.warn(`Retry failed for ${audioId}:`, err));
+                        document.removeEventListener('click', retryAudio);
+                    }, { once: true });
+                });
+            }
+        } else if (flagMus === 0) {
+            if (audio) {
+                audio.loop = true;
+                audio.volume = 0.3;
+                audio.muted = true;
+                currentAudio = audio;
+                console.log(`Audio ${audioId} muted due to flagMus=0`);
+            }
+            isAudioPlaying = false;
+            if (!$('#slide_vidWelcome_1').is(':visible')) {
+                $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+            }
+        } else {
+            console.warn(`Audio element ${audioId} not found`);
+            isAudioPlaying = false;
+            currentAudio = null;
+            if (!$('#slide_vidWelcome_1').is(':visible')) {
+                $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+            }
         }
     }
 }
@@ -187,18 +206,7 @@ function pauseAllAudio() {
             }
         }
     });
-    const audiosJuegos = document.querySelectorAll("audio.juegos");
-    audiosJuegos.forEach(audio => {
-        if (audio && typeof audio.pause === 'function' && !audio.paused) {
-            audio.pause();
-            try {
-                audio.currentTime = 0;
-                audio.muted = true;
-            } catch (e) {
-                console.warn("Error resetting audio time:", e);
-            }
-        }
-    });
+    pauseMusicaJuegos();
     isAudioPlaying = false;
     console.log("Background audio paused");
 }
@@ -214,6 +222,60 @@ function unMuteMe(e) {
 function saveFlagMus() {
     prevFlagMus = flagMus;
 }
+
+function pauseMusicaJuegos() {
+    musicaJuegos.muted = true;
+    musicaJuegos.currentTime = 0
+    musicaJuegos.pause()
+}
+
+function playMusicaJuegos() {
+    musicaJuegos.loop = true;
+    musicaJuegos.volume = 0.3;
+    musicaJuegos.muted = false;
+    currentAudio = musicaJuegos;
+
+    musicaJuegos.play().then(() => {
+        isAudioPlaying = true;
+        $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
+        console.log("Música de juego activada correctamente");
+    }).catch(err => {
+        console.warn("Error al reproducir música de juego:", err);
+        isAudioPlaying = false;
+        $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+
+        document.addEventListener('click', function retryPlay() {
+            musicaJuegos.play().then(() => {
+                isAudioPlaying = true;
+                $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
+            }).catch(err => console.warn("Retry falló para musica_juegos:", err));
+            document.removeEventListener('click', retryPlay);
+        }, { once: true });
+    });
+}
+
+
+function manageSlideAudio(moduleId, currentSlide) {
+    // Si es una slide de juego y el usuario tiene audio activado
+    if (JUEGOS_AUDIO_SLIDES[moduleId]?.includes(currentSlide) && flagMus === 1) {
+        isPlaying = true;
+        pauseAllAudio();
+        playMusicaJuegos();
+    }
+    // Si no está en lista negra y sonido activo, reproduce música del módulo
+    else if (!NO_MUSIC_SLIDES[moduleId]?.includes(currentSlide) && flagMus === 1) {
+        isPlaying = false;
+        playModuleAudio(moduleId);
+    }
+    // Si está en NO_MUSIC_SLIDES o flagMus === 0, pausa todo
+    else {
+        isPlaying = false;
+        pauseAllAudio();
+        if (currentAudio) muteMe(currentAudio);
+        $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+    }
+}
+
 
 function pauseMusicAndUpdateIcon() {
     saveFlagMus();
@@ -246,9 +308,12 @@ function playAudio(id, audPlay) {
             stopLocution(audio);
         }
     });
+    pauseMusicaJuegos()
 
     let audio = document.getElementById(targetAudioId);
-    if (audio) {
+    if (isPlaying) {
+        playMusicaJuegos()
+    } else if (audio) {
         audio.volume = 0.3;
         audio.muted = false;
         audio.currentTime = 0;
@@ -358,228 +423,6 @@ function autoNextSlide(moduleId, numSlidesObj, callback) {
         }, 5000);
     }
 }
-
-function ctrl_slidesMod1() {
-    const $slides = $(".slide_module1");
-    const totalSlides = $slides.length;
-    const currentSlide = nSlides.numSlides;
-    autoNextSlide('module1', nSlides, ctrl_slidesMod1);
-    const $prevBtn = $("#module1_Prev");
-    const $nextBtn = $("#module1_Next");
-    $slides.hide();
-    $("#slide_module1_" + currentSlide).show();
-    console.log("#slide_module1_" + currentSlide);
-    $prevBtn.show();
-    $nextBtn.show();
-    playAudio('module1_', currentSlide);
-
-    if (currentSlide === 1) {
-        $prevBtn.hide();
-        $nextBtn.hide();
-        reproducirHasta("vid_module1_1", 9.99);
-    } else if (currentSlide === 4) {
-        reproducirHasta("vid_module1_4", 4.99);
-        ctrl_carru_simple("test_1", nSlides.test_1);
-        if (testCompleted) {
-            restoreSelections();
-        }
-        $prevBtn.hide();
-        $nextBtn.hide();
-    } else if (currentSlide === 5) {
-        if (testCompleted) {
-            $prevBtn.show();
-            $nextBtn.show();
-        } else {
-            $prevBtn.hide();
-            $nextBtn.hide();
-            pauseMusicAndUpdateIcon();
-        }
-    } else if (currentSlide === 2) {
-        reproducirHasta("vid_module1_2", 4.99);
-    } else if (currentSlide === 6) {
-        $prevBtn.hide();
-        $nextBtn.hide;
-        if (testCompleted && myAvance.ch1.progress < 2) {
-            myAvance.ch1.progress = 2; // Unlock Clasificación
-            localStorage.setItem('myAvance', JSON.stringify(myAvance));
-            ctrl_menuAccess();
-        }
-        if (testCompleted && testResults) {
-            showTestResults(testResults); // Restaurar resultados
-        }
-    } else if (currentSlide === 7) {
-        $prevBtn.hide();
-        $nextBtn.hide;
-        reproducirHasta("vid_module1_7", 9.99);
-        playAudio('module1_', currentSlide);
-        setTimeout(() => {
-            const logroAudio = $('#aud_logro').get(0);
-            if (logroAudio) {
-                logroAudio.volume = 0.3;
-                logroAudio.muted = false;
-                logroAudio.currentTime = 0;
-                logroAudio.play().catch(err => console.warn("Error playing aud_logro:", err));
-            }
-        }, 100);
-        if (myAvance.ch1.logro_llanta === 0) {
-            myAvance.ch1.logro_llanta = 1;
-            localStorage.setItem('myAvance', JSON.stringify(myAvance));
-        }
-    } else if (currentSlide === 9) {
-        if (myAvance.ch1.estilosComunicacion < $(".btn_estilosComunicacion").length + 1) {
-            $prevBtn.show();
-            $nextBtn.hide();
-        } else {
-            $prevBtn.show();
-            $nextBtn.show();
-        }
-    } else if (currentSlide === 10) {
-        $prevBtn.hide();
-        $nextBtn.hide;
-        reproducirHasta("vid_module1_10", 4.99);
-        $('#aud_logro').get(0).play();
-        if (myAvance.ch1.logro_casco === 0) {
-            myAvance.ch1.logro_casco = 1;
-            if (myAvance.ch1.progress < 3) {
-                myAvance.ch1.progress = 3; // Unlock Cierre
-                localStorage.setItem('myAvance', JSON.stringify(myAvance));
-                ctrl_menuAccess();
-            }
-        }
-    } else if (currentSlide === 12) {
-        $prevBtn.hide();
-        $nextBtn.hide;
-        reproducirHasta("vid_module1_12", 9.99);
-    } else if (currentSlide === totalSlides) {
-        $prevBtn.show();
-        $nextBtn.hide;
-        reproducirHasta("vid_module1_13", 8.99);
-        $('#aud_logro').get(0).play();
-    }
-
-    if (previousSlide === 5 && currentSlide !== 5) {
-        restoreMusicAndIcon('1');
-    }
-
-    previousSlide = currentSlide;
-}
-
-function ctrl_slidesMod2() {
-    const $slides = $(".slide_module2");
-    const totalSlides = $slides.length;
-    const currentSlide = nSlides.numSlides_2;
-    autoNextSlide('module2', nSlides, ctrl_slidesMod2);
-    const $prevBtn = $("#module2_Prev");
-    const $nextBtn = $("#module2_Next");
-    reiniciarVideos(".mod2_videoSlide");
-    $slides.hide();
-    $("#slide_module2_" + currentSlide).show();
-    console.log("#slide_module2_" + currentSlide);
-    $prevBtn.show();
-    $nextBtn.show();
-
-    // Control de música de fondo
-    controlBackgroundMusic(2, currentSlide);
-    playAudio('module2_', currentSlide)
-    // Call autoDismissElements for module 2
-    autoDismissElements(2, currentSlide);
-
-    if (currentSlide === 1) {
-        $prevBtn.hide();
-        $nextBtn.hide();
-        reproducirHasta("vid_module2_1", 9.99);
-    } else if (currentSlide === 2) {
-        $prevBtn.show();
-        $nextBtn.show();
-        reproducirHasta("vid_module2_2", 4.99);
-    } else if (currentSlide === 4) {
-        $prevBtn.hide();
-        $nextBtn.hide();
-        reproducirHasta("vid_module2_4", 8.99);
-        $('#aud_logro').get(0).play();
-        if (myAvance.ch2.logro_traje === 0) {
-            myAvance.ch2.logro_traje = 1;
-            if (myAvance.ch2.progress < 2) {
-                myAvance.ch2.progress = 2; // Unlock Ejemplos
-                ctrl_menuAccess();
-            }
-        }
-    } else if (currentSlide === 5) {
-        if (veoComic !== 1) {
-            reproducirHasta("vid_module2_5", 4.99);
-        }
-        if (myAvance.ch2.comic < 3) {
-            $prevBtn.show();
-            $nextBtn.hide();
-        } else {
-            $prevBtn.show();
-            $nextBtn.show();
-        }
-    } else if (currentSlide === 6) {
-        reproducirHasta("vid_module2_6", 9);
-        $prevBtn.hide();
-        $nextBtn.hide();
-        $('#aud_logro').get(0).play();
-        if (myAvance.ch2.logro_guantes === 0) {
-            myAvance.ch2.logro_guantes = 1;
-        }
-    } else if (currentSlide === 7) {
-        reproducirHasta("vid_module2_7", 4.99);
-        $prevBtn.hide();
-        $nextBtn.hide();
-        if (myAvance.ch2.progress < 3) {
-            myAvance.ch2.progress = 3; // Unlock Evaluación
-            ctrl_menuAccess();
-        }
-    } else if (currentSlide === 8) {
-        $prevBtn.show();
-        $nextBtn.hide();
-    } else if (currentSlide === 9 && myAvance.ch2.preg_1 === null) {
-        resetearBotonesPregunta('1'); // Restablecer botones de pregunta 1
-        $prevBtn.show();
-        $nextBtn.hide();
-    } else if (currentSlide === 10 && myAvance.ch2.preg_2 === null) {
-        resetearBotonesPregunta('2'); // Restablecer botones de pregunta 2
-        $prevBtn.show();
-        $nextBtn.hide();
-    } else if (currentSlide === 11 && myAvance.ch2.preg_3 === null) {
-        resetearBotonesPregunta('3'); // Restablecer botones de pregunta 3
-        $prevBtn.show();
-        $nextBtn.hide();
-    } else if (currentSlide === 12 && myAvance.ch2.preg_4 === null) {
-        resetearBotonesPregunta('4'); // Restablecer botones de pregunta 4
-        $prevBtn.show();
-        $nextBtn.hide();
-    } else if (currentSlide === 13) {
-        $prevBtn.hide();
-        $nextBtn.hide();
-        reproducirHasta("vid_module2_13", 4.99);
-        $('#aud_logro').get(0).play();
-        if (myAvance.ch2.logro_zapatos === 0) {
-            myAvance.ch2.logro_zapatos = 1;
-            if (myAvance.ch2.progress < 4) {
-                myAvance.ch2.progress = 4; // Unlock Cierre
-                ctrl_menuAccess();
-            }
-        }
-    } else if (currentSlide === 14) {
-        $prevBtn.show();
-        $nextBtn.hide();
-        reproducirHasta("vid_module2_14", 4.99);
-    } else if (currentSlide === 15) {
-        $prevBtn.show();
-        $nextBtn.hide();
-        reproducirHasta("vid_module2_15", 8.99);
-    } else if (currentSlide === 16) {
-        $prevBtn.show();
-        $nextBtn.hide();
-        reproducirHasta("vid_module2_16", 4.99);
-    } else if (currentSlide === totalSlides) {
-        $nextBtn.hide();
-        $prevBtn.hide();
-    }
-}
-
 
 function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
     $(".carru_" + ptrCarruClass).hide();
@@ -1523,10 +1366,11 @@ $('#btn_res_cont').click(function () {
 });
 
 $("#btn_finmod1").click(function () {
-    myAvance.avModulos = 2;
     nSlides.numSlides = 1;
-    if (myAvance.avModulos >= 2) {
+    if (myAvance.avModulos < 2) {
+        myAvance.avModulos = 2;
         myAvance.ch1.trofeo_1 = 1;
+        ctrl_menuAccess();
     }
     pauseAllAudio();
     $(".music").removeClass("hide");
@@ -1534,7 +1378,6 @@ $("#btn_finmod1").click(function () {
     $('#slide_index_1').show();
     $("#carga_materia").hide().empty();
     ctrl_AvGeneral(myAvance.avModulos, gAvMax);
-    ctrl_menuAccess();
     playModuleAudio(null);
     localStorage.setItem('myAvance', JSON.stringify(myAvance));
 });

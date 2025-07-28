@@ -19,7 +19,9 @@ function ctrl_slidesMod1() {
   $nextBtn.show();
 
   // Control de música de fondo
-  controlBackgroundMusic(1, currentSlide);
+  manageSlideAudio(1, currentSlide);
+
+
   playAudio('module1_', currentSlide);
   //Control de elementos
   autoDismissElements(1, currentSlide);
@@ -297,10 +299,11 @@ $('#btn_res_cont').click(function () {
 
 $("#btn_finmod1").click(function () {
   resetLocution();
-  myAvance.avModulos = 2;
   nSlides.numSlides = 1;
-  if (myAvance.avModulos >= 2) {
+  if (myAvance.avModulos <= 2) {
+    myAvance.avModulos = 2;
     myAvance.ch1.trofeo_1 = 1;
+    ctrl_menuAccess();
   }
   pauseAllAudio();
   $(".music").removeClass("hide");
@@ -308,7 +311,6 @@ $("#btn_finmod1").click(function () {
   $('#slide_index_1').show();
   $("#carga_materia").hide().empty();
   ctrl_AvGeneral(1, gAvMax);
-  ctrl_menuAccess();
   playModuleAudio(null);
   localStorage.setItem('myAvance', JSON.stringify(myAvance)); // Save progress
 });

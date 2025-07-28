@@ -30,7 +30,9 @@ function ctrl_slidesMod3() {
     console.log("#slide_module3_" + currentSlide);
     $prevBtn.show();
     $nextBtn.show();
-    controlBackgroundMusic(3, currentSlide);
+
+    manageSlideAudio(3, currentSlide);
+
     // Reproducir audio para el slide actual
     playAudio('module3_', currentSlide);
     // Call autoDismissElements for module 3
@@ -324,10 +326,11 @@ $("#btn_fin_mod312").click(function () {
 
 $("#btn_finmod3").click(function () {
     resetLocution();
-    myAvance.avModulos = 4;
     nSlides.numSlides_3 = 1;
-    if (myAvance.avModulos >= 4) {
+    if (myAvance.avModulos < 4) {
+        myAvance.avModulos = 4;
         myAvance.ch3.trofeo_3 = 1;
+        ctrl_menuAccess();
     }
     pauseAllAudio();
     $(".music").removeClass("hide");
@@ -350,7 +353,6 @@ $("#btn_finmod3").click(function () {
     $('#slide_index_1').show();
     $("#carga_materia").hide().empty();
     ctrl_AvGeneral(3, gAvMax);
-    ctrl_menuAccess();
     playModuleAudio(null);
     localStorage.setItem('myAvance', JSON.stringify(myAvance));
 });
@@ -371,7 +373,10 @@ $(".elem_click").click(function () {
 
 // Juego
 $('#slideM3-9-btn').click(function () {
-    pauseMusicAndUpdateIcon();
+    if (flagMus === 1) {
+        playMusicaJuegos();
+    }
+
     const $prevBtn = $("#module3_Prev");
     const $nextBtn = $("#module3_Next");
     $prevBtn.hide();
