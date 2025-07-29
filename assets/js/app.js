@@ -1118,6 +1118,8 @@ $('.btn_homeComenzar').click(function () {
 $('#btn_sobreMi_1').click(function () {
     pauseAllAudio();
     $('#mod_BienvVid_1').show();
+    $('.vid_in_modal').css("pointer-events", "auto");
+    $('#BienvVid_1').css("pointer-events", "auto");
     const bienvVideo = $('#BienvVid_1').get(0);
     bienvVideo.play();
 });
