@@ -1126,6 +1126,8 @@ $('#btn_sobreMi_1').click(function () {
 
 $('#cls_BienvVid_1').click(function () {
     $('#mod_BienvVid_1').hide();
+     $('.vid_in_modal').css("pointer-events", "none");
+    $('#BienvVid_1').css("pointer-events", "none");
     var video = $('#BienvVid_1').get(0);
     video.pause();
     video.currentTime = 0;
