@@ -387,6 +387,7 @@ function reproducirHasta(idVideo, tiempoFinal) {
     video.volume = 0.3;
     video.currentTime = 0;
     video.play();
+    console.log("Volumen video:", video.volume)
     $video.on("timeupdate", function () {
         if (this.currentTime >= tiempoFinal) {
             this.pause();
@@ -1126,7 +1127,7 @@ $('#btn_sobreMi_1').click(function () {
 
 $('#cls_BienvVid_1').click(function () {
     $('#mod_BienvVid_1').hide();
-     $('.vid_in_modal').css("pointer-events", "none");
+    $('.vid_in_modal').css("pointer-events", "none");
     $('#BienvVid_1').css("pointer-events", "none");
     var video = $('#BienvVid_1').get(0);
     video.pause();

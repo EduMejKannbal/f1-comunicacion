@@ -369,13 +369,13 @@ $(".elem_click").click(function () {
   });
 });
 
-$(".elem_click_logro").click(function () {
-  const audio = $("#efct_clic_logro_2")[0];
-  audio.currentTime = 0;
-  audio.play().catch((err) => {
-    console.warn("No se pudo reproducir el audio:", err);
-  });
-});
+// $(".elem_click_logro").click(function () {
+//   const audio = $("#efct_clic_logro_2")[0];
+//   audio.currentTime = 0;
+//   audio.play().catch((err) => {
+//     console.warn("No se pudo reproducir el audio:", err);
+//   });
+// });
 
 $(".elem_click_cierre").click(function () {
   const audio = $("#efct_clic_feli")[0];
