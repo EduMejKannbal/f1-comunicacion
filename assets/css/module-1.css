@@ -356,6 +356,7 @@
   justify-items: center;
   align-items: center;
   padding: 1%;
+  padding-bottom: 0%;
 }
 
 .mod_test-body {
@@ -422,7 +423,7 @@
   align-content: center;
   grid-auto-columns: 1fr;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .body-questions img {
@@ -449,7 +450,7 @@
   display: grid;
   grid-auto-columns: 1fr;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
   height: 100%;
   justify-items: center;
@@ -505,7 +506,7 @@
   justify-content: center;
   align-content: center;
   color: #020617;
-  font-size: 30%;
+  font-size: 40%;
   font-weight: 600;
   text-align: center;
   font-family: 'Formula_regular', sans-serif;
@@ -1006,11 +1007,30 @@
   }
 }
 
-@media (min-width: 1199px) and (max-width: 1290px) {}
+@media (min-width: 699px) and (max-width: 898px) {
+  .answer-text{
+    font-size: 54%;
+  }
+}
+@media (min-width: 899px) and (max-width: 1023px) {
+  .answer-text{
+    font-size: 58%;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1198px) {
+  .answer-text{
+    font-size: 52%;
+  }
+}
+@media (min-width: 1199px) and (max-width: 1290px) {
+  .answer-text{
+    font-size: 62%;
+  }
+}
 
 @media (min-width: 1360px) {
   .answer-text {
-    font-size: 63%;
+    font-size: 78%;
   }
 }
 
@@ -1020,7 +1040,7 @@
 
 @media (min-width: 1600px) {
   .module1_2-txt {
-    width: 75%;
+    width: 82%;
   }
 
   .answer-text {
