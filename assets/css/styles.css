@@ -161,6 +161,14 @@ progress::-webkit-progress-bar {
 .btn_avModulos:hover {
   transform: scale(1.05);
 }
+#mod_terminos {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: none;
+}
 
 #btn_avModulos_1 {
   width: 8%;
@@ -209,6 +217,20 @@ progress::-webkit-progress-bar {
   margin: auto;
   bottom: 15%;
   width: 18%;
+}
+
+#btn_homeTerminos {
+  margin: auto;
+  width: 18%;
+  bottom: 18%;
+  right: 7%;
+}
+
+#btn_sidebarTerminos {
+  margin: auto;
+  width: 18%;
+  right: 2%;
+  bottom: 3%;
 }
 
 .absolute {
@@ -982,9 +1004,11 @@ progress::-webkit-progress-bar {
   height: 5.57%;
   left: 57.61%;
   top: 55.15%;
-  background: radial-gradient(ellipse 50% 50% at 50% 50%,
-      rgba(0.21, 0.21, 0.21, 0.6) 30%,
-      rgba(217, 217, 217, 0.28) 86%);
+  background: radial-gradient(
+    ellipse 50% 50% at 50% 50%,
+    rgba(0.21, 0.21, 0.21, 0.6) 30%,
+    rgba(217, 217, 217, 0.28) 86%
+  );
   background-blend-mode: multiply;
   border-radius: 9999px;
 }
@@ -1143,15 +1167,28 @@ progress::-webkit-progress-bar {
 }
 
 #btn_menu {
-  width: 10%;
-  left: 20%;
-  top: 30%;
+  width: 12%;
+  left: 18%;
+  top: 40%;
+}
+
+#btn_home {
+  width: 12%;
+  left: 45%;
+  top: 35%;
 }
 
 #btn_trofeo {
-  width: 10%;
-  left: 60%;
+  width: 7%;
+  left: 70%;
   top: 30%;
+}
+
+#btn_prevTerminos {
+  z-index: 1000;
+  width: 8%;
+  left: 10%;
+  bottom: 15%;
 }
 
 #loading_screen,
@@ -1436,9 +1473,11 @@ progress::-webkit-progress-bar {
   z-index: 31;
 }
 
-@media (min-width: 1199px) and (max-width: 1290px) {}
+@media (min-width: 1199px) and (max-width: 1290px) {
+}
 
-@media (min-width: 1360px) {}
+@media (min-width: 1360px) {
+}
 
 @media (min-width: 1400px) and (max-width: 1500px) {
   #mod_start_txt_2 {
@@ -1446,7 +1485,8 @@ progress::-webkit-progress-bar {
   }
 }
 
-@media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {}
+@media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {
+}
 
 @media (min-width: 1600px) {
   #btn_cls_slide7_modal {

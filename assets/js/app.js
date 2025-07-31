@@ -109,6 +109,7 @@ let previousSlide = 0;
 let dismissTimeouts = [];
 let isAutoDismissEnabled = false;
 let isPlaying = false;
+let menuIsOpen = false;
 let musicaJuegos = document.getElementById("musica_juegos");
 
 // Referencias DOM
@@ -1074,6 +1075,7 @@ $(".btn_module").click(function () {
 });
 
 $("#btn_menu").click(function () {
+  menuIsOpen = true;
   resetLocution();
   saveFlagMus();
   $("#slide_menu_1").show();
@@ -1107,7 +1109,36 @@ $("#btn_menu").click(function () {
   }, 100);
 });
 
+$("#btn_home").click(function () {
+  pauseAllAudio();
+  $(".music").removeClass("hide");
+  resetFondo(1, 2);
+  $("#slide_index_1").show();
+  $("#carga_materia").hide().empty();
+  ctrl_AvGeneral(myAvance.avModulos, gAvMax);
+  playModuleAudio(null);
+});
+
+$("#btn_homeTerminos").click(function () {
+  $("#mod_start").fadeOut(200);
+  $("#mod_terminos").fadeIn(150);
+});
+
+$("#btn_sidebarTerminos").click(function () {
+  menuIsOpen = true;
+  $("#mod_terminos").fadeIn(150);
+});
+
+$("#btn_prevTerminos").click(function () {
+  if (!menuIsOpen) {
+    $("#mod_start").fadeIn(150);
+  }
+  $("#mod_terminos").fadeOut(200);
+  menuIsOpen = false;
+});
+
 $("#cls_menu").click(function () {
+  menuIsOpen = false;
   $("#slide_menu_1").fadeOut();
   pauseAllAudio();
   flagMus = prevFlagMus;
@@ -1118,6 +1149,10 @@ $("#cls_menu").click(function () {
   } else {
     $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
   }
+});
+
+$(".btn_terminos").each(function () {
+  $("#mod_terminos").css("display", "block");
 });
 
 $(".txt_menu").each(function () {
@@ -1338,6 +1373,7 @@ $(".btn_homeComenzar").click(function () {
         .attr("id", `mod_start_txt_${nextID}`)
         .fadeIn(150);
     });
+    $("#btn_homeTerminos").fadeOut(150);
 
     // Transición para el botón
     $this.fadeOut(150, function () {
