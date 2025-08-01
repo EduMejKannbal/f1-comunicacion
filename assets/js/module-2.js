@@ -29,6 +29,12 @@ function ctrl_slidesMod2() {
   $prevBtn.show();
   $nextBtn.show();
 
+  if (JUEGOS_AUDIO_SLIDES[2].includes(currentSlide)) {
+    isPlaying = true;
+  } else {
+    isPlaying = false;
+  }
+
   // Control de música de fondo
   manageSlideAudio(2, currentSlide);
 

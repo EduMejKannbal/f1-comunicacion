@@ -29,8 +29,8 @@ const MODULE_CONFIG = {
 
 // Diapositivas sin música
 const NO_MUSIC_SLIDES = {
-  1: [5, 6, 7, 10, 12, 13],
-  2: [4, 6, 9, 10, 11, 12, 13, 15],
+  1: [6, 7, 10, 12, 13],
+  2: [4, 6, 13, 15],
   3: [7, 10, 12, 13, 14],
 };
 const JUEGOS_AUDIO_SLIDES = {
@@ -251,9 +251,11 @@ function saveFlagMus() {
 }
 
 function pauseMusicaJuegos() {
-  musicaJuegos.muted = true;
-  musicaJuegos.currentTime = 0;
-  musicaJuegos.pause();
+  if (!isPlaying) {
+    musicaJuegos.muted = true;
+    musicaJuegos.currentTime = 0;
+    musicaJuegos.pause();
+  }
 }
 
 function playMusicaJuegos() {
@@ -298,24 +300,25 @@ function playMusicaJuegos() {
 function manageSlideAudio(moduleId, currentSlide) {
   // Si es una slide de juego y el usuario tiene audio activado
   if (JUEGOS_AUDIO_SLIDES[moduleId]?.includes(currentSlide) && flagMus === 1) {
-    isPlaying = true;
+    // Pausar la música del módulo antes de reproducir la del juego
     pauseAllAudio();
-    playMusicaJuegos();
+    // Reproducir la música de juegos solo si está pausada
+    if (musicaJuegos.paused) {
+      playMusicaJuegos();
+    }
   }
   // Si no está en lista negra y sonido activo, reproduce música del módulo
   else if (
     !NO_MUSIC_SLIDES[moduleId]?.includes(currentSlide) &&
     flagMus === 1
   ) {
-    isPlaying = false;
+    // Pausar y reiniciar la música de juegos
+    pauseMusicaJuegos();
     playModuleAudio(moduleId);
   }
-  // Si está en NO_MUSIC_SLIDES o flagMus === 0, pausa todo
+  // En cualquier otro caso, pausa toda la música
   else {
-    isPlaying = false;
     pauseAllAudio();
-    if (currentAudio) muteMe(currentAudio);
-    $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
   }
 }
 
