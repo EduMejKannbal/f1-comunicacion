@@ -1454,6 +1454,7 @@ $("#cls_trofeo_1").click(function () {
 });
 
 $("#cls_ganador_1").click(() => {
+  pauseAllAudio();
   $("#slide_ganador_1").fadeOut();
   $("#slide_outro").fadeIn();
   playOutroVideo();
