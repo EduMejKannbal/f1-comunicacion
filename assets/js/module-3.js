@@ -145,6 +145,8 @@ function ctrl_slidesMod3() {
         $nextBtn.hide();
         reproducirHasta("vid_module3_13", 8.99);
         $('#aud_logro').get(0).play();
+    } else if (currentSlide === 14){
+       $("#vid_outro").play() 
     } else if (currentSlide === totalSlides) {
         $prevBtn.show();
         $nextBtn.hide();
