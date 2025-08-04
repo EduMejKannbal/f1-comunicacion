@@ -362,6 +362,7 @@ $("#btn_finmod3").click(function () {
     $("#carga_materia").hide().empty();
     ctrl_AvGeneral(3, gAvMax);
     playModuleAudio(null);
+    playBackgroundHome();
     localStorage.setItem('myAvance', JSON.stringify(myAvance));
 });
 

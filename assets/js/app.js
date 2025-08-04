@@ -1009,6 +1009,10 @@ function autoDismissElements(moduleNum, slideNumber) {
   });
 }
 
+function playBackgroundHome() {
+  $("#vid_background_home")[0].play();
+}
+
 // Manejadores de eventos
 video.addEventListener("ended", function () {
   stopSplashVideo();
@@ -1019,6 +1023,7 @@ video.addEventListener("ended", function () {
 outro.addEventListener("ended", function () {
   stopOutroVideo();
   $("#slide_outro").hide();
+  playBackgroundHome();
   playModuleAudio(null);
 });
 
@@ -1124,6 +1129,7 @@ $("#btn_home").click(function () {
   isPlaying = false;
   pauseAndResetAllVideo();
   pauseAllAudio();
+  playBackgroundHome();
   $("audio").each(function () {
     this.pause();
     this.currentTime = 0;
@@ -1694,6 +1700,7 @@ $("#btn_finmod1").click(function () {
   $("#carga_materia").hide().empty();
   ctrl_AvGeneral(myAvance.avModulos, gAvMax);
   playModuleAudio(null);
+  playBackgroundHome();
   localStorage.setItem("myAvance", JSON.stringify(myAvance));
 });
 
