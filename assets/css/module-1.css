@@ -1009,7 +1009,7 @@
 
 @media (min-width: 699px) and (max-width: 898px) {
   .answer-text{
-    font-size: 54%;
+    font-size: 49%;
   }
 }
 @media (min-width: 899px) and (max-width: 1023px) {
@@ -1022,12 +1022,16 @@
     font-size: 52%;
   }
 }
-@media (min-width: 1199px) and (max-width: 1290px) {
+@media (min-width: 1199px) and (max-width: 1289px) {
   .answer-text{
     font-size: 62%;
   }
 }
-
+@media (min-width: 1290px) and (max-width: 1359px) {
+  .answer-text{
+    font-size: 68%;
+  }
+}
 @media (min-width: 1360px) {
   .answer-text {
     font-size: 78%;
