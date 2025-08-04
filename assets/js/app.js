@@ -233,6 +233,7 @@ function pauseAllAudio() {
       }
     }
   });
+
   pauseMusicaJuegos();
   isAudioPlaying = false;
   console.log("Background audio paused");
@@ -295,6 +296,13 @@ function playMusicaJuegos() {
         { once: true }
       );
     });
+}
+
+function pauseAndResetAllVideo() {
+  $("video").each(function () {
+    this.pause();
+    this.currentTime = 0;
+  });
 }
 
 function manageSlideAudio(moduleId, currentSlide) {
@@ -1113,7 +1121,13 @@ $("#btn_menu").click(function () {
 });
 
 $("#btn_home").click(function () {
+  isPlaying = false;
+  pauseAndResetAllVideo();
   pauseAllAudio();
+  $("audio").each(function () {
+    this.pause();
+    this.currentTime = 0;
+  });
   $(".music").removeClass("hide");
   resetFondo(1, 2);
   $("#slide_index_1").show();
