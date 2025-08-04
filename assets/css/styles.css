@@ -423,6 +423,14 @@ progress::-webkit-progress-bar {
   position: absolute;
 }
 
+.btn_menu_flotante {
+  transition: transform 0.2s ease;
+}
+
+.btn_menu_flotante:hover {
+  transform: scale(1.2);
+}
+
 .elem_click_reto {
   cursor: pointer;
   position: absolute;
