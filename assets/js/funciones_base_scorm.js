@@ -29,8 +29,6 @@ function doStart() {
     console.log("Ya haz completado la actividad con éxito");
     load_strAvance();
   }
-  console.log(ScormProcessGetValue("cmi.core.lesson_status"));
-  console.log(ScormProcessGetValue("cmi.core.score"));
 }
 
 function save_Status() {
@@ -48,8 +46,6 @@ function load_strAvance() {
 function setComplete() {
   ScormProcessSetValue("cmi.core.lesson_status", "completed");
   ScormProcessSetValue("cmi.core.score.raw", 100);
-  console.log(ScormProcessGetValue("cmi.core.lesson_status"));
-  console.log(ScormProcessGetValue("cmi.core.score"));
   ScormProcessSetValue("cmi.core.score.min", "0");
   ScormProcessSetValue("cmi.core.score.max", "100");
   reachedEnd = true;
