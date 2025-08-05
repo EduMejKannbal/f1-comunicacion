@@ -85,6 +85,15 @@ function doExit() {
   //the presense of an adl.nav.request will cause the LMS to
   //take the content away from the user.
   doUnload(false);
+
+  // Espera 3 segundos y si el usuario sigue en la ventana, muestra alerta
+  setTimeout(() => {
+    if (!window.closed && document.visibilityState === "visible") {
+      alert(
+        "Tu progreso se ha guardado, pero parece que el LMS no cerró el contenido.\nPor favor, cierra esta ventana manualmente."
+      );
+    }
+  }, 3000);
 }
 
 function RecordTest(score) {
