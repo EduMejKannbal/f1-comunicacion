@@ -1025,6 +1025,7 @@ outro.addEventListener("ended", function () {
   $("#slide_outro").hide();
   playBackgroundHome();
   playModuleAudio(null);
+  $("#btn_salir").css({ display: "block", "pointer-events": "auto" });
 });
 
 $("#precache_index").waitForImages({
@@ -1038,7 +1039,16 @@ $("#btn_close_loader").click(function () {
   $("#slide_vidWelcome_1").show();
   playSplashVideo();
   $("#loading_screen").hide();
+  doStart();
 });
+
+$("#btn_salir").click(function(){
+    setComplete();
+    setTimeout(function(){
+        alert('saliendo');
+    }, 1000);
+});
+
 
 $(".music").click(function () {
   if (flagMus === 0) {
@@ -1722,6 +1732,12 @@ document.addEventListener("DOMContentLoaded", function () {
       buho: Object.values(userSelections).filter((val) => val === "buho")
         .length,
     };
+  }
+
+  if (myAvance.avModulos == 4) {
+    $("#btn_salir").css({ display: "block", "pointer-events": "auto" });
+  } else {
+    $("#btn_salir").css({ display: "none", "pointer-events": "none" });
   }
 
   $(".music").addClass("hide").attr("src', 'assets/img/icons/icon.png");
