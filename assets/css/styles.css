@@ -8,6 +8,18 @@
   src: url(../fonts/Formula1-Regular.woff);
 }
 
+p {
+  font-family: Formula_regular;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Formula_bold;
+}
+
 :root {
   --bg-body: #18181b;
   --bg-main: #fff;
@@ -184,10 +196,42 @@ progress::-webkit-progress-bar {
 }
 
 #btn_avModulos_3 {
-  width: 4%;
-  height: auto;
+  width: auto;
+  height: 10%;
   top: 41%;
   left: 45.5%;
+}
+
+#btn_salir {
+  display: none;
+  position: absolute;
+  z-index: 25;
+  bottom: 2%;
+  right: -10%;
+  font-family: Formula_bold;
+  color: white;
+}
+
+.btn_container {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+}
+
+.btn_container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.btn_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  font-size: 1em;
 }
 
 .home_titleBienvenido {
@@ -409,6 +453,14 @@ progress::-webkit-progress-bar {
 .elem_click {
   cursor: pointer;
   position: absolute;
+}
+
+.btn_menu_flotante {
+  transition: transform 0.2s ease;
+}
+
+.btn_menu_flotante:hover {
+  transform: scale(1.2);
 }
 
 .elem_click_reto {
@@ -1471,6 +1523,57 @@ progress::-webkit-progress-bar {
   width: 100vw;
   height: 100vh;
   z-index: 31;
+}
+
+.terminos-de-uso {
+  position: relative;
+  left: 24%;
+  top: 20%;
+  z-index: 1000;
+  width: 55%;
+  height: 62%;
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #0000008f;
+  line-height: 1.6;
+  border-radius: 2rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #eee;
+}
+
+.terminos-de-uso::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminos-de-uso::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+.terminos-de-uso::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+  border: 2px solid #eee;
+}
+
+.terminos-de-uso h3 {
+  text-align: center;
+  color: #ffffff;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.terminos-de-uso p {
+  color: #ffffff;
+  margin-bottom: 1em;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.terminos-de-uso ol {
+  color: #ffffff;
+  margin: 2em 0;
+  padding-left: 10%;
 }
 
 @media (min-width: 1199px) and (max-width: 1290px) {

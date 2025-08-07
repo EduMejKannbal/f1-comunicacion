@@ -29,8 +29,8 @@ const MODULE_CONFIG = {
 
 // Diapositivas sin música
 const NO_MUSIC_SLIDES = {
-  1: [5, 6, 7, 10, 12, 13],
-  2: [4, 6, 9, 10, 11, 12, 13, 15],
+  1: [6, 7, 10, 12, 13],
+  2: [4, 6, 13, 15],
   3: [7, 10, 12, 13, 14],
 };
 const JUEGOS_AUDIO_SLIDES = {
@@ -233,6 +233,7 @@ function pauseAllAudio() {
       }
     }
   });
+
   pauseMusicaJuegos();
   isAudioPlaying = false;
   console.log("Background audio paused");
@@ -251,9 +252,11 @@ function saveFlagMus() {
 }
 
 function pauseMusicaJuegos() {
-  musicaJuegos.muted = true;
-  musicaJuegos.currentTime = 0;
-  musicaJuegos.pause();
+  if (!isPlaying) {
+    musicaJuegos.muted = true;
+    musicaJuegos.currentTime = 0;
+    musicaJuegos.pause();
+  }
 }
 
 function playMusicaJuegos() {
@@ -295,27 +298,35 @@ function playMusicaJuegos() {
     });
 }
 
+function pauseAndResetAllVideo() {
+  $("video").each(function () {
+    this.pause();
+    this.currentTime = 0;
+  });
+}
+
 function manageSlideAudio(moduleId, currentSlide) {
   // Si es una slide de juego y el usuario tiene audio activado
   if (JUEGOS_AUDIO_SLIDES[moduleId]?.includes(currentSlide) && flagMus === 1) {
-    isPlaying = true;
+    // Pausar la música del módulo antes de reproducir la del juego
     pauseAllAudio();
-    playMusicaJuegos();
+    // Reproducir la música de juegos solo si está pausada
+    if (musicaJuegos.paused) {
+      playMusicaJuegos();
+    }
   }
   // Si no está en lista negra y sonido activo, reproduce música del módulo
   else if (
     !NO_MUSIC_SLIDES[moduleId]?.includes(currentSlide) &&
     flagMus === 1
   ) {
-    isPlaying = false;
+    // Pausar y reiniciar la música de juegos
+    pauseMusicaJuegos();
     playModuleAudio(moduleId);
   }
-  // Si está en NO_MUSIC_SLIDES o flagMus === 0, pausa todo
+  // En cualquier otro caso, pausa toda la música
   else {
-    isPlaying = false;
     pauseAllAudio();
-    if (currentAudio) muteMe(currentAudio);
-    $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
   }
 }
 
@@ -998,6 +1009,10 @@ function autoDismissElements(moduleNum, slideNumber) {
   });
 }
 
+function playBackgroundHome() {
+  $("#vid_background_home")[0].play();
+}
+
 // Manejadores de eventos
 video.addEventListener("ended", function () {
   stopSplashVideo();
@@ -1008,7 +1023,9 @@ video.addEventListener("ended", function () {
 outro.addEventListener("ended", function () {
   stopOutroVideo();
   $("#slide_outro").hide();
+  playBackgroundHome();
   playModuleAudio(null);
+  $("#btn_salir").css({ display: "block", "pointer-events": "auto" });
 });
 
 $("#precache_index").waitForImages({
@@ -1022,7 +1039,16 @@ $("#btn_close_loader").click(function () {
   $("#slide_vidWelcome_1").show();
   playSplashVideo();
   $("#loading_screen").hide();
+  doStart();
 });
+
+$("#btn_salir").click(function(){
+    setComplete();
+    setTimeout(function(){
+        alert('saliendo');
+    }, 1000);
+});
+
 
 $(".music").click(function () {
   if (flagMus === 0) {
@@ -1110,7 +1136,14 @@ $("#btn_menu").click(function () {
 });
 
 $("#btn_home").click(function () {
+  isPlaying = false;
+  pauseAndResetAllVideo();
   pauseAllAudio();
+  playBackgroundHome();
+  $("audio").each(function () {
+    this.pause();
+    this.currentTime = 0;
+  });
   $(".music").removeClass("hide");
   resetFondo(1, 2);
   $("#slide_index_1").show();
@@ -1451,6 +1484,7 @@ $("#cls_trofeo_1").click(function () {
 });
 
 $("#cls_ganador_1").click(() => {
+  pauseAllAudio();
   $("#slide_ganador_1").fadeOut();
   $("#slide_outro").fadeIn();
   playOutroVideo();
@@ -1676,6 +1710,7 @@ $("#btn_finmod1").click(function () {
   $("#carga_materia").hide().empty();
   ctrl_AvGeneral(myAvance.avModulos, gAvMax);
   playModuleAudio(null);
+  playBackgroundHome();
   localStorage.setItem("myAvance", JSON.stringify(myAvance));
 });
 
@@ -1697,6 +1732,12 @@ document.addEventListener("DOMContentLoaded", function () {
       buho: Object.values(userSelections).filter((val) => val === "buho")
         .length,
     };
+  }
+
+  if (myAvance.avModulos == 4) {
+    $("#btn_salir").css({ display: "block", "pointer-events": "auto" });
+  } else {
+    $("#btn_salir").css({ display: "none", "pointer-events": "none" });
   }
 
   $(".music").addClass("hide").attr("src', 'assets/img/icons/icon.png");

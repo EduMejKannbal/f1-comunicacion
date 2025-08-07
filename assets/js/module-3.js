@@ -31,6 +31,12 @@ function ctrl_slidesMod3() {
     $prevBtn.show();
     $nextBtn.show();
 
+    if (JUEGOS_AUDIO_SLIDES[3].includes(currentSlide)) {
+    isPlaying = true;
+  } else {
+    isPlaying = false;
+  }
+
     manageSlideAudio(3, currentSlide);
 
     // Reproducir audio para el slide actual
@@ -356,6 +362,7 @@ $("#btn_finmod3").click(function () {
     $("#carga_materia").hide().empty();
     ctrl_AvGeneral(3, gAvMax);
     playModuleAudio(null);
+    playBackgroundHome();
     localStorage.setItem('myAvance', JSON.stringify(myAvance));
 });
 

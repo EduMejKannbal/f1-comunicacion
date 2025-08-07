@@ -39,7 +39,7 @@
       <img src="assets/img/home/home.jpg" class="home_imageBack" alt="">
       <div class="content-home">
         <div class="vid_in_slide">
-          <video src="assets/vid/home.mp4" autoplay muted loop class="mod2_videoSlide locution"></video>
+          <video src="assets/vid/home.mp4" autoplay muted loop class="mod2_videoSlide locution" id="vid_background_home"></video>
         </div>
         <img src="assets/img/icons/check_1.png" class="btn_avModulos elem_click" id="btn_avModulos_1">
         <img src="assets/img/icons/check.png" class="btn_avModulos elem_click" id="btn_avModulos_2">
@@ -48,6 +48,12 @@
         <img src="assets/img/home/title_project.png" class="absolute home_titleHome">
         <img src="assets/img/home/trofeo.png" class="absolute animated zoomIn delay-3s home_trofeo btn_conoceCoach"
           id="btn_conoceCoach_1">
+        <div id="btn_salir" class="elem_click">
+          <div class="btn_container">
+            <img src="assets/img/btn_clean.svg" alt="Salir">
+            <span class="btn_text">Salir</span>
+          </div>
+        </div>
 
         <div id="mod_start" class="absolute animated zoomInUp"
           style="width: 100%;height: 100%; top: 0;left: 0;z-index: 999;display: none;">
@@ -64,7 +70,51 @@
           <div class="modal-backdrop"></div>
           <img id="btn_prevTerminos" class="elem_click" src="assets/img/icons/prev.png">
           <img id="img_start_1" class="absolute" src="assets/img/grls/modal.png">
-          
+          <div class="terminos-de-uso">
+            <h3>ACUERDO DE TÉRMINOS Y CONDICIONES DE USO</h3>
+            <p>
+              DIGITAL & BLENDED LEARNING SC  y  DYNAMIC SINERGY TRAINING  en lo sucesivo (“El Proveedor”) 
+              es titular de todos los derechos de propiedad intelectual y de uso del presente curso e-learning
+              en Adelante (“El Contenido”), desarrollado con fines exclusivos de capacitación interna.
+            </p>
+            <p>
+              Al adquirir este curso, la empresa cliente (“El Cliente”) reconoce y acepta expresamente
+              los siguientes términos:
+            </p>
+            <ol>
+              <li>
+                <strong>USO EXCLUSIVO:</strong> El Contenido es de uso interno y exclusivo de El Cliente y sus colaboradores
+                directos. Está prohibida su reproducción, cesión, sublicenciamiento, copia total o parcial,
+                venta, redistribución o divulgación a terceros ajenos a la organización.
+              </li>
+              <li>
+                <strong>PROHIBICIÓN DE REDISTRIBUCIÓN:</strong> Está estrictamente prohibido compartir, comercializar,
+                alojar en plataformas públicas o privadas no autorizadas, o poner El Contenido a disposición de otras
+                personas, empresas o entidades distintas a El Cliente.
+              </li>
+              <li>
+                <strong>PROPIEDAD INTELECTUAL:</strong> Todos los derechos patrimoniales, morales y de explotación de
+                El Contenido pertenecen a El Proveedor. La adquisición de este curso no transfiere propiedad intelectual
+                alguna, sólo otorga un derecho de uso interno limitado.
+              </li>
+              <li>
+                <strong>RESPONSABILIDAD:</strong> Cualquier incumplimiento a este acuerdo facultará a El Proveedor
+                para tomar acciones legales y exigir la reparación de daños y perjuicios que resulten de la distribución
+                o uso indebido.
+              </li>
+              <li>
+                <strong>VIGENCIA:</strong> Este acuerdo es válido por todo el tiempo que El Contenido permanezca
+                instalado en el LMS de El Cliente.
+              </li>
+            </ol>
+            <p>
+              Al acceder y utilizar este curso, El Cliente manifiesta haber leído, comprendido y aceptado íntegramente
+              estos términos y condiciones.
+            </p>
+            <p>
+              DIGITAL & BLENDED LEARNING y DYNAMIC SINERGY TRAINING. Todos los derechos reservados.
+            </p>
+          </div>
         </div>
 
       </div>
@@ -261,9 +311,9 @@
     <div id="div_menu" class="menu_flotante">
       <div class="menu_flotante-inner">
         <img alt src="assets/img/menu/bottom_bar.png" style="top: 0;left: 0;position: relative; width: 100%;">
-        <img id="btn_menu" class="elem_click" src="assets/img/menu/control_icon.png" />
-        <img id="btn_home" class="elem_click" src="assets/img/menu/pista_icon.png" />
-        <img id="btn_trofeo" class="elem_click" src="assets/img/menu/trofeo_icon.png" />
+        <img id="btn_menu" class="elem_click btn_menu_flotante" src="assets/img/menu/control_icon.png" />
+        <img id="btn_home" class="elem_click btn_menu_flotante" src="assets/img/menu/pista_icon.png" />
+        <img id="btn_trofeo" class="elem_click btn_menu_flotante" src="assets/img/menu/trofeo_icon.png" />
       </div>
     </div>
 
