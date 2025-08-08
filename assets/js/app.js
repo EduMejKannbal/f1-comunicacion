@@ -66,6 +66,7 @@ let myAvance = localStorage.getItem("myAvance")
         logro_zapatos: 0,
         trofeo_2: 0,
         progress: 1,
+        vidMod2_3_visto: 0,
       },
       ch3: {
         vidManEm: 1,

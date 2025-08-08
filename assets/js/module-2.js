@@ -57,6 +57,31 @@ function ctrl_slidesMod2() {
     $prevBtn.show();
     $nextBtn.show();
     reproducirHasta("vid_module2_2", 4.99);
+  } else if (currentSlide === 3) {
+    const video = document.getElementById("vidSarp_1");
+
+    const handleVideoCompletion = () => {
+      $nextBtn.show();
+      myAvance.ch2.vidMod2_3_visto = 1;
+      save_Status();
+    };
+
+    if (myAvance.ch2.vidMod2_3_visto === 1) {
+      $nextBtn.show();
+    } else {
+      $nextBtn.hide();
+    }
+
+    $("#slide3_play").on("click", function () {
+      video.play();
+    });
+
+    video.addEventListener("ended", handleVideoCompletion);
+
+    $("#cls_2sarp_1").on("click", function () {
+      handleVideoCompletion();
+      $("#mod_2sarp_1").fadeOut(300);
+    });
   } else if (currentSlide === 4) {
     $prevBtn.hide();
     $nextBtn.hide();
