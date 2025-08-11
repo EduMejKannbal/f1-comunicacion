@@ -56,6 +56,8 @@ function ctrl_slidesMod3() {
   const $slides = $(".slide_module3");
   const totalSlides = $slides.length;
   const currentSlide = nSlides.numSlides_3;
+  myAvance.ch3.lastSlide = currentSlide;
+  saveProgress();
   autoNextSlide("module3", nSlides, ctrl_slidesMod3);
   const $prevBtn = $("#module3_Prev");
   const $nextBtn = $("#module3_Next");
@@ -436,6 +438,8 @@ $("#btn_finmod3").click(function () {
     myAvance.ch3.trofeo_3 = 1;
     ctrl_menuAccess();
   }
+  myAvance.ch3.isCompleted = true;
+  resetModuleProgress("3");
   pauseAllAudio();
   $(".music").removeClass("hide");
   if (myAvance.ganador !== null) {

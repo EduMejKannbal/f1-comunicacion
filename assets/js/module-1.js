@@ -16,6 +16,8 @@ function ctrl_slidesMod1() {
   const $slides = $(".slide_module1");
   const totalSlides = $slides.length;
   const currentSlide = nSlides.numSlides;
+  myAvance.ch1.lastSlide = currentSlide;
+  saveProgress();
   autoNextSlide("module1", nSlides, ctrl_slidesMod1);
   const $prevBtn = $("#module1_Prev");
   const $nextBtn = $("#module1_Next");
@@ -345,6 +347,8 @@ $("#btn_finmod1").click(function () {
     myAvance.ch1.trofeo_1 = 1;
     ctrl_menuAccess();
   }
+  myAvance.ch1.isCompleted = true;
+  resetModuleProgress("1"); 
   pauseAllAudio();
   $(".music").removeClass("hide");
   resetFondo(1, 2);

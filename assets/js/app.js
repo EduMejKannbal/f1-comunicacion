@@ -43,7 +43,7 @@ const JUEGOS_AUDIO_SLIDES = {
 let strID;
 let gAvMax = 4;
 let myAvance = localStorage.getItem("myAvance")
-  ? localStorage.getItem("myAvance")
+  ? JSON.parse(localStorage.getItem("myAvance"))
   : {
       avModulos: 1,
       g_avance: 0,
@@ -54,6 +54,8 @@ let myAvance = localStorage.getItem("myAvance")
         logro_casco: 0,
         trofeo_1: 0,
         progress: 1,
+        lastSlide: 1,
+        isCompleted: false,
       },
       ch2: {
         comic: 1,
@@ -67,6 +69,8 @@ let myAvance = localStorage.getItem("myAvance")
         trofeo_2: 0,
         progress: 1,
         vidMod2_3_visto: 0,
+        lastSlide: 1,
+        isCompleted: false,
       },
       ch3: {
         vidManEm: 1,
@@ -79,6 +83,8 @@ let myAvance = localStorage.getItem("myAvance")
         finish_juego: 0,
         trofeo_3: 0,
         progress: 1,
+        lastSlide: 1,
+        isCompleted: false,
       },
     };
 let nSlides = {
@@ -125,6 +131,20 @@ const checkAvanceReady = setInterval(() => {
     clearInterval(checkAvanceReady);
   }
 }, 100);
+
+function saveProgress() {
+  if (typeof myAvance !== "undefined") {
+    localStorage.setItem("myAvance", JSON.stringify(myAvance));
+    save_Status();
+  }
+}
+
+function resetModuleProgress(moduleId) {
+  if (moduleId && myAvance["ch" + moduleId]) {
+    myAvance["ch" + moduleId].lastSlide = 1;
+    saveProgress();
+  }
+}
 
 // Funciones de control de audio
 function playModuleAudio(moduleId) {
@@ -1093,10 +1113,13 @@ $(".btn_module").click(function () {
     restoreMusicAndIcon(strID);
     bindClickEffect();
     if (strID === "1") {
+      nSlides.numSlides = myAvance.ch1.lastSlide || 1;
       ctrl_slidesMod1();
     } else if (strID === "2") {
+      nSlides.numSlides_2 = myAvance.ch2.lastSlide || 1;
       ctrl_slidesMod2();
     } else if (strID === "3") {
+      nSlides.numSlides_3 = myAvance.ch3.lastSlide || 1;
       ctrl_slidesMod3();
     }
   });
@@ -1146,6 +1169,10 @@ $("#btn_home").click(function () {
     this.pause();
     this.currentTime = 0;
   });
+  if (strID && myAvance["ch" + strID].isCompleted) {
+    resetModuleProgress(strID);
+    console.log("Si reinició mi Alex, como ves, búscame")
+  }
   $(".music").removeClass("hide");
   resetFondo(1, 2);
   $("#slide_index_1").show();
