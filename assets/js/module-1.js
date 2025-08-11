@@ -42,6 +42,8 @@ function ctrl_slidesMod1() {
     $prevBtn.hide();
     $nextBtn.hide();
     reproducirHasta("vid_module1_1", 9.99);
+  } else if (currentSlide === 2) {
+    reproducirHasta("vid_module1_2", 4.99);
   } else if (currentSlide === 4) {
     reproducirHasta("vid_module1_4", 4.99);
     ctrl_carru_simple("test_1", nSlides.test_1);
@@ -59,8 +61,6 @@ function ctrl_slidesMod1() {
       $nextBtn.hide();
       pauseMusicAndUpdateIcon();
     }
-  } else if (currentSlide === 2) {
-    reproducirHasta("vid_module1_2", 4.99);
   } else if (currentSlide === 6) {
     $prevBtn.hide();
     $nextBtn.hide();
