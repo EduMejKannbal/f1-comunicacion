@@ -513,6 +513,23 @@
 
 }
 
+#img_mod_juego_1 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+#txt_mod_juego_1 {
+  right: 7%;
+  top: 24%;
+  width: 50%;
+}
+
+
+
 .resultadoTest_header {
   margin-left: 8%;
   width: 92%;

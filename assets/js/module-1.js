@@ -142,7 +142,9 @@ $("#module1_Next").click(() => {
   ctrl_slidesMod1();
   // $("#efct_next")[0].play();
 });
-
+$("#btn_mod_juego_1").click(function () {
+  $("#mod_juego_1").fadeOut(150);
+});
 setupCarouselControls("test_1");
 $(".body-answers > div > div").click(function () {
   if (testCompleted) return;
@@ -284,7 +286,7 @@ $buttons.hover(
 );
 
 $buttons.click(function () {
-  $('.music').hide();
+  $(".music").hide();
   strID = $(this).attr("id").split("_")[2];
   pauseMusicAndUpdateIcon();
   console.log("#mod_estilosComunicacion_" + strID);
@@ -295,7 +297,7 @@ $buttons.click(function () {
 });
 
 $(".cls_estilosComunicacion").click(function () {
-  $('.music').show();
+  $(".music").show();
   strID = $(this).attr("id").split("_")[2];
   $("#mod_estilosComunicacion_" + strID).fadeOut();
   var video = $("#vid_estilosComunicacion_" + strID).get(0);
@@ -350,7 +352,7 @@ $("#btn_finmod1").click(function () {
     ctrl_menuAccess();
   }
   myAvance.ch1.isCompleted = true;
-  resetModuleProgress("1"); 
+  resetModuleProgress("1");
   pauseAllAudio();
   $(".music").removeClass("hide");
   resetFondo(1, 2);
