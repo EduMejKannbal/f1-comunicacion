@@ -281,6 +281,10 @@ function pauseMusicaJuegos() {
 }
 
 function playMusicaJuegos() {
+  if (flagMus === 0) {
+    return;
+  }
+
   musicaJuegos.loop = true;
   musicaJuegos.volume = 0.3;
   musicaJuegos.muted = false;
@@ -291,7 +295,6 @@ function playMusicaJuegos() {
     .then(() => {
       isAudioPlaying = true;
       $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
-      console.log("Música de juego activada correctamente");
     })
     .catch((err) => {
       console.warn("Error al reproducir música de juego:", err);
@@ -1132,32 +1135,32 @@ $("#btn_menu").click(function () {
   $("#slide_menu_1").show();
   $("#slide_trofeo_1").hide();
   ctrl_menuAccess();
-  setTimeout(() => {
-    const menuAudio = document.getElementById("musModu_4");
-    if (menuAudio) {
-      pauseAllAudio();
-      menuAudio.loop = true;
-      menuAudio.volume = 0.3;
-      menuAudio.muted = false;
-      menuAudio
-        .play()
-        .then(() => {
-          console.log("Playing menu audio: musModu_4");
-          currentAudio = menuAudio;
-          isAudioPlaying = true;
-          $(".music")
-            .attr("src", "assets/img/icons/on.png")
-            .removeClass("hide");
-        })
-        .catch((err) => {
-          console.warn("Error playing menu audio: musModu_4", err);
-          isAudioPlaying = false;
-          $(".music")
-            .attr("src", "assets/img/icons/off.png")
-            .removeClass("hide");
-        });
-    }
-  }, 100);
+
+  pauseAllAudio();
+
+  if (flagMus === 1) {
+    setTimeout(() => {
+      const menuAudio = document.getElementById("musModu_4");
+      if (menuAudio) {
+        menuAudio.loop = true;
+        menuAudio.volume = 0.3;
+        menuAudio.muted = false;
+        menuAudio
+          .play()
+          .then(() => {
+            currentAudio = menuAudio;
+            isAudioPlaying = true;
+            $(".music").attr("src", "assets/img/icons/on.png");
+          })
+          .catch((err) => {
+            // Error manejado silenciosamente
+          });
+      }
+    }, 100);
+  } else {
+    currentAudio = document.getElementById("musModu_4");
+    isAudioPlaying = false;
+  }
 });
 
 $("#btn_home").click(function () {
@@ -1169,10 +1172,13 @@ $("#btn_home").click(function () {
     this.pause();
     this.currentTime = 0;
   });
-  if (strID && myAvance["ch" + strID].isCompleted) {
+
+  $('.slide_portada').hide();
+
+  if (strID && myAvance["ch" + strID] && myAvance["ch" + strID].isCompleted) {
     resetModuleProgress(strID);
-    console.log("Si reinició mi Alex, como ves, búscame")
   }
+
   $(".music").removeClass("hide");
   resetFondo(1, 2);
   $("#slide_index_1").show();
@@ -1203,10 +1209,9 @@ $("#cls_menu").click(function () {
   menuIsOpen = false;
   $("#slide_menu_1").fadeOut();
   pauseAllAudio();
-  flagMus = prevFlagMus;
-  localStorage.setItem("flagMus", flagMus);
+  playModuleAudio(null);
+
   if (flagMus === 1) {
-    playModuleAudio(null);
     $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
   } else {
     $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
@@ -1450,6 +1455,7 @@ $(".btn_homeComenzar").click(function () {
 });
 
 $("#btn_sobreMi_1").click(function () {
+  $(".music").hide();
   pauseAllAudio();
   $("#mod_BienvVid_1").show();
   $(".vid_in_modal").css("pointer-events", "auto");
@@ -1459,6 +1465,7 @@ $("#btn_sobreMi_1").click(function () {
 });
 
 $("#cls_BienvVid_1").click(function () {
+  $(".music").show();
   $("#mod_BienvVid_1").hide();
   $(".vid_in_modal").css("pointer-events", "none");
   $("#BienvVid_1").css("pointer-events", "none");
@@ -1493,6 +1500,11 @@ $("#menu_trigger, #div_menu").hover(
 );
 
 $("#btn_trofeo").click(function () {
+  const trophyVideo = document.getElementById("videoMenuTrofeos_1");
+  if (trophyVideo) {
+    trophyVideo.currentTime = 0;
+    trophyVideo.play();
+  }
   pauseAllAudio();
   mostrar_trofeos();
   mostrar_logros();

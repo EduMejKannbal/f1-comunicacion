@@ -211,12 +211,14 @@ $(".cls_comic").click(function () {
 });
 
 $("#slide3_play").click(function () {
+  $(".music").hide();
   pauseMusicAndUpdateIcon();
   $("#mod_2sarp_1").show();
   $("#vidSarp_1").get(0).play();
 });
 
 $("#cls_2sarp_1").click(function () {
+  $('.music').show()
   $("#mod_2sarp_1").hide();
   var video = $("#vidSarp_1").get(0);
   video.pause();
@@ -424,7 +426,7 @@ $("#btn_finmod2").click(function () {
     ctrl_menuAccess();
   }
   myAvance.ch2.isCompleted = true;
-  resetModuleProgress("2"); 
+  resetModuleProgress("2");
   pauseAllAudio();
   $(".music").removeClass("hide");
   resetFondo(2, 2);

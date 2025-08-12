@@ -284,6 +284,7 @@ $buttons.hover(
 );
 
 $buttons.click(function () {
+  $('.music').hide();
   strID = $(this).attr("id").split("_")[2];
   pauseMusicAndUpdateIcon();
   console.log("#mod_estilosComunicacion_" + strID);
@@ -294,6 +295,7 @@ $buttons.click(function () {
 });
 
 $(".cls_estilosComunicacion").click(function () {
+  $('.music').show();
   strID = $(this).attr("id").split("_")[2];
   $("#mod_estilosComunicacion_" + strID).fadeOut();
   var video = $("#vid_estilosComunicacion_" + strID).get(0);

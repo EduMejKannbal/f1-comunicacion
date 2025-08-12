@@ -301,6 +301,7 @@ $(".cls_trofeoModal").click(function () {
 
 // Eventos de video manejo emocional
 $(".btn_vidManEm").click(function () {
+  $(".music").hide();
   strID = $(this).attr("id").split("_")[2];
   pauseMusicAndUpdateIcon();
   $("#mod_vidManEm_" + strID).show();
@@ -310,6 +311,7 @@ $(".btn_vidManEm").click(function () {
 });
 
 $(".cls_vidManEm").click(function () {
+  $(".music").show();
   strID = $(this).attr("id").split("_")[2];
   $("#mod_vidManEm_" + strID).hide();
   if (strID >= myAvance.ch3.vidManEm) {
@@ -331,6 +333,7 @@ $(".cls_vidManEm").click(function () {
 
 // Eventos de impacto biológico
 $(".btn_impactBio").click(function () {
+  $(".music").hide();
   strID = $(this).attr("id").split("_")[2];
   pauseMusicAndUpdateIcon();
   $("#mod_impactBio_" + strID).show();
@@ -340,6 +343,7 @@ $(".btn_impactBio").click(function () {
 });
 
 $(".cls_impactBio").click(function () {
+  $(".music").show();
   strID = $(this).attr("id").split("_")[2];
   $("#mod_impactBio_" + strID).hide();
   if (strID >= myAvance.ch3.impactBio) {
@@ -361,6 +365,7 @@ $(".cls_impactBio").click(function () {
 
 // Eventos de caracter
 $(".btn_caracter").click(function () {
+  $(".music").hide();
   strID = $(this).attr("id").split("_")[2];
   pauseMusicAndUpdateIcon();
   $("#mod_caracter_" + strID).show();
@@ -370,6 +375,7 @@ $(".btn_caracter").click(function () {
 });
 
 $(".cls_caracter").click(function () {
+  $(".music").show();
   strID = $(this).attr("id").split("_")[2];
   $("#mod_caracter_" + strID).hide();
   if (strID >= myAvance.ch3.caracter) {
@@ -391,6 +397,7 @@ $(".cls_caracter").click(function () {
 
 // Eventos de video temporal
 $(".btn_vidTemp").click(function () {
+  $(".music").hide();
   strID = $(this).attr("id").split("_")[2];
   pauseMusicAndUpdateIcon();
   $("#mod_vidTemp_" + strID).show();
@@ -400,6 +407,7 @@ $(".btn_vidTemp").click(function () {
 });
 
 $(".cls_vidTemp").click(function () {
+  $(".music").show();
   strID = $(this).attr("id").split("_")[2];
   $("#mod_vidTemp_" + strID).hide();
   if (strID >= myAvance.ch3.vidTemp) {
