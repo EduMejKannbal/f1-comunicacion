@@ -252,7 +252,8 @@ $buttons.hover(
   function () {
     var num = $(this).attr("id").split("_")[2];
     const $hoverImg = $(`#hov_estilosComunicacion_${num}`);
-    const $audio = $(`#aud_estilosComunicacion_${num}`)[0];
+    
+    const $audio = $(`#aud_menuOver`)[0]; 
 
     // Ocultar todas las imágenes y remover animaciones
     $(".hov_estilosComunicacion").hide().removeClass("animated fadeInRight");
@@ -264,13 +265,12 @@ $buttons.hover(
 
     // Reproducir el audio
     if ($audio) {
-      $audio.currentTime = 0; // Reinicia el audio
+      $audio.currentTime = 0;
       $audio.play();
     }
   },
   function () {
-    var num = $(this).attr("id").split("_")[2];
-    const $audio = $(`#aud_estilosComunicacion_${num}`)[0]; // Selecciona el audio correspondiente
+    const $audio = $(`#aud_menuOver`)[0]; 
 
     // Ocultar todas las imágenes y remover animaciones
     $(".hov_estilosComunicacion").hide().removeClass("animated fadeInRight");
