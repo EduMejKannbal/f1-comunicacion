@@ -1116,13 +1116,13 @@ $(".btn_module").click(function () {
     restoreMusicAndIcon(strID);
     bindClickEffect();
     if (strID === "1") {
-      nSlides.numSlides = myAvance.ch1.lastSlide || 1;
+      nSlides.numSlides = 1;
       ctrl_slidesMod1();
     } else if (strID === "2") {
-      nSlides.numSlides_2 = myAvance.ch2.lastSlide || 1;
+      nSlides.numSlides_2 = 1;
       ctrl_slidesMod2();
     } else if (strID === "3") {
-      nSlides.numSlides_3 = myAvance.ch3.lastSlide || 1;
+      nSlides.numSlides_3 = 1;
       ctrl_slidesMod3();
     }
   });
