@@ -352,6 +352,28 @@
   /* filter: blur(8px); */
 }
 
+#img_mod_juego_3 {
+  top: -15%;
+  left: 0;
+  width: 97%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+#txt_mod_juego_3 {
+  right: 7%;
+  top: 22%;
+  width: 50%;
+}
+
+#btn_mod_juego_3{
+  left: 49%;
+  margin: auto;
+  bottom: 32%;
+  width: 18%;
+}
+
 #slideM3-4-txt {
   width: 43%;
   height: auto;

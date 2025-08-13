@@ -43,7 +43,7 @@ const JUEGOS_AUDIO_SLIDES = {
 let strID;
 let gAvMax = 4;
 let myAvance = localStorage.getItem("myAvance")
-  ? localStorage.getItem("myAvance")
+  ? JSON.parse(localStorage.getItem("myAvance"))
   : {
       avModulos: 1,
       g_avance: 0,
@@ -54,6 +54,8 @@ let myAvance = localStorage.getItem("myAvance")
         logro_casco: 0,
         trofeo_1: 0,
         progress: 1,
+        lastSlide: 1,
+        isCompleted: false,
       },
       ch2: {
         comic: 1,
@@ -66,6 +68,9 @@ let myAvance = localStorage.getItem("myAvance")
         logro_zapatos: 0,
         trofeo_2: 0,
         progress: 1,
+        vidMod2_3_visto: 0,
+        lastSlide: 1,
+        isCompleted: false,
       },
       ch3: {
         vidManEm: 1,
@@ -78,6 +83,8 @@ let myAvance = localStorage.getItem("myAvance")
         finish_juego: 0,
         trofeo_3: 0,
         progress: 1,
+        lastSlide: 1,
+        isCompleted: false,
       },
     };
 let nSlides = {
@@ -124,6 +131,20 @@ const checkAvanceReady = setInterval(() => {
     clearInterval(checkAvanceReady);
   }
 }, 100);
+
+function saveProgress() {
+  if (typeof myAvance !== "undefined") {
+    localStorage.setItem("myAvance", JSON.stringify(myAvance));
+    save_Status();
+  }
+}
+
+function resetModuleProgress(moduleId) {
+  if (moduleId && myAvance["ch" + moduleId]) {
+    myAvance["ch" + moduleId].lastSlide = 1;
+    saveProgress();
+  }
+}
 
 // Funciones de control de audio
 function playModuleAudio(moduleId) {
@@ -260,6 +281,10 @@ function pauseMusicaJuegos() {
 }
 
 function playMusicaJuegos() {
+  if (flagMus === 0) {
+    return;
+  }
+
   musicaJuegos.loop = true;
   musicaJuegos.volume = 0.3;
   musicaJuegos.muted = false;
@@ -270,7 +295,6 @@ function playMusicaJuegos() {
     .then(() => {
       isAudioPlaying = true;
       $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
-      console.log("Música de juego activada correctamente");
     })
     .catch((err) => {
       console.warn("Error al reproducir música de juego:", err);
@@ -306,27 +330,41 @@ function pauseAndResetAllVideo() {
 }
 
 function manageSlideAudio(moduleId, currentSlide) {
-  // Si es una slide de juego y el usuario tiene audio activado
-  if (JUEGOS_AUDIO_SLIDES[moduleId]?.includes(currentSlide) && flagMus === 1) {
-    // Pausar la música del módulo antes de reproducir la del juego
-    pauseAllAudio();
-    // Reproducir la música de juegos solo si está pausada
-    if (musicaJuegos.paused) {
-      playMusicaJuegos();
+  const $musicButton = $(".music");
+  const isNoMusicSlide = NO_MUSIC_SLIDES[moduleId]?.includes(currentSlide);
+  const isGameSlide = JUEGOS_AUDIO_SLIDES[moduleId]?.includes(currentSlide);
+
+  let targetAudioId = null;
+  if (isGameSlide) {
+    targetAudioId = "musica_juegos";
+  } else if (!isNoMusicSlide) {
+    // const audioModuleId = moduleId == 3 ? "0" : moduleId;
+    targetAudioId = `musModu_${moduleId}`;
+  }
+
+  if (!targetAudioId) {
+    $musicButton.addClass("hide");
+  } else {
+    $musicButton.removeClass("hide");
+  }
+
+  const currentAudioId = currentAudio ? currentAudio.id : null;
+
+  if (targetAudioId === currentAudioId && !currentAudio.paused) {
+    return;
+  }
+
+  pauseAllAudio();
+
+  if (flagMus === 1 && targetAudioId) {
+    const audioToPlay = document.getElementById(targetAudioId);
+    if (audioToPlay) {
+      if (targetAudioId === "musica_juegos") {
+        playMusicaJuegos();
+      } else {
+        playModuleAudio(moduleId);
+      }
     }
-  }
-  // Si no está en lista negra y sonido activo, reproduce música del módulo
-  else if (
-    !NO_MUSIC_SLIDES[moduleId]?.includes(currentSlide) &&
-    flagMus === 1
-  ) {
-    // Pausar y reiniciar la música de juegos
-    pauseMusicaJuegos();
-    playModuleAudio(moduleId);
-  }
-  // En cualquier otro caso, pausa toda la música
-  else {
-    pauseAllAudio();
   }
 }
 
@@ -887,18 +925,6 @@ function stopRotate() {
   cardItem.style.transform = "rotate(0)";
 }
 
-function controlBackgroundMusic(moduleId, currentSlide) {
-  if (NO_MUSIC_SLIDES[moduleId].includes(currentSlide)) {
-    pauseAllAudio();
-    if (currentAudio) {
-      muteMe(currentAudio);
-    }
-    $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
-  } else if (flagMus === 1 && !isAudioPlaying) {
-    restoreMusicAndIcon(moduleId.toString());
-  }
-}
-
 // Funciones de soporte para el menú
 function stopPreviousAnimations($element) {
   $element.stop(true, true);
@@ -1042,13 +1068,12 @@ $("#btn_close_loader").click(function () {
   doStart();
 });
 
-$("#btn_salir").click(function(){
-    setComplete();
-    setTimeout(function(){
-        alert('saliendo');
-    }, 1000);
+$("#btn_salir").click(function () {
+  setComplete();
+  setTimeout(function () {
+    alert("saliendo");
+  }, 1000);
 });
-
 
 $(".music").click(function () {
   if (flagMus === 0) {
@@ -1091,10 +1116,13 @@ $(".btn_module").click(function () {
     restoreMusicAndIcon(strID);
     bindClickEffect();
     if (strID === "1") {
+      nSlides.numSlides = 1;
       ctrl_slidesMod1();
     } else if (strID === "2") {
+      nSlides.numSlides_2 = 1;
       ctrl_slidesMod2();
     } else if (strID === "3") {
+      nSlides.numSlides_3 = 1;
       ctrl_slidesMod3();
     }
   });
@@ -1107,32 +1135,32 @@ $("#btn_menu").click(function () {
   $("#slide_menu_1").show();
   $("#slide_trofeo_1").hide();
   ctrl_menuAccess();
-  setTimeout(() => {
-    const menuAudio = document.getElementById("musModu_4");
-    if (menuAudio) {
-      pauseAllAudio();
-      menuAudio.loop = true;
-      menuAudio.volume = 0.3;
-      menuAudio.muted = false;
-      menuAudio
-        .play()
-        .then(() => {
-          console.log("Playing menu audio: musModu_4");
-          currentAudio = menuAudio;
-          isAudioPlaying = true;
-          $(".music")
-            .attr("src", "assets/img/icons/on.png")
-            .removeClass("hide");
-        })
-        .catch((err) => {
-          console.warn("Error playing menu audio: musModu_4", err);
-          isAudioPlaying = false;
-          $(".music")
-            .attr("src", "assets/img/icons/off.png")
-            .removeClass("hide");
-        });
-    }
-  }, 100);
+
+  pauseAllAudio();
+
+  if (flagMus === 1) {
+    setTimeout(() => {
+      const menuAudio = document.getElementById("musModu_4");
+      if (menuAudio) {
+        menuAudio.loop = true;
+        menuAudio.volume = 0.3;
+        menuAudio.muted = false;
+        menuAudio
+          .play()
+          .then(() => {
+            currentAudio = menuAudio;
+            isAudioPlaying = true;
+            $(".music").attr("src", "assets/img/icons/on.png");
+          })
+          .catch((err) => {
+            // Error manejado silenciosamente
+          });
+      }
+    }, 100);
+  } else {
+    currentAudio = document.getElementById("musModu_4");
+    isAudioPlaying = false;
+  }
 });
 
 $("#btn_home").click(function () {
@@ -1144,6 +1172,13 @@ $("#btn_home").click(function () {
     this.pause();
     this.currentTime = 0;
   });
+
+  $('.slide_portada').hide();
+
+  if (strID && myAvance["ch" + strID] && myAvance["ch" + strID].isCompleted) {
+    resetModuleProgress(strID);
+  }
+
   $(".music").removeClass("hide");
   resetFondo(1, 2);
   $("#slide_index_1").show();
@@ -1174,10 +1209,9 @@ $("#cls_menu").click(function () {
   menuIsOpen = false;
   $("#slide_menu_1").fadeOut();
   pauseAllAudio();
-  flagMus = prevFlagMus;
-  localStorage.setItem("flagMus", flagMus);
+  playModuleAudio(null);
+
   if (flagMus === 1) {
-    playModuleAudio(null);
     $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
   } else {
     $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
@@ -1421,6 +1455,7 @@ $(".btn_homeComenzar").click(function () {
 });
 
 $("#btn_sobreMi_1").click(function () {
+  $(".music").hide();
   pauseAllAudio();
   $("#mod_BienvVid_1").show();
   $(".vid_in_modal").css("pointer-events", "auto");
@@ -1430,6 +1465,7 @@ $("#btn_sobreMi_1").click(function () {
 });
 
 $("#cls_BienvVid_1").click(function () {
+  $(".music").show();
   $("#mod_BienvVid_1").hide();
   $(".vid_in_modal").css("pointer-events", "none");
   $("#BienvVid_1").css("pointer-events", "none");
@@ -1464,6 +1500,11 @@ $("#menu_trigger, #div_menu").hover(
 );
 
 $("#btn_trofeo").click(function () {
+  const trophyVideo = document.getElementById("videoMenuTrofeos_1");
+  if (trophyVideo) {
+    trophyVideo.currentTime = 0;
+    trophyVideo.play();
+  }
   pauseAllAudio();
   mostrar_trofeos();
   mostrar_logros();

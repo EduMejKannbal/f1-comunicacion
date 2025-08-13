@@ -16,6 +16,8 @@ function ctrl_slidesMod1() {
   const $slides = $(".slide_module1");
   const totalSlides = $slides.length;
   const currentSlide = nSlides.numSlides;
+  myAvance.ch1.lastSlide = currentSlide;
+  saveProgress();
   autoNextSlide("module1", nSlides, ctrl_slidesMod1);
   const $prevBtn = $("#module1_Prev");
   const $nextBtn = $("#module1_Next");
@@ -24,6 +26,7 @@ function ctrl_slidesMod1() {
   console.log("#slide_module1_" + currentSlide);
   $prevBtn.show();
   $nextBtn.show();
+  $('.music').show();
 
   if (JUEGOS_AUDIO_SLIDES[1].includes(currentSlide)) {
     isPlaying = true;
@@ -42,6 +45,8 @@ function ctrl_slidesMod1() {
     $prevBtn.hide();
     $nextBtn.hide();
     reproducirHasta("vid_module1_1", 9.99);
+  } else if (currentSlide === 2) {
+    reproducirHasta("vid_module1_2", 4.99);
   } else if (currentSlide === 4) {
     reproducirHasta("vid_module1_4", 4.99);
     ctrl_carru_simple("test_1", nSlides.test_1);
@@ -59,8 +64,6 @@ function ctrl_slidesMod1() {
       $nextBtn.hide();
       pauseMusicAndUpdateIcon();
     }
-  } else if (currentSlide === 2) {
-    reproducirHasta("vid_module1_2", 4.99);
   } else if (currentSlide === 6) {
     $prevBtn.hide();
     $nextBtn.hide();
@@ -75,6 +78,7 @@ function ctrl_slidesMod1() {
   } else if (currentSlide === 7) {
     $prevBtn.hide();
     $nextBtn.hide();
+    $('.music').hide();
     playAudio("module1_", currentSlide);
     reproducirHasta("vid_module1_7", 8.99);
     setTimeout(() => {
@@ -106,6 +110,7 @@ function ctrl_slidesMod1() {
   } else if (currentSlide === 10) {
     $prevBtn.hide();
     $nextBtn.hide();
+    $('.music').hide();
     reproducirHasta("vid_module1_10", 4.99);
     $("#aud_logro").get(0).play();
     if (myAvance.ch1.logro_casco === 0) {
@@ -123,6 +128,7 @@ function ctrl_slidesMod1() {
   } else if (currentSlide === totalSlides) {
     $prevBtn.show();
     $nextBtn.hide();
+    $('.music').hide();
     reproducirHasta("vid_module1_13", 8.99);
     $("#aud_logro").get(0).play();
   }
@@ -140,7 +146,9 @@ $("#module1_Next").click(() => {
   ctrl_slidesMod1();
   // $("#efct_next")[0].play();
 });
-
+$("#btn_mod_juego_1").click(function () {
+  $("#mod_juego_1").fadeOut(150);
+});
 setupCarouselControls("test_1");
 $(".body-answers > div > div").click(function () {
   if (testCompleted) return;
@@ -248,7 +256,8 @@ $buttons.hover(
   function () {
     var num = $(this).attr("id").split("_")[2];
     const $hoverImg = $(`#hov_estilosComunicacion_${num}`);
-    const $audio = $(`#aud_estilosComunicacion_${num}`)[0];
+    
+    const $audio = $(`#aud_menuOver`)[0]; 
 
     // Ocultar todas las imágenes y remover animaciones
     $(".hov_estilosComunicacion").hide().removeClass("animated fadeInRight");
@@ -260,13 +269,12 @@ $buttons.hover(
 
     // Reproducir el audio
     if ($audio) {
-      $audio.currentTime = 0; // Reinicia el audio
+      $audio.currentTime = 0;
       $audio.play();
     }
   },
   function () {
-    var num = $(this).attr("id").split("_")[2];
-    const $audio = $(`#aud_estilosComunicacion_${num}`)[0]; // Selecciona el audio correspondiente
+    const $audio = $(`#aud_menuOver`)[0]; 
 
     // Ocultar todas las imágenes y remover animaciones
     $(".hov_estilosComunicacion").hide().removeClass("animated fadeInRight");
@@ -282,6 +290,7 @@ $buttons.hover(
 );
 
 $buttons.click(function () {
+  $(".music").hide();
   strID = $(this).attr("id").split("_")[2];
   pauseMusicAndUpdateIcon();
   console.log("#mod_estilosComunicacion_" + strID);
@@ -292,6 +301,7 @@ $buttons.click(function () {
 });
 
 $(".cls_estilosComunicacion").click(function () {
+  $(".music").show();
   strID = $(this).attr("id").split("_")[2];
   $("#mod_estilosComunicacion_" + strID).fadeOut();
   var video = $("#vid_estilosComunicacion_" + strID).get(0);
@@ -345,6 +355,8 @@ $("#btn_finmod1").click(function () {
     myAvance.ch1.trofeo_1 = 1;
     ctrl_menuAccess();
   }
+  myAvance.ch1.isCompleted = true;
+  resetModuleProgress("1");
   pauseAllAudio();
   $(".music").removeClass("hide");
   resetFondo(1, 2);

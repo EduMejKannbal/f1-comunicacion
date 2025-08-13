@@ -1,218 +1,303 @@
-<img id="slide13_img_1" src="assets/img/modules/module-3/test.jpg"
-    style="top: 0;left: 0;position: relative; width: 100%;" />
+<img
+  id="slide13_img_1"
+  src="assets/img/modules/module-3/test.jpg"
+  style="top: 0; left: 0; position: relative; width: 100%"
+/>
+<div
+  id="mod_juego_3"
+  class="absolute animated zoomInUp"
+  style="width: 100%; height: 100%; top: 0; left: 0; z-index: 999"
+>
+  <div class="modal-backdrop"></div>
+  <img
+    id="img_mod_juego_3"
+    class="absolute"
+    src="assets/img/modules/module-2/ModalCarera.png"
+  />
+  <img
+    id="txt_mod_juego_3"
+    class="absolute animated zoomIn mod_start_txt"
+    src="assets/img/modules/module-3/instrucciones.svg"
+  />
+  <img
+    id="btn_mod_juego_3"
+    src="assets/img/icons/btn_2.png"
+    class="elem_click"
+  />
+</div>
 <div class="container-dragDrop">
-    <div class="contenido-relativo">
-        <div class="dragDrop">
-            <div class="dragDrop_answers">
-                <div>
-                    <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/1.png"
-                        data-answer="sentimientos" alt="Sentimientos" />
-                </div>
-                <div>
-                    <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/2.png"
-                        data-answer="reacciones" alt="Reacciones" />
-                </div>
-                <div>
-                    <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/3.png"
-                        data-answer="temperamento" alt="Temperamento" />
-                </div>
-                <div>
-                    <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/4.png"
-                        data-answer="caracter" alt="Caracter" />
-                </div>
-                <div>
-                    <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/5.png"
-                        data-answer="animo" alt="Animo" />
-                </div>
-                <div>
-                    <img class="draggable" src="assets/img/modules/module-3/slide-9/juego/draggable/6.png"
-                        data-answer="emociones" alt="Emociones" />
-                </div>
-            </div>
-            <div class="dragDrop_quest" id="question-container">
-
-            </div>
+  <div class="contenido-relativo">
+    <div class="dragDrop">
+      <div class="dragDrop_answers">
+        <div>
+          <img
+            class="draggable"
+            src="assets/img/modules/module-3/slide-9/juego/draggable/1.png"
+            data-answer="sentimientos"
+            alt="Sentimientos"
+          />
         </div>
+        <div>
+          <img
+            class="draggable"
+            src="assets/img/modules/module-3/slide-9/juego/draggable/2.png"
+            data-answer="reacciones"
+            alt="Reacciones"
+          />
+        </div>
+        <div>
+          <img
+            class="draggable"
+            src="assets/img/modules/module-3/slide-9/juego/draggable/3.png"
+            data-answer="temperamento"
+            alt="Temperamento"
+          />
+        </div>
+        <div>
+          <img
+            class="draggable"
+            src="assets/img/modules/module-3/slide-9/juego/draggable/4.png"
+            data-answer="caracter"
+            alt="Caracter"
+          />
+        </div>
+        <div>
+          <img
+            class="draggable"
+            src="assets/img/modules/module-3/slide-9/juego/draggable/5.png"
+            data-answer="animo"
+            alt="Animo"
+          />
+        </div>
+        <div>
+          <img
+            class="draggable"
+            src="assets/img/modules/module-3/slide-9/juego/draggable/6.png"
+            data-answer="emociones"
+            alt="Emociones"
+          />
+        </div>
+      </div>
+      <div class="dragDrop_quest" id="question-container"></div>
     </div>
+  </div>
 </div>
 
 <script>
-    const gameConfig = {
-        questions: [
-            {
-                image: "assets/img/modules/module-3/slide-9/juego/quest/q1.png",
-                correctAnswer: "emociones",
-                dropzoneImage: "assets/img/modules/module-3/slide-9/juego/answers/emociones.png",
-                dropzoneClass: "dropzone-1"
-            },
-            {
-                image: "assets/img/modules/module-3/slide-9/juego/quest/q2.png",
-                correctAnswer: "reacciones",
-                dropzoneImage: "assets/img/modules/module-3/slide-9/juego/answers/reacciones.png",
-                dropzoneClass: "dropzone-2"
-            },
-            {
-                image: "assets/img/modules/module-3/slide-9/juego/quest/q3.png",
-                correctAnswer: "temperamento",
-                dropzoneImage: "assets/img/modules/module-3/slide-9/juego/answers/temperamento.png",
-                dropzoneClass: "dropzone-3"
-            },
-            {
-                image: "assets/img/modules/module-3/slide-9/juego/quest/q4.png",
-                correctAnswer: "caracter",
-                dropzoneImage: "assets/img/modules/module-3/slide-9/juego/answers/caracter.png",
-                dropzoneClass: "dropzone-4"
-            }
-        ],
-        passingScore: 0.8,
-        maxAttempts: 3
-    };
+  const gameConfig = {
+    questions: [
+      {
+        image: "assets/img/modules/module-3/slide-9/juego/quest/q1.png",
+        correctAnswer: "emociones",
+        dropzoneImage:
+          "assets/img/modules/module-3/slide-9/juego/answers/emociones.png",
+        dropzoneClass: "dropzone-1",
+      },
+      {
+        image: "assets/img/modules/module-3/slide-9/juego/quest/q2.png",
+        correctAnswer: "reacciones",
+        dropzoneImage:
+          "assets/img/modules/module-3/slide-9/juego/answers/reacciones.png",
+        dropzoneClass: "dropzone-2",
+      },
+      {
+        image: "assets/img/modules/module-3/slide-9/juego/quest/q3.png",
+        correctAnswer: "temperamento",
+        dropzoneImage:
+          "assets/img/modules/module-3/slide-9/juego/answers/temperamento.png",
+        dropzoneClass: "dropzone-3",
+      },
+      {
+        image: "assets/img/modules/module-3/slide-9/juego/quest/q4.png",
+        correctAnswer: "caracter",
+        dropzoneImage:
+          "assets/img/modules/module-3/slide-9/juego/answers/caracter.png",
+        dropzoneClass: "dropzone-4",
+      },
+    ],
+    passingScore: 0.8,
+    maxAttempts: 3,
+  };
 
-    initializeDragDropGame();
+  initializeDragDropGame();
 
-    function initializeDragDropGame() {
-        // Inicializar attempts dentro de la función
-        let attempts = parseInt(localStorage.getItem('gameAttempts')) || 0;
-        const $questionContainer = $("#question-container");
-        let currentQuestionIndex = 0;
-        let correctAnswersCount = 0;
+  function initializeDragDropGame() {
+    // Inicializar attempts dentro de la función
+    let attempts = parseInt(localStorage.getItem("gameAttempts")) || 0;
+    const $questionContainer = $("#question-container");
+    let currentQuestionIndex = 0;
+    let correctAnswersCount = 0;
 
-        // Mostrar pregunta
-        function showQuestion() {
-            const question = gameConfig.questions[currentQuestionIndex];
-            console.log(`[Game] Pregunta ${currentQuestionIndex + 1}: ${question.image}, Dropzone: ${question.dropzoneClass}`);
+    // Mostrar pregunta
+    function showQuestion() {
+      const question = gameConfig.questions[currentQuestionIndex];
+      console.log(
+        `[Game] Pregunta ${currentQuestionIndex + 1}: ${
+          question.image
+        }, Dropzone: ${question.dropzoneClass}`
+      );
 
-            $questionContainer.html(`
+      $questionContainer.html(`
             <img src="assets/img/modules/module-3/found-round.png" class="absolute retross_round">
-            <img src="${question.image}" alt="Pregunta ${currentQuestionIndex + 1}" class="question animate zoomIn" />
+            <img src="${question.image}" alt="Pregunta ${
+        currentQuestionIndex + 1
+      }" class="question animate zoomIn" />
             <div class="dropzone ${question.dropzoneClass}"></div>
         `);
 
-            // Configurar dropzone
-            $(".dropzone").droppable({
-                accept: ".draggable",
-                drop: function (event, ui) {
-                    const droppedAnswer = ui.draggable.data("answer");
-                    const isCorrect = droppedAnswer === question.correctAnswer;
-                    console.log(`[Game] Soltado: ${droppedAnswer}, Correcto: ${question.correctAnswer}, Es correcto: ${isCorrect}`);
+      // Configurar dropzone
+      $(".dropzone").droppable({
+        accept: ".draggable",
+        drop: function (event, ui) {
+          const droppedAnswer = ui.draggable.data("answer");
+          const isCorrect = droppedAnswer === question.correctAnswer;
+          console.log(
+            `[Game] Soltado: ${droppedAnswer}, Correcto: ${question.correctAnswer}, Es correcto: ${isCorrect}`
+          );
 
-                    if (isCorrect) {
-                        correctAnswersCount++;
-                        $(this).html(`<img src="${question.dropzoneImage}" alt="Respuesta correcta" />`);
-                        // try { $("#successSound")[0].play(); } catch (e) { console.warn("[Game] Error sonido: ", e); }
-                        console.log(`[Game] Aciertos: ${correctAnswersCount}`);
-                    } else {
-                        $(this).html(`<img src="assets/img/modules/module-3/slide-9/juego/answers/${droppedAnswer}.png" alt="Incorrecto" />`);
-                        // try { $("#errorSound")[0].play(); } catch (e) { console.warn("[Game] Error sonido: ", e); }
-                    }
+          if (isCorrect) {
+            correctAnswersCount++;
+            $(this).html(
+              `<img src="${question.dropzoneImage}" alt="Respuesta correcta" />`
+            );
+            // try { $("#successSound")[0].play(); } catch (e) { console.warn("[Game] Error sonido: ", e); }
+            console.log(`[Game] Aciertos: ${correctAnswersCount}`);
+          } else {
+            $(this).html(
+              `<img src="assets/img/modules/module-3/slide-9/juego/answers/${droppedAnswer}.png" alt="Incorrecto" />`
+            );
+            // try { $("#errorSound")[0].play(); } catch (e) { console.warn("[Game] Error sonido: ", e); }
+          }
 
-                    // Avanzar a la siguiente pregunta o mostrar modal
-                    setTimeout(() => {
-                        currentQuestionIndex++;
-                        if (currentQuestionIndex < gameConfig.questions.length) {
-                            showQuestion();
-                        } else {
-                            showResultModal();
-                        }
-                    }, 1000);
-                }
-            });
-        }
-
-        // Mostrar modal de resultado
-        function showResultModal() {
-            const score = correctAnswersCount / gameConfig.questions.length;
-            const isApproved = score >= gameConfig.passingScore;
-            const $modalCorrect = $("#mod_retroCorrect_1");
-            const $modalIncorrect = $("#mod_retroIncorrect_1");
-
-            if (isApproved) {
-                $modalCorrect.fadeIn(300);
-                console.log(`[Game] Mostrando modal correcto, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`);
-                // Reiniciar attempts al aprobar
-                attempts = 0;
-                localStorage.setItem('gameAttempts', attempts);
+          // Avanzar a la siguiente pregunta o mostrar modal
+          setTimeout(() => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < gameConfig.questions.length) {
+              showQuestion();
             } else {
-                attempts++;
-                localStorage.setItem('gameAttempts', attempts); // Guardar intentos
-                console.log(`[Game] Intento fallido, Intentos: ${attempts}/${gameConfig.maxAttempts}, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`);
-
-                if (attempts >= gameConfig.maxAttempts) {
-                    console.log(`[Game] Límite de intentos alcanzado, avanzando a diapositiva 12`);
-                    advanceToNextSection();
-                } else {
-                    $modalIncorrect.fadeIn(300);
-                    console.log(`[Game] Mostrando modal incorrecto, Intento: ${attempts}`);
-                }
+              showResultModal();
             }
-        }
-
-        // Función para avanzar a la siguiente sección
-        function advanceToNextSection() {
-            attempts = 0; // Reiniciar intentos
-            localStorage.setItem('gameAttempts', attempts);
-            $('#juego3').hide().empty();
-            nSlides.numSlides_3 = 12;
-            if (myAvance.ch3.finish_juego === 0) {
-                myAvance.ch3.finish_juego = 1;
-                myAvance.ch3.progress = 6; // Asegurar que Cierre se desbloquee
-                localStorage.setItem('myAvance', JSON.stringify(myAvance)); // Guardar progreso
-                console.log("[Game] Progreso actualizado: finish_juego = 1, progress = 6");
-            }
-            ctrl_menuAccess(); // Actualizar el menú inmediatamente
-            ctrl_slidesMod3();
-            restoreMusicAndIcon('3');
-        }
-
-        // Configurar arrastrables
-        function setupDraggables() {
-            $(".draggable").draggable({
-                revert: "invalid",
-                helper: "clone",
-                start: function () {
-                    $(this).css("opacity", "0.5");
-                },
-                stop: function () {
-                    $(this).css("opacity", "1");
-                }
-            });
-        }
-
-        // Configurar botones de cierre de modales
-        function setupModalButtons() {
-            // Limpiar eventos previos
-            $("#close_retroCorrect_1").off("click").on("click", () => {
-                $("#mod_retroCorrect_1").fadeOut(300);
-                console.log("[Game] Aprobado, avanzando a diapositiva 12");
-                advanceToNextSection();
-            });
-
-            $("#close_retroIncorrect_1").off("click").on("click", () => {
-                $("#mod_retroIncorrect_1").fadeOut(300);
-                if (attempts < gameConfig.maxAttempts) {
-                    console.log("[Game] Reintentando juego, intento: " + (attempts + 1));
-                    currentQuestionIndex = 0;
-                    correctAnswersCount = 0;
-                    $('#juego3').hide().empty();
-                    $('#juego3').show();
-                    init(); // Reiniciar el juego
-                } else {
-                    console.log("[Game] Límite de intentos alcanzado, avanzando a diapositiva 12");
-                    advanceToNextSection();
-                }
-            });
-        }
-
-        // Inicializar juego
-        function init() {
-            console.log("[Game] Inicializando juego, Intentos actuales: " + attempts);
-            $questionContainer.empty();
-            $("#mod_retroCorrect_1, #mod_retroIncorrect_1").hide();
-            setupDraggables();
-            setupModalButtons();
-            showQuestion();
-        }
-
-        init();
+          }, 1000);
+        },
+      });
     }
+
+    // Mostrar modal de resultado
+    function showResultModal() {
+      const score = correctAnswersCount / gameConfig.questions.length;
+      const isApproved = score >= gameConfig.passingScore;
+      const $modalCorrect = $("#mod_retroCorrect_1");
+      const $modalIncorrect = $("#mod_retroIncorrect_1");
+
+      if (isApproved) {
+        $modalCorrect.fadeIn(300);
+        console.log(
+          `[Game] Mostrando modal correcto, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`
+        );
+        // Reiniciar attempts al aprobar
+        attempts = 0;
+        localStorage.setItem("gameAttempts", attempts);
+      } else {
+        attempts++;
+        localStorage.setItem("gameAttempts", attempts); // Guardar intentos
+        console.log(
+          `[Game] Intento fallido, Intentos: ${attempts}/${gameConfig.maxAttempts}, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`
+        );
+
+        if (attempts >= gameConfig.maxAttempts) {
+          console.log(
+            `[Game] Límite de intentos alcanzado, avanzando a diapositiva 12`
+          );
+          advanceToNextSection();
+        } else {
+          $modalIncorrect.fadeIn(300);
+          console.log(
+            `[Game] Mostrando modal incorrecto, Intento: ${attempts}`
+          );
+        }
+      }
+    }
+
+    // Función para avanzar a la siguiente sección
+    function advanceToNextSection() {
+      attempts = 0; // Reiniciar intentos
+      localStorage.setItem("gameAttempts", attempts);
+      $("#juego3").hide().empty();
+      nSlides.numSlides_3 = 12;
+      if (myAvance.ch3.finish_juego === 0) {
+        myAvance.ch3.finish_juego = 1;
+        myAvance.ch3.progress = 6; // Asegurar que Cierre se desbloquee
+        localStorage.setItem("myAvance", JSON.stringify(myAvance)); // Guardar progreso
+        console.log(
+          "[Game] Progreso actualizado: finish_juego = 1, progress = 6"
+        );
+      }
+      ctrl_menuAccess(); // Actualizar el menú inmediatamente
+      ctrl_slidesMod3();
+      restoreMusicAndIcon("3");
+    }
+
+    // Configurar arrastrables
+    function setupDraggables() {
+      $(".draggable").draggable({
+        revert: "invalid",
+        helper: "clone",
+        start: function () {
+          $(this).css("opacity", "0.5");
+        },
+        stop: function () {
+          $(this).css("opacity", "1");
+        },
+      });
+    }
+
+    // Configurar botones de cierre de modales
+    function setupModalButtons() {
+      // Limpiar eventos previos
+      $("#close_retroCorrect_1")
+        .off("click")
+        .on("click", () => {
+          $("#mod_retroCorrect_1").fadeOut(300);
+          console.log("[Game] Aprobado, avanzando a diapositiva 12");
+          advanceToNextSection();
+        });
+
+      $("#close_retroIncorrect_1")
+        .off("click")
+        .on("click", () => {
+          $("#mod_retroIncorrect_1").fadeOut(300);
+          if (attempts < gameConfig.maxAttempts) {
+            console.log(
+              "[Game] Reintentando juego, intento: " + (attempts + 1)
+            );
+            currentQuestionIndex = 0;
+            correctAnswersCount = 0;
+            $("#juego3").hide().empty();
+            $("#juego3").show();
+            init(); // Reiniciar el juego
+          } else {
+            console.log(
+              "[Game] Límite de intentos alcanzado, avanzando a diapositiva 12"
+            );
+            advanceToNextSection();
+          }
+        });
+    }
+
+    // Inicializar juego
+    function init() {
+      console.log("[Game] Inicializando juego, Intentos actuales: " + attempts);
+      $questionContainer.empty();
+      $("#mod_retroCorrect_1, #mod_retroIncorrect_1").hide();
+      setupDraggables();
+      setupModalButtons();
+      showQuestion();
+    }
+
+    init();
+  }
+  
+  $("#btn_mod_juego_3").click(function () {
+    $("#mod_juego_3").fadeOut(150);
+  });
 </script>
