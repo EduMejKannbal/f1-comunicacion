@@ -274,7 +274,7 @@ function ctrl_avElem_chk(
 
 // Eventos de btn_trofeoModal para abrir modal
 $(".btn_trofeoModal").click(function () {
-  pauseMusicAndUpdateIcon();
+//   pauseMusicAndUpdateIcon();
   $("#mod_trofeoModal_1").fadeIn();
   $(".modalNoPantallaCompletaBackground").css("display", "block");
   var video = $("#emoc_6").get(0);
