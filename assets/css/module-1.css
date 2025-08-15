@@ -569,23 +569,19 @@
   align-content: center;
 }
 
-.resultadoTest_body {
-  display: flex;
-  gap: 1rem;
-}
-
 .cardTest {
   perspective: 1000px;
   transition: transform 0.5s ease, opacity 0.5s ease;
   /* Transiciones suaves */
   margin: 0;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 .cardTest-item {
   background-image: url("../img/modules/module-1/slide-5/fondo.png");
-  width: 220px;
-  height: 350px;
+  width: 14vw;
+  height: 22vw;
+  min-width: 150px;
   overflow: hidden;
   background-position: center;
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -666,7 +662,7 @@
 
 .testResult-text {
   color: #fff;
-  font-size: 25px;
+  font-size: 1.8vw;
   margin: 0;
   font-family: 'Formula_regular', sans-serif;
 }
@@ -967,16 +963,10 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  flex-wrap: nowrap;
-  gap: 3rem;
+  flex-wrap: wrap;
+  gap: 5vw;
   padding: 2rem 0;
   width: 100%;
-}
-
-.cardTest {
-  transition: transform 0.3s ease;
-  margin: 0;
-  flex-shrink: 0;
 }
 
 .cardTest.mayor-resultado {
@@ -1069,8 +1059,9 @@
   }
 
   .cardTest-item {
-    width: 250px;
-    height: 400px;
+    width:  15.5vw;
+    height: 25vw;
+    min-width: 250px;
   }
 
   #contenido-logro-animado-2 {
