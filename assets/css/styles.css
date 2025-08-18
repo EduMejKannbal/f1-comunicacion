@@ -43,11 +43,13 @@ progress {
 
 progress::-webkit-progress-value {
   background: #4caf50;
+  -webkit-transition: width 1s ease-in-out;
   transition: width 1s ease-in-out;
 }
 
 progress::-moz-progress-bar {
   background: #4caf50;
+  -webkit-transition: width 1s ease-in-out;
   transition: width 1s ease-in-out;
 }
 
@@ -98,7 +100,9 @@ progress::-webkit-progress-bar {
   left: 50%;
   width: 70vw;
   height: 150vh;
+  -webkit-transform: translate(-112%, -50%) rotate(-30deg);
   transform: translate(-112%, -50%) rotate(-30deg);
+  -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   background-color: rgba(0, 0, 0, 0.2);
   /* z-index: 1; */
@@ -143,8 +147,8 @@ progress::-webkit-progress-bar {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 1);
-  backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   border-radius: 10px;
   z-index: 50;
   position: absolute;
@@ -177,11 +181,13 @@ progress::-webkit-progress-bar {
 
 .btn_avModulos {
   height: auto;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .btn_avModulos:hover {
+  -webkit-transform: scale(1.05);
   transform: scale(1.05);
 }
 #mod_terminos {
@@ -239,6 +245,7 @@ progress::-webkit-progress-bar {
   position: absolute;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
   pointer-events: none;
@@ -339,8 +346,8 @@ progress::-webkit-progress-bar {
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   z-index: 4;
 }
 
@@ -372,91 +379,113 @@ progress::-webkit-progress-bar {
 }
 
 .myglow_img {
+  -webkit-animation: myglow 2s infinite;
   animation: myglow 2s infinite;
 }
 
-@-webkit-keyframes myglow {
+@keyframes myglow {
   0% {
+    -webkit-filter: drop-shadow(0 0 0 #e6e66d) drop-shadow(0 0 0 #e6e66d);
     filter: drop-shadow(0 0 0 #e6e66d) drop-shadow(0 0 0 #e6e66d);
   }
 
   50% {
+    -webkit-filter: drop-shadow(2px -2px 10px #e6e66d) drop-shadow(4px 1px 1px #e6e66d);
     filter: drop-shadow(2px -2px 10px #e6e66d) drop-shadow(4px 1px 1px #e6e66d);
   }
 
   100% {
+    -webkit-filter: drop-shadow(0 0 0 #e6e66d) drop-shadow(0 0 0 #e6e66d);
     filter: drop-shadow(0 0 0 #e6e66d) drop-shadow(0 0 0 #e6e66d);
   }
 }
 
 .myglow_img_blue {
+  -webkit-animation: myglow_blue 2s infinite;
   animation: myglow_blue 2s infinite;
 }
 
 .myglow_img_white {
+  -webkit-animation: myglow_white 2s infinite;
   animation: myglow_white 2s infinite;
 }
 
 @-webkit-keyframes myglow_blue {
   0% {
+    -webkit-filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
     filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
   }
 
   50% {
+    -webkit-filter: drop-shadow(2px -2px 10px #00008f) drop-shadow(4px 1px 1px #00008f);
     filter: drop-shadow(2px -2px 10px #00008f) drop-shadow(4px 1px 1px #00008f);
   }
 
   100% {
+    -webkit-filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
     filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
   }
 }
 
 @keyframes myglow_blue {
   0% {
+    -webkit-filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
     filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
   }
 
   50% {
+    -webkit-filter: drop-shadow(2px -2px 10px #00008f) drop-shadow(4px 1px 1px #00008f);
     filter: drop-shadow(2px -2px 10px #00008f) drop-shadow(4px 1px 1px #00008f);
   }
 
   100% {
+    -webkit-filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
     filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
   }
 }
 
 @keyframes active-button-glow {
   0% {
+    -webkit-transform: scale(1);
     transform: scale(1);
+    -webkit-filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
     filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
   }
 
   50% {
+    -webkit-transform: scale(1.25);
     transform: scale(1.25);
     /* Escala pronunciada para visibilidad */
+    -webkit-filter: drop-shadow(2px -2px 10px #00008f) drop-shadow(4px 1px 1px #00008f);
     filter: drop-shadow(2px -2px 10px #00008f) drop-shadow(4px 1px 1px #00008f);
   }
 
   100% {
+    -webkit-transform: scale(1);
     transform: scale(1);
+    -webkit-filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
     filter: drop-shadow(0 0 0 #00008f) drop-shadow(0 0 0 #00008f);
   }
 }
 
 .active-button-glow {
+  -webkit-animation: active-button-glow 1.5s ease-in-out infinite;
   animation: active-button-glow 1.5s ease-in-out infinite;
 }
 
-@-webkit-keyframes myglow_white {
+@keyframes myglow_white {
   0% {
+    -webkit-filter: drop-shadow(0 0 0 #fff) drop-shadow(0 0 0 #fff);
     filter: drop-shadow(0 0 0 #fff) drop-shadow(0 0 0 #fff);
   }
 
   50% {
+    -webkit-filter: drop-shadow(2px -2px 10px #fff) drop-shadow(4px 1px 1px #fff);
     filter: drop-shadow(2px -2px 10px #fff) drop-shadow(4px 1px 1px #fff);
   }
 
   100% {
+    -webkit-filter: drop-shadow(0 0 0 #fff) drop-shadow(0 0 0 #fff);
     filter: drop-shadow(0 0 0 #fff) drop-shadow(0 0 0 #fff);
   }
 }
@@ -467,10 +496,12 @@ progress::-webkit-progress-bar {
 }
 
 .btn_menu_flotante {
+  -webkit-transition: transform 0.2s ease;
   transition: transform 0.2s ease;
 }
 
 .btn_menu_flotante:hover {
+  -webkit-transform: scale(1.2);
   transform: scale(1.2);
 }
 
@@ -1049,7 +1080,9 @@ progress::-webkit-progress-bar {
   height: 148.21%;
   left: -22.91%;
   top: 36.38%;
+  -webkit-transform: rotate(-8deg);
   transform: rotate(-8deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
   background: linear-gradient(221deg, rgba(255, 255, 255, 0) 36%, #1a1a1a 94%);
 }
@@ -1058,7 +1091,9 @@ progress::-webkit-progress-bar {
   width: 164.02%;
   left: -17.09%;
   top: 278.28%;
+  -webkit-transform: rotate(-98deg);
   transform: rotate(-98deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
 }
 
@@ -1193,13 +1228,13 @@ progress::-webkit-progress-bar {
 }
 
 .slide_module3_1-ints {
-  z-index: 1;
   left: 0;
   right: 0;
   margin: auto;
   width: 18%;
   bottom: 3%;
   height: auto;
+  z-index: 1;
 }
 
 #back_fondo_2 {
@@ -1519,6 +1554,7 @@ progress::-webkit-progress-bar {
 .modalNoPantallaCompleta {
   top: 50%; 
   left: 50%; 
+  -webkit-transform: translate(-50%, -50%); 
   transform: translate(-50%, -50%); 
   width: 70%;
   height: 70%;
