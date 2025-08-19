@@ -220,11 +220,12 @@ progress::-webkit-progress-bar {
 }
 
 #btn_salir {
+  width: 15%;
   display: none;
   position: absolute;
   z-index: 25;
   bottom: 2%;
-  right: -10%;
+  right: 2%;
   font-family: Formula_bold;
   color: white;
 }
@@ -243,13 +244,13 @@ progress::-webkit-progress-bar {
 
 .btn_text {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
   pointer-events: none;
-  font-size: 1em;
+  font-size: 2.5vh;
 }
 
 .home_titleBienvenido {
@@ -1146,6 +1147,7 @@ progress::-webkit-progress-bar {
   left: 20.83%;
   top: 47.54%;
   background: white;
+  -webkit-box-shadow: 0 4px 44px rgba(0, 0, 0, 0.37);
   box-shadow: 0 4px 44px rgba(0, 0, 0, 0.37);
   border-radius: 18px;
   outline: 1px rgba(255, 255, 255, 0) solid;
