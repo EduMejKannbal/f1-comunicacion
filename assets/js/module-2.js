@@ -37,7 +37,7 @@ function ctrl_slidesMod2() {
   console.log("#slide_module2_" + currentSlide);
   $prevBtn.show();
   $nextBtn.show();
-  $('.music').show();
+  $(".music").show();
 
   if (JUEGOS_AUDIO_SLIDES[2].includes(currentSlide)) {
     isPlaying = true;
@@ -88,7 +88,7 @@ function ctrl_slidesMod2() {
   } else if (currentSlide === 4) {
     $prevBtn.hide();
     $nextBtn.hide();
-    $('.music').hide();
+    $(".music").hide();
     reproducirHasta("vid_module2_4", 8.99);
     $("#aud_logro").get(0).play();
     if (myAvance.ch2.logro_traje === 0) {
@@ -113,7 +113,7 @@ function ctrl_slidesMod2() {
     reproducirHasta("vid_module2_6", 9);
     $prevBtn.hide();
     $nextBtn.hide();
-    $('.music').hide();
+    $(".music").hide();
     $("#aud_logro").get(0).play();
     if (myAvance.ch2.logro_guantes === 0) {
       myAvance.ch2.logro_guantes = 1;
@@ -148,7 +148,7 @@ function ctrl_slidesMod2() {
   } else if (currentSlide === 13) {
     $prevBtn.hide();
     $nextBtn.hide();
-    $('.music').hide();
+    $(".music").hide();
     reproducirHasta("vid_module2_13", 4.99);
     $("#aud_logro").get(0).play();
     if (myAvance.ch2.logro_zapatos === 0) {
@@ -165,7 +165,7 @@ function ctrl_slidesMod2() {
   } else if (currentSlide === 15) {
     $prevBtn.show();
     $nextBtn.hide();
-    $('.music').hide();
+    $(".music").hide();
     reproducirHasta("vid_module2_15", 8.99);
   } else if (currentSlide === 16) {
     $prevBtn.show();
@@ -174,7 +174,6 @@ function ctrl_slidesMod2() {
   } else if (currentSlide === totalSlides) {
     $nextBtn.hide();
     $prevBtn.hide();
-    
   }
 }
 
@@ -224,7 +223,7 @@ $("#slide3_play").click(function () {
 });
 
 $("#cls_2sarp_1").click(function () {
-  $('.music').show()
+  $(".music").show();
   $("#mod_2sarp_1").hide();
   var video = $("#vidSarp_1").get(0);
   video.pause();
@@ -345,7 +344,8 @@ function advanceToSlide13() {
     myAvance.ch2.logro_zapatos = 1;
     if (myAvance.ch2.progress < 4) {
       myAvance.ch2.progress = 4; // Unlock Cierre
-      localStorage.setItem("myAvance", JSON.stringify(myAvance)); // Guardar progreso
+      // localStorage.setItem("myAvance", JSON.stringify(myAvance)); // Guardar progreso
+      saveProgress();
       console.log(
         "[Game] Progreso actualizado: logro_zapatos = 1, progress = 4"
       );
@@ -441,7 +441,8 @@ $("#btn_finmod2").click(function () {
   ctrl_AvGeneral(2, gAvMax);
   playModuleAudio(null);
   playBackgroundHome();
-  localStorage.setItem("myAvance", JSON.stringify(myAvance));
+  saveProgress();
+  // localStorage.setItem("myAvance", JSON.stringify(myAvance));
 });
 
 $(".elem_click").click(function () {

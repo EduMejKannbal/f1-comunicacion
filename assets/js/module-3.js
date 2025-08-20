@@ -67,7 +67,7 @@ function ctrl_slidesMod3() {
   console.log("#slide_module3_" + currentSlide);
   $prevBtn.show();
   $nextBtn.show();
-  $('.music').show();
+  $(".music").show();
 
   if (JUEGOS_AUDIO_SLIDES[3].includes(currentSlide)) {
     isPlaying = true;
@@ -103,7 +103,8 @@ function ctrl_slidesMod3() {
       if (myAvance.ch3.progress < 2) {
         myAvance.ch3.progress = 2; // Unlock Manejo efectivo
         ctrl_menuAccess();
-        localStorage.setItem("myAvance", JSON.stringify(myAvance));
+        saveProgress();
+        // localStorage.setItem("myAvance", JSON.stringify(myAvance));
       }
     } else {
       $nextBtn.hide();
@@ -139,7 +140,7 @@ function ctrl_slidesMod3() {
     reproducirHasta("vid_module3_7", 4.99);
     $prevBtn.hide();
     $nextBtn.hide();
-    $('.music').hide();
+    $(".music").hide();
   } else if (currentSlide === 8) {
     $prevBtn.show();
     if (myAvance.ch3.caracter < 2) {
@@ -163,7 +164,7 @@ function ctrl_slidesMod3() {
     reproducirHasta("vid_module3_10", 4.99);
     $prevBtn.hide();
     $nextBtn.hide();
-    $('.music').hide();
+    $(".music").hide();
     $("#aud_logro").get(0).play();
     if (myAvance.ch3.logro_llantas2 === 0) {
       myAvance.ch3.logro_llantas2 = 1;
@@ -179,7 +180,8 @@ function ctrl_slidesMod3() {
       $nextBtn.show();
       if (myAvance.ch3.progress < 6) {
         myAvance.ch3.progress = 6; // Unlock Cierre
-        localStorage.setItem("myAvance", JSON.stringify(myAvance));
+        // localStorage.setItem("myAvance", JSON.stringify(myAvance));
+        saveProgress();
         ctrl_menuAccess();
       }
     }
@@ -187,7 +189,7 @@ function ctrl_slidesMod3() {
     reproducirHasta("vid_module3_12", 4.99);
     $prevBtn.hide();
     $nextBtn.hide();
-    $('.music').hide();
+    $(".music").hide();
     $("#aud_logro").get(0).play();
     if (myAvance.ch3.logro_volante === 0) {
       myAvance.ch3.logro_volante = 1;
@@ -274,7 +276,7 @@ function ctrl_avElem_chk(
 
 // Eventos de btn_trofeoModal para abrir modal
 $(".btn_trofeoModal").click(function () {
-//   pauseMusicAndUpdateIcon();
+  //   pauseMusicAndUpdateIcon();
   $("#mod_trofeoModal_1").fadeIn();
   $(".modalNoPantallaCompletaBackground").css("display", "block");
   var video = $("#emoc_6").get(0);
@@ -296,7 +298,8 @@ $(".cls_trofeoModal").click(function () {
   video.pause();
   if (myAvance.ch3.trofeoModal < 2) {
     myAvance.ch3.trofeoModal = 2;
-    localStorage.setItem("myAvance", JSON.stringify(myAvance));
+    saveProgress();
+    // localStorage.setItem("myAvance", JSON.stringify(myAvance));
     console.log("Updated myAvance.ch3.trofeoModal to 2");
   }
   restoreMusicAndIcon("3");
@@ -478,7 +481,8 @@ $("#btn_finmod3").click(function () {
   ctrl_AvGeneral(3, gAvMax);
   playModuleAudio(null);
   playBackgroundHome();
-  localStorage.setItem("myAvance", JSON.stringify(myAvance));
+  saveProgress();
+  // localStorage.setItem("myAvance", JSON.stringify(myAvance));
 });
 
 $("#btn_fin_mod37").click(function () {
@@ -497,7 +501,7 @@ $(".elem_click").click(function () {
 
 // Juego
 $("#slideM3-9-btn").click(function () {
-  if (flagMus === 1) {
+  if (myAvance.flagMus === 1) {
     playMusicaJuegos();
   }
 

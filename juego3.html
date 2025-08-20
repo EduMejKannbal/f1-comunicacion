@@ -83,6 +83,7 @@
   </div>
 </div>
 
+<script src="assets/js/app.js"></script>
 <script>
   const gameConfig = {
     questions: [
@@ -123,7 +124,7 @@
 
   function initializeDragDropGame() {
     // Inicializar attempts dentro de la función
-    let attempts = parseInt(localStorage.getItem("gameAttempts")) || 0;
+    let attempts = parseInt(myAvance.gameAttempts) || 0;
     const $questionContainer = $("#question-container");
     let currentQuestionIndex = 0;
     let correctAnswersCount = 0;
@@ -196,10 +197,12 @@
         );
         // Reiniciar attempts al aprobar
         attempts = 0;
-        localStorage.setItem("gameAttempts", attempts);
+        myAvance = { ...myAvance, gameAttempts };
+        // localStorage.setItem("gameAttempts", attempts);
       } else {
         attempts++;
-        localStorage.setItem("gameAttempts", attempts); // Guardar intentos
+        myAvance = { ...myAvance, gameAttempts };
+        // localStorage.setItem("gameAttempts", attempts); // Guardar intentos
         console.log(
           `[Game] Intento fallido, Intentos: ${attempts}/${gameConfig.maxAttempts}, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`
         );
@@ -221,13 +224,15 @@
     // Función para avanzar a la siguiente sección
     function advanceToNextSection() {
       attempts = 0; // Reiniciar intentos
-      localStorage.setItem("gameAttempts", attempts);
+      myAvance = { ...myAvance, gameAttempts };
+      // localStorage.setItem("gameAttempts", attempts);
       $("#juego3").hide().empty();
       nSlides.numSlides_3 = 12;
       if (myAvance.ch3.finish_juego === 0) {
         myAvance.ch3.finish_juego = 1;
         myAvance.ch3.progress = 6; // Asegurar que Cierre se desbloquee
-        localStorage.setItem("myAvance", JSON.stringify(myAvance)); // Guardar progreso
+        saveProgress();
+        // localStorage.setItem("myAvance", JSON.stringify(myAvance)); // Guardar progreso
         console.log(
           "[Game] Progreso actualizado: finish_juego = 1, progress = 6"
         );
@@ -296,7 +301,7 @@
 
     init();
   }
-  
+
   $("#btn_mod_juego_3").click(function () {
     $("#mod_juego_3").fadeOut(150);
   });
