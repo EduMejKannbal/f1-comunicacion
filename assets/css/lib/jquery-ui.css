@@ -290,6 +290,7 @@ button.ui-button::-moz-focus-inner {
 }
 
 .ui-checkboxradio-label .ui-icon-background {
+	-webkit-box-shadow: inset 1px 1px 1px #ccc;
 	box-shadow: inset 1px 1px 1px #ccc;
 	border-radius: .12em;
 	border: none;
@@ -971,6 +972,7 @@ a.ui-button:focus {
 }
 
 .ui-visual-focus {
+	-webkit-box-shadow: 0 0 3px 1px rgb(94, 158, 214);
 	box-shadow: 0 0 3px 1px rgb(94, 158, 214);
 }
 .ui-state-active,

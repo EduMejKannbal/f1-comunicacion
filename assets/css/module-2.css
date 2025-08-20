@@ -40,7 +40,9 @@
   height: 189.47%;
   left: -135.56%;
   top: -376.5%;
+  -webkit-transform: rotate(55deg);
   transform: rotate(55deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
 }
 
@@ -48,7 +50,9 @@
   width: 100.25%;
   left: 11.59%;
   top: -17.06%;
+  -webkit-transform: rotate(55deg);
   transform: rotate(55deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
   background: radial-gradient(ellipse 127.02% 151.92% at 15.32% 21.04%,
       rgba(255, 255, 255, 0.58) 3%,
@@ -57,6 +61,7 @@
   background-blend-mode: overlay, normal;
   border-radius: 3.41%;
   border: 2px #003cd6 solid;
+  -webkit-backdrop-filter: blur(40px);
   backdrop-filter: blur(40px);
 }
 
@@ -65,7 +70,9 @@
   height: 155.66%;
   left: -41.76%;
   top: 39.53%;
+  -webkit-transform: rotate(-35deg);
   transform: rotate(-35deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
   background: rgba(255, 255, 255, 0.2);
   background-blend-mode: soft_light;
@@ -76,7 +83,9 @@
   width: 100.25%;
   left: 11.59%;
   top: -17.06%;
+  -webkit-transform: rotate(55deg);
   transform: rotate(55deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
   background: radial-gradient(ellipse 127.02% 151.92% at 15.32% 21.04%,
       rgba(164.69, 238.74, 255, 0.19) 0%,
@@ -85,6 +94,7 @@
   background-blend-mode: overlay, normal;
   border-radius: 3.41%;
   border: 1px rgba(255, 255, 255, 0.54) solid;
+  -webkit-backdrop-filter: blur(40px);
   backdrop-filter: blur(40px);
 }
 
@@ -116,7 +126,9 @@
   width: 7.47%;
   left: 97.63%;
   top: 95.7%;
+  -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
   border-radius: 0.4%;
   border: 1px white solid;
@@ -200,7 +212,9 @@
   height: 11.01%;
   left: 78.47%;
   top: 96.77%;
+  -webkit-transform: rotate(-180deg);
   transform: rotate(-180deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
   background: linear-gradient(180deg,
       rgba(25, 26, 35, 0.89) 0%,
@@ -265,7 +279,9 @@
   height: 194.18%;
   left: 105.75%;
   top: 206.74%;
+  -webkit-transform: rotate(-167deg);
   transform: rotate(-167deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
   background: linear-gradient(221deg, rgba(255, 255, 255, 0) 36%, #1a1a1a 94%);
 }
@@ -274,7 +290,9 @@
   width: 104.01%;
   left: 128.02%;
   top: -12.71%;
+  -webkit-transform: rotate(-258deg);
   transform: rotate(-258deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
 }
 
@@ -282,7 +300,9 @@
   width: 105.36%;
   left: -32.59%;
   top: 28.19%;
+  -webkit-transform: rotate(-31deg);
   transform: rotate(-31deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
   background: radial-gradient(ellipse 127.02% 151.92% at 15.32% 21.04%,
       rgba(255, 255, 255, 0.58) 3%,
@@ -291,6 +311,7 @@
   background-blend-mode: overlay, normal;
   border-radius: 59px;
   border: 2px #003cd6 solid;
+  -webkit-backdrop-filter: blur(40px);
   backdrop-filter: blur(40px);
 }
 
@@ -299,7 +320,9 @@
   height: 163.63%;
   left: -12.43%;
   top: 80.57%;
+  -webkit-transform: rotate(-121deg);
   transform: rotate(-121deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
   background: rgba(255, 255, 255, 0.2);
   background-blend-mode: soft_light;
@@ -310,7 +333,9 @@
   width: 105.36%;
   left: -32.59%;
   top: 28.19%;
+  -webkit-transform: rotate(-31deg);
   transform: rotate(-31deg);
+  -webkit-transform-origin: top left;
   transform-origin: top left;
   background: radial-gradient(ellipse 127.02% 151.92% at 15.32% 21.04%,
       rgba(165, 239, 255, 0.19) 0%,
@@ -319,6 +344,7 @@
   background-blend-mode: overlay, normal;
   border-radius: 59px;
   border: 1px rgba(255, 255, 255, 0.54) solid;
+  -webkit-backdrop-filter: blur(40px);
   backdrop-filter: blur(40px);
 }
 
@@ -490,12 +516,14 @@
 
 .btn_resp {
   bottom: 20%;
+  -webkit-transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
   width: 17%;
   cursor: pointer;
 }
 
 .zoom:hover {
+  -webkit-transform: scale(1.25);
   transform: scale(1.25);
 }
 

@@ -42,51 +42,49 @@ const JUEGOS_AUDIO_SLIDES = {
 // Variables de estado
 let strID;
 let gAvMax = 4;
-let myAvance = localStorage.getItem("myAvance")
-  ? JSON.parse(localStorage.getItem("myAvance"))
-  : {
-      avModulos: 1,
-      g_avance: 0,
-      ganador: null,
-      ch1: {
-        estilosComunicacion: 1,
-        logro_llanta: 0,
-        logro_casco: 0,
-        trofeo_1: 0,
-        progress: 1,
-        lastSlide: 1,
-        isCompleted: false,
-      },
-      ch2: {
-        comic: 1,
-        preg_1: null,
-        preg_2: null,
-        preg_3: null,
-        preg_4: null,
-        logro_guantes: 0,
-        logro_traje: 0,
-        logro_zapatos: 0,
-        trofeo_2: 0,
-        progress: 1,
-        vidMod2_3_visto: 0,
-        lastSlide: 1,
-        isCompleted: false,
-      },
-      ch3: {
-        vidManEm: 1,
-        impactBio: 1,
-        caracter: 1,
-        vidTemp: 1,
-        trofeoModal: 1,
-        logro_llantas2: 0,
-        logro_volante: 0,
-        finish_juego: 0,
-        trofeo_3: 0,
-        progress: 1,
-        lastSlide: 1,
-        isCompleted: false,
-      },
-    };
+let myAvance = {
+  avModulos: 1,
+  g_avance: 0,
+  ganador: null,
+  ch1: {
+    estilosComunicacion: 1,
+    logro_llanta: 0,
+    logro_casco: 0,
+    trofeo_1: 0,
+    progress: 1,
+    lastSlide: 1,
+    isCompleted: false,
+  },
+  ch2: {
+    comic: 1,
+    preg_1: null,
+    preg_2: null,
+    preg_3: null,
+    preg_4: null,
+    logro_guantes: 0,
+    logro_traje: 0,
+    logro_zapatos: 0,
+    trofeo_2: 0,
+    progress: 1,
+    vidMod2_3_visto: 0,
+    lastSlide: 1,
+    isCompleted: false,
+  },
+  ch3: {
+    vidManEm: 1,
+    impactBio: 1,
+    caracter: 1,
+    vidTemp: 1,
+    trofeoModal: 1,
+    logro_llantas2: 0,
+    logro_volante: 0,
+    finish_juego: 0,
+    trofeo_3: 0,
+    progress: 1,
+    lastSlide: 1,
+    isCompleted: false,
+  },
+};
 let nSlides = {
   numSlides: 1,
   numSlides_2: 1,
@@ -96,7 +94,6 @@ let nSlides = {
 };
 let currentAudio = null;
 let isAudioPlaying = false;
-let flagMus = 1;
 let flagVoice = 1;
 let numAudio = 0;
 let flagLocution = 1;
@@ -124,17 +121,8 @@ let $menu = $("#div_menu");
 let video = document.getElementById("splash_1");
 let outro = document.getElementById("vid_outro");
 
-//Para ejecugtar ctrl_AvGeneral hasta que hayan datos en myAvance
-const checkAvanceReady = setInterval(() => {
-  if (myAvance?.avModulos > 0) {
-    ctrl_AvGeneral();
-    clearInterval(checkAvanceReady);
-  }
-}, 100);
-
 function saveProgress() {
   if (typeof myAvance !== "undefined") {
-    localStorage.setItem("myAvance", JSON.stringify(myAvance));
     save_Status();
   }
 }
@@ -149,7 +137,7 @@ function resetModuleProgress(moduleId) {
 // Funciones de control de audio
 function playModuleAudio(moduleId) {
   console.log(
-    `playModuleAudio called with moduleId: ${moduleId}, flagMus: ${flagMus}, isAudioPlaying: ${isAudioPlaying}`
+    `playModuleAudio called with moduleId: ${moduleId}, flagMus: ${myAvance.flagMus}, isAudioPlaying: ${isAudioPlaying}`
   );
   let audioId =
     moduleId && moduleId !== "0" ? `musModu_${moduleId}` : `musModu_0`;
@@ -169,7 +157,7 @@ function playModuleAudio(moduleId) {
   if (isPlaying) {
     playMusicaJuegos();
   } else {
-    if (audio && flagMus === 1) {
+    if (audio && myAvance.flagMus === 1) {
       audio.loop = true;
       audio.volume = 0.3;
       audio.muted = false;
@@ -218,7 +206,7 @@ function playModuleAudio(moduleId) {
             );
           });
       }
-    } else if (flagMus === 0) {
+    } else if (myAvance.flagMus === 0) {
       if (audio) {
         audio.loop = true;
         audio.volume = 0.3;
@@ -269,7 +257,7 @@ function unMuteMe(e) {
 }
 
 function saveFlagMus() {
-  prevFlagMus = flagMus;
+  prevFlagMus = myAvance.flagMus;
 }
 
 function pauseMusicaJuegos() {
@@ -281,7 +269,7 @@ function pauseMusicaJuegos() {
 }
 
 function playMusicaJuegos() {
-  if (flagMus === 0) {
+  if (myAvance.flagMus === 0) {
     return;
   }
 
@@ -356,7 +344,7 @@ function manageSlideAudio(moduleId, currentSlide) {
 
   pauseAllAudio();
 
-  if (flagMus === 1 && targetAudioId) {
+  if (myAvance.flagMus === 1 && targetAudioId) {
     const audioToPlay = document.getElementById(targetAudioId);
     if (audioToPlay) {
       if (targetAudioId === "musica_juegos") {
@@ -372,14 +360,16 @@ function pauseMusicAndUpdateIcon() {
   saveFlagMus();
   pauseAllAudio();
   $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
-  flagMus = 0;
-  localStorage.setItem("flagMus", flagMus);
+  myAvance = { ...myAvance, flagMus: 0 };
+  save_Status();
+  // localStorage.setItem("flagMus", flagMus);
 }
 
 function restoreMusicAndIcon(moduleId) {
   if (prevFlagMus === 1 && !isAudioPlaying && currentAudio) {
-    flagMus = 1;
-    localStorage.setItem("flagMus", flagMus);
+    myAvance = { ...myAvance, flagMus: 1 };
+    save_Status();
+    // localStorage.setItem("flagMus", flagMus);
     unMuteMe(currentAudio);
     currentAudio.volume = 0.3;
     currentAudio
@@ -389,7 +379,7 @@ function restoreMusicAndIcon(moduleId) {
         $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
       })
       .catch((err) => console.warn("Error restoring audio:", err));
-  } else if (flagMus === 1) {
+  } else if (myAvance.flagMus === 1) {
     playModuleAudio(moduleId);
   }
 }
@@ -561,7 +551,7 @@ function ctrl_carru_simple(ptrCarruClass, ptrSlideActual) {
   } else {
     $("#" + ptrCarruClass + "_Prev,#" + ptrCarruClass + "_Next").show();
   }
-  if (testCompleted) {
+  if (myAvance.testCompleted) {
     restoreSelections();
   }
 }
@@ -642,7 +632,7 @@ function restoreSelections() {
   $(".body-answers > div > div").each(function () {
     var questionNum = $(this).data("question");
     var type = $(this).parent().data("type");
-    if (userSelections[questionNum] === type) {
+    if (myAvance.userSelections[questionNum] === type) {
       $(this)
         .find("img")
         .attr(
@@ -697,10 +687,12 @@ function calculateResults() {
     console.log("Resultados del Test:", testResults);
     testCompleted = true;
 
-    localStorage.setItem("testResults", JSON.stringify(testResults));
-    localStorage.setItem("userSelections", JSON.stringify(userSelections));
-    localStorage.setItem("testCompleted", JSON.stringify(testCompleted));
-    localStorage.setItem("myAvance", JSON.stringify(myAvance));
+    // localStorage.setItem("testResults", JSON.stringify(testResults));
+    // localStorage.setItem("userSelections", JSON.stringify(userSelections));
+    // localStorage.setItem("testCompleted", JSON.stringify(testCompleted));
+    // localStorage.setItem("myAvance", JSON.stringify(myAvance));
+
+    myAvance = { ...myAvance, testResults, userSelections, testCompleted };
 
     let maxType = null;
     let maxValue = -1;
@@ -1076,9 +1068,10 @@ $("#btn_salir").click(function () {
 });
 
 $(".music").click(function () {
-  if (flagMus === 0) {
-    flagMus = 1;
-    localStorage.setItem("flagMus", flagMus);
+  if (myAvance.flagMus === 0) {
+    myAvance = { ...myAvance, flagMus: 1 };
+    save_Status();
+    // localStorage.setItem("flagMus", flagMus);
     $(".music").attr("src", "assets/img/icons/on.png");
     if (currentAudio) {
       unMuteMe(currentAudio);
@@ -1095,8 +1088,9 @@ $(".music").click(function () {
       playModuleAudio(moduleId);
     }
   } else {
-    flagMus = 0;
-    localStorage.setItem("flagMus", flagMus);
+    myAvance = { ...myAvance, flagMus: 0 };
+    save_Status();
+    // localStorage.setItem("flagMus", flagMus);
     $(".music").attr("src", "assets/img/icons/off.png");
     if (currentAudio) {
       muteMe(currentAudio);
@@ -1138,7 +1132,7 @@ $("#btn_menu").click(function () {
 
   pauseAllAudio();
 
-  if (flagMus === 1) {
+  if (myAvance.flagMus === 1) {
     setTimeout(() => {
       const menuAudio = document.getElementById("musModu_4");
       if (menuAudio) {
@@ -1173,7 +1167,7 @@ $("#btn_home").click(function () {
     this.currentTime = 0;
   });
 
-  $('.slide_portada').hide();
+  $(".slide_portada").hide();
 
   if (strID && myAvance["ch" + strID] && myAvance["ch" + strID].isCompleted) {
     resetModuleProgress(strID);
@@ -1211,7 +1205,7 @@ $("#cls_menu").click(function () {
   pauseAllAudio();
   playModuleAudio(null);
 
-  if (flagMus === 1) {
+  if (myAvance.flagMus === 1) {
     $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
   } else {
     $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
@@ -1752,113 +1746,13 @@ $("#btn_finmod1").click(function () {
   ctrl_AvGeneral(myAvance.avModulos, gAvMax);
   playModuleAudio(null);
   playBackgroundHome();
-  localStorage.setItem("myAvance", JSON.stringify(myAvance));
+  saveProgress();
+  // localStorage.setItem("myAvance", JSON.stringify(myAvance));
 });
 
 // Inicialización
 document.addEventListener("DOMContentLoaded", function () {
-  if (localStorage.getItem("testResults")) {
-    testResults = JSON.parse(localStorage.getItem("testResults"));
-    userSelections = JSON.parse(localStorage.getItem("userSelections"));
-    testCompleted = JSON.parse(localStorage.getItem("testCompleted"));
-    myAvance = JSON.parse(localStorage.getItem("myAvance")) || myAvance;
-    selections = {
-      pantera: Object.values(userSelections).filter((val) => val === "pantera")
-        .length,
-      pavorreal: Object.values(userSelections).filter(
-        (val) => val === "pavorreal"
-      ).length,
-      delfin: Object.values(userSelections).filter((val) => val === "delfin")
-        .length,
-      buho: Object.values(userSelections).filter((val) => val === "buho")
-        .length,
-    };
-  }
 
-  if (myAvance.avModulos == 4) {
-    $("#btn_salir").css({ display: "block", "pointer-events": "auto" });
-  } else {
-    $("#btn_salir").css({ display: "none", "pointer-events": "none" });
-  }
-
-  $(".music").addClass("hide").attr("src', 'assets/img/icons/icon.png");
-  if (localStorage.getItem("flagMus")) {
-    flagMus = parseInt(localStorage.getItem("flagMus"));
-    if (flagMus === 0) {
-      $(".music").attr("src", "assets/img/icons/off.png");
-    } else {
-      $(".music").attr("src", "assets/img/icons/on.png");
-    }
-  }
-
-  gsap.registerPlugin(
-    Flip,
-    ScrollTrigger,
-    Observer,
-    ScrollToPlugin,
-    Draggable,
-    MotionPathPlugin,
-    EaselPlugin,
-    PixiPlugin,
-    TextPlugin,
-    RoughEase,
-    ExpoScaleEase,
-    SlowMo,
-    CustomEase
-  );
-
-  const cards = document.querySelectorAll(".cardTest");
-  for (let i = 0; i < cards.length; i++) {
-    const card = cards[i];
-    card.addEventListener("mousemove", rotate);
-    card.addEventListener("mouseout", stopRotate);
-  }
-
-  setupCarouselControls("test_1");
-  ctrl_menuAccess();
-
-  if (!testCompleted) {
-    $(".body-answers > div > div").click(function () {
-      if ($(this).hasClass("disabled")) return;
-      const $this = $(this);
-      const questionNum = parseInt($this.data("question"));
-      const type = $this.parent().data("type");
-      const $questionOptions = $(
-        `.body-answers > div > div[data-question="${questionNum}"]`
-      );
-      $questionOptions.addClass("disabled");
-      $questionOptions.off("click");
-      $this.find(".answer-text").css("color", "#f8fafc");
-      $questionOptions.not($this).find(".answer-text").css("color", "#475569");
-      $this
-        .find("img")
-        .attr(
-          "src",
-          "assets/img/modules/module-1/slide-4/test/answers/select.png"
-        );
-      selections[type]++;
-      userSelections[questionNum] = type;
-      console.log(
-        "Pregunta",
-        questionNum,
-        "seleccionada:",
-        type,
-        "Selections:",
-        selections,
-        "User selections:",
-        userSelections
-      );
-      localStorage.setItem("userSelections", JSON.stringify(userSelections));
-      const totalSelections =
-        selections.pantera +
-        selections.pavorreal +
-        selections.delfin +
-        selections.buho;
-      if (totalSelections === totalQuestions) {
-        calculateResults();
-      }
-    });
-  } else {
-    restoreSelections();
-  }
+  // if (localStorage.getItem("testResults")) {
+ 
 });
