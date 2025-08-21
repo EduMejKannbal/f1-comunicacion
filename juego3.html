@@ -82,8 +82,6 @@
     </div>
   </div>
 </div>
-
-<script src="assets/js/app.js"></script>
 <script>
   const gameConfig = {
     questions: [
@@ -197,11 +195,11 @@
         );
         // Reiniciar attempts al aprobar
         attempts = 0;
-        myAvance = { ...myAvance, gameAttempts };
+        myAvance = { ...myAvance, gameAttempts: attempts };
         // localStorage.setItem("gameAttempts", attempts);
       } else {
         attempts++;
-        myAvance = { ...myAvance, gameAttempts };
+        myAvance = { ...myAvance, gameAttempts: attempts };
         // localStorage.setItem("gameAttempts", attempts); // Guardar intentos
         console.log(
           `[Game] Intento fallido, Intentos: ${attempts}/${gameConfig.maxAttempts}, Aciertos: ${correctAnswersCount}/${gameConfig.questions.length}`
@@ -224,7 +222,7 @@
     // Función para avanzar a la siguiente sección
     function advanceToNextSection() {
       attempts = 0; // Reiniciar intentos
-      myAvance = { ...myAvance, gameAttempts };
+      myAvance = { ...myAvance, gameAttempts: attempts };
       // localStorage.setItem("gameAttempts", attempts);
       $("#juego3").hide().empty();
       nSlides.numSlides_3 = 12;

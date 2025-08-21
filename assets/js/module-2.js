@@ -28,7 +28,6 @@ function ctrl_slidesMod2() {
   const currentSlide = nSlides.numSlides_2;
   myAvance.ch2.lastSlide = currentSlide;
   saveProgress();
-  autoNextSlide("module2", nSlides, ctrl_slidesMod2);
   const $prevBtn = $("#module2_Prev");
   const $nextBtn = $("#module2_Next");
   reiniciarVideos(".mod2_videoSlide");
@@ -55,9 +54,17 @@ function ctrl_slidesMod2() {
   if (currentSlide === 1) {
     $prevBtn.hide();
     $nextBtn.hide();
-    reproducirHasta("vid_module2_1", 9.99);
+
+    const video = $("#vid_module2_1");
+    $("#slideM2_pista, #slideM2_title").hide();
+
+    video.one("canplaythrough", function () {
+      $("#slideM2_pista, #slideM2_title").show();
+      reproducirHasta("vid_module2_1", 9.99);
+      autoNextSlide("module2", nSlides, ctrl_slidesMod2);
+    });
   } else if (currentSlide === 2) {
-    $prevBtn.show();
+    $prevBtn.hide();
     $nextBtn.show();
     reproducirHasta("vid_module2_2", 4.99);
   } else if (currentSlide === 3) {
