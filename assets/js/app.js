@@ -534,7 +534,7 @@ function autoNextSlide(moduleId, numSlidesObj, callback) {
         numSlidesObj[slideKey]++;
         callback();
       }
-    }, 5000);
+    }, 6000);
   }
 }
 

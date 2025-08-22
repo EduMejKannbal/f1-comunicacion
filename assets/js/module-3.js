@@ -58,7 +58,6 @@ function ctrl_slidesMod3() {
   const currentSlide = nSlides.numSlides_3;
   myAvance.ch3.lastSlide = currentSlide;
   saveProgress();
-  autoNextSlide("module3", nSlides, ctrl_slidesMod3);
   const $prevBtn = $("#module3_Prev");
   const $nextBtn = $("#module3_Next");
   reiniciarVideos(".mod3_videoSlide");
@@ -85,8 +84,18 @@ function ctrl_slidesMod3() {
   if (currentSlide === 1) {
     $prevBtn.hide();
     $nextBtn.hide();
-    reproducirHasta("vid_module3_1", 9.99);
-    // $('.modalNoPantallaCompletaBackground').css('display', 'block')
+
+    const video = $("#vid_module3_1");
+    $("#slideM3_pista, #slideM3_title").hide();
+
+    video.one("canplaythrough", function () {
+      $("#slideM3_pista, #slideM3_title").show();
+      reproducirHasta("vid_module3_1", 9.99);
+      autoNextSlide("module3", nSlides, ctrl_slidesMod3);
+    });
+  } else if (currentSlide === 2) {
+    $prevBtn.hide();
+    $nextBtn.show();
   } else if (currentSlide === 3) {
     console.log(
       "Slide 3: myAvance.ch3.trofeoModal =",
@@ -100,6 +109,7 @@ function ctrl_slidesMod3() {
       .removeClass("w3-opacity");
     if (myAvance.ch3.trofeoModal >= 2) {
       $nextBtn.show();
+      $(".btn_trofeoModal").removeClass("myglow_img_white");
       if (myAvance.ch3.progress < 2) {
         myAvance.ch3.progress = 2; // Unlock Manejo efectivo
         ctrl_menuAccess();

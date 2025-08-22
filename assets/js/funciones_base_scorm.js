@@ -17,6 +17,53 @@ function doStart() {
   console.log("el valor de completionStatus es: " + completionStatus);
   if (completionStatus === "not attempted") {
     ScormProcessSetValue("cmi.core.lesson_status", "incomplete");
+
+    myAvance = {
+      avModulos: 1,
+      g_avance: 0,
+      ganador: null,
+      flagMus: 1,
+      ch1: {
+        estilosComunicacion: 1,
+        logro_llanta: 0,
+        logro_casco: 0,
+        trofeo_1: 0,
+        progress: 1,
+        lastSlide: 1,
+        isCompleted: false,
+      },
+      ch2: {
+        comic: 1,
+        preg_1: null,
+        preg_2: null,
+        preg_3: null,
+        preg_4: null,
+        logro_guantes: 0,
+        logro_traje: 0,
+        logro_zapatos: 0,
+        trofeo_2: 0,
+        progress: 1,
+        vidMod2_3_visto: 0,
+        lastSlide: 1,
+        isCompleted: false,
+      },
+      ch3: {
+        vidManEm: 1,
+        impactBio: 1,
+        caracter: 1,
+        vidTemp: 1,
+        trofeoModal: 1,
+        logro_llantas2: 0,
+        logro_volante: 0,
+        finish_juego: 0,
+        trofeo_3: 0,
+        progress: 1,
+        lastSlide: 1,
+        isCompleted: false,
+      },
+    };
+    save_Status();
+    ctrl_AvGeneral();
   } else if (completionStatus === "incomplete") {
     if (strAvance !== "" || strAvance !== null) {
       load_strAvance();
