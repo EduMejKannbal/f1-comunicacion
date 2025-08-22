@@ -1327,7 +1327,9 @@ $(".txt_trofeo").each(function () {
   $this.on({
     mouseover: debounce(function () {
       resetMenuImages();
-      const relativeTop = $this.position().top + "px";
+      const windowHeight = $(window).height();
+      const verticalOffset = windowHeight * 0.015;
+      const relativeTop = $this.position().top + verticalOffset + "px";
       const $audio = $(`#aud_menutrof`)[0];
       const $imgMenuTrofeo = $("#img_menu_trofeo");
       const $imgModTrof = $("#img_modTrof_1");
@@ -1378,7 +1380,9 @@ $(".txt_logro").each(function () {
   $this.on({
     mouseover: debounce(function () {
       resetMenuImages();
-      const relativeTop = $this.position().top + "px";
+      const windowHeight = $(window).height();
+      const verticalOffset = windowHeight * 0.015;
+      const relativeTop = $this.position().top + verticalOffset + "px";
       const $audio = $(`#aud_menulogro`)[0];
       const $imgMenuTrofeo = $("#img_menu_trofeo");
       const $imgModTrof = $("#img_modTrof_1");
@@ -1752,7 +1756,5 @@ $("#btn_finmod1").click(function () {
 
 // Inicialización
 document.addEventListener("DOMContentLoaded", function () {
-
   // if (localStorage.getItem("testResults")) {
- 
 });
