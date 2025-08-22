@@ -370,7 +370,9 @@ $("#btn_finmod1").click(function () {
   myAvance.ch1.isCompleted = true;
   resetModuleProgress("1");
   pauseAllAudio();
+  $(".music").show();
   $(".music").removeClass("hide");
+  
   resetFondo(1, 2);
   $("#slide_index_1").show();
   $("#carga_materia").hide().empty();

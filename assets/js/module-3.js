@@ -211,6 +211,7 @@ function ctrl_slidesMod3() {
     $("#aud_logro").get(0).play();
   } else if (currentSlide === 14) {
     $("#vid_outro").play();
+    $(".music").hide();
   } else if (currentSlide === totalSlides) {
     $prevBtn.show();
     $nextBtn.hide();
@@ -466,6 +467,7 @@ $("#btn_finmod3").click(function () {
   myAvance.ch3.isCompleted = true;
   resetModuleProgress("3");
   pauseAllAudio();
+  $(".music").show();
   $(".music").removeClass("hide");
   if (myAvance.ganador !== null) {
     $("#slide_ganador_1").show();
