@@ -441,6 +441,7 @@ $("#btn_finmod2").click(function () {
   myAvance.ch2.isCompleted = true;
   resetModuleProgress("2");
   pauseAllAudio();
+  $(".music").show();
   $(".music").removeClass("hide");
   resetFondo(2, 2);
   $("#slide_index_1").show();

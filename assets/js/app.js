@@ -84,6 +84,7 @@ let myAvance = {
     lastSlide: 1,
     isCompleted: false,
   },
+  flagMus: 1,
 };
 let nSlides = {
   numSlides: 1,
@@ -1039,6 +1040,7 @@ video.addEventListener("ended", function () {
   playModuleAudio(null);
 });
 outro.addEventListener("ended", function () {
+  $(".music").show();
   stopOutroVideo();
   $("#slide_outro").hide();
   playBackgroundHome();

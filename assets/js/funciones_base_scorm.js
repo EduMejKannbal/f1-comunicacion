@@ -60,7 +60,7 @@ function doStart() {
         progress: 1,
         lastSlide: 1,
         isCompleted: false,
-      },
+      }
     };
     save_Status();
     ctrl_AvGeneral();
