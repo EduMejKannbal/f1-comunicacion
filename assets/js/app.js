@@ -1433,24 +1433,13 @@ $(".btn_homeComenzar").click(function () {
   const nextID = parseInt(strID) + 1;
 
   if (nextID <= 2) {
-    // Transición para el texto
-    $(".mod_start_txt").fadeOut(150, function () {
-      $(this)
-        .attr("src", `assets/img/menu/txt_mod_menu_${nextID}.svg`)
-        .attr("id", `mod_start_txt_${nextID}`)
-        .fadeIn(150);
-    });
+    $("#mod_start_txt_1").fadeOut(150);
+    $("#mod_start_txt_2").delay(150).fadeIn(150);
     $("#btn_homeTerminos").fadeOut(150);
-
-    // Transición para el botón
-    $this.fadeOut(150, function () {
-      $(this)
-        .attr("src", `assets/img/icons/btn_${nextID}.png`)
-        .attr("id", `btn_homeComenzar_${nextID}`)
-        .fadeIn(150);
-    });
+    $("#btn_homeComenzar_1").fadeOut(150);
+    $("#btn_homeComenzar_2").delay(150).fadeIn(150);
   } else {
-    $("#mod_start").fadeOut(200); // Transición al cerrar
+    $("#mod_start").fadeOut(200);
   }
 });
 

@@ -244,6 +244,7 @@
 }
 
 .btn_trofeoModal {
+  cursor: pointer;
   width: 15%;
   height: auto;
   left: 0px;

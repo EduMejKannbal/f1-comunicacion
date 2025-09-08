@@ -5,14 +5,6 @@ $("#precache_mod_3").waitForImages({
     ctrl_slidesMod3();
     ctrl_avElem_chk(
       3,
-      "trofeoModal",
-      myAvance.ch3.trofeoModal,
-      $(".btn_trofeoModal").length + 1,
-      "myglow_img_white",
-      true
-    );
-    ctrl_avElem_chk(
-      3,
       "vidManEm",
       myAvance.ch3.vidManEm,
       $(".btn_vidManEm").length + 1,
@@ -103,13 +95,10 @@ function ctrl_slidesMod3() {
     );
     $prevBtn.show();
     // Mantener el botón interactivo, pero sin myglow_img_white si ya se vio
-    $(".btn_trofeoModal")
-      .css("pointer-events", "auto")
-      .addClass("elem_click_modal myglow_img_white")
-      .removeClass("w3-opacity");
+    $(".btn_trofeoModal").css("pointer-events", "auto");
     if (myAvance.ch3.trofeoModal >= 2) {
       $nextBtn.show();
-      $(".btn_trofeoModal").removeClass("myglow_img_white");
+      $(".btn_trofeoModal").removeClass("elem_click_modal myglow_img_white");
       if (myAvance.ch3.progress < 2) {
         myAvance.ch3.progress = 2; // Unlock Manejo efectivo
         ctrl_menuAccess();
@@ -256,13 +245,7 @@ function ctrl_avElem_chk(
     .removeClass(ptrAnimClass)
     .css({ "pointer-events": "none" })
     .addClass("w3-opacity");
-  if (ptrClass === "trofeoModal" && myAvance["ch" + ptrChptr][ptrClass] >= 2) {
-    // Para trofeoModal, mantener pointer-events: none cuando está completado
-    $(".btn_" + ptrClass)
-      .removeClass(ptrAnimClass + " elem_click_modal")
-      .css({ "pointer-events": "none" })
-      .addClass("w3-opacity");
-  } else if (
+  if (
     myAvance["ch" + ptrChptr][ptrClass] < ptrAvMax &&
     myAvance["ch" + ptrChptr][ptrClass] <= parseInt(ptrID)
   ) {
