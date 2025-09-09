@@ -902,21 +902,21 @@ function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
   );
 }
 
-function rotate(e) {
-  const cardItem = this.querySelector(".cardTest-item");
-  const halfHeight = cardItem.offsetHeight / 2;
-  cardItem.style.transform =
-    "rotateX(" +
-    -(e.offsetY - halfHeight) / 7 +
-    "deg) rotateY(" +
-    (e.offsetX - halfHeight) / 7 +
-    "deg)";
-}
+// function rotate(e) {
+//   const cardItem = this.querySelector(".cardTest-item");
+//   const halfHeight = cardItem.offsetHeight / 2;
+//   cardItem.style.transform =
+//     "rotateX(" +
+//     -(e.offsetY - halfHeight) / 7 +
+//     "deg) rotateY(" +
+//     (e.offsetX - halfHeight) / 7 +
+//     "deg)";
+// }
 
-function stopRotate() {
-  const cardItem = this.querySelector(".cardTest-item");
-  cardItem.style.transform = "rotate(0)";
-}
+// function stopRotate() {
+//   const cardItem = this.querySelector(".cardTest-item");
+//   cardItem.style.transform = "rotate(0)";
+// }
 
 // Funciones de soporte para el menú
 function stopPreviousAnimations($element) {
@@ -1134,7 +1134,7 @@ $("#btn_menu").click(function () {
 
   pauseAllAudio();
 
-  if (myAvance.flagMus === 1) {
+  if (myAvance.flagMus == 1) {
     setTimeout(() => {
       const menuAudio = document.getElementById("musModu_4");
       if (menuAudio) {

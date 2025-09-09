@@ -222,29 +222,29 @@ function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
   );
 }
 
-const cards = document.querySelectorAll(".cardTest");
-for (let i = 0; i < cards.length; i++) {
-  const card = cards[i];
-  card.addEventListener("mousemove", rotate);
-  card.addEventListener("mouseout", stopRotate);
-}
+// const cards = document.querySelectorAll(".cardTest");
+// for (let i = 0; i < cards.length; i++) {
+//   const card = cards[i];
+//   card.addEventListener("mousemove", rotate);
+//   card.addEventListener("mouseout", stopRotate);
+// }
 
-function rotate(e) {
-  const cardItem = this.querySelector(".cardTest-item");
-  const halfHeight = cardItem.offsetHeight / 2;
+// function rotate(e) {
+//   const cardItem = this.querySelector(".cardTest-item");
+//   const halfHeight = cardItem.offsetHeight / 2;
 
-  cardItem.style.transform =
-    "rotateX(" +
-    -(e.offsetY - halfHeight) / 7 +
-    "deg) rotateY(" +
-    (e.offsetX - halfHeight) / 7 +
-    "deg)";
-}
+//   cardItem.style.transform =
+//     "rotateX(" +
+//     -(e.offsetY - halfHeight) / 7 +
+//     "deg) rotateY(" +
+//     (e.offsetX - halfHeight) / 7 +
+//     "deg)";
+// }
 
-function stopRotate() {
-  const cardItem = this.querySelector(".cardTest-item");
-  cardItem.style.transform = "rotate(0)";
-}
+// function stopRotate() {
+//   const cardItem = this.querySelector(".cardTest-item");
+//   cardItem.style.transform = "rotate(0)";
+// }
 
 const $buttons = $(".btn_estilosComunicacion");
 const $container = $("#slide_module1_9");
