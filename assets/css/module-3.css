@@ -79,8 +79,8 @@
   width: 62%;
   height: 27%;
   background: rgba(255, 255, 255, 0.25);
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   left: 0px;
   top: 2%;
@@ -91,8 +91,8 @@
   width: 62%;
   height: 27%;
   background: rgb(5 5 5 / 51%);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   left: 0px;
   top: 2.5%;
@@ -230,15 +230,13 @@
 }
 
 #div-blured-mod3_4{
-  top: 70%;
-  left: 55%;
+  position: relative;
+  top: 60%;
+  left: 13%;
   width: 70vw;
-  height: 150vh;
+  height: 180vh;
   -webkit-transform: translate(-112%, -50%) rotate(-32deg);
   transform: translate(-112%, -50%) rotate(-32deg);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  background-color: rgba(0, 0, 0, 0.2);
   /* z-index: 1; */
   pointer-events: none;
 }
@@ -408,15 +406,13 @@
 }
 
 #div-blured-mod3_5{
+  position: relative;
   top: 70%;
-  left: 52%;
+  left: -2%;
   width: 70vw;
-  height: 150vh;
+  height: 180vh;
   -webkit-transform: translate(-112%, -50%) rotate(-29deg);
   transform: translate(-112%, -50%) rotate(-29deg);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  background-color: rgba(0, 0, 0, 0.2);
   /* z-index: 1; */
   pointer-events: none;
 }
@@ -480,8 +476,8 @@
   align-items: center;
   justify-content: space-evenly;
   background: rgb(20 19 19 / 72%);
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(10px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -555,15 +551,13 @@
 }
 
 #div-blured-mod3_9{
+  position: relative;
   top: 50%;
-  left: 50%;
+  left: 0%;
   width: 70vw;
-  height: 150vh;
+  height: 185vh;
   -webkit-transform: translate(-112%, -50%) rotate(-30deg);
   transform: translate(-112%, -50%) rotate(-30deg);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  background-color: rgba(0, 0, 0, 0.2);
   /* z-index: 1; */
   pointer-events: none;
 }
