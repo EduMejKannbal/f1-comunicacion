@@ -174,6 +174,7 @@ function ctrl_slidesMod2() {
     $nextBtn.hide();
     $(".music").addClass("hide");
     reproducirHasta("vid_module2_15", 8.99);
+    $("#aud_logro").get(0).play();
   } else if (currentSlide === 16) {
     $prevBtn.show();
     $nextBtn.hide();
@@ -236,7 +237,7 @@ $("#cls_2sarp_1").click(function () {
   var video = $("#vidSarp_1").get(0);
   video.pause();
   video.currentTime = 0;
-  restoreMusicAndIcon("1");
+  restoreMusicAndIcon("2");
 });
 
 $("#btn_start").click(function () {

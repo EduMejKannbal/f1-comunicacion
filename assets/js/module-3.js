@@ -299,7 +299,6 @@ $(".cls_trofeoModal").click(function () {
     // localStorage.setItem("myAvance", JSON.stringify(myAvance));
     console.log("Updated myAvance.ch3.trofeoModal to 2");
   }
-  restoreMusicAndIcon("3");
   ctrl_slidesMod3();
 });
 
@@ -333,7 +332,7 @@ $(".cls_vidManEm").click(function () {
   var video = $("#vidManEm_" + strID).get(0);
   video.pause();
   video.currentTime = 0;
-  restoreMusicAndIcon("1");
+  restoreMusicAndIcon("3");
 });
 
 // Eventos de impacto biológico
@@ -366,7 +365,7 @@ $(".cls_impactBio").click(function () {
   var video = $("#impactBio_" + strID).get(0);
   video.pause();
   video.currentTime = 0;
-  restoreMusicAndIcon("1");
+  restoreMusicAndIcon("3");
 });
 
 // Eventos de caracter

@@ -288,24 +288,7 @@ function playMusicaJuegos() {
       isAudioPlaying = false;
       $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
 
-      document.addEventListener(
-        "click",
-        function retryPlay() {
-          musicaJuegos
-            .play()
-            .then(() => {
-              isAudioPlaying = true;
-              $(".music")
-                .attr("src", "assets/img/icons/on.png")
-                .removeClass("hide");
-            })
-            .catch((err) =>
-              console.warn("Retry falló para musica_juegos:", err)
-            );
-          document.removeEventListener("click", retryPlay);
-        },
-        { once: true }
-      );
+      
     });
 }
 
