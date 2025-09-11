@@ -160,6 +160,7 @@ $("#module1_Next").click(() => {
 });
 $("#btn_mod_juego_1").click(function () {
   $("#mod_juego_1").fadeOut(150);
+  $(".modal-backdrop").fadeOut(150);
 });
 setupCarouselControls("test_1");
 $(".body-answers > div > div").click(function () {

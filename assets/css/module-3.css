@@ -34,6 +34,17 @@
   right: 29%;
 }
 
+#div-blured-mod3_2 {
+  position: relative;
+  top: 60%;
+  left: 13%;
+  width: 70vw;
+  height: 180vh;
+  -webkit-transform: translate(-98%, -40%) rotate(-27deg);
+  transform: translate(-98%, -40%) rotate(-27deg);
+  pointer-events: none;
+}
+
 #slide3_img2_1 {
   width: 64%;
   height: 100%;
@@ -46,7 +57,7 @@
 #slideM3_txt_1 {
   width: 31%;
   height: auto;
-  left: 2%;
+  left: 4%;
   top: 21%;
   z-index: 2;
 }
@@ -54,7 +65,7 @@
 #slideM3_txt_2 {
   width: 39%;
   height: auto;
-  left: 2%;
+  left: 4%;
   top: 28%;
   z-index: 2;
 }
@@ -62,7 +73,7 @@
 #slideM3_txt_3 {
   width: 37%;
   height: auto;
-  left: 2%;
+  left: 4%;
   top: 59%;
   z-index: 2;
 }
@@ -159,31 +170,31 @@
 
 #btn_emocion_1 {
   width: 16%;
-  left: 5%;
+  left: 4%;
   top: 45%;
 }
 
 #btn_emocion_2 {
   width: 14.7%;
-  left: 26%;
+  left: 24.5%;
   top: 42%;
 }
 
 #btn_emocion_3 {
   width: 15.4%;
-  left: 45%;
+  left: 43.5%;
   top: 31%;
 }
 
 #btn_emocion_4 {
   width: 14.7%;
-  left: 64%;
+  left: 62.5%;
   top: 41%;
 }
 
 #btn_emocion_5 {
   width: 16.2%;
-  left: 81%;
+  left: 80%;
   top: 45%;
 }
 
@@ -197,7 +208,7 @@
 #txt_emocion_2_1 {
   position: absolute;
   width: 21.7%;
-  left: 29%;
+  left: 32%;
   top: 78%;
 }
 
@@ -218,7 +229,7 @@
 #txt_emocion_5_1 {
   position: absolute;
   width: 77%;
-  left: 9%;
+  left: 10%;
   top: 78%;
 }
 
@@ -229,7 +240,7 @@
   display: none;
 }
 
-#div-blured-mod3_4{
+#div-blured-mod3_4 {
   position: relative;
   top: 60%;
   left: 13%;
@@ -334,7 +345,7 @@
 }
 
 #txt_emocion_6 {
-  right: 2%;
+  right: 9%;
   width: 77%;
   top: 15%;
   z-index: 2;
@@ -370,7 +381,7 @@
   width: 50%;
 }
 
-#btn_mod_juego_3{
+#btn_mod_juego_3 {
   left: 49%;
   margin: auto;
   bottom: 32%;
@@ -405,7 +416,7 @@
   text-align: center;
 }
 
-#div-blured-mod3_5{
+#div-blured-mod3_5 {
   position: relative;
   top: 70%;
   left: -2%;
@@ -550,7 +561,7 @@
   bottom: 17%;
 }
 
-#div-blured-mod3_9{
+#div-blured-mod3_9 {
   position: relative;
   top: 50%;
   left: 0%;
@@ -841,7 +852,33 @@
   height: auto;
 }
 
-@media (min-width: 1199px) and (max-width: 1290px) {}
+@media (min-width: 600px) and (max-width: 800px) {
+  #div-blured-mod3_2 {
+    -webkit-transform: translate(-93%, -40%) rotate(-27deg);
+    transform: translate(-93%, -40%) rotate(-27deg);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1150px) {
+  #div-blured-mod3_2 {
+    -webkit-transform: translate(-99%, -40%) rotate(-27deg);
+    transform: translate(-99%, -40%) rotate(-27deg);
+  }
+}
+
+@media (min-width: 1150px) and (max-width: 1290px) {
+  #div-blured-mod3_2 {
+    -webkit-transform: translate(-101%, -40%) rotate(-27deg);
+    transform: translate(-101%, -40%) rotate(-27deg);
+  }
+}
+
+@media (min-width: 1290px) and (max-width: 1360px) {
+  #div-blured-mod3_2 {
+    -webkit-transform: translate(-103%, -40%) rotate(-27deg);
+    transform: translate(-103%, -40%) rotate(-27deg);
+  }
+}
 
 @media (min-width: 1360px) {
   .vid_in_modal {
@@ -849,6 +886,11 @@
     height: 121%;
     top: -67px;
     left: -67px;
+  }
+
+  #div-blured-mod3_2 {
+    -webkit-transform: translate(-105%, -40%) rotate(-27deg);
+    transform: translate(-105%, -40%) rotate(-27deg);
   }
 }
 
@@ -859,28 +901,32 @@
     top: 74px;
     left: -72px;
   }
+
+  #div-blured-mod3_2 {
+    -webkit-transform: translate(-107%, -40%) rotate(-27deg);
+    transform: translate(-107%, -40%) rotate(-27deg);
+  }
 }
 
-@media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {}
+@media (min-width: 1532px) and (max-width: 1539px) and (max-height: 864px) {
+}
 
 @media (min-width: 1600px) {
+  #slideM3-title {
+    width: 80%;
+    height: auto;
+  }
+
+  #div-blured-mod3_2 {
+    -webkit-transform: translate(-107%, -40%) rotate(-27deg);
+    transform: translate(-107%, -40%) rotate(-27deg);
+  }
+
   .vid_in_modal {
     width: 114%;
     height: 121%;
     top: -53px;
     left: -79px;
-  }
-
-  #slideM3_txt_1 {
-    left: 1%;
-  }
-
-  #slideM3_txt_2 {
-    left: 1%;
-  }
-
-  #slideM3_txt_3 {
-    left: 1%;
   }
 
   .slideM3-plaqueta {
