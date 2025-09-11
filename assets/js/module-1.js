@@ -43,15 +43,15 @@ function ctrl_slidesMod1() {
   if (currentSlide === 1) {
     $prevBtn.hide();
     $nextBtn.hide();
-    
+
     const video = $("#vid_module1_1");
 
-    $("#slideM1_pista, #slideM1_title").hide(); 
+    $("#slideM1_pista, #slideM1_title").hide();
 
-    video.one('canplaythrough', function() {
-        $("#slideM1_pista, #slideM1_title").show();
-        reproducirHasta("vid_module1_1", 9.99);
-        autoNextSlide("module1", nSlides, ctrl_slidesMod1);
+    video.one("canplaythrough", function () {
+      $("#slideM1_pista, #slideM1_title").show();
+      reproducirHasta("vid_module1_1", 9.99);
+      autoNextSlide("module1", nSlides, ctrl_slidesMod1);
     });
   } else if (currentSlide === 2) {
     $prevBtn.hide();
@@ -223,170 +223,172 @@ function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
   );
 }
 
-// const cards = document.querySelectorAll(".cardTest");
-// for (let i = 0; i < cards.length; i++) {
-//   const card = cards[i];
-//   card.addEventListener("mousemove", rotate);
-//   card.addEventListener("mouseout", stopRotate);
-// }
-
-// function rotate(e) {
-//   const cardItem = this.querySelector(".cardTest-item");
-//   const halfHeight = cardItem.offsetHeight / 2;
-
-//   cardItem.style.transform =
-//     "rotateX(" +
-//     -(e.offsetY - halfHeight) / 7 +
-//     "deg) rotateY(" +
-//     (e.offsetX - halfHeight) / 7 +
-//     "deg)";
-// }
-
-// function stopRotate() {
-//   const cardItem = this.querySelector(".cardTest-item");
-//   cardItem.style.transform = "rotate(0)";
-// }
-
-
-
-// Manejar el hover
-// $buttons.hover(
-//   function () {
-//     var num = $(this).attr("id").split("_")[2];
-//     const $hoverImg = $(`#hov_estilosComunicacion_${num}`);
-
-//     const $audio = $(`#aud_menuOver`)[0];
-
-//     // Ocultar todas las imágenes y remover animaciones
-//     // $(".hov_estilosComunicacion").hide().removeClass("animated fadeInRight");
-//     // Mostrar la imagen correspondiente con animación
-//     $hoverImg.show().addClass("animated fadeInRight");
-//     // Efectos en botones
-//     $buttons.css("opacity", "0.5");
-//     $(this).css({ opacity: "1", transform: "scale(1.05)" });
-
-//     // Reproducir el audio
-//     if ($audio) {
-//       $audio.currentTime = 0;
-//       $audio.play();
-//     }
-//   },
-//   function () {
-//     const $audio = $(`#aud_menuOver`)[0];
-
-//     // Ocultar todas las imágenes y remover animaciones
-//     $(".hov_estilosComunicacion").hide().removeClass("animated fadeInRight");
-//     // Restaurar estilos de botones
-//     $buttons.css({ opacity: "1", transform: "scale(1)" });
-
-//     // Pausar el audio y reiniciar
-//     if ($audio) {
-//       $audio.pause();
-//       $audio.currentTime = 0;
-//     }
-//   }
-// );
-
-// $buttons.click(function () {
-//   $(".music").hide();
-//   strID = $(this).attr("id").split("_")[2];
-//   pauseMusicAndUpdateIcon();
-//   console.log("#mod_estilosComunicacion_" + strID);
-//   $("#mod_estilosComunicacion_" + strID).show();
-//   $("#vid_estilosComunicacion_" + strID)
-//     .get(0)
-//     .play();
-// });
-
 $("#hotspot_1").on({
   mouseenter: function () {
-    $("#hov_estilosComunicacion_1").show().addClass("animated fadeInRight");
-    $(".btn_estilosComunicacion").css("opacity", "0.5");
-    $("#btn_estilosComunicacion_1").css({ opacity: "1", transform: "scale(1.05)" });
-    const audio = $("#aud_menuOver")[0];
-    if (audio) { audio.currentTime = 0; audio.play(); }
+    if (1 <= myAvance.ch1.estilosComunicacion) {
+      $("#hov_estilosComunicacion_1").show().addClass("animated fadeInRight");
+      $(".btn_estilosComunicacion").css("opacity", "0.5");
+      $("#btn_estilosComunicacion_1").css({
+        opacity: "1",
+        transform: "scale(1.05)",
+      });
+      const audio = $("#aud_menuOver")[0];
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    }
   },
   mouseleave: function () {
-    $("#hov_estilosComunicacion_1").hide().removeClass("animated fadeInRight");
-    $(".btn_estilosComunicacion").css({ opacity: "1", transform: "scale(1)" });
-    const audio = $("#aud_menuOver")[0];
-    if (audio) { audio.pause(); audio.currentTime = 0; }
+    if (1 <= myAvance.ch1.estilosComunicacion) {
+      $("#hov_estilosComunicacion_1")
+        .hide()
+        .removeClass("animated fadeInRight");
+      $(".btn_estilosComunicacion").css({
+        opacity: "1",
+        transform: "scale(1)",
+      });
+      const audio = $("#aud_menuOver")[0];
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
   },
   click: function () {
-    $(".music").hide();
-    pauseMusicAndUpdateIcon();
-    $("#mod_estilosComunicacion_1").show();
-    $("#vid_estilosComunicacion_1").get(0).play();
-  }
+    if (1 <= myAvance.ch1.estilosComunicacion) {
+      $(".music").hide();
+      pauseMusicAndUpdateIcon();
+      $("#mod_estilosComunicacion_1").show();
+      $("#vid_estilosComunicacion_1").get(0).play();
+    }
+  },
 });
 
-// Lógica para Hotspot 2
 $("#hotspot_2").on({
   mouseenter: function () {
-    $("#hov_estilosComunicacion_2").show().addClass("animated fadeInRight");
-    $(".btn_estilosComunicacion").css("opacity", "0.5");
-    $("#btn_estilosComunicacion_2").css({ opacity: "1", transform: "scale(1.05)" });
-    const audio = $("#aud_menuOver")[0];
-    if (audio) { audio.currentTime = 0; audio.play(); }
+    if (2 <= myAvance.ch1.estilosComunicacion) {
+      $("#hov_estilosComunicacion_2").show().addClass("animated fadeInRight");
+      $(".btn_estilosComunicacion").css("opacity", "0.5");
+      $("#btn_estilosComunicacion_2").css({
+        opacity: "1",
+        transform: "scale(1.05)",
+      });
+      const audio = $("#aud_menuOver")[0];
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    }
   },
   mouseleave: function () {
-    $("#hov_estilosComunicacion_2").hide().removeClass("animated fadeInRight");
-    $(".btn_estilosComunicacion").css({ opacity: "1", transform: "scale(1)" });
-    const audio = $("#aud_menuOver")[0];
-    if (audio) { audio.pause(); audio.currentTime = 0; }
+    if (2 <= myAvance.ch1.estilosComunicacion) {
+      $("#hov_estilosComunicacion_2")
+        .hide()
+        .removeClass("animated fadeInRight");
+      $(".btn_estilosComunicacion").css({
+        opacity: "1",
+        transform: "scale(1)",
+      });
+      const audio = $("#aud_menuOver")[0];
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
   },
   click: function () {
-    $(".music").hide();
-    pauseMusicAndUpdateIcon();
-    $("#mod_estilosComunicacion_2").show();
-    $("#vid_estilosComunicacion_2").get(0).play();
-  }
+    if (2 <= myAvance.ch1.estilosComunicacion) {
+      $(".music").hide();
+      pauseMusicAndUpdateIcon();
+      $("#mod_estilosComunicacion_2").show();
+      $("#vid_estilosComunicacion_2").get(0).play();
+    }
+  },
 });
 
-// Lógica para Hotspot 3
 $("#hotspot_3").on({
   mouseenter: function () {
-    $("#hov_estilosComunicacion_3").show().addClass("animated fadeInRight");
-    $(".btn_estilosComunicacion").css("opacity", "0.5");
-    $("#btn_estilosComunicacion_3").css({ opacity: "1", transform: "scale(1.05)" });
-    const audio = $("#aud_menuOver")[0];
-    if (audio) { audio.currentTime = 0; audio.play(); }
+    if (3 <= myAvance.ch1.estilosComunicacion) {
+      $("#hov_estilosComunicacion_3").show().addClass("animated fadeInRight");
+      $(".btn_estilosComunicacion").css("opacity", "0.5");
+      $("#btn_estilosComunicacion_3").css({
+        opacity: "1",
+        transform: "scale(1.05)",
+      });
+      const audio = $("#aud_menuOver")[0];
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    }
   },
   mouseleave: function () {
-    $("#hov_estilosComunicacion_3").hide().removeClass("animated fadeInRight");
-    $(".btn_estilosComunicacion").css({ opacity: "1", transform: "scale(1)" });
-    const audio = $("#aud_menuOver")[0];
-    if (audio) { audio.pause(); audio.currentTime = 0; }
+    if (3 <= myAvance.ch1.estilosComunicacion) {
+      $("#hov_estilosComunicacion_3")
+        .hide()
+        .removeClass("animated fadeInRight");
+      $(".btn_estilosComunicacion").css({
+        opacity: "1",
+        transform: "scale(1)",
+      });
+      const audio = $("#aud_menuOver")[0];
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
   },
   click: function () {
-    $(".music").hide();
-    pauseMusicAndUpdateIcon();
-    $("#mod_estilosComunicacion_3").show();
-    $("#vid_estilosComunicacion_3").get(0).play();
-  }
+    if (3 <= myAvance.ch1.estilosComunicacion) {
+      $(".music").hide();
+      pauseMusicAndUpdateIcon();
+      $("#mod_estilosComunicacion_3").show();
+      $("#vid_estilosComunicacion_3").get(0).play();
+    }
+  },
 });
 
-// Lógica para Hotspot 4
 $("#hotspot_4").on({
   mouseenter: function () {
-    $("#hov_estilosComunicacion_4").show().addClass("animated fadeInRight");
-    $(".btn_estilosComunicacion").css("opacity", "0.5");
-    $("#btn_estilosComunicacion_4").css({ opacity: "1", transform: "scale(1.05)" });
-    const audio = $("#aud_menuOver")[0];
-    if (audio) { audio.currentTime = 0; audio.play(); }
+    if (4 <= myAvance.ch1.estilosComunicacion) {
+      $("#hov_estilosComunicacion_4").show().addClass("animated fadeInRight");
+      $(".btn_estilosComunicacion").css("opacity", "0.5");
+      $("#btn_estilosComunicacion_4").css({
+        opacity: "1",
+        transform: "scale(1.05)",
+      });
+      const audio = $("#aud_menuOver")[0];
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    }
   },
   mouseleave: function () {
-    $("#hov_estilosComunicacion_4").hide().removeClass("animated fadeInRight");
-    $(".btn_estilosComunicacion").css({ opacity: "1", transform: "scale(1)" });
-    const audio = $("#aud_menuOver")[0];
-    if (audio) { audio.pause(); audio.currentTime = 0; }
+    if (4 <= myAvance.ch1.estilosComunicacion) {
+      $("#hov_estilosComunicacion_4")
+        .hide()
+        .removeClass("animated fadeInRight");
+      $(".btn_estilosComunicacion").css({
+        opacity: "1",
+        transform: "scale(1)",
+      });
+      const audio = $("#aud_menuOver")[0];
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
   },
   click: function () {
-    $(".music").hide();
-    pauseMusicAndUpdateIcon();
-    $("#mod_estilosComunicacion_4").show();
-    $("#vid_estilosComunicacion_4").get(0).play();
-  }
+    if (4 <= myAvance.ch1.estilosComunicacion) {
+      $(".music").hide();
+      pauseMusicAndUpdateIcon();
+      $("#mod_estilosComunicacion_4").show();
+      $("#vid_estilosComunicacion_4").get(0).play();
+    }
+  },
 });
 
 $(".cls_estilosComunicacion").click(function () {
@@ -449,7 +451,7 @@ $("#btn_finmod1").click(function () {
   pauseAllAudio();
   $(".music").show();
   $(".music").removeClass("hide");
-  
+
   resetFondo(1, 2);
   $("#slide_index_1").show();
   $("#carga_materia").hide().empty();
