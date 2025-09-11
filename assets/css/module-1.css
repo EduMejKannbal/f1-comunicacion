@@ -736,6 +736,41 @@
   width: 40%;
 }
 
+.hotspot {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 10;
+  cursor: pointer;
+}
+
+#hotspot_1 {
+  left: 12%;
+  top: 15%;
+  width: 72%;
+  height: 19%;
+}
+
+#hotspot_2 {
+  left: 9.5%;
+  top: 34.5%;
+  width: 71%;
+  height: 17%;
+}
+
+#hotspot_3 {
+  top: 51.7%;
+  left: 6.5%;
+  width: 70%;
+  height: 17.5%;
+}
+
+#hotspot_4 {
+  left: 3%;
+  top: 70.5%;
+  width: 73%;
+  height: 18.5%;
+}
+
 .btn_estilosComunicacion {
   width: 75%;
   height: auto;
