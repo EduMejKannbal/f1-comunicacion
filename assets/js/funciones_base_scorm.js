@@ -130,8 +130,8 @@ function load_strAvance() {
   }
 
   $(".music").addClass("hide").attr("src', 'assets/img/icons/icon.png");
-  if (myAvance.flagMus) {
-    if (myAvance.flagMus === 0) {
+  if (flagMus) {
+    if (flagMus === 0) {
       $(".music").attr("src", "assets/img/icons/off.png");
     } else {
       $(".music").attr("src", "assets/img/icons/on.png");

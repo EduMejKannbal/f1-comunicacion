@@ -36,7 +36,7 @@ function ctrl_slidesMod2() {
   console.log("#slide_module2_" + currentSlide);
   $prevBtn.show();
   $nextBtn.show();
-  $(".music").show();
+  $(".music").removeClass("hide");
 
   if (JUEGOS_AUDIO_SLIDES[2].includes(currentSlide)) {
     isPlaying = true;
@@ -95,7 +95,7 @@ function ctrl_slidesMod2() {
   } else if (currentSlide === 4) {
     $prevBtn.hide();
     $nextBtn.hide();
-    $(".music").hide();
+    $(".music").addClass("hide");
     reproducirHasta("vid_module2_4", 8.99);
     $("#aud_logro").get(0).play();
     if (myAvance.ch2.logro_traje === 0) {
@@ -120,7 +120,7 @@ function ctrl_slidesMod2() {
     reproducirHasta("vid_module2_6", 9);
     $prevBtn.hide();
     $nextBtn.hide();
-    $(".music").hide();
+    $(".music").addClass("hide");
     $("#aud_logro").get(0).play();
     if (myAvance.ch2.logro_guantes === 0) {
       myAvance.ch2.logro_guantes = 1;
@@ -155,7 +155,7 @@ function ctrl_slidesMod2() {
   } else if (currentSlide === 13) {
     $prevBtn.hide();
     $nextBtn.hide();
-    $(".music").hide();
+    $(".music").addClass("hide");
     reproducirHasta("vid_module2_13", 4.99);
     $("#aud_logro").get(0).play();
     if (myAvance.ch2.logro_zapatos === 0) {
@@ -172,7 +172,7 @@ function ctrl_slidesMod2() {
   } else if (currentSlide === 15) {
     $prevBtn.show();
     $nextBtn.hide();
-    $(".music").hide();
+    $(".music").addClass("hide");
     reproducirHasta("vid_module2_15", 8.99);
   } else if (currentSlide === 16) {
     $prevBtn.show();
@@ -223,14 +223,15 @@ $(".cls_comic").click(function () {
 });
 
 $("#slide3_play").click(function () {
-  $(".music").hide();
-  pauseMusicAndUpdateIcon();
+  saveFlagMus();
+  pauseAllAudio();
+  $(".music").addClass("hide");
   $("#mod_2sarp_1").show();
   $("#vidSarp_1").get(0).play();
 });
 
 $("#cls_2sarp_1").click(function () {
-  $(".music").show();
+  $(".music").removeClass("hide");
   $("#mod_2sarp_1").hide();
   var video = $("#vidSarp_1").get(0);
   video.pause();
@@ -441,7 +442,7 @@ $("#btn_finmod2").click(function () {
   myAvance.ch2.isCompleted = true;
   resetModuleProgress("2");
   pauseAllAudio();
-  $(".music").show();
+  $(".music").removeClass("hide");
   $(".music").removeClass("hide");
   resetFondo(2, 2);
   $("#slide_index_1").show();

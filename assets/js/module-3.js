@@ -58,7 +58,7 @@ function ctrl_slidesMod3() {
   console.log("#slide_module3_" + currentSlide);
   $prevBtn.show();
   $nextBtn.show();
-  $(".music").show();
+  $(".music").removeClass("hide");
 
   if (JUEGOS_AUDIO_SLIDES[3].includes(currentSlide)) {
     isPlaying = true;
@@ -136,10 +136,14 @@ function ctrl_slidesMod3() {
       }
     }
   } else if (currentSlide === 7) {
+    $(".music").addClass("hide");
     reproducirHasta("vid_module3_7", 4.99);
+    $("#aud_logro").get(0).play();
     $prevBtn.hide();
     $nextBtn.hide();
-    $(".music").hide();
+    if (myAvance.ch3.logro_llantas2 === 0) {
+      myAvance.ch3.logro_llantas2 = 1;
+    }
   } else if (currentSlide === 8) {
     $prevBtn.show();
     if (myAvance.ch3.caracter < 2) {
@@ -160,13 +164,13 @@ function ctrl_slidesMod3() {
       }
     }
   } else if (currentSlide === 10) {
+    $(".music").addClass("hide");
     reproducirHasta("vid_module3_10", 4.99);
+    $("#aud_logro").get(0).play();
     $prevBtn.hide();
     $nextBtn.hide();
-    $(".music").hide();
-    $("#aud_logro").get(0).play();
-    if (myAvance.ch3.logro_llantas2 === 0) {
-      myAvance.ch3.logro_llantas2 = 1;
+    if (myAvance.ch3.logro_volante === 0) {
+      myAvance.ch3.logro_volante = 1;
     }
   } else if (currentSlide === 11) {
     reproducirHasta("vid_module3_11", 4.99);
@@ -185,22 +189,21 @@ function ctrl_slidesMod3() {
       }
     }
   } else if (currentSlide === 12) {
+    $(".music").addClass("hide");
+    $("#aud_logro").get(0).play();
     reproducirHasta("vid_module3_12", 4.99);
     $prevBtn.hide();
     $nextBtn.hide();
-    $(".music").hide();
-    $("#aud_logro").get(0).play();
-    if (myAvance.ch3.logro_volante === 0) {
-      myAvance.ch3.logro_volante = 1;
+    if (myAvance.ch3.trofeo_3 === 0) {
+      myAvance.ch3.trofeo_3 = 1;
     }
   } else if (currentSlide === 13) {
     $prevBtn.show();
     $nextBtn.hide();
     reproducirHasta("vid_module3_13", 8.99);
-    $("#aud_logro").get(0).play();
   } else if (currentSlide === 14) {
     $("#vid_outro").play();
-    $(".music").hide();
+    $(".music").addClass("hide");
   } else if (currentSlide === totalSlides) {
     $prevBtn.show();
     $nextBtn.hide();
@@ -302,9 +305,10 @@ $(".cls_trofeoModal").click(function () {
 
 // Eventos de video manejo emocional
 $(".btn_vidManEm").click(function () {
-  $(".music").hide();
+  saveFlagMus();
+  pauseAllAudio();
+  $(".music").addClass("hide");
   strID = $(this).attr("id").split("_")[2];
-  pauseMusicAndUpdateIcon();
   $("#mod_vidManEm_" + strID).show();
   $("#vidManEm_" + strID)
     .get(0)
@@ -312,7 +316,7 @@ $(".btn_vidManEm").click(function () {
 });
 
 $(".cls_vidManEm").click(function () {
-  $(".music").show();
+  $(".music").removeClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_vidManEm_" + strID).hide();
   if (strID >= myAvance.ch3.vidManEm) {
@@ -334,9 +338,10 @@ $(".cls_vidManEm").click(function () {
 
 // Eventos de impacto biológico
 $(".btn_impactBio").click(function () {
-  $(".music").hide();
+  saveFlagMus();
+  pauseAllAudio();
+  $(".music").addClass("hide");
   strID = $(this).attr("id").split("_")[2];
-  pauseMusicAndUpdateIcon();
   $("#mod_impactBio_" + strID).show();
   $("#impactBio_" + strID)
     .get(0)
@@ -344,7 +349,7 @@ $(".btn_impactBio").click(function () {
 });
 
 $(".cls_impactBio").click(function () {
-  $(".music").show();
+  $(".music").removeClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_impactBio_" + strID).hide();
   if (strID >= myAvance.ch3.impactBio) {
@@ -366,9 +371,10 @@ $(".cls_impactBio").click(function () {
 
 // Eventos de caracter
 $(".btn_caracter").click(function () {
-  $(".music").hide();
+  saveFlagMus();
+  pauseAllAudio();
+  $(".music").addClass("hide");
   strID = $(this).attr("id").split("_")[2];
-  pauseMusicAndUpdateIcon();
   $("#mod_caracter_" + strID).show();
   $("#caracter_" + strID)
     .get(0)
@@ -376,7 +382,7 @@ $(".btn_caracter").click(function () {
 });
 
 $(".cls_caracter").click(function () {
-  $(".music").show();
+  $(".music").removeClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_caracter_" + strID).hide();
   if (strID >= myAvance.ch3.caracter) {
@@ -393,14 +399,15 @@ $(".cls_caracter").click(function () {
   var video = $("#caracter_" + strID).get(0);
   video.pause();
   video.currentTime = 0;
-  restoreMusicAndIcon("1");
+  restoreMusicAndIcon("3");
 });
 
 // Eventos de video temporal
 $(".btn_vidTemp").click(function () {
-  $(".music").hide();
+  saveFlagMus();
+  pauseAllAudio();
+  $(".music").addClass("hide");
   strID = $(this).attr("id").split("_")[2];
-  pauseMusicAndUpdateIcon();
   $("#mod_vidTemp_" + strID).show();
   $("#vidTemp_" + strID)
     .get(0)
@@ -408,7 +415,7 @@ $(".btn_vidTemp").click(function () {
 });
 
 $(".cls_vidTemp").click(function () {
-  $(".music").show();
+  $(".music").removeClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_vidTemp_" + strID).hide();
   if (strID >= myAvance.ch3.vidTemp) {
@@ -425,7 +432,7 @@ $(".cls_vidTemp").click(function () {
   var video = $("#vidTemp_" + strID).get(0);
   video.pause();
   video.currentTime = 0;
-  restoreMusicAndIcon("1");
+  restoreMusicAndIcon("3");
 });
 
 // Botones de finalización
@@ -450,7 +457,7 @@ $("#btn_finmod3").click(function () {
   myAvance.ch3.isCompleted = true;
   resetModuleProgress("3");
   pauseAllAudio();
-  $(".music").show();
+  $(".music").removeClass("hide");
   $(".music").removeClass("hide");
   if (myAvance.ganador !== null) {
     $("#slide_ganador_1").show();
@@ -496,7 +503,7 @@ $(".elem_click").click(function () {
 
 // Juego
 $("#slideM3-9-btn").click(function () {
-  if (myAvance.flagMus === 1) {
+  if (flagMus === 1) {
     playMusicaJuegos();
   }
 

@@ -84,7 +84,6 @@ let myAvance = {
     lastSlide: 1,
     isCompleted: false,
   },
-  flagMus: 1,
 };
 let nSlides = {
   numSlides: 1,
@@ -99,6 +98,7 @@ let flagVoice = 1;
 let numAudio = 0;
 let flagLocution = 1;
 let swiperInstance;
+let flagMus = 1;
 let prevFlagMus;
 let selections = {
   pantera: 0,
@@ -138,7 +138,7 @@ function resetModuleProgress(moduleId) {
 // Funciones de control de audio
 function playModuleAudio(moduleId) {
   console.log(
-    `playModuleAudio called with moduleId: ${moduleId}, flagMus: ${myAvance.flagMus}, isAudioPlaying: ${isAudioPlaying}`
+    `playModuleAudio called with moduleId: ${moduleId}, flagMus: ${flagMus}, isAudioPlaying: ${isAudioPlaying}`
   );
   let audioId =
     moduleId && moduleId !== "0" ? `musModu_${moduleId}` : `musModu_0`;
@@ -158,7 +158,7 @@ function playModuleAudio(moduleId) {
   if (isPlaying) {
     playMusicaJuegos();
   } else {
-    if (audio && myAvance.flagMus === 1) {
+    if (audio && flagMus === 1) {
       audio.loop = true;
       audio.volume = 0.3;
       audio.muted = false;
@@ -207,7 +207,7 @@ function playModuleAudio(moduleId) {
             );
           });
       }
-    } else if (myAvance.flagMus === 0) {
+    } else if (flagMus === 0) {
       if (audio) {
         audio.loop = true;
         audio.volume = 0.3;
@@ -258,19 +258,17 @@ function unMuteMe(e) {
 }
 
 function saveFlagMus() {
-  prevFlagMus = myAvance.flagMus;
+  prevFlagMus = flagMus;
 }
 
 function pauseMusicaJuegos() {
-  if (!isPlaying) {
-    musicaJuegos.muted = true;
-    musicaJuegos.currentTime = 0;
-    musicaJuegos.pause();
-  }
+  musicaJuegos.muted = true;
+  musicaJuegos.currentTime = 0;
+  musicaJuegos.pause();
 }
 
 function playMusicaJuegos() {
-  if (myAvance.flagMus === 0) {
+  if (flagMus === 0) {
     return;
   }
 
@@ -318,6 +316,23 @@ function pauseAndResetAllVideo() {
   });
 }
 
+function muteLocutions(silenciar) {
+  const locutionAudios = document.querySelectorAll("audio.locution");
+  locutionAudios.forEach((audio) => {
+    if (silenciar) {
+      if (audio && !audio.paused && !audio.muted) {
+        audio.muted = true;
+        $(audio).attr("data-silenciado-por-menu", "true");
+      }
+    } else {
+      if (audio && $(audio).attr("data-silenciado-por-menu") === "true") {
+        audio.muted = false;
+        $(audio).removeAttr("data-silenciado-por-menu");
+      }
+    }
+  });
+}
+
 function manageSlideAudio(moduleId, currentSlide) {
   const $musicButton = $(".music");
   const isNoMusicSlide = NO_MUSIC_SLIDES[moduleId]?.includes(currentSlide);
@@ -345,7 +360,7 @@ function manageSlideAudio(moduleId, currentSlide) {
 
   pauseAllAudio();
 
-  if (myAvance.flagMus === 1 && targetAudioId) {
+  if (flagMus === 1 && targetAudioId) {
     const audioToPlay = document.getElementById(targetAudioId);
     if (audioToPlay) {
       if (targetAudioId === "musica_juegos") {
@@ -361,15 +376,13 @@ function pauseMusicAndUpdateIcon() {
   saveFlagMus();
   pauseAllAudio();
   $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
-  myAvance = { ...myAvance, flagMus: 0 };
-  save_Status();
+  flagMus = 0;
   // localStorage.setItem("flagMus", flagMus);
 }
 
 function restoreMusicAndIcon(moduleId) {
   if (prevFlagMus === 1 && !isAudioPlaying && currentAudio) {
-    myAvance = { ...myAvance, flagMus: 1 };
-    save_Status();
+    flagMus = 1;
     // localStorage.setItem("flagMus", flagMus);
     unMuteMe(currentAudio);
     currentAudio.volume = 0.3;
@@ -380,7 +393,7 @@ function restoreMusicAndIcon(moduleId) {
         $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
       })
       .catch((err) => console.warn("Error restoring audio:", err));
-  } else if (myAvance.flagMus === 1) {
+  } else if (flagMus === 1) {
     playModuleAudio(moduleId);
   }
 }
@@ -469,6 +482,7 @@ function stopSplashVideo() {
 
 function playOutroVideo() {
   if (outro) {
+    $(".music").addClass("hide");
     outro.volume = 0.3;
     outro
       .play()
@@ -1040,7 +1054,7 @@ video.addEventListener("ended", function () {
   playModuleAudio(null);
 });
 outro.addEventListener("ended", function () {
-  $(".music").show();
+  $(".music").removeClass("hide");
   stopOutroVideo();
   $("#slide_outro").hide();
   playBackgroundHome();
@@ -1070,29 +1084,34 @@ $("#btn_salir").click(function () {
 });
 
 $(".music").click(function () {
-  if (myAvance.flagMus === 0) {
-    myAvance = { ...myAvance, flagMus: 1 };
-    save_Status();
-    // localStorage.setItem("flagMus", flagMus);
+  if (flagMus === 0) {
+    flagMus = 1;
     $(".music").attr("src", "assets/img/icons/on.png");
-    if (currentAudio) {
-      unMuteMe(currentAudio);
-      currentAudio.volume = 0.3;
-      currentAudio
-        .play()
-        .then(() => {
-          isAudioPlaying = true;
-          console.log("Audio resumed after unmute");
-        })
-        .catch((err) => console.warn("Error resuming audio:", err));
+
+    const currentModuleId = strID;
+    let currentSlideNum = 1;
+
+    if (currentModuleId) {
+      switch (currentModuleId) {
+        case "1":
+          currentSlideNum = nSlides.numSlides;
+          break;
+        case "2":
+          currentSlideNum = nSlides.numSlides_2;
+          break;
+        case "3":
+          currentSlideNum = nSlides.numSlides_3;
+          break;
+        default:
+          playModuleAudio(null);
+          return;
+      }
+      manageSlideAudio(parseInt(currentModuleId), currentSlideNum);
     } else {
-      const moduleId = strID || null;
-      playModuleAudio(moduleId);
+      playModuleAudio(null);
     }
   } else {
-    myAvance = { ...myAvance, flagMus: 0 };
-    save_Status();
-    // localStorage.setItem("flagMus", flagMus);
+    flagMus = 0;
     $(".music").attr("src", "assets/img/icons/off.png");
     if (currentAudio) {
       muteMe(currentAudio);
@@ -1108,8 +1127,10 @@ $(".btn_module").click(function () {
   $(".slide_index,.slide_portada").hide();
   $("#carga_materia").show();
   $("#carga_materia").load(`module_${strID}.html`, function () {
-    playModuleAudio(strID);
-    restoreMusicAndIcon(strID);
+    if (flagMus === 1) {
+      playModuleAudio(strID);
+      restoreMusicAndIcon(strID);
+    }
     bindClickEffect();
     if (strID === "1") {
       nSlides.numSlides = 1;
@@ -1126,36 +1147,28 @@ $(".btn_module").click(function () {
 
 $("#btn_menu").click(function () {
   menuIsOpen = true;
-  resetLocution();
   saveFlagMus();
   $("#slide_menu_1").show();
   $("#slide_trofeo_1").hide();
   ctrl_menuAccess();
-
+  $(".music").removeClass("hide");
   pauseAllAudio();
+  muteLocutions(true);
 
-  if (myAvance.flagMus == 1) {
-    setTimeout(() => {
-      const menuAudio = document.getElementById("musModu_4");
-      if (menuAudio) {
-        menuAudio.loop = true;
-        menuAudio.volume = 0.3;
-        menuAudio.muted = false;
-        menuAudio
-          .play()
-          .then(() => {
-            currentAudio = menuAudio;
-            isAudioPlaying = true;
-            $(".music").attr("src", "assets/img/icons/on.png");
-          })
-          .catch((err) => {
-            // Error manejado silenciosamente
-          });
-      }
-    }, 100);
-  } else {
-    currentAudio = document.getElementById("musModu_4");
-    isAudioPlaying = false;
+  if (flagMus == 1) {
+    const menuAudio = document.getElementById("musModu_4");
+    if (menuAudio) {
+      menuAudio.loop = true;
+      menuAudio.volume = 0.3;
+      menuAudio.muted = false;
+      menuAudio
+        .play()
+        .catch((e) =>
+          console.warn("La reproducción del audio del menú falló", e)
+        );
+      currentAudio = menuAudio;
+      isAudioPlaying = true;
+    }
   }
 });
 
@@ -1205,13 +1218,26 @@ $("#cls_menu").click(function () {
   menuIsOpen = false;
   $("#slide_menu_1").fadeOut();
   pauseAllAudio();
-  playModuleAudio(null);
+  muteLocutions(false);
 
-  if (myAvance.flagMus === 1) {
-    $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
+  let currentSlide = 1;
+  if (strID) {
+    switch (strID) {
+      case "1":
+        currentSlide = nSlides.numSlides;
+        break;
+      case "2":
+        currentSlide = nSlides.numSlides_2;
+        break;
+      case "3":
+        currentSlide = nSlides.numSlides_3;
+        break;
+    }
   } else {
-    $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+    playModuleAudio(null);
+    return;
   }
+  manageSlideAudio(strID, currentSlide);
 });
 
 $(".btn_terminos").each(function () {
@@ -1444,7 +1470,7 @@ $(".btn_homeComenzar").click(function () {
 });
 
 $("#btn_sobreMi_1").click(function () {
-  $(".music").hide();
+  $(".music").addClass("hide");
   pauseAllAudio();
   $("#mod_BienvVid_1").show();
   $(".vid_in_modal").css("pointer-events", "auto");
@@ -1454,7 +1480,7 @@ $("#btn_sobreMi_1").click(function () {
 });
 
 $("#cls_BienvVid_1").click(function () {
-  $(".music").show();
+  $(".music").removeClass("hide");
   $("#mod_BienvVid_1").hide();
   $(".vid_in_modal").css("pointer-events", "none");
   $("#BienvVid_1").css("pointer-events", "none");
@@ -1494,23 +1520,56 @@ $("#btn_trofeo").click(function () {
     trophyVideo.currentTime = 0;
     trophyVideo.play();
   }
+
+  saveFlagMus();
+  $(".music").removeClass("hide");
+
   pauseAllAudio();
+  muteLocutions(true);
+
   mostrar_trofeos();
   mostrar_logros();
   $("#slide_trofeo_1").show();
-  setTimeout(() => {
-    playModuleAudio(4);
-    restoreMusicAndIcon();
-  }, 100);
+
+  if (flagMus == 1) {
+    const trophyAudio = document.getElementById("musModu_4");
+    if (trophyAudio) {
+      trophyAudio.loop = true;
+      trophyAudio.volume = 0.3;
+      trophyAudio.muted = false;
+      trophyAudio
+        .play()
+        .catch((e) =>
+          console.warn("La reproducción del audio de trofeos falló", e)
+        );
+      currentAudio = trophyAudio;
+      isAudioPlaying = true;
+    }
+  }
 });
 
 $("#cls_trofeo_1").click(function () {
   pauseAllAudio();
   $("#slide_trofeo_1").hide();
-  setTimeout(() => {
+  muteLocutions(false);
+  let currentSlide = 1;
+  if (strID) {
+    switch (strID) {
+      case "1":
+        currentSlide = nSlides.numSlides;
+        break;
+      case "2":
+        currentSlide = nSlides.numSlides_2;
+        break;
+      case "3":
+        currentSlide = nSlides.numSlides_3;
+        break;
+    }
+  } else {
     playModuleAudio(null);
-    restoreMusicAndIcon(null);
-  }, 100);
+    return;
+  }
+  manageSlideAudio(strID, currentSlide);
 });
 
 $("#cls_ganador_1").click(() => {
