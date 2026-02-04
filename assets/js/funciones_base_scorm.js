@@ -6,6 +6,7 @@ var strAvance = null,
   user_name = null;
 
 function doStart() {
+  localStorage.clear();
   console.log("entra doStart");
   startTimeStamp = new Date();
   ScormProcessInitialize();
@@ -60,7 +61,7 @@ function doStart() {
         progress: 1,
         lastSlide: 1,
         isCompleted: false,
-      }
+      },
     };
     save_Status();
     ctrl_AvGeneral();
@@ -93,115 +94,6 @@ function load_strAvance() {
     try {
       myAvance = JSON.parse(strAvance);
       console.log("Progreso cargado y parseado:", myAvance);
-      if (myAvance.testResults) {
-        testResults = myAvance.testResults;
-        userSelections = myAvance.userSelections;
-        testCompleted = myAvance.testCompleted;
-        selections = {
-          pantera: Object.values(userSelections).filter(
-            (val) => val === "pantera"
-          ).length,
-          pavorreal: Object.values(userSelections).filter(
-            (val) => val === "pavorreal"
-          ).length,
-          delfin: Object.values(userSelections).filter(
-            (val) => val === "delfin"
-          ).length,
-          buho: Object.values(userSelections).filter((val) => val === "buho")
-            .length,
-        };
-      }
-
-      if (myAvance.avModulos == 4) {
-        $("#btn_salir").css({ display: "block", "pointer-events": "auto" });
-      } else {
-        $("#btn_salir").css({ display: "none", "pointer-events": "none" });
-      }
-
-      $(".music").addClass("hide").attr("src', 'assets/img/icons/icon.png");
-      if (myAvance.flagMus) {
-        if (myAvance.flagMus === 0) {
-          $(".music").attr("src", "assets/img/icons/off.png");
-        } else {
-          $(".music").attr("src", "assets/img/icons/on.png");
-        }
-      }
-
-      gsap.registerPlugin(
-        Flip,
-        ScrollTrigger,
-        Observer,
-        ScrollToPlugin,
-        Draggable,
-        MotionPathPlugin,
-        EaselPlugin,
-        PixiPlugin,
-        TextPlugin,
-        RoughEase,
-        ExpoScaleEase,
-        SlowMo,
-        CustomEase
-      );
-
-      const cards = document.querySelectorAll(".cardTest");
-      for (let i = 0; i < cards.length; i++) {
-        const card = cards[i];
-        card.addEventListener("mousemove", rotate);
-        card.addEventListener("mouseout", stopRotate);
-      }
-
-      setupCarouselControls("test_1");
-      ctrl_menuAccess();
-      ctrl_AvGeneral(myAvance.avModulos, 4);
-
-      if (!testCompleted) {
-        $(".body-answers > div > div").click(function () {
-          if ($(this).hasClass("disabled")) return;
-          const $this = $(this);
-          const questionNum = parseInt($this.data("question"));
-          const type = $this.parent().data("type");
-          const $questionOptions = $(
-            `.body-answers > div > div[data-question="${questionNum}"]`
-          );
-          $questionOptions.addClass("disabled");
-          $questionOptions.off("click");
-          $this.find(".answer-text").css("color", "#f8fafc");
-          $questionOptions
-            .not($this)
-            .find(".answer-text")
-            .css("color", "#475569");
-          $this
-            .find("img")
-            .attr(
-              "src",
-              "assets/img/modules/module-1/slide-4/test/answers/select.png"
-            );
-          selections[type]++;
-          userSelections[questionNum] = type;
-          console.log(
-            "Pregunta",
-            questionNum,
-            "seleccionada:",
-            type,
-            "Selections:",
-            selections,
-            "User selections:",
-            userSelections
-          );
-          // localStorage.setItem("userSelections", JSON.stringify(userSelections));
-          myAvance = { ...myAvance, userSelections };
-          const totalSelections =
-            selections.pantera +
-            selections.pavorreal +
-            selections.delfin +
-            selections.buho;
-          if (totalSelections === totalQuestions) {
-            calculateResults();
-          }
-        });
-      } else {
-        restoreSelections();
-      }
     } catch (e) {
       console.error(
         "Error al parsear strAvance (datos corruptos):",
@@ -213,6 +105,110 @@ function load_strAvance() {
     console.log(
       "No se encontró progreso guardado (strAvance está vacío). Empezando de nuevo."
     );
+  }
+  if (myAvance.testResults) {
+    testResults = myAvance.testResults;
+    userSelections = myAvance.userSelections;
+    testCompleted = myAvance.testCompleted;
+    selections = {
+      pantera: Object.values(userSelections).filter((val) => val === "pantera")
+        .length,
+      pavorreal: Object.values(userSelections).filter(
+        (val) => val === "pavorreal"
+      ).length,
+      delfin: Object.values(userSelections).filter((val) => val === "delfin")
+        .length,
+      buho: Object.values(userSelections).filter((val) => val === "buho")
+        .length,
+    };
+  }
+
+  if (myAvance.avModulos == 4) {
+    $("#btn_salir").css({ display: "block", "pointer-events": "auto" });
+  } else {
+    $("#btn_salir").css({ display: "none", "pointer-events": "none" });
+  }
+
+  $(".music").addClass("hide").attr("src', 'assets/img/icons/icon.png");
+  if (flagMus) {
+    if (flagMus === 0) {
+      $(".music").attr("src", "assets/img/icons/off.png");
+    } else {
+      $(".music").attr("src", "assets/img/icons/on.png");
+    }
+  }
+
+  gsap.registerPlugin(
+    Flip,
+    ScrollTrigger,
+    Observer,
+    ScrollToPlugin,
+    Draggable,
+    MotionPathPlugin,
+    EaselPlugin,
+    PixiPlugin,
+    TextPlugin,
+    RoughEase,
+    ExpoScaleEase,
+    SlowMo,
+    CustomEase
+  );
+
+  // const cards = document.querySelectorAll(".cardTest");
+  // for (let i = 0; i < cards.length; i++) {
+  //   const card = cards[i];
+  //   card.addEventListener("mousemove", rotate);
+  //   card.addEventListener("mouseout", stopRotate);
+  // }
+
+  setupCarouselControls("test_1");
+  ctrl_menuAccess();
+  ctrl_AvGeneral(myAvance.avModulos, 4);
+
+  if (!testCompleted) {
+    $(".body-answers > div > div").click(function () {
+      if ($(this).hasClass("disabled")) return;
+      const $this = $(this);
+      const questionNum = parseInt($this.data("question"));
+      const type = $this.parent().data("type");
+      const $questionOptions = $(
+        `.body-answers > div > div[data-question="${questionNum}"]`
+      );
+      $questionOptions.addClass("disabled");
+      $questionOptions.off("click");
+      $this.find(".answer-text").css("color", "#f8fafc");
+      $questionOptions.not($this).find(".answer-text").css("color", "#475569");
+      $this
+        .find("img")
+        .attr(
+          "src",
+          "assets/img/modules/module-1/slide-4/test/answers/select.png"
+        );
+      selections[type]++;
+      userSelections[questionNum] = type;
+      console.log(
+        "Pregunta",
+        questionNum,
+        "seleccionada:",
+        type,
+        "Selections:",
+        selections,
+        "User selections:",
+        userSelections
+      );
+      // localStorage.setItem("userSelections", JSON.stringify(userSelections));
+      myAvance = { ...myAvance, userSelections };
+      const totalSelections =
+        selections.pantera +
+        selections.pavorreal +
+        selections.delfin +
+        selections.buho;
+      if (totalSelections === totalQuestions) {
+        calculateResults();
+      }
+    });
+  } else {
+    restoreSelections();
   }
 }
 
