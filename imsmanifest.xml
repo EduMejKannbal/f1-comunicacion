@@ -8,14 +8,14 @@
   </metadata>
   <organizations default="Kannbal">
     <organization identifier="Kannbal">
-      <title>AXA</title>
-      <item identifier="AXA" isvisible="true" identifierref="AXA">
-        <title>AXA</title>
+      <title>Kannbal</title>
+      <item identifier="Kannbal" isvisible="true" identifierref="Kannbal">
+        <title>Kannbal</title>
       </item>
     </organization>
   </organizations>
   <resources>
-    <resource identifier="AXA" type="webcontent" adlcp:scormtype="sco" href="index.html">
+    <resource identifier="Kannbal" type="webcontent" adlcp:scormtype="sco" href="index.html">
       <file href="index.html"/>
     </resource>
   </resources>

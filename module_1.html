@@ -1,15 +1,28 @@
 <body>
   <link rel="stylesheet" href="assets/css/module-1.css">
+  <div id="processingModal" class="processingModal modalesVideosContenido absolute animated fadeIn"
+    style="display: none;">
+    <div class="vid_in_slide" style="height: 100%; z-index: 2;">
+      <img src="assets/img/modules/module-1/fondo-4.png" class="absolute"
+        style="width: 100%; height: 100%; object-fit: cover;">
+      <img src="assets/img/grls/loader.gif" alt="Cargando" class="loader-gif">
+      <div class="absolute processing-text">
+        Estamos procesando tus resultados
+      </div>
+    </div>
+  </div>
+
   <section id="slide_module1_1" class="slide_module1">
     <img alt src="assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
     <div class="vid_in_slide">
-      <video id="vid_module1_1" src="assets/vid/modulo2/mod2_cover.mp4" controls="false" muted
-        class="mod1_videoSlide"></video>
+      <video id="vid_module1_1" src="assets/vid/modulo1/mod1_cover.mp4" muted class="mod1_videoSlide"></video>
       <img src="assets/img/modules/module-2/pista.png" id="slideM1_pista"
-        class="absolute animated slideInLeft delay-1s">
+        class="absolute animated slideInLeft delay-2s">
       <img src="assets/img/modules/module-1/title1.svg" id="slideM1_title"
-        class="absolute animated slideInLeft delay-1s">
+        class="absolute animated slideInLeft delay-2s">
+    </div>
   </section>
+
   <section id="slide_module1_2" class="slide_module1">
     <div class="contenido-modulo">
       <img src="assets/img/modules/module-1/fondo.jpg" class="absolute image-fondo" alt="">
@@ -19,6 +32,9 @@
       <div class="modulo-grid">
         <div class="grid-diagonal">
           <div class="diagonal-contenido">
+            <div class="absolute animated slideInLeft">
+              <div id="div-blured-mod1_2" class="div-blured"></div>
+            </div>
             <div class="contenido-textos">
               <img src="assets/img/modules/module-1/title.svg" class="title-module-estilos animated zoomIn">
               <img src="assets/img/modules/module-1/txt.svg" alt="" class="paragraph-estilos animated fadeInLeft">
@@ -30,6 +46,7 @@
       </div>
     </div>
   </section>
+
   <section id="slide_module1_3" class="slide_module1">
     <img src="assets/img/modules/module-1/slide-2/title.png" class="absolute module1_2-title">
     <div class="absolute blur">
@@ -43,7 +60,7 @@
               id="module1_2-txt_1">
           </div>
           <div class="div3">
-            <img src="assets/img/modules/module-1/slide-2/txt-2.png" class="module1_2-txt  animated fadeInLeft delay-3s"
+            <img src="assets/img/modules/module-1/slide-2/txt-2.png" class="module1_2-txt  animated fadeInLeft delay-2s"
               id="module1_2-txt_2">
           </div>
           <div class="div4">
@@ -53,9 +70,9 @@
               <div><img src="assets/img/modules/module-1/slide-2/c2.gif"
                   class="conductas_img w3-round-xlarge animated zoomIn delay-1s"></div>
               <div><img src="assets/img/modules/module-1/slide-2/c3.gif"
-                  class="conductas_img w3-round-xlarge animated zoomIn delay-3s"></div>
-              <div><img src="assets/img/modules/module-1/slide-2/c4.gif"
                   class="conductas_img w3-round-xlarge animated zoomIn delay-2s"></div>
+              <div><img src="assets/img/modules/module-1/slide-2/c4.gif"
+                  class="conductas_img w3-round-xlarge animated zoomIn delay-3s"></div>
             </div>
           </div>
           <div class="div5">
@@ -63,23 +80,26 @@
               id="module1_2-txt_3">
           </div>
           <div class="div6">
-            <img src="assets/img/modules/module-1/slide-2/txt-4.png" class="module1_2-txt animated fadeInRight delay-2s"
+            <img src="assets/img/modules/module-1/slide-2/txt-4.png" class="module1_2-txt animated fadeInRight delay-3s"
               id="module1_2-txt_4">
           </div>
         </div>
-
       </div>
     </div>
     <img src="assets/img/modules/module-1/slide-2/paragraph-2.png" class="absolute module1_2-paragraph animated zoomIn">
   </section>
+
   <section id="slide_module1_4" class="slide_module1">
     <img src="assets/img/modules/module-1/fondo-3.png" class="absolute image-fondo ">
     <div class="vid_in_slide" style="height: 100%;z-index: 2;">
       <video id="vid_module1_4" src="assets/vid/modulo1/mod1_comenzarT.mp4" muted class="mod1_videoSlide"></video>
     </div>
-    <img src="assets/img/modules/module-1/slide-3/paragraph.png" class="absolute module1_3-paragraph animated zoomIn">
+    <div id="module1_3-background-paragraph" class="animated zoomIn">
+      <img src="assets/img/modules/module-1/slide-3/paragraph.png" class="absolute module1_3-paragraph animated zoomIn">
+    </div>
     <img src="assets/img/modules/module-1/slide-3/comenzar.png" class="elem_click module1_3-comenzar animated zoomIn">
   </section>
+
   <section id="slide_module1_5" class="slide_module1">
     <img src="assets/img/modules/module-1/fondo-4.png" class="absolute image-fondo animated zoomIn">
     <div class="contenido-absoluto">
@@ -97,137 +117,144 @@
                 <img src="assets/img/modules/module-1/slide-4/test/questions/3.png">
                 <img src="assets/img/modules/module-1/slide-4/test/questions/4.png">
                 <img src="assets/img/modules/module-1/slide-4/test/questions/5.png">
-                <img src="assets/img/modules/module-1/slide-4/test/questions/6.png">
-                <img src="assets/img/modules/module-1/slide-4/test/questions/7.png">
+                <!-- <img src="assets/img/modules/module-1/slide-4/test/questions/6.png">
+                <img src="assets/img/modules/module-1/slide-4/test/questions/7.png"> -->
               </div>
               <div class="body-answers">
                 <!-- Pantera -->
                 <div class="pantera" data-type="pantera">
                   <div data-question="1">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-1">De resultados, de lo que deseas lograr</span>
+                    <span class="absolute answer-text elem_click_reto" id="pantera-1">De resultados, de lo que deseas
+                      lograr</span>
                   </div>
                   <div data-question="2">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-2">Muy rápido</span>
+                    <span class="absolute answer-text elem_click_reto" id="pantera-2">Muy rápido</span>
                   </div>
                   <div data-question="3">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-3">Ropa de disfrazador, vistes con buen gusto,
+                    <span class="absolute answer-text elem_click_reto" id="pantera-3">Ropa de diseñador, vistes con
+                      buen gusto,
                       formal, elegante</span>
                   </div>
                   <div data-question="4">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-4">Directo al punto</span>
+                    <span class="absolute answer-text elem_click_reto" id="pantera-4">Directo al punto</span>
                   </div>
                   <div data-question="5">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-5">Los resultados</span>
+                    <span class="absolute answer-text elem_click_reto" id="pantera-5">Los resultados</span>
                   </div>
-                  <div data-question="6">
+                  <!-- <div data-question="6">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-6">Las presiones, los cambios</span>
+                    <span class="absolute answer-text elem_click_reto" id="pantera-6">Las presiones, los cambios</span>
                   </div>
                   <div data-question="7">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-7">Impaciente, agresivo</span>
-                  </div>
+                    <span class="absolute answer-text elem_click_reto" id="pantera-7">Impaciente, agresivo</span>
+                  </div> -->
                 </div>
 
                 <!-- Pavorreal -->
                 <div class="pavorreal" data-type="pavorreal">
                   <div data-question="1">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-1">Sueños y aspiraciones</span>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-1">Sueños y aspiraciones</span>
                   </div>
                   <div data-question="2">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-2">Rápido</span>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-2">Rápido</span>
                   </div>
                   <div data-question="3">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-3">Colores fuertes, moderno, informal</span>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-3">Colores fuertes, moderno,
+                      informal</span>
                   </div>
                   <div data-question="4">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-4">Animado, impulsivo</span>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-4">Animado, impulsivo</span>
                   </div>
                   <div data-question="5">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-5">El aplauso</span>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-5">El aplauso</span>
                   </div>
-                  <div data-question="6">
+                  <!-- <div data-question="6">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-6">Lo interesante, lo divertido.</span>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-6">Lo interesante, lo
+                      divertido.</span>
                   </div>
                   <div data-question="7">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-7">Te sientes frustrado</span>
-                  </div>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-7">Te sientes frustrado</span>
+                  </div> -->
                 </div>
 
                 <!-- Delfín -->
                 <div class="delfin" data-type="delfin">
                   <div data-question="1">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-1">Sentimientos y experiencias</span>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-1">Sentimientos y experiencias</span>
                   </div>
                   <div data-question="2">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-2">Más lento</span>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-2">Más lento</span>
                   </div>
                   <div data-question="3">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-3">Conservador, tradicional, con estampados</span>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-3">Conservador, tradicional, con
+                      estampados</span>
                   </div>
                   <div data-question="4">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-4">Pensamientos lógicos, casual</span>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-4">Pensamientos lógicos, casual</span>
                   </div>
                   <div data-question="5">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-5">La aprobación</span>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-5">La aprobación</span>
                   </div>
-                  <div data-question="6">
+                  <!-- <div data-question="6">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-6">El comparativismo, el apoyo </span>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-6">El comparativismo, el apoyo </span>
                   </div>
                   <div data-question="7">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-7">Gentil, te sientes presionado</span>
-                  </div>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-7">Gentil, te sientes
+                      presionado</span>
+                  </div> -->
                 </div>
 
                 <!-- Búho -->
                 <div class="buho" data-type="buho">
                   <div data-question="1">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-1">Datos y cantidades</span>
+                    <span class="absolute answer-text elem_click_reto" id="buho-1">Datos y cantidades</span>
                   </div>
                   <div data-question="2">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-2">Moderado</span>
+                    <span class="absolute answer-text elem_click_reto" id="buho-2">Moderado</span>
                   </div>
                   <div data-question="3">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-3">Casual, sencillo</span>
+                    <span class="absolute answer-text elem_click_reto" id="buho-3">Casual, sencillo</span>
                   </div>
                   <div data-question="4">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-4">Específico, ansioso</span>
+                    <span class="absolute answer-text elem_click_reto" id="buho-4">Específico, ansioso</span>
                   </div>
                   <div data-question="5">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-5">La actividad</span>
+                    <span class="absolute answer-text elem_click_reto" id="buho-5">La actividad</span>
                   </div>
-                  <div data-question="6">
+                  <!-- <div data-question="6">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-6">La precisión, la información</span>
+                    <span class="absolute answer-text elem_click_reto" id="buho-6">La precisión, la información</span>
                   </div>
                   <div data-question="7">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-7">Tenso, te sientes restringido o atrapado</span>
-                  </div>
+                    <span class="absolute answer-text elem_click_reto" id="buho-7">Tenso, te sientes restringido o
+                      atrapado</span>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -236,9 +263,133 @@
           <div class="carru_test_1 carrusel" id="carru_test_1_2">
             <div class="test_body">
               <div class="body-questions">
+                <img src="assets/img/modules/module-1/slide-4/test/questions/6.png">
+                <img src="assets/img/modules/module-1/slide-4/test/questions/7.png">
                 <img src="assets/img/modules/module-1/slide-4/test/questions/8.png">
                 <img src="assets/img/modules/module-1/slide-4/test/questions/9.png">
                 <img src="assets/img/modules/module-1/slide-4/test/questions/10.png">
+              </div>
+              <div class="body-answers">
+                <!-- Pantera -->
+                <div class="pantera" data-type="pantera">
+                  <div data-question="6">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="pantera-6">Las presiones, los cambios</span>
+                  </div>
+                  <div data-question="7">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="pantera-7">Impaciente, agresivo</span>
+                  </div>
+                  <div data-question="8">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="pantera-8">Intenso, dirigido, haces varias
+                      cosas a la
+                      vez</span>
+                  </div>
+                  <div data-question="9">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="pantera-9">Las cosas están ordenadas por
+                      prioridades,
+                      organización</span>
+                  </div>
+                  <div data-question="10">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="pantera-10">Actúo rápido – un torbellino,
+                      sale a prisa</span>
+                  </div>
+                </div>
+
+                <!-- Pavorreal -->
+                <div class="pavorreal" data-type="pavorreal">
+                  <div data-question="6">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-6">Lo interesante, lo
+                      divertido.</span>
+                  </div>
+                  <div data-question="7">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-7">Te sientes frustrado</span>
+                  </div>
+                  <div data-question="8">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-8">Te gusta la libertad,
+                      interactúas con muchas
+                      personas</span>
+                  </div>
+                  <div data-question="9">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-9">Objetos interesantes</span>
+                  </div>
+                  <div data-question="10">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-10">Más rápido, te aburres
+                      fácilmente, pasas de una
+                      a otra</span>
+                  </div>
+                </div>
+
+                <!-- Delfín -->
+                <div class="delfin" data-type="delfin">
+                  <div data-question="6">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="delfin-6">El comparativismo, el apoyo </span>
+                  </div>
+                  <div data-question="7">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="delfin-7">Gentil, te sientes
+                      presionado</span>
+                  </div>
+                  <div data-question="8">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="delfin-8">Buena disposición, cooperativo,
+                      servicial</span>
+                  </div>
+                  <div data-question="9">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="delfin-9">Recuerdos sentimentales y
+                      souvenirs</span>
+                  </div>
+                  <div data-question="10">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="delfin-10">Perder el tiempo</span>
+                  </div>
+                </div>
+
+                <!-- Búho -->
+                <div class="buho" data-type="buho">
+                  <div data-question="6">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="buho-6">La precisión, la información</span>
+                  </div>
+                  <div data-question="7">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="buho-7">Tenso, te sientes restringido o
+                      atrapado</span>
+                  </div>
+                  <div data-question="8">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="buho-8">Cuidadoso, atento a la vez</span>
+                  </div>
+                  <div data-question="9">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="buho-9">Referencias al alcance, papeles en
+                      montones
+                      ordenados</span>
+                  </div>
+                  <div data-question="10">
+                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
+                    <span class="absolute answer-text elem_click_reto" id="buho-10">Fomentar la armonía – necesitas
+                      sentir que hay
+                      armonía</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carru_test_1 carrusel" id="carru_test_1_3">
+            <div class="test_body">
+              <div class="body-questions">
                 <img src="assets/img/modules/module-1/slide-4/test/questions/11.png">
                 <img src="assets/img/modules/module-1/slide-4/test/questions/12.png">
                 <img src="assets/img/modules/module-1/slide-4/test/questions/13.png">
@@ -248,138 +399,87 @@
                 <!-- Pantera (preguntas 8-14) -->
                 <div class="pantera" data-type="pantera">
                   <!-- ... preguntas 1-7 existentes ... -->
-                  <div data-question="8">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-8">Intensa, dirigida, haces varias cosas a la
-                      vez</span>
-                  </div>
-                  <div data-question="9">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-9">Las cosas están ordenadas por prioridades,
-                      organización</span>
-                  </div>
-                  <div data-question="10">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-10">Actúo rápido – un torbellino, sale a prisa</span>
-                  </div>
                   <div data-question="11">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-11">Hacer lo que ya se había hecho antes</span>
+                    <span class="absolute answer-text elem_click_reto" id="pantera-11">Hacer lo que ya se había hecho
+                      antes</span>
                   </div>
                   <div data-question="12">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-12">Tu productividad</span>
+                    <span class="absolute answer-text elem_click_reto" id="pantera-12">Tu productividad</span>
                   </div>
                   <div data-question="13">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-13">Poder</span>
+                    <span class="absolute answer-text elem_click_reto" id="pantera-13">Poder</span>
                   </div>
                   <div data-question="14">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pantera-14">Tu creatividad</span>
+                    <span class="absolute answer-text elem_click_reto" id="pantera-14">Tu creatividad</span>
                   </div>
                 </div>
 
                 <!-- Pavorreal (preguntas 8-14) -->
                 <div class="pavorreal" data-type="pavorreal">
                   <!-- ... preguntas 1-7 existentes ... -->
-                  <div data-question="8">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-8">Te gusta la libertad, interactúas con muchas
-                      personas</span>
-                  </div>
-                  <div data-question="9">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-9">Objetos interesantes</span>
-                  </div>
-                  <div data-question="10">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-10">Más rápido, te aburres fácilmente, pasas de una
-                      a otra</span>
-                  </div>
                   <div data-question="11">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-11">La confrontación</span>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-11">La confrontación</span>
                   </div>
                   <div data-question="12">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-12">Tu contribución</span>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-12">Tu contribución</span>
                   </div>
                   <div data-question="13">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-13">Reconocimiento</span>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-13">Tu originalidad</span>
                   </div>
                   <div data-question="14">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="pavorreal-14">Tu originalidad</span>
+                    <span class="absolute answer-text elem_click_reto" id="pavorreal-14">Reconocimiento</span>
                   </div>
                 </div>
 
                 <!-- Delfín (preguntas 8-14) -->
                 <div class="delfin" data-type="delfin">
                   <!-- ... preguntas 1-7 existentes ... -->
-                  <div data-question="8">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-8">Buena disposición, cooperativa, servicial</span>
-                  </div>
-                  <div data-question="9">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-9">Recuerdos sentimentales y souvenirs</span>
-                  </div>
-                  <div data-question="10">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-10">Perder el tiempo</span>
-                  </div>
                   <div data-question="11">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-11">Equivocarse</span>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-11">Equivocarse</span>
                   </div>
                   <div data-question="12">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-12">Tu participación</span>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-12">Tu participación</span>
                   </div>
                   <div data-question="13">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-13">Aprobación</span>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-13">Tu visión</span>
                   </div>
                   <div data-question="14">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="delfin-14">Tu visión</span>
+                    <span class="absolute answer-text elem_click_reto" id="delfin-14">Aprobación</span>
                   </div>
                 </div>
 
                 <!-- Búho (preguntas 8-14) -->
                 <div class="buho" data-type="buho">
                   <!-- ... preguntas 1-7 existentes ... -->
-                  <div data-question="8">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-8">Cuidadosa, atenta a la vez</span>
-                  </div>
-                  <div data-question="9">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-9">Referencias al alcance, papeles en montones
-                      ordenados</span>
-                  </div>
-                  <div data-question="10">
-                    <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-10">Fomentar la armonía – necesitas sentir que hay
-                      armonía</span>
-                  </div>
+
                   <div data-question="11">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-11">Necesita un constante cambio de trabajo</span>
+                    <span class="absolute answer-text elem_click_reto" id="buho-11">Necesita un constante cambio de
+                      trabajo</span>
                   </div>
                   <div data-question="12">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-12">La calidad de tu trabajo</span>
+                    <span class="absolute answer-text elem_click_reto" id="buho-12">La calidad de tu trabajo</span>
                   </div>
                   <div data-question="13">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-13">Responsabilidad</span>
+                    <span class="absolute answer-text elem_click_reto" id="buho-13">Tu compromiso</span>
                   </div>
                   <div data-question="14">
                     <img src="assets/img/modules/module-1/slide-4/test/answers/default.png">
-                    <span class="absolute answer-text" id="buho-14">Tu compromiso</span>
+                    <span class="absolute answer-text elem_click_reto" id="buho-14">Responsabilidad</span>
                   </div>
                 </div>
               </div>
@@ -391,6 +491,14 @@
         </div>
         <div class="test_footer">
           <img src="assets/img/modules/module-1/slide-4/txt-footer.png" class="footer-txt animated zoomIn">
+        </div>
+        <div class="modal-backdrop animated zoomInUp"></div>
+        <div id="mod_juego_1" class="absolute animated zoomInUp"
+          style="width: 100%;height: 100%; top: 0;left: 0;z-index: 999;">
+          <img id="img_mod_juego_1" class="absolute" src="assets/img/modules/module-2/ModalCarera.png">
+          <img id="txt_mod_juego_1" class="absolute animated zoomIn mod_start_txt"
+            src="assets/img/modules/module-1/slide-4/instrucciones.png">
+          <img id="btn_mod_juego_1" src="assets/img/icons/btn_2.png" class="elem_click home_boton">
         </div>
       </div>
     </div>
@@ -410,7 +518,8 @@
               <img src="assets/img/modules/module-1/slide-5/pantera/human.png" class="item-testhumanImage">
               <div class="absolute item-testResult">
                 <div class="testResult-relative">
-                  <img src="assets/img/modules/module-1/slide-5/pantera/pantera.png" class="testResult-name">
+                  <img src="assets/img/modules/module-1/slide-5/pantera/pantera.png" class="testResult-name"
+                    id="testResult-name_1">
                   <p class="testResult-text">0%</p>
                   <div class="progress-bar">
                     <div class="progress-bar-fill" data-value="0"></div>
@@ -425,7 +534,8 @@
               <img src="assets/img/modules/module-1/slide-5/pavo-real/human.png" class="item-testhumanImage">
               <div class="absolute item-testResult">
                 <div class="testResult-relative">
-                  <img src="assets/img/modules/module-1/slide-5/pavo-real/pavorreal.png" class="testResult-name">
+                  <img src="assets/img/modules/module-1/slide-5/pavo-real/pavorreal.png" class="testResult-name"
+                    id="testResult-name_2">
                   <p class="testResult-text">0%</p>
                   <div class="progress-bar">
                     <div class="progress-bar-fill" data-value="0"></div>
@@ -440,7 +550,8 @@
               <img src="assets/img/modules/module-1/slide-5/delfin/human.png" class="item-testhumanImage">
               <div class="absolute item-testResult">
                 <div class="testResult-relative">
-                  <img src="assets/img/modules/module-1/slide-5/delfin/delfin.png" class="testResult-name">
+                  <img src="assets/img/modules/module-1/slide-5/delfin/delfin.png" class="testResult-name"
+                    id="testResult-name_3">
                   <p class="testResult-text">0%</p>
                   <div class="progress-bar">
                     <div class="progress-bar-fill" data-value="0"></div>
@@ -455,7 +566,8 @@
               <img src="assets/img/modules/module-1/slide-5/buho/human.png" class="item-testhumanImage">
               <div class="absolute item-testResult">
                 <div class="testResult-relative">
-                  <img src="assets/img/modules/module-1/slide-5/buho/buho.png" class="testResult-name">
+                  <img src="assets/img/modules/module-1/slide-5/buho/buho.png" class="testResult-name"
+                    id="testResult-name_4">
                   <p class="testResult-text">0%</p>
                   <div class="progress-bar">
                     <div class="progress-bar-fill" data-value="0"></div>
@@ -473,14 +585,20 @@
   </section>
 
   <section id="slide_module1_7" class="slide_module1">
-    <img src="assets/img/modules/module-1/fondo-6.jpg" class="absolute image-fondo">
     <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-      <video id="vid_module1_7" src="assets/vid/modulo1/ANIM LLANTA LLUVIA F.mp4" muted class="mod1_videoSlide"></video>
+      <video id="vid_module1_7" src="assets/vid/modulo1/anim_llanta.mp4" muted class="mod1_videoSlide"></video>
+      <img id="modal_trofeo1" src="assets/img/modules/module-1/logro_desbloqueado.png"
+        class="absolute animated slideInRight" alt>
+      <img id="btn_cls_slide7_modal" src="assets/img/grls/btn_continuar.png" class="elem_click animated zoomIn delay-5s"
+        alt>
+      <div class="contenido-logro-animado absolute animated fadeIn delay-1s" id="contenido-logro-animado-1">
+        <video class="videoAnimadoLogro" src="assets/vid/fondoTrof.mp4" autoplay muted loop playsinline
+          aria-label="Animación de fondo con trofeo">
+          Tu navegador no soporta el video HTML5.
+        </video>
+        <img src="assets/img/icons/trofeo.png" class="video-trofeo-animado" alt="">
+      </div>
     </div>
-
-    <img id="modal_trofeo1" src="assets/img/modules/module-1/logro_desbloqueado.png"
-      class="absolute animated slideInRight" alt>
-    <img id="btn_cls_slide7_modal" src="assets/img/grls/btn_continuar.png" class="elem_click animated zoomIn" alt>
   </section>
 
   <section id="slide_module1_8" class="slide_module1">
@@ -489,73 +607,89 @@
     <img src="assets/img/modules/module-1/slide-7/rec.png" class="absolute module1_7-rec animated slideInRight">
     <img src="assets/img/modules/module-1/slide-7/txt.png" class="absolute module1_7-txt animated slideInRight">
   </section>
+
   <section id="slide_module1_9" class="slide_module1">
-    <img src="assets/img/modules/module-1/fondo-8.png" class="absolute image-fondo animated zoomIn">
-    <div class="container-estilos animated ">
-      <img src="assets/img/modules/module-1/slide-9/se_1.png" class="absolute btn_estilosComunicacion elem_click_pant"
+    <img src="assets/img/modules/module-1/fondo-8.png" class="absolute image-fondo animated">
+    <div class="container-estilos animated">
+      <img src="assets/img/modules/module-1/slide-9/se_1.png" class="absolute btn_estilosComunicacion "
         id="btn_estilosComunicacion_1">
       <img src="assets/img/modules/module-1/slide-9/se_2.png" class="absolute btn_estilosComunicacion "
         id="btn_estilosComunicacion_2">
       <img src="assets/img/modules/module-1/slide-9/se_3.png" class="absolute btn_estilosComunicacion "
         id="btn_estilosComunicacion_3">
-      <img src="assets/img/modules/module-1/slide-9/se_4.png" class="absolute btn_estilosComunicacion  "
+      <img src="assets/img/modules/module-1/slide-9/se_4.png" class="absolute btn_estilosComunicacion "
         id="btn_estilosComunicacion_4">
     </div>
+
+    <div id="hotspot_1" class="hotspot"></div>
+    <div id="hotspot_2" class="hotspot"></div>
+    <div id="hotspot_3" class="hotspot"></div>
+    <div id="hotspot_4" class="hotspot"></div>
 
     <img src="" class="absolute hov_estilosComunicacion" id="">
 
     <div id="mod_estilosComunicacion_1" class="mod_estilosComunicacion absolute animated zoomIn">
-      <img alt src="assets/img/modules/module-3/back_alegria.jpg"
-        style="top: 0;left: 0;position: relative; width: 100%;">
       <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-        <video id="vid_estilosComunicacion_1" src="assets/vid/modulo1/mod1_pantera.mp4" class="mod1_videoSlide"></video>
+        <video id="vid_estilosComunicacion_1" src="assets/vid/modulo1/mod1_pantera.mp4" controls
+          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture
+          class="mod1_videoSlide locution"></video>
       </div>
-      <img id="cls_estilosComunicacion_1" class="  w3-display-topright elem_click cls_estilosComunicacion"
+      <img id="cls_estilosComunicacion_1" class="  w3-display-topright delay-2s elem_click cls_estilosComunicacion"
         src="assets/img/icons/cls.png" style="top: 1%;right:1%; z-index: 3;" />
     </div>
 
     <div id="mod_estilosComunicacion_2" class="mod_estilosComunicacion absolute animated zoomIn">
-      <img alt src="assets/img/modules/module-3/back_alegria.jpg"
-        style="top: 0;left: 0;position: relative; width: 100%;">
       <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-        <video id="vid_estilosComunicacion_2" src="assets/vid/modulo1/mod1_pavorreal.mp4"
-          class="mod1_videoSlide"></video>
+        <video id="vid_estilosComunicacion_2" src="assets/vid/modulo1/mod1_pavorreal.mp4" controls
+          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture
+          class="mod1_videoSlide locution"></video>
       </div>
-      <img id="cls_estilosComunicacion_2" class="  w3-display-topright elem_click cls_estilosComunicacion"
+      <img id="cls_estilosComunicacion_2" class="  w3-display-topright delay-2s elem_click cls_estilosComunicacion"
         src="assets/img/icons/cls.png" style="top: 1%;right:1%;z-index: 3;" />
     </div>
 
     <div id="mod_estilosComunicacion_3" class="mod_estilosComunicacion absolute animated zoomIn">
-      <img alt src="assets/img/modules/module-3/back_alegria.jpg"
-        style="top: 0;left: 0;position: relative; width: 100%;">
       <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-        <video id="vid_estilosComunicacion_3" src="assets/vid/modulo1/mod1_delfin.mp4" class="mod1_videoSlide"></video>
+        <video id="vid_estilosComunicacion_3" src="assets/vid/modulo1/mod1_delfin.mp4" controls
+          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture
+          class="mod1_videoSlide locution"></video>
       </div>
-      <img id="cls_estilosComunicacion_3" class="  w3-display-topright elem_click cls_estilosComunicacion"
+      <img id="cls_estilosComunicacion_3" class="  w3-display-topright delay-2s elem_click cls_estilosComunicacion"
         src="assets/img/icons/cls.png" style="top: 1%;right:1%;z-index: 3;" />
     </div>
 
     <div id="mod_estilosComunicacion_4" class="mod_estilosComunicacion absolute animated zoomIn">
-      <img alt src="assets/img/modules/module-3/back_alegria.jpg"
-        style="top: 0;left: 0;position: relative; width: 100%;">
+
       <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-        <video id="vid_estilosComunicacion_4" src="assets/vid/modulo1/mod1_buho.mp4" class="mod1_videoSlide"></video>
+        <video id="vid_estilosComunicacion_4" src="assets/vid/modulo1/mod1_buho.mp4" controls
+          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture
+          class="mod1_videoSlide locution"></video>
       </div>
-      <img id="cls_estilosComunicacion_4" class="  w3-display-topright elem_click cls_estilosComunicacion"
+      <img id="cls_estilosComunicacion_4" class="  w3-display-topright delay-2s elem_click cls_estilosComunicacion"
         src="assets/img/icons/cls.png" style="top: 1%;right:1%;z-index: 3;" />
     </div>
+
+    <img id="hov_estilosComunicacion_1" src="assets/img/modules/module-1/slide-9/no_1.png" class="absolute hov_estilosComunicacion" style="display: none;">
+    <img id="hov_estilosComunicacion_2" src="assets/img/modules/module-1/slide-9/no_2.png" class="absolute hov_estilosComunicacion" style="display: none;">
+    <img id="hov_estilosComunicacion_3" src="assets/img/modules/module-1/slide-9/no_3.png" class="absolute hov_estilosComunicacion" style="display: none;">
+    <img id="hov_estilosComunicacion_4" src="assets/img/modules/module-1/slide-9/no_4.png" class="absolute hov_estilosComunicacion" style="display: none;">
 
   </section>
 
   <section id="slide_module1_10" class="slide_module1">
-    <img src="assets/img/modules/module-1/fondo-6.jpg" class="absolute image-fondo">
     <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-      <video id="vid_module1_10" src="assets/vid/modulo1/ANIM CASCO F.mp4" class="mod1_videoSlide"></video>
+      <video id="vid_module1_10" src="assets/vid/modulo1/anim_casco.mp4" class="mod1_videoSlide"></video>
+      <img id="modal_trofeo2" src="assets/img/modules/module-1/pole_position.png" class="absolute animated slideInRight"
+        alt>
+      <img id="btn_cls_slide10_modal" src="assets/img/grls/btn_continuar.png" class="elem_click animated zoomIn" alt>
+      <div class="contenido-logro-animado absolute animated fadeIn delay-1s" id="contenido-logro-animado-2">
+        <video class="videoAnimadoLogro" src="assets/vid/fondoTrof.mp4" autoplay muted loop playsinline
+          aria-label="Animación de fondo con trofeo">
+          Tu navegador no soporta el video HTML5.
+        </video>
+        <img src="assets/img/icons/trofeo.png" class="video-trofeo-animado" alt="">
+      </div>
     </div>
-
-    <img id="modal_trofeo2" src="assets/img/modules/module-1/pole_position.png" class="absolute animated slideInRight"
-      alt>
-    <img id="btn_cls_slide10_modal" src="assets/img/grls/btn_continuar.png" class="elem_click animated zoomIn" alt>
   </section>
 
   <section id="slide_module1_11" class="slide_module1">
@@ -580,11 +714,12 @@
       </div>
     </div>
   </section>
+
   <section id="slide_module1_12" class="slide_module1">
     <img src="assets/img/modules/module-1/fondo-11.png" class="absolute image-fondo">
 
     <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-      <video id="vid_module1_12" src="assets/vid/modulo1/modx1_fin.mp4" muted class="mod1_videoSlide"></video>
+      <video id="vid_module1_12" src="assets/vid/modulo1/mod1_fin.mp4" muted class="mod1_videoSlide"></video>
     </div>
 
     <div class="pleca-slide1-12 absolute animated zoomIn">
@@ -596,17 +731,21 @@
   </section>
 
   <section id="slide_module1_13" class="slide_module1">
-    <img src="assets/img/modules/module-1/fondo-6.jpg" class="absolute image-fondo">
     <div class="vid_in_slide" style="height: 100%;z-index: 2;">
       <video id="vid_module1_13" src="assets/vid/modulo1/Mod1_Trofeo2.mp4" muted class="mod1_videoSlide"></video>
-    </div>
-
-    <img id="modal_trofeo2" src="assets/img/modules/module-1/tro_conquis.png" class="absolute animated slideInRight"
-      alt>
-    <div id="btn_finmod1" class="elem_click ">
-      <img alt src="assets/img/btn_clean.svg" style="top: 0;left: 0;position: relative; width: 100%;">
-      <p class="txt_btn_regresar elem_click" style="top: -49%;
-             left: 9%;"> Módulo 2 </p>
+      <img id="modal_trofeo2" src="assets/img/modules/module-1/tro_conquis.png" class="absolute animated slideInRight"
+        alt>
+      <div id="btn_finmod1" class="elem_click">
+        <img alt src="assets/img/btn_clean.svg" style="top: 0;left: 0;position: relative; width: 100%;">
+        <p class="txt_btn_concluir elem_click" style="width: auto;">Concluir Módulo </p>
+      </div>
+      <div class="contenido-logro-animado absolute animated fadeIn delay-1s" id="contenido-logro-animado-3">
+        <video class="videoAnimadoLogro" src="assets/vid/fondoTrof.mp4" autoplay muted loop playsinline
+          aria-label="Animación de fondo con trofeo">
+          Tu navegador no soporta el video HTML5.
+        </video>
+        <img src="assets/img/icons/trofeo.png" class="video-trofeo-animado" alt="">
+      </div>
     </div>
   </section>
 
@@ -618,20 +757,12 @@
   <audio id="efct_clic1">
     <source src="assets/aud/clic.mp3" type="audio/mpeg" />
   </audio>
-  <audio id="aud_estilosComunicacion_1" class="aud_estilosComunicacion">
-    <source src="assets/aud/pantera.mp3" type="audio/mpeg" />
-  </audio>
-  <audio id="aud_estilosComunicacion_2" class="aud_estilosComunicacion">
-    <source src="assets/aud/pavorreal.mp3" type="audio/mpeg" />
-  </audio>
-  <audio id="aud_estilosComunicacion_3" class="aud_estilosComunicacion">
-    <source src="assets/aud/delfin.mp3" type="audio/mpeg" />
-  </audio>
-  <audio id="aud_estilosComunicacion_4" class="aud_estilosComunicacion">
-    <source src="assets/aud/buho.mp3" type="audio/mpeg" />
   </audio>
   <audio id="efct_clic_mod">
     <source src="assets/aud/modal.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="efct_clic_jue">
+    <source src="assets/aud/select.mp3" type="audio/mpeg" />
   </audio>
   <script src=" assets/js/module-1.js" />
 </body>
