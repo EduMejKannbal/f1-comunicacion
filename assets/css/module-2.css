@@ -466,10 +466,26 @@
   left: 0;
 }
 
+#logo_gepp_intro_2 {
+  top: 18%;
+  left: 6%;
+  z-index: 2;
+}
+
+#logo_gepp_mod_game {
+  bottom: 4% !important;
+}
+
+#logo_gepp_finalizar_2 {
+  top: 18%;
+  left: 23%;
+}
+
 #elem_slide2_14 {
-  top: 23%;
+  top: 15%;
   left: 0%;
   width: 58%;
+  height: 70%;
   opacity: 0.8;
 }
 
@@ -600,7 +616,7 @@
 #txt_finSlides {
   left: 2%;
   width: 53%;
-  bottom: 35%;
+  bottom: 28%;
 }
 
 #slide15_modal {
@@ -721,7 +737,7 @@
 
 #btn_mod2Continuar_1 {
   left: 21%;
-  bottom: 20%;
+  bottom: 16%;
   height: auto;
 }
 

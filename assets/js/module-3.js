@@ -274,6 +274,7 @@ function ctrl_avElem_chk(
 // Eventos de btn_trofeoModal para abrir modal
 $(".btn_trofeoModal").click(function () {
   //   pauseMusicAndUpdateIcon();
+  $("#logo_gepp_slide_3_3").css("display", "none");
   $("#mod_trofeoModal_1").fadeIn();
   $(".modalNoPantallaCompletaBackground").css("display", "block");
   var video = $("#emoc_6").get(0);
@@ -288,6 +289,7 @@ $(".btn_trofeoModal").click(function () {
 
 // Eventos de cierre de la modal trofeoModal
 $(".cls_trofeoModal").click(function () {
+  $("#logo_gepp_slide_3_3").css("display", "block");
   $("#mod_trofeoModal_1").css("display", "none");
   $(".modalNoPantallaCompletaBackground").fadeOut();
   var video = $("#emoc_6").get(0);
@@ -306,6 +308,7 @@ $(".cls_trofeoModal").click(function () {
 $(".btn_vidManEm").click(function () {
   saveFlagMus();
   pauseAllAudio();
+  $("#logo_gepp_slide_3_4").css("display", "none");
   $(".music").addClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_vidManEm_" + strID).show();
@@ -315,6 +318,7 @@ $(".btn_vidManEm").click(function () {
 });
 
 $(".cls_vidManEm").click(function () {
+  $("#logo_gepp_slide_3_4").css("display", "block");
   $(".music").removeClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_vidManEm_" + strID).hide();
@@ -339,6 +343,7 @@ $(".cls_vidManEm").click(function () {
 $(".btn_impactBio").click(function () {
   saveFlagMus();
   pauseAllAudio();
+  $("#logo_gepp_slide_3_6").css("display", "none");
   $(".music").addClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_impactBio_" + strID).show();
@@ -348,6 +353,7 @@ $(".btn_impactBio").click(function () {
 });
 
 $(".cls_impactBio").click(function () {
+  $("#logo_gepp_slide_3_6").css("display", "block");
   $(".music").removeClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_impactBio_" + strID).hide();
@@ -372,6 +378,7 @@ $(".cls_impactBio").click(function () {
 $(".btn_caracter").click(function () {
   saveFlagMus();
   pauseAllAudio();
+  $("#logo_gepp_slide_3_8").css("display", "none");
   $(".music").addClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_caracter_" + strID).show();
@@ -381,6 +388,7 @@ $(".btn_caracter").click(function () {
 });
 
 $(".cls_caracter").click(function () {
+  $("#logo_gepp_slide_3_8").css("display", "block");
   $(".music").removeClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_caracter_" + strID).hide();
@@ -405,6 +413,7 @@ $(".cls_caracter").click(function () {
 $(".btn_vidTemp").click(function () {
   saveFlagMus();
   pauseAllAudio();
+  $("#logo_gepp_slide_3_9").css("display", "none");
   $(".music").addClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_vidTemp_" + strID).show();
@@ -414,6 +423,7 @@ $(".btn_vidTemp").click(function () {
 });
 
 $(".cls_vidTemp").click(function () {
+  $("#logo_gepp_slide_3_9").css("display", "block");
   $(".music").removeClass("hide");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_vidTemp_" + strID).hide();

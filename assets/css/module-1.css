@@ -309,7 +309,7 @@
   z-index: 5;
   width: 60%;
   height: auto;
-  top: 4%;
+  top: 7%;
   left: 0;
   right: 0;
   margin: auto;
@@ -598,8 +598,12 @@
 
 .cardTest {
   perspective: 1000px;
-  -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  -webkit-transition:
+    -webkit-transform 0.5s ease,
+    opacity 0.5s ease;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
   /* Transiciones suaves */
   margin: 0;
   flex-shrink: 1;
@@ -619,9 +623,14 @@
   align-items: end;
   justify-items: center;
   opacity: 0;
-  -webkit-transition: opacity 0.5s ease, transform 0.5s ease,
+  -webkit-transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
     box-shadow 0.3s ease;
-  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    box-shadow 0.3s ease;
 }
 
 .cardTest-item .item-testimage {
@@ -725,14 +734,14 @@
   z-index: 1;
   width: 61%;
   right: 0;
-  top: 10%;
+  top: 15%;
   height: auto;
 }
 
 .module1_7-txt {
   z-index: 1;
   right: 9%;
-  top: 19%;
+  top: 24%;
   width: 40%;
 }
 
@@ -833,6 +842,21 @@
   width: 45%;
 }
 
+#logo_gepp_intro_1 {
+  top: 20%;
+  left: 7%;
+}
+
+#logo_gepp_finalizar_1 {
+  top: 20%;
+  left: 24%;
+  z-index: 2;
+}
+
+#logo_gepp_slide_1_5{
+  display: none;
+}
+
 .slide1-7-txt {
   width: 50%;
   height: auto;
@@ -869,8 +893,8 @@
   width: 55%;
   height: 80%;
   z-index: 1;
-  top: 8%;
-  right: 4%;
+  top: 12%;
+  right: 10%;
   display: grid;
 }
 
@@ -936,20 +960,20 @@
 
 .pleca-slide1-12 {
   width: 57%;
-  height: 60%;
+  height: 71%;
   left: 0;
   background: rgb(0 0 0 / 44%);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border-radius: 0 20px 20px 0;
-  bottom: 17%;
+  bottom: 13%;
   z-index: 2;
 }
 
 .slide1-12-txt {
   width: 90%;
   height: auto;
-  top: 10%;
+  top: 30%;
   margin: auto;
   left: 0;
   right: 0;
@@ -979,7 +1003,7 @@
 }
 
 #btn_cls_slide12_modal {
-  bottom: 20%;
+  bottom: 17%;
   width: 17%;
   left: 21.5%;
   z-index: 2;

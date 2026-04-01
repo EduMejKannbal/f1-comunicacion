@@ -160,6 +160,7 @@ $("#module1_Next").click(() => {
 $("#btn_mod_juego_1").click(function () {
   $("#mod_juego_1").fadeOut(150);
   $(".modal-backdrop").fadeOut(150);
+  $("#logo_gepp_slide_1_5").css("display", "block");
 });
 setupCarouselControls("test_1");
 $(".body-answers > div > div").click(function () {
@@ -261,6 +262,7 @@ $("#hotspot_1").on({
       $(".music").addClass("hide");
       $("#mod_estilosComunicacion_1").show();
       $("#vid_estilosComunicacion_1").get(0).play();
+      $("#logo_gepp_slide_1_9").css("display", "none");
     }
   },
 });
@@ -304,6 +306,7 @@ $("#hotspot_2").on({
       $(".music").addClass("hide");
       $("#mod_estilosComunicacion_2").show();
       $("#vid_estilosComunicacion_2").get(0).play();
+      $("#logo_gepp_slide_1_9").css("display", "none");
     }
   },
 });
@@ -347,6 +350,7 @@ $("#hotspot_3").on({
       $(".music").addClass("hide");
       $("#mod_estilosComunicacion_3").show();
       $("#vid_estilosComunicacion_3").get(0).play();
+      $("#logo_gepp_slide_1_9").css("display", "none");
     }
   },
 });
@@ -390,6 +394,7 @@ $("#hotspot_4").on({
       $(".music").addClass("hide");
       $("#mod_estilosComunicacion_4").show();
       $("#vid_estilosComunicacion_4").get(0).play();
+      $("#logo_gepp_slide_1_9").css("display", "none");
     }
   },
 });
@@ -414,6 +419,7 @@ $(".cls_estilosComunicacion").click(function () {
   }
   ctrl_slidesMod1();
   restoreMusicAndIcon("1");
+  $("#logo_gepp_slide_1_9").css("display", "block");
 });
 
 $(".module1_3-comenzar").click(function () {

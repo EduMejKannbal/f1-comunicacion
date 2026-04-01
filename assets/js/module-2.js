@@ -201,12 +201,14 @@ $("#module2_Next").click(() => {
 
 $(".btn_comic").click(function () {
   console.log("click en comic");
+  $("#logo_gepp_slide_2_5").css("display", "none");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_comic_" + strID).show();
 });
 
 $(".cls_comic").click(function () {
   console.log("saliendo comic");
+  $("#logo_gepp_slide_2_5").css("display", "block");
   strID = $(this).attr("id").split("_")[2];
   $("#mod_comic_" + strID).fadeOut();
   if (strID >= myAvance.ch2.comic) {
@@ -227,11 +229,13 @@ $("#slide3_play").click(function () {
   saveFlagMus();
   pauseAllAudio();
   $(".music").addClass("hide");
+  $("#logo_gepp_slide_2_3").css("display", "none")
   $("#mod_2sarp_1").show();
   $("#vidSarp_1").get(0).play();
 });
 
 $("#cls_2sarp_1").click(function () {
+  $("#logo_gepp_slide_2_3").css("display", "block")
   $(".music").removeClass("hide");
   $("#mod_2sarp_1").hide();
   var video = $("#vidSarp_1").get(0);
