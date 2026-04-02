@@ -229,13 +229,13 @@ $("#slide3_play").click(function () {
   saveFlagMus();
   pauseAllAudio();
   $(".music").addClass("hide");
-  $("#logo_gepp_slide_2_3").css("display", "none")
+  $("#logo_gepp_slide_2_3").css("display", "none");
   $("#mod_2sarp_1").show();
   $("#vidSarp_1").get(0).play();
 });
 
 $("#cls_2sarp_1").click(function () {
-  $("#logo_gepp_slide_2_3").css("display", "block")
+  $("#logo_gepp_slide_2_3").css("display", "block");
   $(".music").removeClass("hide");
   $("#mod_2sarp_1").hide();
   var video = $("#vidSarp_1").get(0);
