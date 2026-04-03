@@ -1691,8 +1691,9 @@ progress::-webkit-progress-bar {
   padding-left: 10%;
 }
 
-#logo_gepp_start {
-  
+#logo_gepp_home {
+  top: 4%;
+  left: 47%;
 }
 
 #logo_gepp_menu {
