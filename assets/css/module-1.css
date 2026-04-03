@@ -598,8 +598,12 @@
 
 .cardTest {
   perspective: 1000px;
-  -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  -webkit-transition:
+    -webkit-transform 0.5s ease,
+    opacity 0.5s ease;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
   /* Transiciones suaves */
   margin: 0;
   flex-shrink: 1;
@@ -619,9 +623,14 @@
   align-items: end;
   justify-items: center;
   opacity: 0;
-  -webkit-transition: opacity 0.5s ease, transform 0.5s ease,
+  -webkit-transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
     box-shadow 0.3s ease;
-  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    box-shadow 0.3s ease;
 }
 
 .cardTest-item .item-testimage {

@@ -933,7 +933,7 @@ function debounce(func, wait) {
 }
 
 function resetMenuImages() {
-  $("#img_menu_rect, #img_menu_trofeo, #img_modTrof_1")
+  $("#img_menu_rect, #img_menu_trofeo")
     .hide()
     .removeClass("animated slideInLeft")
     .stop(true, true);
@@ -1323,7 +1323,7 @@ $(".txt_menu").each(function () {
 
 // Función para resetear imágenes del menú
 function resetMenuImages() {
-  $("#img_menu_rect, #img_menu_trofeo, #img_modTrof_1")
+  $("#img_menu_rect, #img_menu_trofeo")
     .stop(true, true) // Detiene todas las animaciones pendientes
     .hide() // Oculta explícitamente
     .removeClass("animated slideInLeft") // Elimina clases de animación
@@ -1344,10 +1344,10 @@ $(".txt_trofeo").each(function () {
       const $audio = $(`#aud_menutrof`)[0];
       const $imgMenuTrofeo = $("#img_menu_trofeo");
       const $imgModTrof = $("#img_modTrof_1");
-      const trofeoSrc = `assets/img/grls/trofeos/trofeo_${strID}.gif`;
+      const trofeoSrc = `assets/img/grls/trofeos/trofeo_${strID}.png`;
 
-      stopPreviousAnimations($imgMenuTrofeo);
-      stopPreviousAnimations($imgModTrof);
+      // stopPreviousAnimations($imgMenuTrofeo);
+      // stopPreviousAnimations($imgModTrof);
 
       $imgMenuTrofeo
         .css({ top: relativeTop, left: "0px", display: "block" }) // Asegura que se muestre
@@ -1372,8 +1372,8 @@ $(".txt_trofeo").each(function () {
     mouseleave: function () {
       const $imgMenuTrofeo = $("#img_menu_trofeo");
       const $imgModTrof = $("#img_modTrof_1");
-      stopPreviousAnimations($imgMenuTrofeo);
-      stopPreviousAnimations($imgModTrof);
+      // stopPreviousAnimations($imgMenuTrofeo);
+      // stopPreviousAnimations($imgModTrof);
       $imgMenuTrofeo.removeClass("animated slideInLeft").css("display", "none"); // Oculta explícitamente
       $imgModTrof.css("display", "none"); // Oculta explícitamente
       console.log(
@@ -1397,10 +1397,10 @@ $(".txt_logro").each(function () {
       const $audio = $(`#aud_menulogro`)[0];
       const $imgMenuTrofeo = $("#img_menu_trofeo");
       const $imgModTrof = $("#img_modTrof_1");
-      const logroSrc = `assets/img/trofeos/logro_${strID}.gif`;
+      const logroSrc = `assets/img/trofeos/logro_${strID}.png`;
 
-      stopPreviousAnimations($imgMenuTrofeo);
-      stopPreviousAnimations($imgModTrof);
+      // stopPreviousAnimations($imgMenuTrofeo);
+      // stopPreviousAnimations($imgModTrof);
 
       $imgMenuTrofeo
         .css({ top: relativeTop, left: "0px", display: "block" }) // Asegura que se muestre
@@ -1425,8 +1425,8 @@ $(".txt_logro").each(function () {
     mouseleave: function () {
       const $imgMenuTrofeo = $("#img_menu_trofeo");
       const $imgModTrof = $("#img_modTrof_1");
-      stopPreviousAnimations($imgMenuTrofeo);
-      stopPreviousAnimations($imgModTrof);
+      // stopPreviousAnimations($imgMenuTrofeo);
+      // stopPreviousAnimations($imgModTrof);
       $imgMenuTrofeo.removeClass("animated slideInLeft").css("display", "none"); // Oculta explícitamente
       $imgModTrof.css("display", "none"); // Oculta explícitamente
       console.log(
