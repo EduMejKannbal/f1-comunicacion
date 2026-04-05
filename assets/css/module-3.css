@@ -7,10 +7,10 @@
 }
 
 .slide_fondo {
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 5%;
+  left: -10%;
+  width: 120%;
 }
 
 #slideM3_title {
@@ -741,11 +741,11 @@
 .modal-txt {
   z-index: 1;
   position: absolute;
-  top: 39%;
-  width: 40%;
-  left: 3px;
+  top: 36%;
+  width: 39%;
+  left: 0px;
   margin: auto;
-  right: -7px;
+  right: 0px;
 }
 
 .close_retroIncorrect,
@@ -755,7 +755,7 @@
   left: 0px;
   right: 0px;
   margin: auto;
-  bottom: 32%;
+  bottom: 29%;
   z-index: 5;
 }
 
