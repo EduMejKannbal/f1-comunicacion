@@ -9,7 +9,7 @@ $("#precache_mod_3").waitForImages({
       myAvance.ch3.vidManEm,
       $(".btn_vidManEm").length + 1,
       "myglow_img_blue",
-      true
+      true,
     );
     ctrl_avElem_chk(
       3,
@@ -17,7 +17,7 @@ $("#precache_mod_3").waitForImages({
       myAvance.ch3.impactBio,
       $(".btn_impactBio").length + 1,
       "myglow_img_white",
-      true
+      true,
     );
     ctrl_avElem_chk(
       3,
@@ -25,7 +25,7 @@ $("#precache_mod_3").waitForImages({
       myAvance.ch3.caracter,
       $(".btn_caracter").length + 1,
       "myglow_img_blue",
-      true
+      true,
     );
     ctrl_avElem_chk(
       3,
@@ -33,7 +33,7 @@ $("#precache_mod_3").waitForImages({
       myAvance.ch3.vidTemp,
       $(".btn_caracter").length + 1,
       "myglow_img_blue",
-      true
+      true,
     );
 
     autoNextSlide("module3", nSlides, ctrl_slidesMod3);
@@ -69,7 +69,9 @@ function ctrl_slidesMod3() {
   manageSlideAudio(3, currentSlide);
 
   // Reproducir audio para el slide actual
-  playAudio("module3_", currentSlide);
+  setTimeout(() => {
+    playAudio("module3_", currentSlide);
+  }, 100);
   // Call autoDismissElements for module 3
   autoDismissElements(3, currentSlide);
 
@@ -91,7 +93,7 @@ function ctrl_slidesMod3() {
   } else if (currentSlide === 3) {
     console.log(
       "Slide 3: myAvance.ch3.trofeoModal =",
-      myAvance.ch3.trofeoModal
+      myAvance.ch3.trofeoModal,
     );
     $prevBtn.show();
     // Mantener el botón interactivo, pero sin myglow_img_white si ya se vio
@@ -242,7 +244,7 @@ function ctrl_avElem_chk(
   ptrID,
   ptrAvMax,
   ptrAnimClass,
-  isInit
+  isInit,
 ) {
   $(".btn_" + ptrClass)
     .removeClass(ptrAnimClass)
@@ -329,7 +331,7 @@ $(".cls_vidManEm").click(function () {
       myAvance.ch3.vidManEm,
       $(".btn_vidManEm").length + 1,
       "myglow_img_blue",
-      false
+      false,
     );
   }
   ctrl_slidesMod3();
@@ -364,7 +366,7 @@ $(".cls_impactBio").click(function () {
       myAvance.ch3.impactBio,
       $(".btn_impactBio").length + 1,
       "myglow_img_white",
-      false
+      false,
     );
   }
   ctrl_slidesMod3();
@@ -399,7 +401,7 @@ $(".cls_caracter").click(function () {
       myAvance.ch3.caracter,
       $(".btn_caracter").length + 1,
       "myglow_img_blue",
-      false
+      false,
     );
   }
   ctrl_slidesMod3();
@@ -434,7 +436,7 @@ $(".cls_vidTemp").click(function () {
       myAvance.ch3.vidTemp,
       $(".btn_caracter").length + 1,
       "myglow_img_blue",
-      false
+      false,
     );
   }
   ctrl_slidesMod3();

@@ -36,7 +36,10 @@ function ctrl_slidesMod1() {
   // Control de música de fondo
   manageSlideAudio(1, currentSlide);
 
-  playAudio("module1_", currentSlide);
+  setTimeout(() => {
+    playAudio("module1_", currentSlide);
+  }, 100);
+  
   //Control de elementos
   autoDismissElements(1, currentSlide);
 
