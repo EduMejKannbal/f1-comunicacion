@@ -6,16 +6,16 @@
     <schema>ADL SCORM</schema>
     <schemaversion>1.2</schemaversion>
   </metadata>
-  <organizations default="Kannbal">
-    <organization identifier="Kannbal">
+  <organizations default="org_Kannbal">
+    <organization identifier="org_Kannbal">
       <title>Kannbal</title>
-      <item identifier="Kannbal" isvisible="true" identifierref="Kannbal">
+      <item identifier="item_Kannbal" isvisible="true" identifierref="res_Kannbal">
         <title>Kannbal</title>
       </item>
     </organization>
   </organizations>
   <resources>
-    <resource identifier="Kannbal" type="webcontent" adlcp:scormtype="sco" href="index.html">
+    <resource identifier="res_Kannbal" type="webcontent" adlcp:scormtype="sco" href="index.html">
       <file href="index.html"/>
     </resource>
   </resources>
