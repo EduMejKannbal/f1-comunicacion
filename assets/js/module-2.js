@@ -12,7 +12,7 @@ $("#precache_mod_2").waitForImages({
       myAvance.ch2.comic,
       $(".btn_comic").length + 1,
       "myglow_img_blue",
-      true
+      true,
     );
     autoNextSlide("module2", nSlides, ctrl_slidesMod2);
   },
@@ -47,7 +47,9 @@ function ctrl_slidesMod2() {
   // Control de música de fondo
   manageSlideAudio(2, currentSlide);
 
-  playAudio("module2_", currentSlide);
+  setTimeout(() => {
+    playAudio("module2_", currentSlide);
+  }, 100);
   // Call autoDismissElements for module 2
   autoDismissElements(2, currentSlide);
 
@@ -216,7 +218,7 @@ $(".cls_comic").click(function () {
       myAvance.ch2.comic,
       $(".btn_comic").length + 1,
       "myglow_img_blue",
-      false
+      false,
     );
   }
   veoComic = 1;
@@ -315,7 +317,7 @@ function verificarSumaPreguntas() {
     "Suma:",
     suma,
     "Intento:",
-    gameAttempts + 1
+    gameAttempts + 1,
   );
 
   // Ocultar botones de navegación al mostrar cualquier modal
@@ -325,7 +327,7 @@ function verificarSumaPreguntas() {
   if (suma === 4) {
     $("#slide_ok_1").show();
     console.log(
-      "[Game] Todas las respuestas correctas, mostrando modal de aprobación"
+      "[Game] Todas las respuestas correctas, mostrando modal de aprobación",
     );
   } else {
     gameAttempts++; // Incrementar el contador de intentos
@@ -333,12 +335,12 @@ function verificarSumaPreguntas() {
       $("#slide_error_1").show();
       console.log(
         "[Game] Respuestas incorrectas, mostrando modal de error, Intento:",
-        gameAttempts
+        gameAttempts,
       );
     } else {
       // Después de 3 intentos, avanzar a la diapositiva 13 sin mostrar modal
       console.log(
-        "[Game] Límite de intentos alcanzado, avanzando a diapositiva 13"
+        "[Game] Límite de intentos alcanzado, avanzando a diapositiva 13",
       );
       advanceToSlide13();
     }
@@ -356,7 +358,7 @@ function advanceToSlide13() {
       // localStorage.setItem("myAvance", JSON.stringify(myAvance)); // Guardar progreso
       saveProgress();
       console.log(
-        "[Game] Progreso actualizado: logro_zapatos = 1, progress = 4"
+        "[Game] Progreso actualizado: logro_zapatos = 1, progress = 4",
       );
     }
     $("#aud_logro").get(0).play(); // Reproducir sonido de logro
@@ -401,7 +403,7 @@ $("#btn_cls_error_modal").click(function () {
   } else {
     // Después de 3 intentos, avanzar a la diapositiva 13
     console.log(
-      "[Game] Límite de intentos alcanzado, avanzando a diapositiva 13"
+      "[Game] Límite de intentos alcanzado, avanzando a diapositiva 13",
     );
     advanceToSlide13();
   }

@@ -5,7 +5,7 @@ ctrl_avElem(
   myAvance.ch1.estilosComunicacion,
   $(".btn_estilosComunicacion").length + 1,
   "myglow_img_white",
-  true
+  true,
 );
 autoNextSlide("module1", nSlides, ctrl_slidesMod1);
 
@@ -36,7 +36,9 @@ function ctrl_slidesMod1() {
   // Control de música de fondo
   manageSlideAudio(1, currentSlide);
 
-  playAudio("module1_", currentSlide);
+  setTimeout(() => {
+    playAudio("module1_", currentSlide);
+  }, 100);
   //Control de elementos
   autoDismissElements(1, currentSlide);
 
@@ -170,7 +172,7 @@ $(".body-answers > div > div").click(function () {
   var questionNum = $thisDiv.data("question");
   var type = $thisDiv.parent().data("type");
   var $questionOptions = $(
-    ".body-answers > div > div[data-question='" + questionNum + "']"
+    ".body-answers > div > div[data-question='" + questionNum + "']",
   );
 
   // Restaurar colores e imágenes para todas las opciones
@@ -179,7 +181,7 @@ $(".body-answers > div > div").click(function () {
     .find("img")
     .attr(
       "src",
-      "assets/img/modules/module-1/slide-4/test/answers/default.png"
+      "assets/img/modules/module-1/slide-4/test/answers/default.png",
     );
 
   // Marcar esta opción como seleccionada
@@ -218,7 +220,7 @@ function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
       step: function (now) {
         $(ptrClass).text(Math.ceil(now) + "%");
       },
-    }
+    },
   );
 }
 
@@ -409,7 +411,7 @@ $(".cls_estilosComunicacion").click(function () {
       myAvance.ch1.estilosComunicacion,
       $(".btn_estilosComunicacion").length + 1,
       "myglow_img_white",
-      false
+      false,
     );
   }
   ctrl_slidesMod1();
