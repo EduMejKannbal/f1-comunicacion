@@ -70,15 +70,14 @@ progress::-webkit-progress-bar {
 
 /* Contenido principal con mejor responsive */
 .content {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 100%;
-  aspect-ratio: 16/9;
-  position: relative;
   overflow: hidden;
   border-radius: 1rem;
+  width: min(100vw, 100vh * (16 / 9));
+  height: min(100vh, 100vw * (9 / 16));
 }
 
 .modals {
@@ -109,7 +108,7 @@ progress::-webkit-progress-bar {
   pointer-events: none;
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .content {
     height: auto;
     max-height: 90vh;
@@ -130,7 +129,7 @@ progress::-webkit-progress-bar {
     display: block;
     clear: both;
   }
-}
+} */
 
 .btn-cerrar-modal {
   position: absolute;
@@ -1071,7 +1070,7 @@ progress::-webkit-progress-bar {
 
 #btn_close_loader {
   top: 80%;
-  width: 15%;
+  width: 12vw;
   left: 0;
   margin: auto;
   right: 0;

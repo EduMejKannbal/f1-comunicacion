@@ -1,6 +1,6 @@
 <img
   id="slide13_img_1"
-  src="assets/img/modules/module-3/test.jpg"
+  src="./assets/img/modules/module-3/test.jpg"
   style="top: 0; left: 0; position: relative; width: 100%"
 />
 <div
@@ -12,20 +12,20 @@
   class="absolute animated zoomInUp"
   style="top: 12%; left: 2%; width: 91%; z-index: 9999"
 >
-  <img src="assets/img/modules/module-2/ModalCarera.png" style="width: 100%" />
+  <img src="./assets/img/modules/module-2/ModalCarera.png" style="width: 100%" />
   <img
     id="txt_mod_juego_3"
     class="absolute animated zoomInUp"
-    src="assets/img/modules/module-3/instrucciones.svg"
+    src="./assets/img/modules/module-3/instrucciones.svg"
     style="top: 12%"
   />
   <img
     id="btn_mod_juego_3"
-    src="assets/img/icons/continuar.png"
+    src="./assets/img/icons/continuar.png"
     class="elem_click btn_avanceModal animated fadeIn"
     style="bottom: 2%; left: 43.5%; width: 26%"
   />
-  <img id="logo_gepp_mod_game_3" src="assets/img/gepp_logo.png" class="logo_gepp_mod">
+  <img id="logo_gepp_mod_game_3" src="./assets/img/gepp_logo.png" class="logo_gepp_mod">
 </div>
 <div class="container-dragDrop">
   <div class="contenido-relativo">
@@ -34,7 +34,7 @@
         <div>
           <img
             class="draggable"
-            src="assets/img/modules/module-3/slide-9/juego/draggable/1.png"
+            src="./assets/img/modules/module-3/slide-9/juego/draggable/1.png"
             data-answer="sentimientos"
             alt="Sentimientos"
           />
@@ -42,7 +42,7 @@
         <div>
           <img
             class="draggable"
-            src="assets/img/modules/module-3/slide-9/juego/draggable/2.png"
+            src="./assets/img/modules/module-3/slide-9/juego/draggable/2.png"
             data-answer="reacciones"
             alt="Reacciones"
           />
@@ -50,7 +50,7 @@
         <div>
           <img
             class="draggable"
-            src="assets/img/modules/module-3/slide-9/juego/draggable/3.png"
+            src="./assets/img/modules/module-3/slide-9/juego/draggable/3.png"
             data-answer="temperamento"
             alt="Temperamento"
           />
@@ -58,7 +58,7 @@
         <div>
           <img
             class="draggable"
-            src="assets/img/modules/module-3/slide-9/juego/draggable/4.png"
+            src="./assets/img/modules/module-3/slide-9/juego/draggable/4.png"
             data-answer="caracter"
             alt="Caracter"
           />
@@ -66,7 +66,7 @@
         <div>
           <img
             class="draggable"
-            src="assets/img/modules/module-3/slide-9/juego/draggable/5.png"
+            src="./assets/img/modules/module-3/slide-9/juego/draggable/5.png"
             data-answer="animo"
             alt="Animo"
           />
@@ -74,7 +74,7 @@
         <div>
           <img
             class="draggable"
-            src="assets/img/modules/module-3/slide-9/juego/draggable/6.png"
+            src="./assets/img/modules/module-3/slide-9/juego/draggable/6.png"
             data-answer="emociones"
             alt="Emociones"
           />
@@ -84,36 +84,36 @@
     </div>
   </div>
 </div>
-<img src="assets/img/gepp_logo.png" class="logo_gepp_slides animated zoomIn" >
+<img src="./assets/img/gepp_logo.png" class="logo_gepp_slides animated zoomIn" >
 <script>
   const gameConfig = {
     questions: [
       {
-        image: "assets/img/modules/module-3/slide-9/juego/quest/q1.png",
+        image: "./assets/img/modules/module-3/slide-9/juego/quest/q1.png",
         correctAnswer: "emociones",
         dropzoneImage:
-          "assets/img/modules/module-3/slide-9/juego/answers/emociones.png",
+          "./assets/img/modules/module-3/slide-9/juego/answers/emociones.png",
         dropzoneClass: "dropzone-1",
       },
       {
-        image: "assets/img/modules/module-3/slide-9/juego/quest/q2.png",
+        image: "./assets/img/modules/module-3/slide-9/juego/quest/q2.png",
         correctAnswer: "reacciones",
         dropzoneImage:
-          "assets/img/modules/module-3/slide-9/juego/answers/reacciones.png",
+          "./assets/img/modules/module-3/slide-9/juego/answers/reacciones.png",
         dropzoneClass: "dropzone-2",
       },
       {
-        image: "assets/img/modules/module-3/slide-9/juego/quest/q3.png",
+        image: "./assets/img/modules/module-3/slide-9/juego/quest/q3.png",
         correctAnswer: "temperamento",
         dropzoneImage:
-          "assets/img/modules/module-3/slide-9/juego/answers/temperamento.png",
+          "./assets/img/modules/module-3/slide-9/juego/answers/temperamento.png",
         dropzoneClass: "dropzone-3",
       },
       {
-        image: "assets/img/modules/module-3/slide-9/juego/quest/q4.png",
+        image: "./assets/img/modules/module-3/slide-9/juego/quest/q4.png",
         correctAnswer: "caracter",
         dropzoneImage:
-          "assets/img/modules/module-3/slide-9/juego/answers/caracter.png",
+          "./assets/img/modules/module-3/slide-9/juego/answers/caracter.png",
         dropzoneClass: "dropzone-4",
       },
     ],
@@ -140,7 +140,7 @@
       );
 
       $questionContainer.html(`
-            <img src="assets/img/modules/module-3/found-round.png" class="absolute retross_round">
+            <img src="./assets/img/modules/module-3/found-round.png" class="absolute retross_round">
             <img src="${question.image}" alt="Pregunta ${
         currentQuestionIndex + 1
       }" class="question animate zoomIn" />
@@ -166,7 +166,7 @@
             console.log(`[Game] Aciertos: ${correctAnswersCount}`);
           } else {
             $(this).html(
-              `<img src="assets/img/modules/module-3/slide-9/juego/answers/${droppedAnswer}.png" alt="Incorrecto" />`
+              `<img src="./assets/img/modules/module-3/slide-9/juego/answers/${droppedAnswer}.png" alt="Incorrecto" />`
             );
             // try { $("#errorSound")[0].play(); } catch (e) { console.warn("[Game] Error sonido: ", e); }
           }

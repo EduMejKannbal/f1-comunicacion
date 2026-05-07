@@ -245,7 +245,7 @@
   top: 60%;
   left: 13%;
   width: 70vw;
-  height: 180vh;
+  height: 245vh;
   -webkit-transform: translate(-112%, -50%) rotate(-32deg);
   transform: translate(-112%, -50%) rotate(-32deg);
   /* z-index: 1; */
@@ -421,7 +421,7 @@
   top: 70%;
   left: -2%;
   width: 70vw;
-  height: 180vh;
+  height: 245vh;
   -webkit-transform: translate(-112%, -50%) rotate(-29deg);
   transform: translate(-112%, -50%) rotate(-29deg);
   /* z-index: 1; */
@@ -586,10 +586,9 @@
   top: 50%;
   left: 0%;
   width: 70vw;
-  height: 185vh;
+  height: 245vh;
   -webkit-transform: translate(-112%, -50%) rotate(-30deg);
   transform: translate(-112%, -50%) rotate(-30deg);
-  /* z-index: 1; */
   pointer-events: none;
 }
 

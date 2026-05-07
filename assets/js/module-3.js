@@ -472,7 +472,7 @@ $("#btn_finmod3").click(function () {
   $(".music").removeClass("hide");
   if (myAvance.ganador !== null) {
     $("#slide_ganador_1").show();
-    const videoSrc = `assets/vid/ganador/piloto_${myAvance.ganador}.mp4`;
+    const videoSrc = `./assets/vid/ganador/piloto_${myAvance.ganador}.mp4`;
     const $video = $("#vid_ganador_1");
     if ($video.length) {
       $video.attr("src", videoSrc);

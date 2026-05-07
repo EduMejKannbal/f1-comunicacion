@@ -6,7 +6,7 @@ var strAvance = null,
   user_name = null;
 
 function doStart() {
-  localStorage.clear();
+  // localStorage.clear();
   console.log("entra doStart");
   startTimeStamp = new Date();
   ScormProcessInitialize();
@@ -66,7 +66,7 @@ function doStart() {
     save_Status();
     ctrl_AvGeneral();
   } else if (completionStatus === "incomplete") {
-    if (strAvance !== "" || strAvance !== null) {
+    if (strAvance !== "" && strAvance !== null) {
       load_strAvance();
     }
   } else if (
@@ -84,6 +84,13 @@ function save_Status() {
     const avanceData = JSON.stringify(myAvance);
     console.log("Guardando progreso (JSON):", avanceData);
     ScormProcessSetValue("cmi.suspend_data", avanceData);
+    ScormProcessSetValue("cmi.core.exit", "suspend");
+
+    if (typeof ScormProcessCommit === "function") {
+      ScormProcessCommit();
+    } else if (typeof API !== "undefined" && API !== null) {
+      API.LMSCommit("");
+    }
   } else {
     console.error("El objeto 'myAvance' no está definido al intentar guardar.");
   }
@@ -98,12 +105,12 @@ function load_strAvance() {
       console.error(
         "Error al parsear strAvance (datos corruptos):",
         strAvance,
-        e
+        e,
       );
     }
   } else {
     console.log(
-      "No se encontró progreso guardado (strAvance está vacío). Empezando de nuevo."
+      "No se encontró progreso guardado (strAvance está vacío). Empezando de nuevo.",
     );
   }
   if (myAvance.testResults) {
@@ -114,7 +121,7 @@ function load_strAvance() {
       pantera: Object.values(userSelections).filter((val) => val === "pantera")
         .length,
       pavorreal: Object.values(userSelections).filter(
-        (val) => val === "pavorreal"
+        (val) => val === "pavorreal",
       ).length,
       delfin: Object.values(userSelections).filter((val) => val === "delfin")
         .length,
@@ -129,12 +136,12 @@ function load_strAvance() {
     $("#btn_salir").css({ display: "none", "pointer-events": "none" });
   }
 
-  $(".music").addClass("hide").attr("src', 'assets/img/icons/icon.png");
+  $(".music").addClass("hide").attr("src", "./assets/img/icons/icon.png");
   if (flagMus) {
     if (flagMus === 0) {
-      $(".music").attr("src", "assets/img/icons/off.png");
+      $(".music").attr("src", "./assets/img/icons/off.png");
     } else {
-      $(".music").attr("src", "assets/img/icons/on.png");
+      $(".music").attr("src", "./assets/img/icons/on.png");
     }
   }
 
@@ -151,7 +158,7 @@ function load_strAvance() {
     RoughEase,
     ExpoScaleEase,
     SlowMo,
-    CustomEase
+    CustomEase,
   );
 
   // const cards = document.querySelectorAll(".cardTest");
@@ -164,6 +171,9 @@ function load_strAvance() {
   setupCarouselControls("test_1");
   ctrl_menuAccess();
   ctrl_AvGeneral(myAvance.avModulos, 4);
+  nSlides.numSlides = myAvance.ch1?.lastSlide || 1;
+  nSlides.numSlides_2 = myAvance.ch2?.lastSlide || 1;
+  nSlides.numSlides_3 = myAvance.ch3?.lastSlide || 1;
 
   if (!testCompleted) {
     $(".body-answers > div > div").click(function () {
@@ -172,7 +182,7 @@ function load_strAvance() {
       const questionNum = parseInt($this.data("question"));
       const type = $this.parent().data("type");
       const $questionOptions = $(
-        `.body-answers > div > div[data-question="${questionNum}"]`
+        `.body-answers > div > div[data-question="${questionNum}"]`,
       );
       $questionOptions.addClass("disabled");
       $questionOptions.off("click");
@@ -182,7 +192,7 @@ function load_strAvance() {
         .find("img")
         .attr(
           "src",
-          "assets/img/modules/module-1/slide-4/test/answers/select.png"
+          "./assets/img/modules/module-1/slide-4/test/answers/select.png",
         );
       selections[type]++;
       userSelections[questionNum] = type;
@@ -194,7 +204,7 @@ function load_strAvance() {
         "Selections:",
         selections,
         "User selections:",
-        userSelections
+        userSelections,
       );
       // localStorage.setItem("userSelections", JSON.stringify(userSelections));
       myAvance = { ...myAvance, userSelections };
@@ -259,7 +269,7 @@ function doExit() {
   setTimeout(() => {
     if (!window.closed && document.visibilityState === "visible") {
       alert(
-        "Tu progreso se ha guardado, pero parece que el LMS no cerró el contenido.\nPor favor, cierra esta ventana manualmente."
+        "Tu progreso se ha guardado, pero parece que el LMS no cerró el contenido.\nPor favor, cierra esta ventana manualmente.",
       );
     }
   }, 3000);
@@ -311,10 +321,10 @@ document.body.addEventListener("unload", doUnload);
 
 function ConvertMilliSecondsToSCORMTime(
   intTotalMilliseconds,
-  blnIncludeFraction
+  blnIncludeFraction,
 ) {
   var intHours,
-    intintMinutes,
+    intMinutes,
     intSeconds,
     intMilliseconds,
     intHundredths,

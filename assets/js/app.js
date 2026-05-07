@@ -46,6 +46,7 @@ let myAvance = {
   avModulos: 1,
   g_avance: 0,
   ganador: null,
+  flagMus: 1,
   ch1: {
     estilosComunicacion: 1,
     logro_llanta: 0,
@@ -171,7 +172,7 @@ function playModuleAudio(moduleId) {
             isAudioPlaying = true;
             if (!$("#slide_vidWelcome_1").is(":visible")) {
               $(".music")
-                .attr("src", "assets/img/icons/on.png")
+                .attr("src", "./assets/img/icons/on.png")
                 .removeClass("hide");
             }
           })
@@ -183,7 +184,7 @@ function playModuleAudio(moduleId) {
             isAudioPlaying = false;
             if (!$("#slide_vidWelcome_1").is(":visible")) {
               $(".music")
-                .attr("src", "assets/img/icons/off.png")
+                .attr("src", "./assets/img/icons/off.png")
                 .removeClass("hide");
             }
             document.addEventListener(
@@ -195,7 +196,7 @@ function playModuleAudio(moduleId) {
                     console.log(`Retry successful, playing audio: ${audioId}`);
                     isAudioPlaying = true;
                     $(".music")
-                      .attr("src", "assets/img/icons/on.png")
+                      .attr("src", "./assets/img/icons/on.png")
                       .removeClass("hide");
                   })
                   .catch((err) =>
@@ -217,14 +218,14 @@ function playModuleAudio(moduleId) {
       }
       isAudioPlaying = false;
       if (!$("#slide_vidWelcome_1").is(":visible")) {
-        $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+        $(".music").attr("src", "./assets/img/icons/off.png").removeClass("hide");
       }
     } else {
       console.warn(`Audio element ${audioId} not found`);
       isAudioPlaying = false;
       currentAudio = null;
       if (!$("#slide_vidWelcome_1").is(":visible")) {
-        $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+        $(".music").attr("src", "./assets/img/icons/off.png").removeClass("hide");
       }
     }
   }
@@ -281,12 +282,12 @@ function playMusicaJuegos() {
     .play()
     .then(() => {
       isAudioPlaying = true;
-      $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
+      $(".music").attr("src", "./assets/img/icons/on.png").removeClass("hide");
     })
     .catch((err) => {
       console.warn("Error al reproducir música de juego:", err);
       isAudioPlaying = false;
-      $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+      $(".music").attr("src", "./assets/img/icons/off.png").removeClass("hide");
 
       
     });
@@ -358,7 +359,7 @@ function manageSlideAudio(moduleId, currentSlide) {
 function pauseMusicAndUpdateIcon() {
   saveFlagMus();
   pauseAllAudio();
-  $(".music").attr("src", "assets/img/icons/off.png").removeClass("hide");
+  $(".music").attr("src", "./assets/img/icons/off.png").removeClass("hide");
   flagMus = 0;
   // localStorage.setItem("flagMus", flagMus);
 }
@@ -373,7 +374,7 @@ function restoreMusicAndIcon(moduleId) {
       .play()
       .then(() => {
         isAudioPlaying = true;
-        $(".music").attr("src", "assets/img/icons/on.png").removeClass("hide");
+        $(".music").attr("src", "./assets/img/icons/on.png").removeClass("hide");
       })
       .catch((err) => console.warn("Error restoring audio:", err));
   } else if (flagMus === 1) {
@@ -635,7 +636,7 @@ function restoreSelections() {
         .find("img")
         .attr(
           "src",
-          "assets/img/modules/module-1/slide-4/test/answers/select.png"
+          "./assets/img/modules/module-1/slide-4/test/answers/select.png"
         );
       $(this).find(".answer-text").css("color", "#f8fafc");
     } else {
@@ -1069,7 +1070,7 @@ $("#btn_salir").click(function () {
 $(".music").click(function () {
   if (flagMus === 0) {
     flagMus = 1;
-    $(".music").attr("src", "assets/img/icons/on.png");
+    $(".music").attr("src", "./assets/img/icons/on.png");
 
     const currentModuleId = strID;
     let currentSlideNum = 1;
@@ -1095,7 +1096,7 @@ $(".music").click(function () {
     }
   } else {
     flagMus = 0;
-    $(".music").attr("src", "assets/img/icons/off.png");
+    $(".music").attr("src", "./assets/img/icons/off.png");
     if (currentAudio) {
       muteMe(currentAudio);
       currentAudio.pause();
@@ -1344,7 +1345,7 @@ $(".txt_trofeo").each(function () {
       const $audio = $(`#aud_menutrof`)[0];
       const $imgMenuTrofeo = $("#img_menu_trofeo");
       const $imgModTrof = $("#img_modTrof_1");
-      const trofeoSrc = `assets/img/grls/trofeos/trofeo_${strID}.gif`;
+      const trofeoSrc = `./assets/img/grls/trofeos/trofeo_${strID}.gif`;
 
       stopPreviousAnimations($imgMenuTrofeo);
       stopPreviousAnimations($imgModTrof);
@@ -1397,7 +1398,7 @@ $(".txt_logro").each(function () {
       const $audio = $(`#aud_menulogro`)[0];
       const $imgMenuTrofeo = $("#img_menu_trofeo");
       const $imgModTrof = $("#img_modTrof_1");
-      const logroSrc = `assets/img/trofeos/logro_${strID}.gif`;
+      const logroSrc = `./assets/img/trofeos/logro_${strID}.gif`;
 
       stopPreviousAnimations($imgMenuTrofeo);
       stopPreviousAnimations($imgModTrof);

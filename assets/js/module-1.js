@@ -183,14 +183,14 @@ $(".body-answers > div > div").click(function () {
     .find("img")
     .attr(
       "src",
-      "assets/img/modules/module-1/slide-4/test/answers/default.png"
+      "./assets/img/modules/module-1/slide-4/test/answers/default.png"
     );
 
   // Marcar esta opción como seleccionada
   $thisDiv.find(".answer-text").css("color", "#f8fafc");
   $thisDiv
     .find("img")
-    .attr("src", "assets/img/modules/module-1/slide-4/test/answers/select.png");
+    .attr("src", "./assets/img/modules/module-1/slide-4/test/answers/select.png");
 
   // Restar selección anterior (si la había)
   var prevType = userSelections[questionNum];
