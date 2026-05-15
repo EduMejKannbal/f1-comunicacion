@@ -12,43 +12,38 @@
     </div>
   </div>
 
-  <section id="slide_module1_1" class="slide_module1">
+  <div id="slide_module1_1" class="slide_module1">
     <img alt src="./assets/img/base_slide.png" style="top: 0;left: 0;position: relative; width: 100%;">
     <div class="vid_in_slide">
-      <video id="vid_module1_1" src="./assets/vid/modulo1/mod1_cover.mp4" muted class="mod1_videoSlide"></video>
+      <video id="vid_module1_1" src="./assets/vid/modulo1/mod1_cover.mp4" muted class="mod1_videoSlide"
+        playsinline webkit-playsinline>
+      </video>
       <img src="./assets/img/modules/module-2/pista.png" id="slideM1_pista"
         class="absolute animated slideInLeft delay-2s">
       <img src="./assets/img/modules/module-1/title1.svg" id="slideM1_title"
         class="absolute animated slideInLeft delay-2s">
     </div>
-  </section>
+  </div>
 
-  <section id="slide_module1_2" class="slide_module1">
-    <div class="contenido-modulo">
-      <img src="./assets/img/modules/module-1/fondo.jpg" class="absolute image-fondo" alt="">
-      <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-        <video id="vid_module1_2" src="./assets/vid/modulo1/mod1_estcom.mp4" muted class="mod1_videoSlide"></video>
-      </div>
-      <div class="modulo-grid">
-        <div class="grid-diagonal">
-          <div class="diagonal-contenido">
-            <div class="absolute animated slideInLeft">
-              <div id="div-blured-mod1_2" class="div-blured"></div>
-            </div>
-            <div class="contenido-textos">
-              <img src="./assets/img/gepp_logo.png" id="logo_gepp_intro_1" class="logo_gepp_intros animated fadeInLeft" >
-              <img src="./assets/img/modules/module-1/title.svg" class="title-module-estilos animated fadeInLeft">
-              <img src="./assets/img/modules/module-1/txt.svg" alt="" class="paragraph-estilos animated fadeInLeft">
-            </div>
-          </div>
-        </div>
-        <div class="grid-button">
-        </div>
-      </div>
+  <div id="slide_module1_2" class="slide_module1">
+    <img alt src="./assets/img/base_slide.png" style="top: 0; left: 0; position: relative; width: 100%" />
+    
+    <div class="vid_in_slide">
+      <video id="vid_module1_2" src="./assets/vid/modulo1/mod1_estcom.mp4" muted disablepictureinpicture
+        class="mod1_videoSlide" playsinline webkit-playsinline></video>
     </div>
-  </section>
 
-  <section id="slide_module1_3" class="slide_module1">
+    <div class="absolute animated slideInLeft" style="z-index: 1; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+      <div id="div-blured-mod1_2" class="div-blured"></div>
+    </div>
+
+    <img id="slide1_txt_1" class="absolute animated slideInLeft" src="./assets/img/modules/module-1/title.svg" />
+    <img id="slide1_txt_2" class="absolute animated slideInLeft" src="./assets/img/modules/module-1/txt.svg" />
+    
+    <img id="logo_gepp_intro_1" src="./assets/img/gepp_logo.png" class="logo_gepp_intros animated slideInLeft" >
+  </div>
+
+  <div id="slide_module1_3" class="slide_module1">
     <img src="./assets/img/modules/module-1/slide-2/title.png" class="absolute module1_2-title">
     <div class="absolute blur">
       <img src="./assets/img/modules/module-1/fondo-2.png" class="absolute image-fondo" alt="">
@@ -89,21 +84,23 @@
     </div>
     <img src="./assets/img/modules/module-1/slide-2/paragraph-2.png" class="absolute module1_2-paragraph animated zoomIn">
     <img src="./assets/img/gepp_logo.png" class="logo_gepp_slides animated zoomIn" >
-  </section>
+  </div>
 
-  <section id="slide_module1_4" class="slide_module1">
+  <div id="slide_module1_4" class="slide_module1">
     <img src="./assets/img/modules/module-1/fondo-3.png" class="absolute image-fondo ">
     <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-      <video id="vid_module1_4" src="./assets/vid/modulo1/mod1_comenzarT.mp4" muted class="mod1_videoSlide"></video>
+      <video id="vid_module1_4" src="./assets/vid/modulo1/mod1_comenzarT.mp4" muted class="mod1_videoSlide"
+        playsinline webkit-playsinline>
+      </video>
     </div>
     <div id="module1_3-background-paragraph" class="animated zoomIn">
       <img src="./assets/img/modules/module-1/slide-3/paragraph.png" class="absolute module1_3-paragraph animated zoomIn">
     </div>
     <img src="./assets/img/modules/module-1/slide-3/comenzar.png" class="elem_click module1_3-comenzar animated zoomIn">
     <img src="./assets/img/gepp_logo.png" class="logo_gepp_slides animated zoomIn" >
-  </section>
+  </div>
 
-  <section id="slide_module1_5" class="slide_module1">
+  <div id="slide_module1_5" class="slide_module1">
     <img src="./assets/img/modules/module-1/fondo-4.png" class="absolute image-fondo animated zoomIn">
     <div class="contenido-absoluto">
       <div class="contenido-relativo contenido-test">
@@ -507,9 +504,9 @@
       </div>
     </div>
     <img id="logo_gepp_slide_1_5" src="./assets/img/gepp_logo.png" class="logo_gepp_slides animated zoomIn" >
-  </section>
+  </div>
 
-  <section id="slide_module1_6" class="slide_module1">
+  <div id="slide_module1_6" class="slide_module1">
     <img src="./assets/img/modules/module-1/fondo-5.png" class="absolute image-fondo">
     <div class="contenido-absoluto">
       <div class="contenido-relativo contenido-resultadoTest">
@@ -588,34 +585,36 @@
       </div>
     </div>
     <img src="./assets/img/gepp_logo.png" class="logo_gepp_slides animated zoomIn" >
-  </section>
+  </div>
 
-  <section id="slide_module1_7" class="slide_module1">
+  <div id="slide_module1_7" class="slide_module1">
     <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-      <video id="vid_module1_7" src="./assets/vid/modulo1/anim_llanta.mp4" muted class="mod1_videoSlide"></video>
+      <video id="vid_module1_7" src="./assets/vid/modulo1/anim_llanta.mp4" muted class="mod1_videoSlide"
+        playsinline webkit-playsinline>
+      </video>
       <img id="modal_trofeo1" src="./assets/img/modules/module-1/logro_desbloqueado.png"
         class="absolute animated slideInRight" alt>
       <img id="btn_cls_slide7_modal" src="./assets/img/grls/btn_continuar.png" class="elem_click animated zoomIn delay-5s"
         alt>
       <div class="contenido-logro-animado absolute animated fadeIn delay-1s" id="contenido-logro-animado-1">
-        <video class="videoAnimadoLogro" src="./assets/vid/fondoTrof.mp4" autoplay muted loop playsinline
-          aria-label="Animación de fondo con trofeo">
+        <video class="videoAnimadoLogro" src="./assets/vid/fondoTrof.mp4" autoplay muted loop
+          aria-label="Animación de fondo con trofeo" playsinline webkit-playsinline>
           Tu navegador no soporta el video HTML5.
         </video>
         <img src="./assets/img/icons/trofeo.png" class="video-trofeo-animado" alt="">
       </div>
     </div>
-  </section>
+  </div>
 
-  <section id="slide_module1_8" class="slide_module1">
+  <div id="slide_module1_8" class="slide_module1">
     <img src="./assets/img/modules/module-1/fondo-7.jpg" class="absolute image-fondo">
     <img src="./assets/img/modules/module-1/slide-7/cars.png" class="absolute module1_7-cars animated slideInUp">
     <img src="./assets/img/modules/module-1/slide-7/rec.png" class="absolute module1_7-rec animated slideInRight">
     <img src="./assets/img/modules/module-1/slide-7/txt.png" class="absolute module1_7-txt animated slideInRight">
     <img src="./assets/img/gepp_logo.png" class="logo_gepp_slides animated zoomIn" >
-  </section>
+  </div>
 
-  <section id="slide_module1_9" class="slide_module1">
+  <div id="slide_module1_9" class="slide_module1">
     <img src="./assets/img/modules/module-1/fondo-8.png" class="absolute image-fondo animated">
     <div class="container-estilos animated">
       <img src="./assets/img/modules/module-1/slide-9/se_1.png" class="absolute btn_estilosComunicacion "
@@ -638,43 +637,43 @@
 
     <div id="mod_estilosComunicacion_1" class="mod_estilosComunicacion absolute animated zoomIn">
       <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-        <video id="vid_estilosComunicacion_1" src="./assets/vid/modulo1/mod1_pantera.mp4" controls
-          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture
-          class="mod1_videoSlide locution"></video>
+        <video id="vid_estilosComunicacion_1" src="./assets/vid/modulo1/mod1_pantera.mp4" disablepictureinpicture
+          class="mod1_videoSlide locution" playsinline webkit-playsinline>
+        </video>
       </div>
       <img id="cls_estilosComunicacion_1" class="  w3-display-topright delay-2s elem_click cls_estilosComunicacion"
-        src="./assets/img/icons/cls.png" style="top: 1%;right:1%; z-index: 3;" />
+        src="./assets/img/icons/cls.png" style="top: 3%;right:2%; z-index: 3;" />
     </div>
 
     <div id="mod_estilosComunicacion_2" class="mod_estilosComunicacion absolute animated zoomIn">
       <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-        <video id="vid_estilosComunicacion_2" src="./assets/vid/modulo1/mod1_pavorreal.mp4" controls
-          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture
-          class="mod1_videoSlide locution"></video>
+        <video id="vid_estilosComunicacion_2" src="./assets/vid/modulo1/mod1_pavorreal.mp4" disablepictureinpicture
+          class="mod1_videoSlide locution" playsinline webkit-playsinline>
+        </video>
       </div>
       <img id="cls_estilosComunicacion_2" class="  w3-display-topright delay-2s elem_click cls_estilosComunicacion"
-        src="./assets/img/icons/cls.png" style="top: 1%;right:1%;z-index: 3;" />
+        src="./assets/img/icons/cls.png" style="top: 3%;right:2%;z-index: 3;" />
     </div>
 
     <div id="mod_estilosComunicacion_3" class="mod_estilosComunicacion absolute animated zoomIn">
       <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-        <video id="vid_estilosComunicacion_3" src="./assets/vid/modulo1/mod1_delfin.mp4" controls
-          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture
-          class="mod1_videoSlide locution"></video>
+        <video id="vid_estilosComunicacion_3" src="./assets/vid/modulo1/mod1_delfin.mp4" disablepictureinpicture
+          class="mod1_videoSlide locution" playsinline webkit-playsinline>
+        </video>
       </div>
       <img id="cls_estilosComunicacion_3" class="  w3-display-topright delay-2s elem_click cls_estilosComunicacion"
-        src="./assets/img/icons/cls.png" style="top: 1%;right:1%;z-index: 3;" />
+        src="./assets/img/icons/cls.png" style="top: 3%;right:2%;z-index: 3;" />
     </div>
 
     <div id="mod_estilosComunicacion_4" class="mod_estilosComunicacion absolute animated zoomIn">
 
       <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-        <video id="vid_estilosComunicacion_4" src="./assets/vid/modulo1/mod1_buho.mp4" controls
-          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate" disablepictureinpicture
-          class="mod1_videoSlide locution"></video>
+        <video id="vid_estilosComunicacion_4" src="./assets/vid/modulo1/mod1_buho.mp4" disablepictureinpicture
+          class="mod1_videoSlide locution" playsinline webkit-playsinline>
+        </video>
       </div>
       <img id="cls_estilosComunicacion_4" class="  w3-display-topright delay-2s elem_click cls_estilosComunicacion"
-        src="./assets/img/icons/cls.png" style="top: 1%;right:1%;z-index: 3;" />
+        src="./assets/img/icons/cls.png" style="top: 3%;right:2%;z-index: 3;" />
     </div>
 
     <img id="hov_estilosComunicacion_1" src="./assets/img/modules/module-1/slide-9/no_1.png" class="absolute hov_estilosComunicacion" style="display: none;">
@@ -682,25 +681,27 @@
     <img id="hov_estilosComunicacion_3" src="./assets/img/modules/module-1/slide-9/no_3.png" class="absolute hov_estilosComunicacion" style="display: none;">
     <img id="hov_estilosComunicacion_4" src="./assets/img/modules/module-1/slide-9/no_4.png" class="absolute hov_estilosComunicacion" style="display: none;">
 
-  </section>
+  </div>
 
-  <section id="slide_module1_10" class="slide_module1">
+  <div id="slide_module1_10" class="slide_module1">
     <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-      <video id="vid_module1_10" src="./assets/vid/modulo1/anim_casco.mp4" class="mod1_videoSlide"></video>
+      <video id="vid_module1_10" src="./assets/vid/modulo1/anim_casco.mp4" class="mod1_videoSlide"
+        playsinline webkit-playsinline>
+      </video>
       <img id="modal_trofeo2" src="./assets/img/modules/module-1/pole_position.png" class="absolute animated slideInRight"
         alt>
       <img id="btn_cls_slide10_modal" src="./assets/img/grls/btn_continuar.png" class="elem_click animated zoomIn" alt>
       <div class="contenido-logro-animado absolute animated fadeIn delay-1s" id="contenido-logro-animado-2">
-        <video class="videoAnimadoLogro" src="./assets/vid/fondoTrof.mp4" autoplay muted loop playsinline
-          aria-label="Animación de fondo con trofeo">
+        <video class="videoAnimadoLogro" src="./assets/vid/fondoTrof.mp4" autoplay muted loop
+          aria-label="Animación de fondo con trofeo" playsinline webkit-playsinline>
           Tu navegador no soporta el video HTML5.
         </video>
         <img src="./assets/img/icons/trofeo.png" class="video-trofeo-animado" alt="">
       </div>
     </div>
-  </section>
+  </div>
 
-  <section id="slide_module1_11" class="slide_module1">
+  <div id="slide_module1_11" class="slide_module1">
     <img src="./assets/img/modules/module-1/fondo-11.png" class="absolute image-fondo">
     <div class="pleca-slide-11 absolute">
       <img src="./assets/img/modules/module-1/slide-11/txt.png" class="absolute slide-11_txt animated zoomIn" alt="">
@@ -722,13 +723,15 @@
       </div>
     </div>
     <img src="./assets/img/gepp_logo.png" class="logo_gepp_slides animated zoomIn" >
-  </section>
+  </div>
 
-  <section id="slide_module1_12" class="slide_module1">
+  <div id="slide_module1_12" class="slide_module1">
     <img src="./assets/img/modules/module-1/fondo-11.png" class="absolute image-fondo">
 
     <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-      <video id="vid_module1_12" src="./assets/vid/modulo1/mod1_fin.mp4" muted class="mod1_videoSlide"></video>
+      <video id="vid_module1_12" src="./assets/vid/modulo1/mod1_fin.mp4" muted class="mod1_videoSlide"
+        playsinline webkit-playsinline>
+      </video>
     </div>
 
     <div class="pleca-slide1-12 absolute animated zoomIn">
@@ -738,11 +741,13 @@
       class="elem_click animated zoomIn" alt>
     <img id="logo_gepp_finalizar_1" src="./assets/img/gepp_logo.png" class="logo_gepp_intros animated zoomIn" >
     <!--<img src="./assets/img/modules/module-1/slide-12/piloto.png" class="absolute slide1-12-piloto" alt="">-->
-  </section>
+  </div>
 
-  <section id="slide_module1_13" class="slide_module1">
+  <div id="slide_module1_13" class="slide_module1">
     <div class="vid_in_slide" style="height: 100%;z-index: 2;">
-      <video id="vid_module1_13" src="./assets/vid/modulo1/Mod1_Trofeo2.mp4" muted class="mod1_videoSlide"></video>
+      <video id="vid_module1_13" src="./assets/vid/modulo1/Mod1_Trofeo2.mp4" muted class="mod1_videoSlide"
+        playsinline webkit-playsinline>
+      </video>
       <img id="modal_trofeo2" src="./assets/img/modules/module-1/tro_conquis.png" class="absolute animated slideInRight"
         alt>
       <div id="btn_finmod1" class="elem_click">
@@ -750,14 +755,14 @@
         <p class="txt_btn_concluir elem_click" style="width: auto;">Concluir Módulo </p>
       </div>
       <div class="contenido-logro-animado absolute animated fadeIn delay-1s" id="contenido-logro-animado-3">
-        <video class="videoAnimadoLogro" src="./assets/vid/fondoTrof.mp4" autoplay muted loop playsinline
-          aria-label="Animación de fondo con trofeo">
+        <video class="videoAnimadoLogro" src="./assets/vid/fondoTrof.mp4" autoplay muted loop
+          aria-label="Animación de fondo con trofeo" playsinline webkit-playsinline>
           Tu navegador no soporta el video HTML5.
         </video>
         <img src="./assets/img/icons/trofeo.png" class="video-trofeo-animado" alt="">
       </div>
     </div>
-  </section>
+  </div>
 
 
 

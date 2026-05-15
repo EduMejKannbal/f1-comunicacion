@@ -1322,22 +1322,23 @@ $(".txt_menu").each(function () {
   });
 });
 
-// Función para resetear imágenes del menú
 function resetMenuImages() {
   $("#img_menu_rect, #img_menu_trofeo, #img_modTrof_1")
-    .stop(true, true) // Detiene todas las animaciones pendientes
-    .hide() // Oculta explícitamente
-    .removeClass("animated slideInLeft") // Elimina clases de animación
-    .css("display", "none"); // Asegura que el display sea none
+    .stop(true, true)
+    .hide()
+    .removeClass("animated slideInLeft")
+    .css("display", "none");
 }
 
-// Manejador para trofeos
 $(".txt_trofeo").each(function () {
   const $this = $(this);
   const strID = $this.attr("id").split("_")[2];
 
   $this.on({
-    mouseover: debounce(function () {
+    "mouseenter click": debounce(function (e) {
+      if (e && e.type === "click") {
+        e.preventDefault();
+      }
       resetMenuImages();
       const windowHeight = $(window).height();
       const verticalOffset = windowHeight * 0.015;
@@ -1351,10 +1352,10 @@ $(".txt_trofeo").each(function () {
       stopPreviousAnimations($imgModTrof);
 
       $imgMenuTrofeo
-        .css({ top: relativeTop, left: "0px", display: "block" }) // Asegura que se muestre
+        .css({ top: relativeTop, left: "0px", display: "block" })
         .addClass("animated slideInLeft");
 
-      $imgModTrof.attr("src", trofeoSrc).css("display", "block"); // Asegura que se muestre
+      $imgModTrof.attr("src", trofeoSrc).css("display", "block");
 
       console.log(
         `[Trofeo] Mostrando img_menu_trofeo y img_modTrof_1 (${trofeoSrc}) para txt_trofeo_${strID}`
@@ -1375,8 +1376,8 @@ $(".txt_trofeo").each(function () {
       const $imgModTrof = $("#img_modTrof_1");
       stopPreviousAnimations($imgMenuTrofeo);
       stopPreviousAnimations($imgModTrof);
-      $imgMenuTrofeo.removeClass("animated slideInLeft").css("display", "none"); // Oculta explícitamente
-      $imgModTrof.css("display", "none"); // Oculta explícitamente
+      $imgMenuTrofeo.removeClass("animated slideInLeft").css("display", "none");
+      $imgModTrof.css("display", "none");
       console.log(
         `[Trofeo] Ocultando img_menu_trofeo y img_modTrof_1 para txt_trofeo_${strID}`
       );
@@ -1384,16 +1385,18 @@ $(".txt_trofeo").each(function () {
   });
 });
 
-// Manejador para logros
 $(".txt_logro").each(function () {
   const $this = $(this);
   const strID = $this.attr("id").split("_")[2];
 
   $this.on({
-    mouseover: debounce(function () {
+    "mouseenter click": debounce(function (e) {
+      if (e && e.type === "click") {
+        e.preventDefault();
+      }
       resetMenuImages();
       const windowHeight = $(window).height();
-      const verticalOffset = windowHeight * 0.015;
+      const verticalOffset = windowHeight * 0.015 - 4;
       const relativeTop = $this.position().top + verticalOffset + "px";
       const $audio = $(`#aud_menulogro`)[0];
       const $imgMenuTrofeo = $("#img_menu_trofeo");
@@ -1404,10 +1407,10 @@ $(".txt_logro").each(function () {
       stopPreviousAnimations($imgModTrof);
 
       $imgMenuTrofeo
-        .css({ top: relativeTop, left: "0px", display: "block" }) // Asegura que se muestre
+        .css({ top: relativeTop, left: "0px", display: "block" })
         .addClass("animated slideInLeft");
 
-      $imgModTrof.attr("src", logroSrc).css("display", "block"); // Asegura que se muestre
+      $imgModTrof.attr("src", logroSrc).css("display", "block");
 
       console.log(
         `[Logro] Mostrando img_menu_trofeo y img_modTrof_1 (${logroSrc}) para txt_logro_${strID}`
@@ -1428,13 +1431,24 @@ $(".txt_logro").each(function () {
       const $imgModTrof = $("#img_modTrof_1");
       stopPreviousAnimations($imgMenuTrofeo);
       stopPreviousAnimations($imgModTrof);
-      $imgMenuTrofeo.removeClass("animated slideInLeft").css("display", "none"); // Oculta explícitamente
-      $imgModTrof.css("display", "none"); // Oculta explícitamente
+      $imgMenuTrofeo.removeClass("animated slideInLeft").css("display", "none");
+      $imgModTrof.css("display", "none");
       console.log(
         `[Logro] Ocultando img_menu_trofeo y img_modTrof_1 para txt_logro_${strID}`
       );
     },
   });
+});
+
+$(document).on('touchstart', function(e) {
+  if (!$(e.target).closest('.txt_logro, .txt_trofeo, #img_menu_trofeo, #img_modTrof_1').length) {
+    const $imgMenuTrofeo = $("#img_menu_trofeo");
+    const $imgModTrof = $("#img_modTrof_1");
+    stopPreviousAnimations($imgMenuTrofeo);
+    stopPreviousAnimations($imgModTrof);
+    $imgMenuTrofeo.removeClass("animated slideInLeft").css("display", "none");
+    $imgModTrof.css("display", "none");
+  }
 });
 
 $(".btn_homeComenzar").click(function () {
@@ -1457,8 +1471,9 @@ $("#btn_sobreMi_1").click(function () {
   $(".music").addClass("hide");
   pauseAllAudio();
   $("#mod_BienvVid_1").show();
-  $(".vid_in_modal").css("pointer-events", "auto");
+  $(".vid_in_slide").css("pointer-events", "auto"); 
   $("#BienvVid_1").css("pointer-events", "auto");
+  
   const bienvVideo = $("#BienvVid_1").get(0);
   bienvVideo.play();
 });
@@ -1466,8 +1481,9 @@ $("#btn_sobreMi_1").click(function () {
 $("#cls_BienvVid_1").click(function () {
   $(".music").removeClass("hide");
   $("#mod_BienvVid_1").hide();
-  $(".vid_in_modal").css("pointer-events", "none");
+  $(".vid_in_slide").css("pointer-events", "none"); 
   $("#BienvVid_1").css("pointer-events", "none");
+  
   var video = $("#BienvVid_1").get(0);
   video.pause();
   video.currentTime = 0;
