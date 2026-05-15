@@ -487,6 +487,43 @@ function stopOutroVideo() {
   }
 }
 
+function lazyLoadVideo(videoEl) {
+  const dataSrc = videoEl.getAttribute("data-src");
+  if (dataSrc && !videoEl.getAttribute("src")) {
+    videoEl.setAttribute("src", dataSrc);
+    videoEl.load();
+  }
+}
+
+function setupLazyVideoPlay() {
+  document.querySelectorAll("#carga_materia video[data-src]").forEach(function (videoEl) {
+    const origPlay = videoEl.play.bind(videoEl);
+    videoEl.play = function () {
+      lazyLoadVideo(videoEl);
+      return origPlay();
+    };
+  });
+}
+
+function showVideoLoader(videoEl) {
+  const parent = videoEl.parentElement;
+  if (!parent || parent.querySelector(".vid-loading-overlay")) return;
+  const overlay = document.createElement("div");
+  overlay.className = "vid-loading-overlay";
+  const img = document.createElement("img");
+  img.src = "./assets/img/icons/puff.svg";
+  img.alt = "Cargando...";
+  overlay.appendChild(img);
+  parent.appendChild(overlay);
+}
+
+function hideVideoLoader(videoEl) {
+  const parent = videoEl.parentElement;
+  if (!parent) return;
+  const overlay = parent.querySelector(".vid-loading-overlay");
+  if (overlay) overlay.remove();
+}
+
 function reproducirHasta(idVideo, tiempoFinal) {
   const $video = $("#" + idVideo);
   if ($video.length === 0) {
@@ -494,18 +531,29 @@ function reproducirHasta(idVideo, tiempoFinal) {
     return;
   }
   const video = $video[0];
+  lazyLoadVideo(video);
   video.removeAttribute("controls");
   video.volume = 0.3;
-  video.currentTime = 0;
-  video.play();
-  console.log("Volumen video:", video.volume);
-  $video.on("timeupdate", function () {
-    if (this.currentTime >= tiempoFinal) {
-      this.pause();
-      $video.off("timeupdate");
-      this.removeAttribute("controls");
-    }
-  });
+
+  const doPlay = () => {
+    hideVideoLoader(video);
+    video.currentTime = 0;
+    video.play().catch(err => console.warn("Error al reproducir video:", idVideo, err));
+    $video.on("timeupdate", function () {
+      if (this.currentTime >= tiempoFinal) {
+        this.pause();
+        $video.off("timeupdate");
+        this.removeAttribute("controls");
+      }
+    });
+  };
+
+  if (video.readyState >= 3) {
+    doPlay();
+  } else {
+    showVideoLoader(video);
+    $video.off("canplay.rH").one("canplay.rH", doPlay);
+  }
 }
 
 function reiniciarVideos(ptrvidSLides) {
@@ -1035,6 +1083,7 @@ video.addEventListener("ended", function () {
   stopSplashVideo();
   $("#slide_vidWelcome_1").hide();
   $("#mod_start").css("display", "block");
+  $("#div_menu").css("pointer-events", "auto");
   playModuleAudio(null);
 });
 outro.addEventListener("ended", function () {
@@ -1054,10 +1103,24 @@ $("#precache_index").waitForImages({
 });
 
 $("#btn_close_loader").click(function () {
-  $("#slide_vidWelcome_1").show();
-  playSplashVideo();
-  $("#loading_screen").hide();
-  doStart();
+  $("#div_menu").css("pointer-events", "none");
+  $(this).prop("disabled", true).css("opacity", "0.5");
+
+  const startSplash = () => {
+    $("#slide_vidWelcome_1").show();
+    playSplashVideo();
+    $("#loading_screen").hide();
+    doStart();
+  };
+
+  if (video.readyState >= 2) {
+    startSplash();
+  } else {
+    video.addEventListener("canplay", function onCanPlay() {
+      video.removeEventListener("canplay", onCanPlay);
+      startSplash();
+    });
+  }
 });
 
 $("#btn_salir").click(function () {
@@ -1111,6 +1174,7 @@ $(".btn_module").click(function () {
   $(".slide_index,.slide_portada").hide();
   $("#carga_materia").show();
   $("#carga_materia").load(`module_${strID}.html`, function () {
+    setupLazyVideoPlay();
     if (flagMus === 1) {
       playModuleAudio(strID);
       restoreMusicAndIcon(strID);
@@ -1292,6 +1356,7 @@ $(".txt_menu").each(function () {
         $cargaMateria.hide().empty().show();
         document.dispatchEvent(new Event("click"));
         $cargaMateria.load(`module_${strMod}.html`, function () {
+          setupLazyVideoPlay();
           playModuleAudio(strMod);
           restoreMusicAndIcon(strMod);
           bindClickEffect();
