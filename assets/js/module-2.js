@@ -60,11 +60,18 @@ function ctrl_slidesMod2() {
     const video = $("#vid_module2_1");
     $("#slideM2_pista, #slideM2_title").hide();
 
-    video.one("canplaythrough", function () {
+    const onVideoReady = () => {
       $("#slideM2_pista, #slideM2_title").show();
       reproducirHasta("vid_module2_1", 9.99);
       autoNextSlide("module2", nSlides, ctrl_slidesMod2);
-    });
+    };
+    if (video[0].readyState >= 3) {
+      onVideoReady();
+    } else {
+      showVideoLoader(video[0]);
+      lazyLoadVideo(video[0]);
+      video.one("canplay", onVideoReady);
+    }
   } else if (currentSlide === 2) {
     $prevBtn.hide();
     $nextBtn.show();

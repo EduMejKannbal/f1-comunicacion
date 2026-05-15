@@ -51,11 +51,18 @@ function ctrl_slidesMod1() {
 
     $("#slideM1_pista, #slideM1_title").hide();
 
-    video.one("canplaythrough", function () {
+    const onVideoReady = () => {
       $("#slideM1_pista, #slideM1_title").show();
       reproducirHasta("vid_module1_1", 9.99);
       autoNextSlide("module1", nSlides, ctrl_slidesMod1);
-    });
+    };
+    if (video[0].readyState >= 3) {
+      onVideoReady();
+    } else {
+      showVideoLoader(video[0]);
+      lazyLoadVideo(video[0]);
+      video.one("canplay", onVideoReady);
+    }
   } else if (currentSlide === 2) {
     $prevBtn.hide();
     reproducirHasta("vid_module1_2", 4.99);
