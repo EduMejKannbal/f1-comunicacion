@@ -1106,20 +1106,28 @@ $("#btn_close_loader").click(function () {
   $("#div_menu").css("pointer-events", "none");
   $(this).prop("disabled", true).css("opacity", "0.5");
 
+  let started = false;
   const startSplash = () => {
+    if (started) return;
+    started = true;
+    clearTimeout(fallbackTimer);
+    video.removeEventListener("canplay", onCanPlay);
     $("#slide_vidWelcome_1").show();
     playSplashVideo();
     $("#loading_screen").hide();
     doStart();
   };
 
+  const onCanPlay = () => startSplash();
+
+  // En mobile/Moodle canplay puede no disparar; fallback a 5s
+  const fallbackTimer = setTimeout(startSplash, 5000);
+
   if (video.readyState >= 2) {
     startSplash();
   } else {
-    video.addEventListener("canplay", function onCanPlay() {
-      video.removeEventListener("canplay", onCanPlay);
-      startSplash();
-    });
+    video.load();
+    video.addEventListener("canplay", onCanPlay);
   }
 });
 
