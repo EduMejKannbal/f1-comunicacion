@@ -20,6 +20,7 @@ $("#precache_mod_2").waitForImages({
 });
 
 function ctrl_slidesMod2() {
+  hideAllModals();
   // Clear previous timeouts
   dismissTimeouts.forEach((timeout) => clearTimeout(timeout));
   dismissTimeouts = [];

@@ -123,6 +123,12 @@ let $menu = $("#div_menu");
 let video = document.getElementById("splash_1");
 let outro = document.getElementById("vid_outro");
 
+function hideAllModals() {
+  $("#slide_menu_1, #slide_trofeo_1, #mod_terminos, #mod_BienvVid_1").hide();
+  $("[id^='mod_conoceCoach_']").hide();
+  $(".mod_estilosComunicacion, .modalesVideosContenido").hide();
+}
+
 function saveProgress() {
   if (typeof myAvance !== "undefined") {
     save_Status();
@@ -139,7 +145,7 @@ function resetModuleProgress(moduleId) {
 // Funciones de control de audio
 function playModuleAudio(moduleId) {
   console.log(
-    `playModuleAudio called with moduleId: ${moduleId}, flagMus: ${flagMus}, isAudioPlaying: ${isAudioPlaying}`
+    `playModuleAudio called with moduleId: ${moduleId}, flagMus: ${flagMus}, isAudioPlaying: ${isAudioPlaying}`,
   );
   let audioId =
     moduleId && moduleId !== "0" ? `musModu_${moduleId}` : `musModu_0`;
@@ -179,7 +185,7 @@ function playModuleAudio(moduleId) {
           .catch((err) => {
             console.warn(
               `Autoplay blocked or error playing audio: ${audioId}`,
-              err
+              err,
             );
             isAudioPlaying = false;
             if (!$("#slide_vidWelcome_1").is(":visible")) {
@@ -200,11 +206,11 @@ function playModuleAudio(moduleId) {
                       .removeClass("hide");
                   })
                   .catch((err) =>
-                    console.warn(`Retry failed for ${audioId}:`, err)
+                    console.warn(`Retry failed for ${audioId}:`, err),
                   );
                 document.removeEventListener("click", retryAudio);
               },
-              { once: true }
+              { once: true },
             );
           });
       }
@@ -218,14 +224,18 @@ function playModuleAudio(moduleId) {
       }
       isAudioPlaying = false;
       if (!$("#slide_vidWelcome_1").is(":visible")) {
-        $(".music").attr("src", "./assets/img/icons/off.png").removeClass("hide");
+        $(".music")
+          .attr("src", "./assets/img/icons/off.png")
+          .removeClass("hide");
       }
     } else {
       console.warn(`Audio element ${audioId} not found`);
       isAudioPlaying = false;
       currentAudio = null;
       if (!$("#slide_vidWelcome_1").is(":visible")) {
-        $(".music").attr("src", "./assets/img/icons/off.png").removeClass("hide");
+        $(".music")
+          .attr("src", "./assets/img/icons/off.png")
+          .removeClass("hide");
       }
     }
   }
@@ -288,8 +298,6 @@ function playMusicaJuegos() {
       console.warn("Error al reproducir música de juego:", err);
       isAudioPlaying = false;
       $(".music").attr("src", "./assets/img/icons/off.png").removeClass("hide");
-
-      
     });
 }
 
@@ -374,7 +382,9 @@ function restoreMusicAndIcon(moduleId) {
       .play()
       .then(() => {
         isAudioPlaying = true;
-        $(".music").attr("src", "./assets/img/icons/on.png").removeClass("hide");
+        $(".music")
+          .attr("src", "./assets/img/icons/on.png")
+          .removeClass("hide");
       })
       .catch((err) => console.warn("Error restoring audio:", err));
   } else if (flagMus === 1) {
@@ -496,13 +506,15 @@ function lazyLoadVideo(videoEl) {
 }
 
 function setupLazyVideoPlay() {
-  document.querySelectorAll("#carga_materia video[data-src]").forEach(function (videoEl) {
-    const origPlay = videoEl.play.bind(videoEl);
-    videoEl.play = function () {
-      lazyLoadVideo(videoEl);
-      return origPlay();
-    };
-  });
+  document
+    .querySelectorAll("#carga_materia video[data-src]")
+    .forEach(function (videoEl) {
+      const origPlay = videoEl.play.bind(videoEl);
+      videoEl.play = function () {
+        lazyLoadVideo(videoEl);
+        return origPlay();
+      };
+    });
 }
 
 function showVideoLoader(videoEl) {
@@ -538,7 +550,9 @@ function reproducirHasta(idVideo, tiempoFinal) {
   const doPlay = () => {
     hideVideoLoader(video);
     video.currentTime = 0;
-    video.play().catch(err => console.warn("Error al reproducir video:", idVideo, err));
+    video
+      .play()
+      .catch((err) => console.warn("Error al reproducir video:", idVideo, err));
     $video.on("timeupdate", function () {
       if (this.currentTime >= tiempoFinal) {
         this.pause();
@@ -624,7 +638,7 @@ function resetSlide(variableName) {
     nSlides[variableName] = 1;
   } else {
     console.error(
-      "nSlides no está definido o el nombre de la variable no es una cadena."
+      "nSlides no está definido o el nombre de la variable no es una cadena.",
     );
   }
 }
@@ -640,7 +654,7 @@ function showTestResults(results) {
   ];
   const maxPercentage = percentages.reduce(
     (max, current) => (current.value > max.value ? current : max),
-    percentages[0]
+    percentages[0],
   );
 
   $cardItems.css({ opacity: 0, transform: "scale(0.8)" });
@@ -649,7 +663,7 @@ function showTestResults(results) {
   const winnerDelay = 500;
   setTimeout(() => {
     console.log(
-      `Animando card ganadora: ${maxPercentage.type} (${maxPercentage.value}%)`
+      `Animando card ganadora: ${maxPercentage.type} (${maxPercentage.value}%)`,
     );
     const $percentageText = $winnerCard.find(".testResult-relative p");
     const $progressFill = $winnerCard.find(".progress-bar-fill");
@@ -684,7 +698,7 @@ function restoreSelections() {
         .find("img")
         .attr(
           "src",
-          "./assets/img/modules/module-1/slide-4/test/answers/select.png"
+          "./assets/img/modules/module-1/slide-4/test/answers/select.png",
         );
       $(this).find(".answer-text").css("color", "#f8fafc");
     } else {
@@ -696,7 +710,7 @@ function restoreSelections() {
 
 function calculateResults() {
   console.log(
-    "Usando la función calculateResults correcta con lógica de modal"
+    "Usando la función calculateResults correcta con lógica de modal",
   );
   var totalSelections =
     selections.pantera +
@@ -707,7 +721,7 @@ function calculateResults() {
     "Total selecciones:",
     totalSelections,
     "Total preguntas:",
-    totalQuestions
+    totalQuestions,
   );
   if (totalSelections === totalQuestions) {
     console.log("Mostrando el modal de procesamiento");
@@ -720,7 +734,7 @@ function calculateResults() {
       processingAudio
         .play()
         .catch((err) =>
-          console.warn("Error al reproducir audio de procesamiento:", err)
+          console.warn("Error al reproducir audio de procesamiento:", err),
         );
     }
 
@@ -761,34 +775,34 @@ function calculateResults() {
       $(".cardTest").removeClass("mayor-resultado");
       const indexMap = { pantera: 1, pavorreal: 2, delfin: 3, buho: 4 };
       $(`.cardTest:nth-of-type(${indexMap[maxType]})`).addClass(
-        "mayor-resultado"
+        "mayor-resultado",
       );
 
       animateCalif(
         ".cardTest:nth-of-type(1) .testResult-text",
         testResults.pantera,
-        1500
+        1500,
       );
       animateCalif(
         ".cardTest:nth-of-type(2) .testResult-text",
         testResults.pavorreal,
-        1500
+        1500,
       );
       animateCalif(
         ".cardTest:nth-of-type(3) .testResult-text",
         testResults.delfin,
-        1500
+        1500,
       );
       animateCalif(
         ".cardTest:nth-of-type(4) .testResult-text",
         testResults.buho,
-        1500
+        1500,
       );
     }, 3000);
   } else {
     console.log(
       "Test incompleto. Faltan preguntas:",
-      totalQuestions - totalSelections
+      totalQuestions - totalSelections,
     );
   }
 }
@@ -798,7 +812,7 @@ function ctrl_AvGeneral() {
 
   $(".btn_avModulos")
     .removeClass(
-      "myglow_img_blue animated pulse infinite custom-pulse active-button-glow"
+      "myglow_img_blue animated pulse infinite custom-pulse active-button-glow",
     )
     .css({ "pointer-events": "none" })
     .addClass("w3-opacity");
@@ -826,7 +840,7 @@ function ctrl_avElem(
   ptrID,
   ptrAvMax,
   ptrAnimClass,
-  isInit
+  isInit,
 ) {
   $(".btn_" + ptrClass)
     .removeClass(ptrAnimClass)
@@ -911,7 +925,7 @@ function anim_fondo(
   ptrTop,
   ptrLeft,
   ptrWidth,
-  ptrHeight
+  ptrHeight,
 ) {
   var duracionAnimacion = ptrDuracion * 1000;
   $("#back_fondo_" + ptrNumFondo).css({
@@ -924,14 +938,14 @@ function anim_fondo(
     { top: ptrTop, left: ptrLeft, width: ptrWidth, height: ptrHeight },
     duracionAnimacion,
     "swing",
-    () => console.log("¡Animación completada!")
+    () => console.log("¡Animación completada!"),
   );
 }
 
 function resetFondo(ptrDuracion, ptrNumFondo) {
   $("#back_fondo_" + ptrNumFondo).animate(
     { top: "0", width: "100%", height: "100%" },
-    1e3 * ptrDuracion
+    1e3 * ptrDuracion,
   );
 }
 
@@ -944,7 +958,7 @@ function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
       step: function (now) {
         $(ptrClass).text(Math.ceil(now) + "%");
       },
-    }
+    },
   );
 }
 
@@ -996,7 +1010,7 @@ function autoDismissElements(moduleNum, slideNumber) {
   // Salir temprano si el ocultamiento automático está deshabilitado
   if (!isAutoDismissEnabled) {
     console.log(
-      `Ocultamiento automático deshabilitado para módulo ${moduleNum}, diapositiva ${slideNumber}`
+      `Ocultamiento automático deshabilitado para módulo ${moduleNum}, diapositiva ${slideNumber}`,
     );
     return;
   }
@@ -1024,7 +1038,7 @@ function autoDismissElements(moduleNum, slideNumber) {
   const config = moduleConfig[moduleNum];
   if (!config || !config.slides.includes(slideNumber)) {
     console.log(
-      `No hay configuración para el módulo ${moduleNum}, diapositiva ${slideNumber}`
+      `No hay configuración para el módulo ${moduleNum}, diapositiva ${slideNumber}`,
     );
     return;
   }
@@ -1035,13 +1049,13 @@ function autoDismissElements(moduleNum, slideNumber) {
 
   // Ocultar contenido-logro-animado primero
   const $contenido = $(
-    `#slide_module${moduleNum}_${slideNumber} ${contenidoClass}`
+    `#slide_module${moduleNum}_${slideNumber} ${contenidoClass}`,
   );
   console.log(
     `Contenido encontrado:`,
     $contenido.length,
     `Visible:`,
-    $contenido.is(":visible")
+    $contenido.is(":visible"),
   );
   if ($contenido.length) {
     const timeout = setTimeout(() => {
@@ -1060,7 +1074,7 @@ function autoDismissElements(moduleNum, slideNumber) {
       `Trofeo ${id} encontrado:`,
       $element.length,
       `Visible:`,
-      $element.is(":visible")
+      $element.is(":visible"),
     );
     if ($element.length) {
       const timeout = setTimeout(() => {
@@ -1220,7 +1234,7 @@ $("#btn_menu").click(function () {
       menuAudio
         .play()
         .catch((e) =>
-          console.warn("La reproducción del audio del menú falló", e)
+          console.warn("La reproducción del audio del menú falló", e),
         );
       currentAudio = menuAudio;
       isAudioPlaying = true;
@@ -1323,7 +1337,7 @@ $(".txt_menu").each(function () {
           .addClass("animated slideInLeft");
 
         console.log(
-          `[Menu] Mostrando img_menu_rect para txt_menu_${strMod}_${strID} en top: ${relativeTop}`
+          `[Menu] Mostrando img_menu_rect para txt_menu_${strMod}_${strID} en top: ${relativeTop}`,
         );
 
         if ($audio) {
@@ -1331,7 +1345,7 @@ $(".txt_menu").each(function () {
           $audio
             .play()
             .catch((err) =>
-              console.warn(`Error al reproducir aud_menuOver: ${err}`)
+              console.warn(`Error al reproducir aud_menuOver: ${err}`),
             );
         }
       }
@@ -1342,7 +1356,7 @@ $(".txt_menu").each(function () {
       stopPreviousAnimations($imgMenuRect);
       $imgMenuRect.hide().removeClass("animated slideInLeft");
       console.log(
-        `[Menu] Ocultando img_menu_rect para txt_menu_${strMod}_${strID}`
+        `[Menu] Ocultando img_menu_rect para txt_menu_${strMod}_${strID}`,
       );
     },
 
@@ -1359,7 +1373,7 @@ $(".txt_menu").each(function () {
       if (canAccess) {
         const $cargaMateria = $("#carga_materia");
         $(
-          "#slide_index_1, .mod_estilosComunicacion, .modalesVideosContenido .w3-modal, .slide_vidWelcome, .slide_index, .slide_portada, .slide_ganador, #vid_in_modal"
+          "#slide_index_1, .mod_estilosComunicacion, .modalesVideosContenido .w3-modal, .slide_vidWelcome, .slide_index, .slide_portada, .slide_ganador, #vid_in_modal",
         ).hide();
         $cargaMateria.hide().empty().show();
         document.dispatchEvent(new Event("click"));
@@ -1369,7 +1383,7 @@ $(".txt_menu").each(function () {
           restoreMusicAndIcon(strMod);
           bindClickEffect();
           const slide = MODULE_CONFIG[strMod].sections.find(
-            (s) => s.id === strID
+            (s) => s.id === strID,
           )?.slide;
 
           if (slide) {
@@ -1388,7 +1402,7 @@ $(".txt_menu").each(function () {
         });
       } else {
         alert(
-          `Debes completar la sección anterior del Módulo ${strMod} antes de continuar.`
+          `Debes completar la sección anterior del Módulo ${strMod} antes de continuar.`,
         );
       }
     },
@@ -1431,7 +1445,7 @@ $(".txt_trofeo").each(function () {
       $imgModTrof.attr("src", trofeoSrc).css("display", "block");
 
       console.log(
-        `[Trofeo] Mostrando img_menu_trofeo y img_modTrof_1 (${trofeoSrc}) para txt_trofeo_${strID}`
+        `[Trofeo] Mostrando img_menu_trofeo y img_modTrof_1 (${trofeoSrc}) para txt_trofeo_${strID}`,
       );
 
       if ($audio) {
@@ -1439,7 +1453,7 @@ $(".txt_trofeo").each(function () {
         $audio
           .play()
           .catch((err) =>
-            console.warn(`Error al reproducir aud_menutrof: ${err}`)
+            console.warn(`Error al reproducir aud_menutrof: ${err}`),
           );
       }
     }, 100),
@@ -1452,7 +1466,7 @@ $(".txt_trofeo").each(function () {
       $imgMenuTrofeo.removeClass("animated slideInLeft").css("display", "none");
       $imgModTrof.css("display", "none");
       console.log(
-        `[Trofeo] Ocultando img_menu_trofeo y img_modTrof_1 para txt_trofeo_${strID}`
+        `[Trofeo] Ocultando img_menu_trofeo y img_modTrof_1 para txt_trofeo_${strID}`,
       );
     },
   });
@@ -1486,7 +1500,7 @@ $(".txt_logro").each(function () {
       $imgModTrof.attr("src", logroSrc).css("display", "block");
 
       console.log(
-        `[Logro] Mostrando img_menu_trofeo y img_modTrof_1 (${logroSrc}) para txt_logro_${strID}`
+        `[Logro] Mostrando img_menu_trofeo y img_modTrof_1 (${logroSrc}) para txt_logro_${strID}`,
       );
 
       if ($audio) {
@@ -1494,7 +1508,7 @@ $(".txt_logro").each(function () {
         $audio
           .play()
           .catch((err) =>
-            console.warn(`Error al reproducir aud_menulogro: ${err}`)
+            console.warn(`Error al reproducir aud_menulogro: ${err}`),
           );
       }
     }, 100),
@@ -1507,14 +1521,18 @@ $(".txt_logro").each(function () {
       $imgMenuTrofeo.removeClass("animated slideInLeft").css("display", "none");
       $imgModTrof.css("display", "none");
       console.log(
-        `[Logro] Ocultando img_menu_trofeo y img_modTrof_1 para txt_logro_${strID}`
+        `[Logro] Ocultando img_menu_trofeo y img_modTrof_1 para txt_logro_${strID}`,
       );
     },
   });
 });
 
-$(document).on('touchstart', function(e) {
-  if (!$(e.target).closest('.txt_logro, .txt_trofeo, #img_menu_trofeo, #img_modTrof_1').length) {
+$(document).on("touchstart", function (e) {
+  if (
+    !$(e.target).closest(
+      ".txt_logro, .txt_trofeo, #img_menu_trofeo, #img_modTrof_1",
+    ).length
+  ) {
     const $imgMenuTrofeo = $("#img_menu_trofeo");
     const $imgModTrof = $("#img_modTrof_1");
     stopPreviousAnimations($imgMenuTrofeo);
@@ -1544,9 +1562,9 @@ $("#btn_sobreMi_1").click(function () {
   $(".music").addClass("hide");
   pauseAllAudio();
   $("#mod_BienvVid_1").show();
-  $(".vid_in_slide").css("pointer-events", "auto"); 
+  $(".vid_in_slide").css("pointer-events", "auto");
   $("#BienvVid_1").css("pointer-events", "auto");
-  
+
   const bienvVideo = $("#BienvVid_1").get(0);
   bienvVideo.play();
 });
@@ -1554,9 +1572,9 @@ $("#btn_sobreMi_1").click(function () {
 $("#cls_BienvVid_1").click(function () {
   $(".music").removeClass("hide");
   $("#mod_BienvVid_1").hide();
-  $(".vid_in_slide").css("pointer-events", "none"); 
+  $(".vid_in_slide").css("pointer-events", "none");
   $("#BienvVid_1").css("pointer-events", "none");
-  
+
   var video = $("#BienvVid_1").get(0);
   video.pause();
   video.currentTime = 0;
@@ -1584,7 +1602,7 @@ $(".btn_avModulos").click(function () {
 
 $("#menu_trigger, #div_menu").hover(
   () => $menu.stop().animate({ bottom: "0%" }, 300),
-  () => $menu.stop().animate({ bottom: "-10%" }, 300)
+  () => $menu.stop().animate({ bottom: "-10%" }, 300),
 );
 
 $("#btn_trofeo").click(function () {
@@ -1613,7 +1631,7 @@ $("#btn_trofeo").click(function () {
       trophyAudio
         .play()
         .catch((e) =>
-          console.warn("La reproducción del audio de trofeos falló", e)
+          console.warn("La reproducción del audio de trofeos falló", e),
         );
       currentAudio = trophyAudio;
       isAudioPlaying = true;
@@ -1734,6 +1752,26 @@ function ctrl_menuAccess() {
     }
   });
 }
+
+document.addEventListener("visibilitychange", function () {
+  if (document.hidden) {
+    const medias = document.querySelectorAll("audio, video");
+    medias.forEach((media) => {
+      if (!media.paused) {
+        media.pause();
+        media.dataset.pausadoPorVisibilidad = "true";
+      }
+    });
+  } else {
+    const medias = document.querySelectorAll("audio, video");
+    medias.forEach((media) => {
+      if (media.dataset.pausadoPorVisibilidad === "true") {
+        media.play().catch((e) => console.warn(e));
+        media.dataset.pausadoPorVisibilidad = "false";
+      }
+    });
+  }
+});
 
 // Inicialización
 document.addEventListener("DOMContentLoaded", function () {

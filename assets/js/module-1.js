@@ -5,11 +5,12 @@ ctrl_avElem(
   myAvance.ch1.estilosComunicacion,
   $(".btn_estilosComunicacion").length + 1,
   "myglow_img_white",
-  true
+  true,
 );
 autoNextSlide("module1", nSlides, ctrl_slidesMod1);
 
 function ctrl_slidesMod1() {
+  hideAllModals();
   // Clear previous timeouts
   dismissTimeouts.forEach((timeout) => clearTimeout(timeout));
   dismissTimeouts = [];
@@ -39,7 +40,7 @@ function ctrl_slidesMod1() {
   setTimeout(() => {
     playAudio("module1_", currentSlide);
   }, 100);
-  
+
   //Control de elementos
   autoDismissElements(1, currentSlide);
 
@@ -181,7 +182,7 @@ $(".body-answers > div > div").click(function () {
   var questionNum = $thisDiv.data("question");
   var type = $thisDiv.parent().data("type");
   var $questionOptions = $(
-    ".body-answers > div > div[data-question='" + questionNum + "']"
+    ".body-answers > div > div[data-question='" + questionNum + "']",
   );
 
   // Restaurar colores e imágenes para todas las opciones
@@ -190,14 +191,17 @@ $(".body-answers > div > div").click(function () {
     .find("img")
     .attr(
       "src",
-      "./assets/img/modules/module-1/slide-4/test/answers/default.png"
+      "./assets/img/modules/module-1/slide-4/test/answers/default.png",
     );
 
   // Marcar esta opción como seleccionada
   $thisDiv.find(".answer-text").css("color", "#f8fafc");
   $thisDiv
     .find("img")
-    .attr("src", "./assets/img/modules/module-1/slide-4/test/answers/select.png");
+    .attr(
+      "src",
+      "./assets/img/modules/module-1/slide-4/test/answers/select.png",
+    );
 
   // Restar selección anterior (si la había)
   var prevType = userSelections[questionNum];
@@ -229,7 +233,7 @@ function animateCalif(ptrClass, ptrTarget, ptrDuration, current = 0) {
       step: function (now) {
         $(ptrClass).text(Math.ceil(now) + "%");
       },
-    }
+    },
   );
 }
 
@@ -424,7 +428,7 @@ $(".cls_estilosComunicacion").click(function () {
       myAvance.ch1.estilosComunicacion,
       $(".btn_estilosComunicacion").length + 1,
       "myglow_img_white",
-      false
+      false,
     );
   }
   ctrl_slidesMod1();
