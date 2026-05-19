@@ -42,6 +42,7 @@ $("#precache_mod_3").waitForImages({
 });
 
 function ctrl_slidesMod3() {
+  hideAllModals();
   // Clear previous timeouts
   dismissTimeouts.forEach((timeout) => clearTimeout(timeout));
   dismissTimeouts = [];
@@ -82,11 +83,18 @@ function ctrl_slidesMod3() {
     const video = $("#vid_module3_1");
     $("#slideM3_pista, #slideM3_title").hide();
 
-    video.one("canplaythrough", function () {
+    const onVideoReady = () => {
       $("#slideM3_pista, #slideM3_title").show();
       reproducirHasta("vid_module3_1", 9.99);
       autoNextSlide("module3", nSlides, ctrl_slidesMod3);
-    });
+    };
+    if (video[0].readyState >= 3) {
+      onVideoReady();
+    } else {
+      showVideoLoader(video[0]);
+      lazyLoadVideo(video[0]);
+      video.one("canplay", onVideoReady);
+    }
   } else if (currentSlide === 2) {
     $prevBtn.hide();
     $nextBtn.show();
@@ -462,7 +470,7 @@ $("#btn_finmod3").click(function () {
   $(".music").removeClass("hide");
   if (myAvance.ganador !== null) {
     $("#slide_ganador_1").show();
-    const videoSrc = `assets/vid/ganador/piloto_${myAvance.ganador}.mp4`;
+    const videoSrc = `./assets/vid/ganador/piloto_${myAvance.ganador}.mp4`;
     const $video = $("#vid_ganador_1");
     if ($video.length) {
       $video.attr("src", videoSrc);
